@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 120" width="24" height="120" role="img" aria-label="Ground Level border tile vertical (stylized)">
+  <defs>
+    <linearGradient id="glcGoldS4v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F2B705"/>
+      <stop offset="100%" stop-color="#D9A004"/>
+    </linearGradient>
+    <pattern id="patV" width="24" height="120" patternUnits="userSpaceOnUse">
+      <path fill="none" stroke="#202020" stroke-width="2" stroke-opacity="0.55" d="M 12 0 L 12 36"/>
+      <path fill="url(#glcGoldS4v)" fill-opacity="0.85" stroke="#202020" stroke-width="0.8" stroke-opacity="0.4"
+            d="M 4 4 L 20 4 L 20 40 L 16 44 L 12 44 L 12 8 L 4 8 Z"/>
+      <path fill="#F2B705" fill-opacity="0.2" d="M 2 8 L 2 48 L 6 52 L 6 12 Z"/>
+      <path fill="none" stroke="#3A3632" stroke-width="1" stroke-opacity="0.35" d="M 12 88 L 12 120"/>
+    </pattern>
+  </defs>
+  <rect width="24" height="120" fill="url(#patV)"/>
+</svg>
