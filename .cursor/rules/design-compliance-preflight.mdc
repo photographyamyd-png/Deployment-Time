@@ -1,0 +1,43 @@
+---
+description: Hard preflight against cascade, shell/contrast, and pattern-reuse gaps when building pages/sections
+alwaysApply: true
+---
+
+# Design compliance preflight (agents)
+
+Treat this as **mandatory** before you call a page or multi-section refactor **complete**. “It looks fine” without this pass is not sufficient.
+
+## Repeated failure modes → hard countermeasures
+
+1. **Long rules vs one-shot build** — Large docs (`DESIGN-SYSTEM.md`) are easy to “cite” without **applying every constraint to every band**.  
+   **Countermeasure:** After implementation, **enumerate sections in DOM order** and assign each a **shell** (e.g. `.dse`, `.ls`, `.ls` + mist/`--off-white`). Assert **no two similar light surfaces touch** without an **A3 seam** or a **distinct band** (mist, rail, or dark insert).
+
+2. **Pattern reuse without reproof** — Copying class stacks from another page (hero grain, bullets, prose helpers) without proving they match **this** surface.  
+   **Countermeasure:** For **every** class on a **layout root** (`<section>`, hero wrapper, main grid), **grep or read** the rules in `glc-base.css` and confirm `position`, `z-index`, `color`, and `background` do not fight children or siblings.
+
+3. **Non-obvious class interactions** — Two approved utilities on one node override each other (e.g. utilities that set `position: absolute` on the same element that must stay `position: relative` for flex/grid).  
+   **Countermeasure:** **Do not** stack decorative globals on the **same node** as the flex/grid root unless cascade is explicitly verified; put grain/noise/decoration on a **child** with `position: absolute; inset: 0`.
+
+4. **No executable enforcement** — Prose rules do not run in CI.  
+   **Countermeasure:** **This checklist is the gate.** If a box fails, fix it before the final user-facing summary.
+
+5. **Contrast / legibility** — DSE-biased patterns on light shells (or missing body color) → low contrast or “white on white.”  
+   **Countermeasure:** Per text block, name **foreground token + background token** (e.g. `.ls` body → `var(--text-700)` on `var(--white)`). Never use DSE-only bullets/labels on `.ls` without a light-surface equivalent class.
+
+6. **Oversized DESIGN-SYSTEM.md** — A single “read the whole doc” pass will not stick.  
+   **Countermeasure:** Use **targeted retrieval**: grep headings/motif IDs, read only the sections you touch; for a final audit, use the **compliance-gate prompt** with an explicit **list of headings or motif rows** to open (not “read entire file once”).
+
+## Checklist (state done / N/A for each in your reasoning)
+
+- [ ] **Band rhythm**: Full section order with D/L/mist; A3 or equivalent where tone changes; matches homepage-style alternation where the brief says so.
+- [ ] **DSE adjacency (0.1)**: No two DSE-family bands touch without an approved pair — light, **accent** strip, or **A3** seam counts as a separator (see `.cursor/rules/dse-column-failure-reference.mdc`).
+- [ ] **Two-column balance (0.2)**: L04/L05/L07-style splits — copy column has hierarchy (accent rail, quotes, lists, rules, CTAs); no run of **>4 sentences** without a break; media column is intentionally weighted, not a crushed aside (see same reference).
+- [ ] **Implementation hygiene (0.3)**: No Tailwind / CSS modules / static `style={{}}` on layout; no ad-hoc class names outside `glc-base.css`; internal links via `SmartLink`/`Link`; prose width caps per brief (**68ch** on drainage hub); no `display:none` accordion hiding (see same reference).
+- [ ] **Layout roots**: Hero and major wrappers—no accidental `position`/`overflow` breaks; media/parallax layers intentional and visible.
+- [ ] **Type + shell**: Eyebrows, headings, body use tokens valid for that shell; no orphan reliance on undefined prose helpers.
+- [ ] **Motifs**: From the canonical motif set; décor `aria-hidden`; parallax budget respected if the page already defines one.
+- [ ] **Section uniqueness (per page)**: Each top-level section appears **once** — unique `id`/anchor and unique **layout pattern** (no duplicate band/split/grid of the same DNA on the same route).
+
+## Verification
+
+When TSX or `glc-base.css` changes, run from repo root: `npm run lint` and `npm run build` unless the user opts out.

@@ -1,7 +1,13 @@
 "use client";
 
-import { useState, type SyntheticEvent } from "react";
+import {
+  useState,
+  type CSSProperties,
+  type MouseEventHandler,
+  type SyntheticEvent,
+} from "react";
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { Reveal } from "@/components/ui/reveal";
 import type { AccordionContentItem, FeaturedAccordionLayoutVariant } from "@/content/types";
 
 type ItemProps = {
@@ -19,42 +25,29 @@ function AccordionItem({ item, isActive, onMouseEnter }: ItemProps) {
   };
 
   return (
-    <div
-      className={`
-        relative h-[450px] overflow-hidden cursor-pointer rounded-none
-        border border-[var(--gray-200)] shadow-[var(--shadow-card)]
-        transition-[width] duration-700 [transition-timing-function:var(--ease-expo)]
-        ${isActive ? "w-[400px]" : "w-[60px]"}
-      `}
+    <a
+      href={item.href ?? "/services/"}
+      className={`glc-feat-acc__panel${isActive ? " is-active" : ""}`}
       onMouseEnter={onMouseEnter}
+      onFocus={onMouseEnter}
+      aria-label={`View ${item.title}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- dynamic external URLs + onError fallback */}
       <img
         src={item.imageUrl}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        className="glc-feat-acc__panel-img"
         onError={handleImgError}
       />
-      <div className="absolute inset-0 bg-[var(--charcoal-deep)]/45" />
-
-      <span
-        className={`
-          absolute whitespace-nowrap text-center
-          font-[family-name:var(--font-body)] text-[13px] font-extrabold uppercase
-          tracking-[0.08em] text-[var(--white)]
-          transition-all duration-300 [transition-timing-function:var(--ease-expo)]
-          ${
-            isActive
-              ? "bottom-6 left-1/2 max-w-[90%] -translate-x-1/2 rotate-0 text-[var(--yellow-core)]"
-              : "bottom-24 left-1/2 w-auto -translate-x-1/2 rotate-90 text-left text-[var(--white)]"
-          }
-        `}
-      >
-        {item.title}
-      </span>
-    </div>
+      <div className="glc-feat-acc__panel-scrim" aria-hidden />
+      <span className="glc-feat-acc__panel-label">{item.title}</span>
+    </a>
   );
 }
+
+export type FeaturedAccordionTone = "default" | "light" | "dark" | "medium";
+
+export type FeaturedAccordionLayoutMode = "default" | "mirror" | "stack-top";
 
 export type FeaturedAccordionProps = {
   eyebrow: string;
@@ -64,6 +57,18 @@ export type FeaturedAccordionProps = {
   cta: { label: string; href: string };
   items: AccordionContentItem[];
   layoutVariant?: FeaturedAccordionLayoutVariant;
+  /** Surface treatment (default matches production off-white). */
+  tone?: FeaturedAccordionTone;
+  /** `mirror` flips copy/panels and rail direction; `stack-top` places panels above copy at all breakpoints. */
+  layoutMode?: FeaturedAccordionLayoutMode;
+  /** Reverse strip order while preserving hover/active index mapping. */
+  reversePanelOrder?: boolean;
+  /** Unique `id` for the section H2 (required when multiple instances exist on one page). */
+  headingId?: string;
+  /** Number shown in the copy-column badge (default home production uses `06`). */
+  sectionBadge?: string;
+  /** When false, the primary button under the intro is omitted (e.g. CTA placed at section footer). */
+  showCta?: boolean;
 };
 
 export function FeaturedAccordion({
@@ -74,88 +79,139 @@ export function FeaturedAccordion({
   cta,
   items,
   layoutVariant = "split-copy-left-strip-right",
+  tone = "default",
+  layoutMode = "default",
+  reversePanelOrder = false,
+  headingId = "accordion-services-heading",
+  sectionBadge = "06",
+  showCta = true,
 }: FeaturedAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [motifOffset, setMotifOffset] = useState({ x: 0, y: 0 });
+  const [cursor, setCursor] = useState({ x: -9999, y: -9999 });
+  const [cursorInside, setCursorInside] = useState(false);
+  const activeItem = items[activeIndex] ?? items[0];
 
-  // Other `layoutVariant` values: implement as separate layouts (see featured-accordion-pattern-registry.json
-  // + featured-accordion-variants-preview.html), then switch/render here.
   void layoutVariant;
 
+  const rootClass = [
+    "glc-feat-acc",
+    tone !== "default" ? `glc-feat-acc--tone-${tone}` : "",
+    layoutMode !== "default" ? `glc-feat-acc--layout-${layoutMode}` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const handleMove: MouseEventHandler<HTMLElement> = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setCursor({ x, y });
+    setMotifOffset({
+      x: ((e.clientX - rect.left) / rect.width - 0.5) * 22,
+      y: ((e.clientY - rect.top) / rect.height - 0.5) * 18,
+    });
+  };
+
+  const sectionVars = {
+    "--glc-feat-motif-x": `${motifOffset.x}px`,
+    "--glc-feat-motif-y": `${motifOffset.y}px`,
+    "--glc-feat-cx": `${cursor.x}px`,
+    "--glc-feat-cy": `${cursor.y}px`,
+  } as CSSProperties;
+
+  const wmTransform = {
+    transform: `translate3d(calc(-50% + ${motifOffset.x * 0.35}px), ${motifOffset.y * 0.2}px, 0)`,
+  } as CSSProperties;
+
   return (
-    <div
-      className="bg-[var(--white)] text-[var(--text-900)] [font-family:var(--font-body)]"
-      style={{ borderTop: "1px solid var(--gray-200)" }}
-    >
+    <div className={rootClass}>
       <section
-        className="container"
-        style={{ paddingBlock: "var(--section-v)", position: "relative", overflow: "hidden" }}
-        aria-labelledby="accordion-services-heading"
-        onMouseMove={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
-          setMotifOffset({ x, y });
+        className={`glc-feat-acc__section container${cursorInside ? " is-cursor-on" : ""}`}
+        style={sectionVars}
+        aria-labelledby={headingId}
+        onMouseMove={handleMove}
+        onMouseEnter={() => setCursorInside(true)}
+        onMouseLeave={() => {
+          setCursorInside(false);
+          setMotifOffset({ x: 0, y: 0 });
+          setCursor({ x: -9999, y: -9999 });
         }}
-        onMouseLeave={() => setMotifOffset({ x: 0, y: 0 })}
       >
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: "-34px",
-            left: "-120px",
-            width: "560px",
-            height: "220px",
-            backgroundImage:
-              "url('/images/motifs/watermarks/glc-wm-03-horizontal-stack.svg')",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "100% 100%",
-            opacity: 0.18,
-            transform: `rotate(-18deg) translate3d(${motifOffset.x}px, ${motifOffset.y}px, 0)`,
-            transformOrigin: "top left",
-            transition: "transform 220ms var(--ease-expo)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
-        <div className="flex flex-col items-center justify-between gap-12 md:flex-row md:items-center">
-          <div className="w-full text-center md:w-1/2 md:text-left">
-            <div
-              className="eyebrow eyebrow--dark mx-auto justify-center md:mx-0 md:justify-start"
-              style={{ marginBottom: "16px" }}
-            >
-              {eyebrow}
-            </div>
-            <h2
-              id="accordion-services-heading"
-              className="services__heading [text-wrap:balance]"
-            >
-              {headingLine1}
-              <br />
-              <span>{headingLine2}</span>
-            </h2>
-            <p className="services__intro mx-auto mt-6 max-w-xl md:mx-0">{intro}</p>
-            <div className="mt-8 flex justify-center md:justify-start">
-              <a href={cta.href} className="btn-primary">
-                {cta.label}
-                <IconArrow />
-              </a>
-            </div>
+        <div className="glc-feat-acc__rail" aria-hidden />
+        <div className="glc-feat-acc__cursor-ring" aria-hidden />
+        <div className="glc-feat-acc__watermark-ghost" style={wmTransform} aria-hidden>
+          SERVICES
+        </div>
+        <div className="glc-feat-acc__motif" aria-hidden />
+
+        <div className="glc-feat-acc__layout">
+          <div className="glc-feat-acc__copy">
+            <Reveal className="glc-feat-acc__reveal-head">
+              <div className="glc-feat-acc__sec-head">
+                <span className="glc-feat-acc__badge">{sectionBadge}</span>
+                <span className="glc-feat-acc__sec-rule" />
+              </div>
+              <p className="glc-feat-acc__act-ghost">{eyebrow}</p>
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-1">
+              <h2 id={headingId} className="glc-feat-acc__title">
+                <span className="glc-feat-acc__title-line glc-feat-acc__clip">
+                  {headingLine1}
+                </span>
+                <br />
+                <span className="glc-feat-acc__title-accent glc-feat-acc__clip glc-feat-acc__clip--b">
+                  {headingLine2}
+                </span>
+              </h2>
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-2">
+              <p className="glc-feat-acc__anno">{intro}</p>
+            </Reveal>
+
+            {showCta ? (
+              <Reveal delayClass="reveal--delay-3">
+                <div className="glc-feat-acc__cta-row">
+                  <a href={cta.href} className="btn-primary glc-feat-acc__cta">
+                    {cta.label}
+                    <IconArrow />
+                  </a>
+                </div>
+              </Reveal>
+            ) : null}
           </div>
 
-          <div className="w-full md:w-1/2">
-            <div className="flex flex-row items-center justify-center gap-3 overflow-x-auto p-2 md:gap-4 md:p-4 [scrollbar-width:thin]">
-              {items.map((item, index) => (
-                <AccordionItem
-                  key={item.id}
-                  item={item}
-                  isActive={index === activeIndex}
-                  onMouseEnter={() => setActiveIndex(index)}
-                />
-              ))}
+          <Reveal delayClass="reveal--delay-2" className="glc-feat-acc__panels-wrap">
+            <div className="glc-feat-acc__panels-dse">
+              <div className="glc-feat-acc__panels-meta">
+                <span className="glc-feat-acc__panels-chip">Service Focus</span>
+                <a
+                  href={activeItem?.href ?? "/services/"}
+                  className="glc-feat-acc__panels-active"
+                  aria-label={`Open ${activeItem?.title ?? "service"} page`}
+                >
+                  {activeItem?.title ?? "Service"}
+                </a>
+              </div>
+              <div className="glc-feat-acc__panels-stage">
+              <div className="glc-feat-acc__panels-row">
+                {(reversePanelOrder ? [...items].reverse() : items).map((item, displayIndex) => {
+                  const index = reversePanelOrder ? items.length - 1 - displayIndex : displayIndex;
+                  return (
+                    <AccordionItem
+                      key={item.id}
+                      item={item}
+                      isActive={index === activeIndex}
+                      onMouseEnter={() => setActiveIndex(index)}
+                    />
+                  );
+                })}
+              </div>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GLC — Logo motif &amp; pattern variants (Ground Level Logo.svg)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal: #202020;
+      --charcoal-deep: #1e1c1a;
+      --yellow-core: #f2b705;
+      --gold: #d9a004;
+      --white: #ffffff;
+      --cream: #f4f1ec;
+      --section-v: 48px;
+      --container-max: 1200px;
+      --font-display: "Oswald", sans-serif;
+      --font-body: "Plus Jakarta Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: #0a0a0a;
+      color: var(--white);
+    }
+
+    .preview-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      padding: 12px 16px;
+      background: rgba(10, 10, 10, 0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 11px;
+    }
+    .preview-nav a {
+      color: var(--yellow-core);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .preview-nav a:hover { text-decoration: underline; }
+
+    .preview-label {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 28px 40px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+    }
+
+    .lmv {
+      max-width: var(--container-max);
+      margin: 0 auto 8px;
+      padding: 0 40px var(--section-v);
+    }
+
+    .lmv__demo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lmv__fake-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.62);
+      margin: 0;
+      max-width: 62ch;
+    }
+    .lmv__fake-body--dark {
+      color: rgba(32,32,32,0.72);
+    }
+
+    .lmv__h3 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+    .lmv__h3 em {
+      font-style: normal;
+      color: var(--yellow-core);
+    }
+    .lmv__h3--ink { color: var(--charcoal); }
+    .lmv__h3--ink em { color: var(--gold); }
+
+    /* ══ M1 — Overlap card (cream on charcoal) ══ */
+    .lmv--1 .lmv__demo {
+      background: var(--charcoal-deep);
+      padding: 48px 32px 40px;
+      min-height: 220px;
+    }
+    .lmv--1 .lmv__overlap {
+      position: relative;
+      max-width: 640px;
+      margin-left: auto;
+      padding: 32px 28px 28px 36px;
+      background: var(--cream);
+      margin-top: 8px;
+      box-shadow: -12px 12px 0 rgba(242,183,5,0.15);
+    }
+    .lmv--1 .lmv__overlap-logo {
+      position: absolute;
+      top: -24px;
+      left: 24px;
+      width: 64px;
+      height: auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+
+    /* ══ M2 — Hexagon clip logo ══ */
+    .lmv--2 .lmv__demo {
+      background: linear-gradient(160deg, #252320, var(--charcoal-deep));
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .lmv--2 .lmv__hex {
+      width: 100px;
+      height: 86px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: rgba(242,183,5,0.12);
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(242,183,5,0.35);
+    }
+    .lmv--2 .lmv__hex img {
+      width: 56px;
+      height: auto;
+      opacity: 0.9;
+    }
+
+    /* ══ M3 — Heading gold bar + end mark ══ */
+    .lmv--3 .lmv__demo {
+      background: var(--charcoal);
+      padding: 40px;
+    }
+    .lmv--3 .lmv__headline-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .lmv--3 .lmv__headline-bar {
+      flex: 1;
+      min-width: 120px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--yellow-core), rgba(242,183,5,0.2));
+    }
+    .lmv--3 .lmv__headline-logo {
+      width: 48px;
+      height: auto;
+      opacity: 0.75;
+      margin-bottom: 2px;
+    }
+
+    /* ══ M4 — Diagonal parallelogram accent (KEPT) ══ */
+    .lmv--4 .lmv__demo {
+      background: var(--cream);
+      padding: 40px 40px 40px 0;
+      min-height: 220px;
+    }
+    .lmv--4 .lmv__skew-wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .lmv--4 .lmv__skew-panel {
+      position: relative;
+      height: 180px;
+      transform: skewX(-8deg);
+      margin-left: -20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(242,183,5,0.22), rgba(30,28,26,0.08));
+      border-right: 3px solid rgba(242,183,5,0.5);
+    }
+    .lmv--4 .lmv__skew-panel img {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 200px;
+      transform: skewX(8deg) translate(-50%, -50%);
+      opacity: 0.2;
+    }
+    .lmv--4 .lmv__skew-copy { padding-right: 24px; }
+
+    /* ══ M5 — Vertical split seam + centered logo ══ */
+    .lmv--5 .lmv__demo {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 200px;
+      padding: 0;
+    }
+    .lmv--5 .lmv__split-left {
+      background: var(--charcoal-deep);
+      padding: 36px 28px;
+      display: flex;
+      align-items: center;
+    }
+    .lmv--5 .lmv__split-right {
+      background: var(--cream);
+      padding: 36px 28px;
+      display: flex;
+      align-items: center;
+    }
+    .lmv--5 .lmv__split-seam {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 72px;
+      height: 72px;
+      background: var(--cream);
+      border: 3px solid var(--yellow-core);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .lmv--5 .lmv__split-seam img {
+      width: 44px;
+      height: auto;
+    }
+
+    /* ══ M6 — Stamp: dashed frame + tilt ══ */
+    .lmv--6 .lmv__demo {
+      background: #f0ebe4;
+      padding: 48px;
+      display: flex;
+      justify-content: center;
+    }
+    .lmv--6 .lmv__stamp {
+      padding: 20px 24px;
+      border: 2px dashed rgba(32,32,32,0.25);
+      transform: rotate(-3deg);
+      background: rgba(255,255,255,0.6);
+    }
+    .lmv--6 .lmv__stamp img {
+      width: 100px;
+      height: auto;
+      display: block;
+      opacity: 0.92;
+    }
+    .lmv--6 .lmv__stamp-cap {
+      text-align: center;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(32,32,32,0.45);
+      margin-top: 10px;
+    }
+
+    /* ══ M7 — Pull-quote + logo bridge ══ */
+    .lmv--7 .lmv__demo {
+      background: var(--charcoal-deep);
+      padding: 40px 36px;
+    }
+    .lmv--7 .lmv__quote {
+      position: relative;
+      padding: 8px 0 0 48px;
+      border-left: 4px solid var(--yellow-core);
+    }
+    .lmv--7 .lmv__quote::before {
+      content: "\201C";
+      position: absolute;
+      left: 8px;
+      top: -8px;
+      font-family: Georgia, serif;
+      font-size: 64px;
+      line-height: 1;
+      color: rgba(242,183,5,0.25);
+    }
+    .lmv--7 .lmv__quote-mid {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .lmv--7 .lmv__quote-mid img {
+      width: 56px;
+      height: auto;
+      opacity: 0.55;
+    }
+    .lmv--7 .lmv__quote-line {
+      flex: 1;
+      min-width: 80px;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ══ M8 — Timeline node ══ */
+    .lmv--8 .lmv__demo {
+      background: var(--charcoal);
+      padding: 48px 40px;
+    }
+    .lmv--8 .lmv__timeline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 28px;
+    }
+    .lmv--8 .lmv__timeline::before {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.12);
+    }
+    .lmv--8 .lmv__timeline-node {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--yellow-core);
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.35);
+    }
+    .lmv--8 .lmv__timeline-node img {
+      width: 48px;
+      height: auto;
+    }
+    .lmv--8 .lmv__timeline::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ══ M9 — Frosted glass bar (dark over grid) ══ */
+    .lmv--9 .lmv__demo {
+      background: var(--charcoal-deep);
+      padding: 36px;
+    }
+    .lmv--9 .lmv__glass-wrap {
+      position: relative;
+      padding: 28px;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px),
+        var(--charcoal-deep);
+    }
+    .lmv--9 .lmv__glass {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 26px;
+      background: rgba(40,38,36,0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .lmv--9 .lmv__glass img {
+      width: 56px;
+      height: auto;
+      opacity: 0.88;
+    }
+
+    /* ══ M10 — Quarter-circle crop (logo in arc) ══ */
+    .lmv--10 .lmv__demo {
+      background: var(--cream);
+      padding: 40px;
+      min-height: 240px;
+      position: relative;
+    }
+    .lmv--10 .lmv__demo > .lmv__h3,
+    .lmv--10 .lmv__demo > .lmv__fake-body {
+      position: relative;
+      z-index: 1;
+    }
+    .lmv--10 .lmv__arc {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 100% 0 0 0;
+      overflow: hidden;
+      background: rgba(242,183,5,0.08);
+    }
+    .lmv--10 .lmv__arc img {
+      position: absolute;
+      right: -20px;
+      bottom: -10px;
+      width: 200px;
+      height: auto;
+      opacity: 0.35;
+    }
+    .lmv--10 .lmv__arc-line {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 100% 0 0 0;
+      border-top: 2px solid rgba(242,183,5,0.4);
+      border-left: 2px solid rgba(242,183,5,0.4);
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      .lmv--5 .lmv__demo {
+        grid-template-columns: 1fr;
+      }
+      .lmv--5 .lmv__split-seam {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: -32px auto 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav" aria-label="Motif variant shortcuts">
+    <a href="#m1">M1 Overlap</a>
+    <a href="#m2">M2 Hex</a>
+    <a href="#m3">M3 Bar</a>
+    <a href="#m4">M4 Skew</a>
+    <a href="#m5">M5 Split</a>
+    <a href="#m6">M6 Stamp</a>
+    <a href="#m7">M7 Quote</a>
+    <a href="#m8">M8 Timeline</a>
+    <a href="#m9">M9 Glass</a>
+    <a href="#m10">M10 Arc</a>
+  </nav>
+
+  <p class="preview-label">M1 — Overlap card (cream block + gold shadow + logo)</p>
+  <section id="m1" class="lmv lmv--1" aria-label="Overlap card motif">
+    <div class="lmv__demo">
+      <p class="lmv__fake-body" style="margin-bottom:20px;max-width:40ch;">Charcoal field with a stepped cream card—logo anchors the overlap corner.</p>
+      <div class="lmv__overlap">
+        <img class="lmv__overlap-logo" src="../Ground%20Level%20Logo.svg" alt="" width="64" height="48" decoding="async" />
+        <h3 class="lmv__h3 lmv__h3--ink">Bid-ready <em>schedules</em></h3>
+        <p class="lmv__fake-body lmv__fake-body--dark">Use for stats or proof points; shadow echoes brand gold without a full yellow field.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M2 — Hexagon frame (geometric badge)</p>
+  <section id="m2" class="lmv lmv--2" aria-label="Hexagon motif">
+    <div class="lmv__demo">
+      <div class="lmv__hex" aria-hidden="true">
+        <img src="../Ground%20Level%20Logo.svg" alt="" width="56" height="42" decoding="async" />
+      </div>
+      <h3 class="lmv__h3">Precision <em>earthwork</em></h3>
+      <p class="lmv__fake-body" style="text-align:center;max-width:48ch;">Hex clip-path + border: reads as industrial / engineered without repeating the old diamond divider.</p>
+    </div>
+  </section>
+
+  <p class="preview-label">M3 — Gold headline bar + logo cap</p>
+  <section id="m3" class="lmv lmv--3" aria-label="Headline bar motif">
+    <div class="lmv__demo">
+      <div class="lmv__headline-row">
+        <h3 class="lmv__h3" style="margin:0;">Licensed <em>&amp; insured</em></h3>
+        <span class="lmv__headline-bar" aria-hidden="true"></span>
+        <img class="lmv__headline-logo" src="../Ground%20Level%20Logo.svg" alt="" width="48" height="36" decoding="async" />
+      </div>
+      <p class="lmv__fake-body">Strong section opener: typography owns the line; logo sits as a full-stop mark.</p>
+    </div>
+  </section>
+
+  <p class="preview-label">M4 — Skewed parallelogram panel (left rail accent on light) — retained</p>
+  <section id="m4" class="lmv lmv--4" aria-label="Skew panel motif">
+    <div class="lmv__demo">
+      <div class="lmv__skew-wrap">
+        <div class="lmv__skew-panel" aria-hidden="true">
+          <img src="../Ground%20Level%20Logo.svg" alt="" width="200" height="150" decoding="async" />
+        </div>
+        <div class="lmv__skew-copy">
+          <h3 class="lmv__h3 lmv__h3--ink">Civil <em>infrastructure</em></h3>
+          <p class="lmv__fake-body lmv__fake-body--dark">Pairs with cream or white sections; skew + gold edge echoes CTA diagonal language.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M5 — Split field + circular seam logo</p>
+  <section id="m5" class="lmv lmv--5" aria-label="Split seam motif">
+    <div class="lmv__demo">
+      <div class="lmv__split-left">
+        <p class="lmv__fake-body" style="margin:0;">Dark column for contrast copy or metrics.</p>
+      </div>
+      <div class="lmv__split-right">
+        <p class="lmv__fake-body lmv__fake-body--dark" style="margin:0;">Light column for body text. Logo bridges the seam.</p>
+      </div>
+      <div class="lmv__split-seam" aria-hidden="true">
+        <img src="../Ground%20Level%20Logo.svg" alt="" width="44" height="33" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M6 — Stamp: dashed frame + slight tilt</p>
+  <section id="m6" class="lmv lmv--6" aria-label="Stamp motif">
+    <div class="lmv__demo">
+      <div class="lmv__stamp">
+        <img src="../Ground%20Level%20Logo.svg" alt="" width="100" height="75" decoding="async" />
+        <div class="lmv__stamp-cap">Est. reliability</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M7 — Pull-quote column + logo bridge</p>
+  <section id="m7" class="lmv lmv--7" aria-label="Pull quote motif">
+    <div class="lmv__demo">
+      <div class="lmv__quote">
+        <h3 class="lmv__h3">On time. <em>On grade.</em></h3>
+        <p class="lmv__fake-body">Quote or testimonial body sits beside the gold rule; typographic quote mark as texture.</p>
+        <div class="lmv__quote-mid">
+          <img src="../Ground%20Level%20Logo.svg" alt="" width="56" height="42" decoding="async" />
+          <span class="lmv__quote-line" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M8 — Timeline axis + logo as center node</p>
+  <section id="m8" class="lmv lmv--8" aria-label="Timeline motif">
+    <div class="lmv__demo">
+      <div class="lmv__timeline" aria-hidden="true">
+        <span></span>
+        <div class="lmv__timeline-node">
+          <img src="../Ground%20Level%20Logo.svg" alt="" width="48" height="36" decoding="async" />
+        </div>
+        <span></span>
+      </div>
+      <h3 class="lmv__h3">Phase <em>one</em></h3>
+      <p class="lmv__fake-body">Process steps or milestones: swap copy; node stays the brand anchor.</p>
+    </div>
+  </section>
+
+  <p class="preview-label">M9 — Frosted glass row on blueprint grid</p>
+  <section id="m9" class="lmv lmv--9" aria-label="Glass bar motif">
+    <div class="lmv__demo">
+      <div class="lmv__glass-wrap">
+        <div class="lmv__glass">
+          <img src="../Ground%20Level%20Logo.svg" alt="" width="56" height="42" decoding="async" />
+          <div>
+            <h3 class="lmv__h3" style="margin-bottom:6px;">Site logistics</h3>
+            <p class="lmv__fake-body" style="margin:0;">Single frosted strip for announcements or sub-hero lines.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="preview-label">M10 — Quarter-circle crop (logo in corner arc)</p>
+  <section id="m10" class="lmv lmv--10" aria-label="Arc crop motif">
+    <div class="lmv__demo">
+      <div class="lmv__arc" aria-hidden="true">
+        <img src="../Ground%20Level%20Logo.svg" alt="" width="200" height="150" decoding="async" />
+      </div>
+      <div class="lmv__arc-line" aria-hidden="true"></div>
+      <h3 class="lmv__h3 lmv__h3--ink">Corner <em>accent</em></h3>
+      <p class="lmv__fake-body lmv__fake-body--dark">Content stays clear left; arc holds a large faint mark with a gold arc stroke.</p>
+    </div>
+  </section>
+
+</body>
+</html>

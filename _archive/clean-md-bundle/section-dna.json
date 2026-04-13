@@ -1,0 +1,357 @@
+{
+  "_meta": {
+    "kind": "section-dna",
+    "version": "1.3.0",
+    "changelog": "v1.3.0 — All 7 pending decisions resolved. PD-01: ease locked 0.22/0.36. PD-02: stat cell class names locked __num/__sub. PD-03/04/05: proposed values applied, flagged CONFIRM_BEFORE_SHIP. PD-06: tab container registered as stc1__. PD-07: AB3 canonical = white-only, dark variants = experimental only. Source Code Pro added as --font-mono. Theme = light-primary, DSE framework. Ready for Cursor use.",
+    "purpose": "Single source of truth for GLC site design system. Point Cursor at this file only.",
+    "canonicalStyleSource": "glc-site/src/styles/glc-base.css",
+    "canonicalTokenSource": "design_system.json",
+    "approvedSectionsSource": "section-dna/approved-sections.json (15 sections, lastSynced 2026-04-05)",
+    "location": "Repository root — same level as package.json and /glc-site",
+    "pendingDecisions": "NONE — all resolved. Values marked CONFIRM_BEFORE_SHIP should be verified once in design_system.json before final launch, but are safe to build against now.",
+    "confirmBeforeShip": [
+      "tokens.color.text.--text-600 — proposed rgba(30,28,26,0.90)",
+      "tokens.color.charcoal.--charcoal — proposed #2E2B28 (alias of --charcoal-mid)",
+      "tokens.effects.--shadow-card — proposed value, verify in design_system.json",
+      "tokens.spacing.--gap-grid — proposed value, verify in design_system.json",
+      "tokens.spacing.--gl-header-height — proposed value, verify in design_system.json"
+    ],
+    "cssConflictsToResolveInCursor": [
+      "1. Open glc-base.css → search 'STATS — Display-Scale Typography (v2)' → delete that entire block",
+      "2. Search '.about__' in all TSX files → if zero results → delete the v2 about block in glc-base.css",
+      "3. Search 'process-r2__' in all TSX files → if zero results → delete the four v2 blocks for #why #process #testimonials #cta-band",
+      "4. Search 'var(--yellow-tint)' in glc-base.css → replace all with var(--charcoal-tint)",
+      "5. Search 'var(--yellow-tint-md)' in glc-base.css → replace all with var(--charcoal-tint-md)"
+    ]
+  },
+
+  "themePhilosophy": {
+    "primaryGround": "LIGHT — white and off-white are the default page surface",
+    "designStyleEnhancements": "Dark sections (charcoal-deep, charcoal-mid, charcoal-light) are Design Style Enhancements (DSEs). Purposeful high-contrast interventions — not the default.",
+    "dseSpacingRule": "Never place two full-bleed DSE sections consecutively without a light section between. Exception: hero + stats pairing only.",
+    "yellowRole": "Yellow-core (#F7C520) is the single brand accent across both light and dark surfaces. Never substitute.",
+    "charcoalTints": "--charcoal-tint and --charcoal-tint-md replace the former yellow-tint tokens. Industrial charcoal wash — feels like concrete and steel, not candy.",
+    "logoNote": "GLC logo body gray is warm-neutral #585653 — all charcoal tokens are warm-biased to match."
+  },
+
+  "tokens": {
+    "color": {
+      "surfaces": {
+        "--white":           "#FFFFFF",
+        "--off-white":       "#F5F3EE",
+        "--gray-100":        "rgba(30,28,26,0.06)",
+        "--gray-200":        "rgba(30,28,26,0.12)"
+      },
+      "charcoal": {
+        "--charcoal-light":  "#585653",
+        "--charcoal-mid":    "#2E2B28",
+        "--charcoal-deep":   "#1E1C1A",
+        "--charcoal":        "#2E2B28 — CONFIRM_BEFORE_SHIP: assumed alias of --charcoal-mid; used by CoverageSection.tsx inline style"
+      },
+      "accent": {
+        "--yellow-core":     "#F7C520",
+        "--gold":            "#D4A017"
+      },
+      "tints": {
+        "--charcoal-tint":    "rgba(46,43,40,0.06) — replaces removed --yellow-tint",
+        "--charcoal-tint-md": "rgba(46,43,40,0.12) — replaces removed --yellow-tint-md",
+        "_removed":           "--yellow-tint and --yellow-tint-md — deleted from system; update all CSS references"
+      },
+      "text": {
+        "--text-500":        "rgba(30,28,26,0.80)",
+        "--text-400":        "rgba(30,28,26,0.55)",
+        "--text-600":        "rgba(30,28,26,0.90) — CONFIRM_BEFORE_SHIP: extrapolated from token scale pattern"
+      }
+    },
+
+    "typography": {
+      "--font-display":  "Oswald, sans-serif — weights 600 700",
+      "--font-body":     "'Plus Jakarta Sans', sans-serif — weights 400 500 700 800",
+      "--font-accent":   "'Source Serif 4', serif — italic weight 400; testimonials featured quote, card marks, footer tagline",
+      "--font-mono":     "'Source Code Pro', monospace — weights 400/500. USE weight 500 at ≤12px for legibility on both light and dark surfaces; weight 400 acceptable at 14px+. Minimum rendered size: 11px. Minimum opacity: 0.65 on any background. Used for: token values, hex codes, class prefixes, CSS property labels, all technical UI text. Part of the Adobe Source family alongside --font-accent — intentional family cohesion."
+    },
+
+    "spacing": {
+      "--section-v":         "clamp(72px, 8vw, 112px)",
+      "--section-v-sm":      "clamp(48px, 6vw, 72px)",
+      "--container-max":     "1320px",
+      "--gap-grid":          "24px — CONFIRM_BEFORE_SHIP: proposed standard grid gap; verify in design_system.json",
+      "--gl-header-height":  "80px — CONFIRM_BEFORE_SHIP: proposed standard nav height; verify in design_system.json"
+    },
+
+    "effects": {
+      "--shadow-card": "0 4px 24px rgba(30,28,26,0.10) — CONFIRM_BEFORE_SHIP: proposed; verify in design_system.json"
+    },
+
+    "motion": {
+      "--ease-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "_resolved":   "PD-01 resolved — matches all live Framer Motion components. CSS previews built in session were the outlier and should be updated to match."
+    }
+  },
+
+  "globalPatterns": {
+    "scrollReveal": {
+      "hiddenState":   "opacity:0; transform:translateY(28px)",
+      "visibleState":  "opacity:1; transform:translateY(0)",
+      "transition":    "opacity 0.6s var(--ease-expo), transform 0.6s var(--ease-expo)",
+      "stagger":       ["reveal--delay-1:0.08s","reveal--delay-2:0.16s","reveal--delay-3:0.24s","reveal--delay-4:0.32s"],
+      "reducedMotion": "Show final state immediately, skip transition"
+    },
+    "hoverAccentBar": {
+      "element":    "::after absolute bottom:0 left:0 width:100% height:2px",
+      "color":      "var(--yellow-core)",
+      "default":    "scaleX(0) transform-origin:left",
+      "hover":      "scaleX(1)",
+      "duration":   "0.5s var(--ease-expo)",
+      "hoverBg": {
+        "lightSurface": "var(--charcoal-tint)",
+        "darkSurface":  "rgba(255,255,255,0.025)"
+      }
+    },
+    "sectionPrefix":      "All section internals use scoped prefix (st3__, ab3__, why3__, etc). No bare global utilities inside sections.",
+    "blueprintTexture":   "DSE: #id::before crossed 80px rgba(255,255,255,0.012). Light: horizontal-only 64px rgba(0,0,0,0.022).",
+    "seams": {
+      "lightToDSE":  "DSE section top: ::before 3px var(--charcoal-deep) seam OR 3px yellow-core gradient top rail",
+      "dseTobottom": "No additional seam needed — charcoal edge is the natural close"
+    }
+  },
+
+  "knownCssConflicts": [
+    {
+      "id": "stats-v3-vs-v2-cascade", "severity": "HIGH",
+      "file": "glc-base.css",
+      "action": "Search 'STATS — Display-Scale Typography (v2)' → delete entire block"
+    },
+    {
+      "id": "about-ab3-plus-v2-overrides", "severity": "MEDIUM",
+      "file": "glc-base.css",
+      "action": "Search '.about__' in all TSX → if zero hits → delete v2 about block in glc-base.css"
+    },
+    {
+      "id": "why-process-testimonials-cta-v2-cascade", "severity": "MEDIUM",
+      "file": "glc-base.css",
+      "action": "Search 'process-r2__' in TSX → if zero → delete four v2 blocks for #why #process #testimonials #cta-band"
+    },
+    {
+      "id": "yellow-tint-token-replacement", "severity": "MEDIUM",
+      "file": "glc-base.css",
+      "action": "Search 'var(--yellow-tint)' → replace with var(--charcoal-tint). Search 'var(--yellow-tint-md)' → replace with var(--charcoal-tint-md)"
+    }
+  ],
+
+  "sectionRegistry": [
+    {
+      "id": "stats-st3-dark-editorial", "status": "CANDIDATE",
+      "displayName": "Stats — ST3 Dark Editorial Counter Band",
+      "ground": "DSE", "classPrefix": "st3__ / .stat-cell / .stat-cell__*",
+      "sectionElementId": "stats",
+      "reactComponent": "glc-site/src/components/sections/stats-section.tsx",
+      "cellChildClasses": {
+        "number":  ".stat-cell__num — RESOLVED PD-02: confirmed from DevTools inspection",
+        "label":   ".stat-cell__label",
+        "subline": ".stat-cell__sub — RESOLVED PD-02: confirmed from DevTools inspection"
+      },
+      "motion": {
+        "observerThreshold": 0.5,
+        "countUpMs": 1800,
+        "cellHoverMs": 300,
+        "barRevealMs": 500
+      },
+      "sideLabel": {
+        "text":    "Performance — hardcoded in stats-section.tsx",
+        "opacity": "rgba(255,255,255,0.20)"
+      },
+      "spacing": { "desktop":"56px 32px", "tablet":"48px 24px", "mobile":"40px 16px" },
+      "responsive": { "1024":"hide side-label; 2×2", "640":"tighter padding; num clamp(44px,11vw,60px)" },
+      "layerStack": ["#stats charcoal-deep","::before blueprint 80px","st3__top-rail z2 3px yellow","st3__inner z1","st3__side-label 56px","st3__grid 4-col","Reveal.stat-cell","stat-cell::after hover bar"],
+      "conflict": "stats-v3-vs-v2-cascade"
+    },
+    {
+      "id": "about-ab3-editorial-split", "status": "CANDIDATE",
+      "displayName": "About — AB3 Editorial Split",
+      "ground": "LIGHT", "classPrefix": "ab3__",
+      "sectionElementId": "about",
+      "reactComponent": "glc-site/src/components/sections/about-section.tsx",
+      "canonicalVariant": "WHITE — var(--white) is the only sanctioned ground for the canonical AB3 section",
+      "experimentalVariants": "Dark and charcoal AB3 variants were built in design sandbox (session HTML preview). NOT ratified for production. If dark-ground about section is needed on a service page, create a new scoped section rather than overriding AB3.",
+      "layerStack": ["#about white","::before hairline 64px","ab3__wm ghost z0","ab3__layout 55/45","ab3__copy::before yellow pin","ab3__top-row eyebrow+since","ab3__heading-wrap h2+rule","ab3__body","ab3__creds 2×2","btn-primary","ab3__media charcoal clip-path","ab3__badge z2","ab3__chip z2","ab3__corner-mark z2"],
+      "motion": { "chip":"framer whileInView 0.8s delay:0.5 ease:[0.22,1,0.36,1]", "credHover":"220ms charcoal-tint + border yellow" },
+      "conflict": "about-ab3-plus-v2-overrides"
+    },
+    {
+      "id": "hero-v2-flagship-asymmetric", "status": "CANDIDATE",
+      "displayName": "Hero — V2 Flagship", "ground": "DSE",
+      "classPrefix": "hero-v2__", "sectionElementId": "hero",
+      "reactComponent": "glc-site/src/components/sections/hero-section.tsx",
+      "layerStack": ["bg-plane+scrims parallax","structure-plane blueprint","diag-stripe yellow","canvas grid","photo-panel+chips","content z4","grain ::after","service-bar"]
+    },
+    {
+      "id": "gl-parallax-type-band-shared", "status": "CANDIDATE",
+      "displayName": "Parallax Type Band", "ground": "BOTH",
+      "classPrefix": "gl-parallax-type-band__",
+      "reactComponent": "glc-site/src/components/sections/parallax-type-band.tsx",
+      "tones": "dark (charcoal scrim) | light (warm white scrim) — set via tone prop"
+    },
+    {
+      "id": "exc-hub-parallax-cta-band", "status": "CANDIDATE",
+      "displayName": "Excavation Hub — Parallax CTA Band", "ground": "DSE",
+      "classPrefix": "exc-parallax-cta__",
+      "reactComponent": "glc-site/src/components/services/excavation-parallax-cta.tsx"
+    },
+    {
+      "id": "header-mega-services-panel-shell", "status": "CANDIDATE",
+      "displayName": "Header — Services Mega Menu", "ground": "LIGHT",
+      "classPrefix": "gl-mega-panel__ / gl-mega-card__",
+      "ground": "Frosted rgba(250,250,248,0.97) backdrop-blur — NOT full white; distinct from page surface"
+    },
+    {
+      "id": "header-primary-nav-links-cluster", "status": "CANDIDATE",
+      "displayName": "Header — Primary Nav Links", "ground": "LIGHT",
+      "classPrefix": "gl-header__nav-links / gl-nav-mega-trigger",
+      "tokensUsed": ["--text-600","--charcoal-tint","--charcoal-tint-md","--yellow-core","--ease-expo"]
+    },
+    {
+      "id": "services-home-grid-cards", "status": "CANDIDATE",
+      "displayName": "Services — Homepage Grid", "ground": "LIGHT",
+      "classPrefix": "services__ / service-card__", "sectionElementId": "services",
+      "reactComponent": "glc-site/src/components/sections/services-grid-section.tsx",
+      "layerStack": ["#services off-white + ::before 4px charcoal seam","services__header 2-col","services__grid-wrap left rail","services__grid repeat(3,1fr) gap:2px","service-card::before white lift","card __num __icon __title __desc __link"],
+      "cardHover": "::before scaleY(0→1) 0.5s; --shadow-card; text inverts dark→white; charcoal-tint on hover bg"
+    },
+    {
+      "id": "why-why3-editorial-manifesto", "status": "CANDIDATE",
+      "displayName": "Why — Why3 Light Editorial", "ground": "LIGHT",
+      "classPrefix": "why3__", "sectionElementId": "why",
+      "reactComponent": "glc-site/src/components/sections/why-section.tsx",
+      "hoverFill": "why3__hover-fill yellow-tint → UPDATE: now uses --charcoal-tint scaleX(0→1)",
+      "conflict": "why-process-testimonials-cta-v2-cascade"
+    },
+    {
+      "id": "process-proc3-split-timeline", "status": "CANDIDATE",
+      "displayName": "Process — Proc3 Dark / White Split", "ground": "HYBRID",
+      "classPrefix": "proc3__", "sectionElementId": "process",
+      "reactComponent": "glc-site/src/components/sections/process-section.tsx",
+      "layout": "38fr DSE left panel (charcoal-deep + blueprint) + 62fr white right panel (thread + nodes)",
+      "conflict": "why-process-testimonials-cta-v2-cascade"
+    },
+    {
+      "id": "coverage-dark-territory-band", "status": "CANDIDATE",
+      "displayName": "Coverage — Territory Band", "ground": "DSE",
+      "classPrefix": "coverage__", "sectionElementId": "coverage",
+      "reactComponent": "glc-site/src/components/sections/coverage-section.tsx",
+      "implementationNote": "backgroundColor set via inline React style var(--charcoal) — now confirmed as #2E2B28 alias of --charcoal-mid (CONFIRM_BEFORE_SHIP)"
+    },
+    {
+      "id": "testimonials-tst3-editorial", "status": "CANDIDATE",
+      "displayName": "Testimonials — Tst3 Pull Quote Grid", "ground": "LIGHT",
+      "classPrefix": "tst3__", "sectionElementId": "testimonials",
+      "reactComponent": "glc-site/src/components/sections/testimonials-section.tsx",
+      "fontAccentUsage": "--font-accent Source Serif 4 italic: tst3__open-mark + tst3__featured-quote + tst3__card-mark",
+      "conflict": "why-process-testimonials-cta-v2-cascade"
+    },
+    {
+      "id": "cta-band-cta3-charcoal-close", "status": "CANDIDATE",
+      "displayName": "CTA Band — Cta3 Charcoal Close", "ground": "DSE",
+      "classPrefix": "cta3__", "sectionElementId": "cta-band",
+      "reactComponent": "glc-site/src/components/sections/cta-band-section.tsx",
+      "layerStack": ["#cta-band charcoal-deep","::before blueprint 80px","cta3__diag yellow skew 0.07","cta3__inner z1 copy+actions","cta3__bottom-bar 4px yellow"],
+      "conflict": "why-process-testimonials-cta-v2-cascade"
+    },
+    {
+      "id": "footer-site-wide-gray-rail", "status": "CANDIDATE",
+      "displayName": "Footer — Brand Grid + Legal Bar", "ground": "LIGHT",
+      "classPrefix": "footer__", "domPath": "footer#footer",
+      "reactComponent": "glc-site/src/components/layout/site-footer.tsx",
+      "fontUsage": "--font-accent Source Serif 4 italic: footer__tagline",
+      "layerStack": ["#footer gray-100 border-top 4px charcoal","footer__main grid 280px+3×1fr","footer__bar off-white legal"]
+    },
+    {
+      "id": "glc-snow-p14-midlower-cta", "status": "CANDIDATE",
+      "displayName": "Commercial Snow — P14 Mid-Lower CTA Banner", "ground": "DSE",
+      "classPrefix": "glc-snow-midlower-cta__ / glc-snow-btn",
+      "reactComponent": "glc-site/src/components/services/commercial-snow-page-main.tsx",
+      "revealNote": "glc-snow-reveal transition 0.28s — shorter than global 0.6s, intentional",
+      "layerStack": ["div.reveal.glc-snow-reveal","glc-snow-midlower-cta charcoal+shadow","inner grid 1fr+auto","copy.--accent border-left 4px yellow","btns flex row"]
+    },
+    {
+      "id": "services-tab-container-stc1", "status": "CANDIDATE",
+      "displayName": "Services — Sticky Tab Container", "ground": "BOTH",
+      "classPrefix": "stc1__",
+      "origin": "Built in design sandbox session; not yet in production codebase. Add to glc-base.css when implementing.",
+      "referenceFile": "MY MASTER DESIGN SECTIONS/tab-container-preview.html",
+      "layout": "Sticky tab rail (stc1__rail) + full-bleed panel per service (stc1__panel) with background image, overlay scrim, blueprint grid, SVG motifs, text column, and glass stat card",
+      "tabRail": {
+        "sticky": "top:0 z-index:50",
+        "ground": "charcoal-deep — DSE rail on a page that may otherwise be light",
+        "accent": "3px yellow-core left border + ::after grid-line texture",
+        "label":  "56px scoped section label left of tabs — matches st3__side-label pattern",
+        "tabs":   "stc1__tab — numbered (01–04) + label; ::after yellow scaleX active indicator; hover charcoal-tint-dark"
+      },
+      "panels": {
+        "bg":      "full-bleed background-image with slow scale(1.04) on active",
+        "overlay": "linear-gradient 105deg charcoal opaque left → transparent right",
+        "grid":    "#stats-style blueprint texture",
+        "motifs":  "per-panel SVG geometric motifs (corner bracket, diagonal hash, triangle slab, crosshair) at ~0.06–0.12 opacity",
+        "content": "grid 1fr 1fr: text column (eyebrow + Oswald heading + rule + body + feature list + CTA) + glass stat card (border-left 3px yellow, backdrop-blur)"
+      },
+      "svgMotifs": {
+        "rule":  "Each panel has a distinct SVG motif — corner bracket, concentric squares, structural triangle, diagonal grid. Rotate through these for visual variety. Keep opacity 0.06–0.12 so they read as texture not decoration.",
+        "style": "All motifs use var(--yellow-core) stroke/fill only. No other colours."
+      },
+      "motion": {
+        "panelEnter":   "opacity + translateY(18px→0) 0.55s ease-expo on panel activation",
+        "tabActive":    "::after scaleX(0→1) from left 0.4s ease-expo",
+        "bgScale":      "transform scale(1.04) over 8s linear on active panel — subtle parallax drift"
+      },
+      "contentSchema": {
+        "tabs": "Array of 4: { num, label, eyebrow, heading, accentWord, body, features[], cta{label,href}, stats[{value,suffix,label,sub}], backgroundImage }",
+        "count": "Exactly 4 tabs. Adding a 5th requires a grid/layout review."
+      },
+      "tokensUsed": ["--charcoal-deep","--charcoal-mid","--yellow-core","--gold","--white","--charcoal-tint","--font-display","--font-body","--font-mono","--ease-expo","--section-v","--container-max"]
+    }
+  ],
+
+  "forbiddenPatterns": [
+    "No border-radius on section internals — always 0",
+    "No --yellow-tint or --yellow-tint-md — use --charcoal-tint / --charcoal-tint-md",
+    "No 'Courier New' as a font — use --font-mono (Source Code Pro) for all technical text",
+    "No --font-mono below weight 500 at sizes ≤12px — too thin to read on both light and dark surfaces",
+    "No Inter, Roboto, system-ui, Arial — Oswald / Plus Jakarta Sans / Source Serif 4 / Source Code Pro only",
+    "No purple, blue, or teal accents — single accent: --yellow-core #F7C520",
+    "No box-shadow on section shells — exception: --shadow-card on service-card interaction only",
+    "No duplicate #id CSS blocks in glc-base.css",
+    "No bare global utility classes inside section internals — use scoped prefix",
+    "No inline styles in TSX except documented exceptions (CoverageSection intentional)",
+    "No two DSE sections back-to-back without a light section between (exception: hero + stats pairing)",
+    "No dark-first page design — light is always the primary ground; DSEs are enhancements"
+  ],
+
+  "auditCommands": [
+    { "check": "Stats cascade",         "search": "glc-base.css for 'STATS'. Count #stats blocks. Must be 1." },
+    { "check": "Yellow-tint removal",   "search": "glc-base.css for 'yellow-tint'. Must return 0 after replacement." },
+    { "check": "Courier New removal",   "search": "all CSS and TSX for 'Courier New'. Must return 0." },
+    { "check": "About dead CSS",        "search": "all TSX for '.about__'. Zero hits = safe to delete v2 block." },
+    { "check": "V2 cascade blocks",     "search": "for 'process-r2__', 'test-r2__', 'cta-r2__'. Delete if unused." },
+    { "check": "Font compliance",       "search": "section CSS for font-family. Must resolve to --font-display, --font-body, --font-accent, or --font-mono." },
+    { "check": "DSE spacing",           "verify": "Page section order. Flag any two consecutive DSE sections (except hero+stats)." },
+    { "check": "Charcoal token confirm","verify": "design_system.json: confirm --charcoal, --text-600, --shadow-card, --gap-grid, --gl-header-height." }
+  ],
+
+  "promotionChecklist": [
+    "DONE — All 15 + 1 (stc1) sections registered",
+    "DONE — All 7 pending decisions resolved",
+    "DONE — --ease-expo locked: cubic-bezier(0.22, 1, 0.36, 1)",
+    "DONE — stat-cell class names locked: __num and __sub",
+    "DONE — Source Code Pro added as --font-mono, Courier New eliminated",
+    "DONE — Theme: light-primary, DSE framework documented",
+    "DONE — --charcoal-light #585653 from logo added",
+    "DONE — --charcoal-tint + --charcoal-tint-md replace yellow tints",
+    "DONE — All 4 CSS conflicts documented with explicit actions",
+    "DONE — AB3 canonical = white-only; dark variants = experimental, not ratified",
+    "CONFIRM_BEFORE_SHIP — Verify 5 token values in design_system.json",
+    "TODO in Cursor — Resolve 4 CSS conflicts in glc-base.css",
+    "TODO in Cursor — Replace all --yellow-tint references in glc-base.css",
+    "TODO in Cursor — Implement stc1__ tab container if adopting that section",
+    "FINAL — Retire section-dna-catchall.json from active Cursor reference"
+  ]
+}

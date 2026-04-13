@@ -1,0 +1,1334 @@
+{
+  "_meta": {
+    "title": "Approved Sections",
+    "description": "Master reference of section, component, and element DNA approved through chat-driven registry work. Use when building similar sections or components; canonical living registry remains section-dna/catchall.json.",
+    "sourceFile": "section-dna/catchall.json",
+    "includesFromChat": [
+      "About (#about / AboutSection)",
+      "Hero v2 — 2026-04-05: full DNA merge into hero-v2-flagship-asymmetric (layer stack z0â€“grain, Framer variants, HeroProps/lede split, parallax springs, chips/CTAs/service bar, responsive 1024/768/480, a11y, assets, mounted gate, hub overrides note)",
+      "Parallax type band, excavation parallax CTA, mega services panel, primary nav links",
+      "Services grid, Stats ST3, Why Why3, Process Proc3, Coverage, Testimonials Tst3, CTA band Cta3, Site footer",
+      "Commercial snow P14 mid-lower CTA (glc-snow-midlower-cta / SnowRevealSection)"
+    ],
+    "sectionCount": 15,
+    "sectionIds": [
+      "stats-st3-dark-editorial",
+      "about-ab3-editorial-split",
+      "hero-v2-flagship-asymmetric",
+      "gl-parallax-type-band-shared",
+      "exc-hub-parallax-cta-band",
+      "header-mega-services-panel-shell",
+      "header-primary-nav-links-cluster",
+      "services-home-grid-cards",
+      "why-why3-editorial-manifesto",
+      "process-proc3-split-timeline",
+      "coverage-dark-territory-band",
+      "testimonials-tst3-editorial",
+      "cta-band-cta3-charcoal-close",
+      "footer-site-wide-gray-rail",
+      "glc-snow-p14-midlower-cta"
+    ],
+    "lastSynced": "2026-04-05",
+    "syncNote": "Regenerate from catchall: copy sections[], globalDnaDraft, conflictsToEliminate, or run a small script to merge."
+  },
+  "globalDnaDraft": {
+    "description": "During audit, promote repeated values from sections[] into here, then into section-dna.json.",
+    "brandTokens": [
+      "--charcoal",
+      "--charcoal-deep",
+      "--yellow-core",
+      "--gold",
+      "--white",
+      "--off-white",
+      "--text-500",
+      "--text-400",
+      "--gray-200",
+      "--gray-100",
+      "--font-display",
+      "--font-body",
+      "--section-v",
+      "--section-v-sm",
+      "--ease-expo",
+      "--container-max"
+    ],
+    "motion": {
+      "defaultEase": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "token": "--ease-expo"
+    },
+    "interactionPatterns": [
+      "Scroll reveal: .reveal opacity 0 + translateY(28px) → .reveal.visible; delays reveal--delay-1..4; prefers-reduced-motion: show final state",
+      "Hover accent bars: often scaleX(0)→1 with transform-origin left and --ease-expo"
+    ],
+    "layoutRhythmNotes": [
+      "Section vertical padding often var(--section-v) desktop, var(--section-v-sm) mobile",
+      "Prefer section-scoped class prefixes (e.g. st3__, ab3__) over bare global utilities for section internals"
+    ]
+  },
+  "conflictsToEliminate": [
+    {
+      "id": "stats-v3-vs-v2-cascade",
+      "severity": "high",
+      "summary": "Two #stats themes in glc-base.css; later block overrides background and .stat-cell for white v2 while React uses st3__ dark band.",
+      "searchInCss": [
+        "STATS — v3 Dark Editorial",
+        "STATS — Display-Scale Typography (v2)"
+      ],
+      "selectors": [
+        "#stats",
+        ".stat-cell"
+      ],
+      "resolutionHint": "Scope one theme (e.g. body class or @layer) or delete/merge duplicate #stats; avoid two definitions of the same shared class."
+    },
+    {
+      "id": "about-ab3-plus-v2-overrides",
+      "severity": "medium",
+      "summary": "AB3 uses ab3__* + #about; later FULL-PAGE REDESIGN adds #about padding and #about::before hairlines. Works together today but v2 also defines unused .about__* classes.",
+      "searchInCss": [
+        "ABOUT — v3 Editorial Split",
+        "ABOUT — Editorial White (v2)",
+        "FULL-PAGE REDESIGN OVERRIDES"
+      ],
+      "selectors": [
+        "#about",
+        "#about::before"
+      ],
+      "resolutionHint": "Keep one documented owner for #about; remove dead .about__* if no component uses it."
+    },
+    {
+      "id": "why-process-testimonials-cta-v2-cascade",
+      "severity": "medium",
+      "summary": "Later FULL-PAGE REDESIGN blocks redefine #why, #process, #testimonials, #cta-band (v2 layouts: why v2 rows, process-r2__, test-r2__, cta-r2__ + extra #cta-band::after watermark) while App Router uses WhySection why3__, ProcessSection proc3__, TestimonialsSection tst3__, CtaBandSection cta3__.",
+      "searchInCss": [
+        "WHY — Typographic Reason Rows (v2)",
+        "PROCESS — Editorial 2×2 Staggered Steps (v2)",
+        "TESTIMONIALS — Featured Editorial Layout (v2)",
+        "CTA BAND — Charcoal Drama (v2)"
+      ],
+      "selectors": [
+        "#why",
+        "#process",
+        "#testimonials",
+        "#cta-band"
+      ],
+      "resolutionHint": "Scope v2 rules to legacy static pages or remove if unused; ensure one winning #id block per section for React."
+    }
+  ],
+  "sections": [
+    {
+      "id": "stats-st3-dark-editorial",
+      "status": "candidate",
+      "displayName": "Stats — ST3 Dark Editorial Counter Band",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Full-bleed charcoal stats strip: yellow top rail, vertical Performance label, four animated counter cells with blueprint grid texture",
+        "reactComponent": "glc-site/src/components/sections/stats-section.tsx",
+        "sectionRenderer": "section-renderer type \"stats\"",
+        "domPath": "main#main-content > section#stats",
+        "relatedComponents": [
+          "glc-site/src/components/ui/stat-cell-animated.tsx (Reveal + count-up + IntersectionObserver threshold 0.5)",
+          "glc-site/src/components/ui/reveal.tsx"
+        ],
+        "sectionElementId": "stats",
+        "aria": "section aria-label=\"Company statistics\"",
+        "classPrefix": "st3__ / .stat-cell / .stat-cell__*",
+        "cssAnchorComments": [
+          "STATS — v3 Dark Editorial Counter Band",
+          "STATS — Display-Scale Typography (v2)"
+        ]
+      },
+      "referenceFiles": {
+        "specMarkdown": "MY MASTER DESIGN SECTIONS/DESIGN-SPEC-stats-st3.md",
+        "staticHtml": "MY MASTER DESIGN SECTIONS/stats-st3-section-master.html",
+        "contentExample": "glc-site/src/content/pages/home.json type stats",
+        "propsType": "glc-site/src/content/types.ts → StatsProps / StatCellProps"
+      },
+      "visualDna": {
+        "ground": {
+          "sectionRoot": "#stats background var(--charcoal-deep); position relative; overflow hidden",
+          "blueprintTexture": "#stats::before absolute inset; crossed repeating-linear-gradient 80px step rgba(255,255,255,0.012); pointer-events none"
+        },
+        "structureAndSpacing": {
+          "topRail": ".st3__top-rail height 3px; z-index 2; linear-gradient 90deg var(--yellow-core) → transparent",
+          "innerFlex": ".st3__inner display flex align stretch; z-index 1",
+          "sideLabelColumn": ".st3__side-label width 56px flex-shrink 0; border-right 1px rgba(255,255,255,0.06); padding 0 20px; centers vertical text",
+          "sideLabelType": "span: body 9px weight 800 uppercase letter-spacing 0.22em; color rgba(255,255,255,0.2); writing-mode vertical-rl; rotate 180deg",
+          "grid": ".st3__grid flex 1; grid 4×1 equal columns; borders between cells"
+        },
+        "statCell": {
+          "container": ".stat-cell padding 56×32 default; text-align center; border-right 1px rgba(255,255,255,0.06); last child no right border",
+          "hoverSurface": "background transition to rgba(255,255,255,0.025) on hover",
+          "bottomAccent": "::after full width bar height 2px yellow-core; scaleX(0) → scaleX(1) on hover; transform-origin left; 0.5s --ease-expo",
+          "hierarchy": "stack: .stat-cell__num (block) → .stat-cell__label (block, margin-top 12px) → .stat-cell__sub (block, margin-top 5px)"
+        },
+        "typography": {
+          "numbers": {
+            "class": "stat-cell__num",
+            "font": "--font-display",
+            "clamp": "clamp(52px, 5vw, 80px)",
+            "weight": 700,
+            "color": "white",
+            "suffix": "second span yellow-core (inline style in stat-cell-animated + !important rule in CSS for last-child)"
+          },
+          "label": {
+            "class": "stat-cell__label",
+            "sizePx": 10,
+            "weight": 800,
+            "uppercase": true,
+            "letterSpacing": "0.18em",
+            "color": "rgba(255,255,255,0.45)"
+          },
+          "sub": {
+            "class": "stat-cell__sub",
+            "sizePx": 12,
+            "weight": 500,
+            "color": "rgba(255,255,255,0.25)"
+          }
+        },
+        "motion": {
+          "reveal": "Each cell wrapped Reveal with stagger delays reveal--delay-1..3 on cells 2â€“4",
+          "countUp": "1800ms ease-out cubic client animation; skips if prefers-reduced-motion",
+          "cellHover": "background 0.3s --ease-expo",
+          "barRevealMs": 500
+        },
+        "responsive": {
+          "640": "cell padding 40×16; stat-cell__num clamp(44px, 11vw, 60px)",
+          "1024": "hide .st3__side-label; grid 2×2; cell padding 48×24"
+        },
+        "balance": "Symmetric four-column band; side label adds industrial asymmetry on desktop only; equal visual weight per cell via centered type",
+        "contentShape": {
+          "propsContract": "cells: StatCellProps[] target, afterNumber, format?, label, sub",
+          "sideLabelText": "Hardcoded \"Performance\" in stats-section.tsx"
+        },
+        "cascadeWarning": "Later #stats v2 block (white ground) overrides same #stats and .stat-cell — see conflictsToEliminate stats-v3-vs-v2-cascade"
+      },
+      "layersBottomToTop": [
+        "#stats var(--charcoal-deep) fill",
+        "#stats::before blueprint grid texture",
+        ".st3__top-rail (z2)",
+        ".st3__inner (z1)",
+        ".st3__side-label + span",
+        ".st3__grid",
+        "Reveal.stat-cell: .stat-cell__num + .stat-cell__label + .stat-cell__sub",
+        ".stat-cell::after hover bar"
+      ],
+      "auditNotes": "DevTools may show SegmentViewNode around section; DOM matches StatsSection. User path div.st3__inner > div.st3__grid > div.reveal.stat-cell."
+    },
+    {
+      "id": "about-ab3-editorial-split",
+      "status": "candidate",
+      "displayName": "About — AB3 Editorial Split",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Homepage About band — editorial copy column + clipped photo panel (AB3)",
+        "reactComponent": "glc-site/src/components/sections/about-section.tsx",
+        "sectionRenderer": "glc-site/src/components/sections/section-renderer.tsx (section.type === \"about\" → AboutSection)",
+        "domPath": "main#main-content > section#about",
+        "relatedComponents": [
+          "glc-site/src/components/ui/reveal.tsx",
+          "glc-site/src/components/ui/icon-arrow.tsx",
+          "framer-motion on .ab3__chip (whileInView)"
+        ],
+        "sectionElementId": "about",
+        "aria": "section#about aria-labelledby=\"about-heading\" (h2#about-heading)",
+        "classPrefix": "ab3__",
+        "cssAnchorComments": [
+          "ABOUT — v3 Editorial Split",
+          "ABOUT — Editorial White (v2)",
+          "FULL-PAGE REDESIGN OVERRIDES"
+        ]
+      },
+      "referenceFiles": {
+        "specMarkdown": "MY MASTER DESIGN SECTIONS/DESIGN-SPEC-about-ab3.md",
+        "staticHtml": "MY MASTER DESIGN SECTIONS/about-ab3-section-master.html",
+        "contentExample": "glc-site/src/content/pages/home.json (single about block today)",
+        "propsType": "glc-site/src/content/types.ts → AboutProps"
+      },
+      "visualDna": {
+        "ground": {
+          "sectionBackground": "var(--white)",
+          "sectionPadding": "0 0 calc(var(--section-v) + 16px) from FULL-PAGE REDESIGN #about override",
+          "hairlineTexture": "#about::before repeating-linear-gradient horizontal lines 64px step rgba(0,0,0,0.022), z-index 0"
+        },
+        "watermark": {
+          "type": "text",
+          "class": "ab3__wm",
+          "content": "Literal \"GLC\" in TSX (not content-driven)",
+          "font": "--font-display",
+          "opacity": 0.028,
+          "position": "absolute right -0.06em vertical center, z-index 0"
+        },
+        "layout": {
+          "grid": "55fr 45fr; min-height 680px; â‰¤1024px stacks to 1 column",
+          "copyColumn": "flex column gap 28px; padding var(--section-v) + horizontal clamps; max-width 660px; justify center",
+          "copyYellowPin": "3px × 60px top-left on .ab3__copy::before",
+          "mediaClipPath": "polygon(28px 0, 100% 0, 100% 100%, 0 100%)",
+          "mediaClipPathTablet": "polygon(0 20px, 100% 0, 100% 100%, 0 100%); min-height 420px",
+          "credentialsGrid": "2×2 gap 12px; border-top 1px var(--gray-200); padding-top 24px; â‰¤768px 1 column",
+          "responsiveNote": "â‰¤768px stacks to one column (copy then media); ~640px viewport matches tall mobile layout (DevTools width ~642px)."
+        },
+        "typography": {
+          "eyebrow": {
+            "class": "eyebrow",
+            "sharedPrimitive": true
+          },
+          "sincePill": {
+            "class": "ab3__since",
+            "sizePx": 11,
+            "weight": 700,
+            "border": "1px var(--gray-200)",
+            "pairsWith": "props.mediaStat (duplicated visually in .ab3__chip)"
+          },
+          "heading": {
+            "class": "ab3__heading",
+            "font": "--font-display",
+            "clamp": "34px, 3.8vw, 52px",
+            "uppercase": true,
+            "accentClass": "ab3__heading-em",
+            "accentColor": "--yellow-core"
+          },
+          "headingRule": {
+            "class": "ab3__heading-rule",
+            "size": "48×3px",
+            "color": "--charcoal-deep"
+          },
+          "body": {
+            "class": "ab3__body",
+            "sizePx": 15,
+            "lineHeight": 1.82,
+            "maxCh": 46,
+            "color": "--text-500"
+          },
+          "credentials": {
+            "idx": {
+              "class": "ab3__cred-idx",
+              "font": "--font-display",
+              "sizePx": 13,
+              "color": "--yellow-core"
+            },
+            "title": {
+              "class": "ab3__cred-title",
+              "sizePx": 11,
+              "weight": 800,
+              "uppercase": true
+            },
+            "sub": {
+              "class": "ab3__cred-sub",
+              "sizePx": 11,
+              "color": "--text-400"
+            }
+          }
+        },
+        "tokensUsed": [
+          "--white",
+          "--charcoal-deep",
+          "--yellow-core",
+          "--yellow-tint",
+          "--gray-100",
+          "--gray-200",
+          "--text-400",
+          "--text-500",
+          "--font-display",
+          "--font-body",
+          "--section-v",
+          "--section-v-sm",
+          "--ease-expo (chip transition ease array matches)"
+        ],
+        "mediaPanel": {
+          "surface": "var(--charcoal-deep) + clip-path",
+          "texture": ".ab3__media::before radial warm glow + 40px horizontal lines",
+          "photo": ".ab3__photo absolute inset; current TSX uses CSS gradient placeholder only (no background-image)",
+          "badge": ".ab3__badge yellow polygon clip top-left; copy from props.badgeText",
+          "chip": ".ab3__chip bottom-right glass panel; border-left 3px yellow; backdrop-filter blur; props.mediaStat",
+          "cornerMark": ".ab3__corner-mark 40px yellow L rotated 180deg bottom-left"
+        },
+        "cta": {
+          "markup": "a.btn-primary + IconArrow inside last Reveal",
+          "styling": "Site-wide .btn-primary in glc-base.css (not ab3-scoped)"
+        },
+        "motion": {
+          "reveal": "Reveal wrappers on copy stack; delay classes reveal--delay-1 through reveal--delay-4",
+          "chipFramer": {
+            "duration": 0.8,
+            "delay": 0.5,
+            "ease": [
+              0.22,
+              1,
+              0.36,
+              1
+            ],
+            "viewport": {
+              "once": true,
+              "amount": 0.4
+            }
+          },
+          "credentialHoverMs": 220,
+          "credentialHover": "border-bottom yellow + background var(--yellow-tint)"
+        },
+        "contentShape": {
+          "summary": "Single-column editorial story: eyebrow + experience pill → split heading → body → 4 credentials → CTA; right panel is decorative photo stack with badge, stat chip, corner mark.",
+          "propsContract": "AboutProps: eyebrow, headingBefore|headingAccent|headingAfter, body, credentials[{title,sub}], cta{label,href}, mediaStat{value,label}, badgeText",
+          "note": "Visible strings (e.g. eyebrow/headline) come from page JSON; DevTools text may differ from home.json if content was edited locally or on another branch."
+        }
+      },
+      "layersBottomToTop": [
+        "#about background var(--white)",
+        "#about::before hairline grid z0",
+        ".ab3__wm ghost text z0",
+        ".ab3__layout z1 grid",
+        ".ab3__copy column: ::before yellow pin",
+        ".ab3__top-row .eyebrow + .ab3__since",
+        ".ab3__heading-wrap h2#about-heading + .ab3__heading-rule",
+        ".ab3__body",
+        ".ab3__creds .ab3__cred cells",
+        "a.btn-primary + IconArrow",
+        ".ab3__media ::before texture z0",
+        ".ab3__photo z0",
+        ".ab3__badge z2",
+        ".ab3__chip z2",
+        ".ab3__corner-mark z2"
+      ],
+      "optionalMotifAssets": [
+        "MY MASTER DESIGN SECTIONS/motifs/GLC-motif-01-corner-traced.svg",
+        "MY MASTER DESIGN SECTIONS/motifs/GLC-motif-03-divider-traced.svg"
+      ],
+      "auditNotes": "Registry target: section AboutSection at section#about. Capture: two-column AB3 layout, override hairlines, GLC watermark, typography ladder, credentials grid interaction, framer chip, media clip stack, and AboutProps content shape. Goal: one documented DNA object for this layout; CSS v2 .about__* block remains unused by React — see conflictsToEliminate id about-ab3-plus-v2-overrides."
+    },
+    {
+      "id": "hero-v2-flagship-asymmetric",
+      "status": "candidate",
+      "displayName": "Hero — V2 flagship (layered planes + parallax)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Full-viewport hero with deep BG parallax, blueprint overlay, diagonal yellow stripe, editorial headline column, clipped photo panel, glass stat/coverage chips, grain overlay, bottom service rail",
+        "isClientComponent": true,
+        "reactComponent": "glc-site/src/components/sections/hero-section.tsx",
+        "sectionRenderer": "glc-site/src/components/sections/section-renderer.tsx (type \"hero\")",
+        "domPath": "main#main-content > section#hero.hero-v2",
+        "sectionElementId": "hero",
+        "aria": "section aria-label=\"Hero\"; h1 aria-label concatenates title.line1+line2+line3; decorative layers aria-hidden where applied",
+        "classPrefix": "hero-v2__ (plus global btn-primary, btn-hero-glass; service bar SVGs still use class hero__service-icon inside HeroServiceIcon)",
+        "dependencies": [
+          "framer-motion (scroll parallax, variants, CTA hover/tap)",
+          "next/image (photo panel only)",
+          "native img for ghost logo (SSR/CSR parity comment in TSX)"
+        ],
+        "relatedComponents": [
+          "framer-motion: hero-v2__bg-plane (y spring), hero-v2__photo-panel (PHOTO_VARIANT + y spring), hero-v2__content (textY spring), LINE_VARIANT on each headline line, FADE_UP on subhead/lede/CTA row, scroll mask on lede block, CHIP_VARIANT on chips, TILE_VARIANT on service tiles",
+          "glc-site/src/components/sections/service-card-icon.tsx → HeroServiceIcon (inline SVGs; default slug → ServiceCardIcon placeholder)",
+          "glc-site/src/components/ui/smart-link.tsx (secondary CTA)",
+          "glc-site/src/components/ui/icon-arrow.tsx (primary CTA)"
+        ],
+        "cssAnchorComments": [
+          "HERO V2 — Asymmetric flagship hero",
+          "HERO V2 — RESPONSIVE"
+        ],
+        "stylesCanonical": "glc-site/src/styles/glc-base.css — block HERO V2 (~L4519â€“5290): section root, grain ::after, bg-plane, scrims, structure-plane, diag-stripe, canvas, photo-panel, chips, content column, typography, lede, CTAs, service bar, breakpoints 1024/768/480"
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json → sections[] item type \"hero\"",
+        "propsType": "glc-site/src/content/types.ts → HeroProps",
+        "hubOverrideExample": "glc-site/src/app/services/excavation-site-preparation/page.tsx mutates hero props (eyebrow, title, subheadline, lede, CTAs, coverage, parallaxBackgroundImage)"
+      },
+      "visualDna": {
+        "authority": {
+          "tsx": "glc-site/src/components/sections/hero-section.tsx",
+          "css": "glc-site/src/styles/glc-base.css",
+          "content": "glc-site/src/content/pages/home.json + HeroProps"
+        },
+        "ground": {
+          "sectionRoot": "section#hero.hero-v2: position relative; min-height 100svh; display flex; flex-direction column; overflow hidden; background var(--charcoal-deep); header clearance via padding on canvas not section",
+          "grain": ".hero-v2::after: z-index 10; pointer-events none; inline SVG feTurbulence noise data-URI; background-size 160px; opacity ~0.028; mix-blend-mode overlay; sits above content planes for film grain"
+        },
+        "layerArchitecture": {
+          "narrative": "CSS comment documents z 0â€“4 + grain on top; canvas is z3 with photo at z0 inside it and content at z4",
+          "z0_deepBackground": "motion.div.hero-v2__bg-plane (absolute inset 0; will-change transform): children — optional .hero-v2__bg-roll (inset -14%; CSS animation hero-v2-bg-roll 26s scale 1→1.08) wrapping .hero-v2__bg-photo--image (background-image from parallaxBackgroundImage) OR .hero-v2__bg-photo alone (CSS repeating-linear concrete texture + var(--charcoal-deep), inset -8%). Then .hero-v2__scrim-radial (radial vignette ellipse 80% 70% at 30% 45%) and .hero-v2__scrim-left (linear-gradient left dark column for text legibility)",
+          "z1_structure": "div.hero-v2__structure-plane: inline SVG.hero-v2__blueprint (600×600 viewBox, rects/lines/circles, white strokes, right -40px, opacity 0.04, mix-blend-mode screen) + div.hero-v2__eng-grid (48px crosshatch rgba(242,183,5,0.6) lines, opacity 0.03, screen)",
+          "z2_accent": "div.hero-v2__diag-stripe: 3px wide; right ~56%; linear-gradient vertical transparentâ€“yellow-coreâ€“transparent; opacity 0.4; transform skewX(-2deg); pointer-events none",
+          "z3_canvas": "div.hero-v2__canvas: relative z-index 3; flex 1; grid-template-columns 56px 1fr; align-items center; padding calc(var(--gl-header-height)+48px) 40px 120px; gap 0 32px; max-width 1440px (wider than --container-max 1320); margin auto; width 100%",
+          "photoInsideCanvas": "motion.div.hero-v2__photo-panel: absolute top 0 right 0 width 58% bottom 80px (clears service bar); z-index 0 inside canvas; clip-path polygon parallelogram; overflow hidden; Next/Image fill objectPosition center 30%; .hero-v2__photo-scrim gradient left-to-right darkening for headline overlap",
+          "chipsOnPhoto": "div.hero-v2__chips: absolute bottom 40px left 10%; column flex; z-index 2 — glass stat chips + hero-v2__chip--coverage (tags); chamfer clip-path; inset box-shadow borders; hover lift + stronger glow",
+          "textColumn": "motion.div.hero-v2__content: grid-column 2; position relative; z-index 4; flex column; max-width 680px — stacks vert-label, ghost mark, h1, rule, optional h2, lede, CTAs",
+          "z4_serviceBar": "div.hero-v2__service-bar: z-index 4; margin-top auto; dark frosted bar; border-top gold-tint; flex tiles with dividers"
+        },
+        "parallaxAndScroll": {
+          "hook": "useScroll({ target: sectionRef, offset: [\"start start\", \"end start\"] })",
+          "springs": "useSpring(useTransform): bgY [0%,38%], photoY [0%,14%], textY [0%,7%] vs scrollYProgress; stiffness 80 damping 30; applied only when mounted === true for photo/content to avoid SSR mismatch",
+          "ledeMask": "useTransform scrollYProgress [0,0.18] → linear-gradient mask strings; applied as WebkitMaskImage/maskImage on .hero-v2__lede-block when mounted",
+          "mountedGate": "useState mounted set true in useEffect — parallax style props and lede mask omitted on server/first paint until client"
+        },
+        "framerVariants": {
+          "EASE": "Const [0.22, 1, 0.36, 1] — aligns with global --ease-expo family / section-dna motion.defaultEase",
+          "LINE_VARIANT": "Per headline line: hidden clipPath inset(110%â€¦), opacity 0, y 20; visible stagger delay 0.15 + i*0.12s; clipPath wipe + y 0 + opacity 1; duration ~0.9s ease EASE; opacity snap 0.01s",
+          "FADE_UP": "hidden opacity 0 y 22 blur 5px; visible delay 0.55 + i*0.1s; duration 0.7s; used subheadline, lede block, CTA row (custom index)",
+          "PHOTO_VARIANT": "hidden opacity 0 x 56 tighter clip-path; visible x 0 final clip-path; opacity 0.1s; x+clipPath 1.1s delay 0.2s EASE",
+          "CHIP_VARIANT": "hidden opacity 0 y 24 scale 0.94; visible spring stiffness 260 damping 22 delay 0.9 + i*0.14",
+          "TILE_VARIANT": "hidden opacity 0 y 14; visible duration 0.5s delay 1.1 + i*0.07 EASE — service bar tiles",
+          "vertLabel": "initial opacity 0 x -12; animate opacity 1 x 0; duration 0.8 delay 0.1 EASE",
+          "rule": "initial scaleX 0 opacity 0; animate scaleX 1 opacity 1; duration 0.8 delay 0.55 EASE; transform-origin left",
+          "ctas": "whileHover scale 1.025 y -2; whileTap scale 0.97; spring stiffness 380 damping 18"
+        },
+        "typography": {
+          "verticalEyebrow": "Not horizontal .eyebrow pattern: div.hero-v2__vert-label — grid col 1; writing-mode vertical-rl; rotate(180deg); 9px 600 uppercase letter-spacing 0.28em; color rgba(255,255,255,0.2); content from props.eyebrow",
+          "headline": "h1.hero-v2__headline: font-display clamp(52px,9vw,118px) weight 700 line-height 1 uppercase white; each line in span.hero-v2__line-overflow > motion.span.hero-v2__line; line 1 nth-child(1) scaled 0.62em weight 500 opacity 0.68; line 3 mid-scale 0.74em; emphasizeLine adds .hero-v2__line--accent (yellow-core + hero-accent-pulse text-shadow keyframes 4s alternate from 1.8s delay)",
+          "rule": "div.hero-v2__rule 48×2px gradient yellow to transparent; scaleX entrance",
+          "subheadline": "h2.hero-v2__subheadline optional: display font weight 600 clamp(1rem,2.2vw,1.35rem) uppercase rgba(255,255,255,0.88) max-width 520px",
+          "lede": "Split in TSX on \" — \" (space-em-dash-space): first segment hero-v2__lede-lead; if starts with \"Ground Level Contracting\" wrap in strong.hero-v2__lede-brand; second segment hero-v2__lede-body; container hero-v2__lede-block has yellow left border 1.5px rgba(242,183,5,0.28) padding-left 16px",
+          "ghostWatermark": "div.hero-v2__ghost-mark behind headline: img /images/glc-logo.png width/height attrs; filter brightness(0) invert(1); opacity ~0.055; scale 1.05; mobile recenters"
+        },
+        "chipsAndServiceChrome": {
+          "statChip": "hero-v2__chip: backdrop blur; chamfer top-right; multi inset box-shadow simulating border (yellow-tint on right/bottom); hover translateY -2px",
+          "coverageChip": "hero-v2__chip--coverage: wider; hero-v2__chip-eyebrow; hero-v2__chip-tag pills",
+          "primaryCta": "Hero overrides .btn-primary in .hero-v2__cta-row: chamfer top-right clip-path; padding; letter-spacing 0.22em; ::before shimmer sweep translateX on hover (0.70s cubic 0.22,1,0.36,1); arrow z-index above shimmer",
+          "secondaryCta": "btn-hero-glass: frosted; chamfer top-left mirror; inset shadows; hover yellow-tint borders and glow"
+        },
+        "assets": {
+          "photoPanelImage": "Hard-coded path /images/hero-armour-stone-retaining-walls.png — next/image fill priority sizes (max-width:900px) 100vw, 58vw",
+          "ghostLogo": "/images/glc-logo.png — native img (comment: avoid next/image SSR/CSR drift)",
+          "optionalParallaxBg": "props.parallaxBackgroundImage → inline style backgroundImage on hero-v2__bg-photo--image inside hero-v2__bg-roll"
+        },
+        "tokensAndLiterals": {
+          "cssVariables": [
+            "--charcoal-deep",
+            "--yellow-core",
+            "--white",
+            "--font-display",
+            "--font-body",
+            "--ease-expo",
+            "--gl-header-height"
+          ],
+          "literalRgba": "Many scrims/chips use rgba(20,18,16,â€¦) and rgba(242,183,5,â€¦) alongside tokens — audit if consolidating to design_system.json"
+        },
+        "responsive": {
+          "max1024": "Photo width 50%; clip-path adjusted; chips display none; canvas padding-bottom 100px",
+          "max768": "Canvas single column grid; vert-label display none; content grid-column 1 max-width 100%; photo-panel position absolute inset 0 width 100% bottom 0 opacity 0.35 clip-path none z0; scrim-left strengthened; diag-stripe display none; headline font-size clamp reduced; ghost-mark centered; service-inner horizontal scroll hide scrollbar; tiles flex 0 0 auto min-width",
+          "max480": "CTA row column; btn-primary and btn-hero-glass full width centered; chamfers preserved"
+        },
+        "accessibility": {
+          "landmarks": "section#hero aria-label Hero",
+          "headline": "Logical h1 with aria-label full title; inner motion spans aria-hidden true — screen reader relies on aria-label",
+          "decorative": "bg plane, structure plane, diag stripe, ghost mark, photo panel aria-hidden where set in TSX"
+        },
+        "contentShape": {
+          "HeroProps": {
+            "eyebrow": "string → vertical rail (not kicker dot pattern)",
+            "title": "{ line1, line2, line3, emphasizeLine: 1|2|3 } — emphasizeLine picks accent line class",
+            "subheadline": "optional string",
+            "lede": "string — split on \" — \"; optional brand prefix handling",
+            "primaryCta_secondaryCta": "{ label, href }",
+            "stats": "array { value, label } for glass chips",
+            "coverage": "{ label, tags: string[] }",
+            "serviceBarSlugTitles": "{ slug, title }[] — links via ROUTES.service(slug)",
+            "parallaxBackgroundImage": "optional string URL"
+          }
+        },
+        "implementationNotes": [
+          "HeroServiceIcon maps explicit slugs (e.g. excavation-site-prep, foundations-civil); home.json uses longer route slugs (e.g. excavation-site-preparation) — those hit ServiceCardIcon default fallback SVG unless aliases added",
+          "Canvas max-width 1440px intentionally exceeds --container-max (1320px) for flagship bleed",
+          "Chips use box-shadow (not border) because clip-path clips real borders",
+          "Photo panel bottom: 80px reserves vertical space for service bar",
+          "Legacy #hero .hero__* block still exists in glc-base for static previews; live homepage uses hero-v2 only"
+        ]
+      },
+      "layersBottomToTop": [
+        "hero-v2__bg-plane: texture or roll+image + scrim-radial + scrim-left (motion y)",
+        "hero-v2__structure-plane: blueprint SVG + eng-grid",
+        "hero-v2__diag-stripe",
+        "hero-v2__canvas",
+        "hero-v2__photo-panel: Image + photo-scrim + chips column",
+        "hero-v2__content: vert-label, ghost img, h1 lines, rule, subheadline, lede block, CTA row (motion textY)",
+        "hero-v2::after grain",
+        "hero-v2__service-bar: inner + tiles"
+      ],
+      "auditNotes": "Merged 2026-04-05: full DNA from live hero-section.tsx + glc-base HERO V2 block — layer stack, Framer variant timings, HeroProps/lede parsing, parallax springs + mounted gate, chip/CTA chrome, responsive breakpoints, a11y pattern, asset paths, hub page override pattern, HeroServiceIcon slug caveat. Pair with glc-base numeric tokens for exact stops/opacities."
+    },
+    {
+      "id": "gl-parallax-type-band-shared",
+      "status": "candidate",
+      "displayName": "Parallax type band — full-bleed image + oversized type",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Service-page breaker: parallax-drifting photo with tone-specific scrim and bottom-aligned headline slab",
+        "reactComponent": "glc-site/src/components/sections/parallax-type-band.tsx",
+        "domPathExample": "main#main-content > section#excavation-type-band.gl-parallax-type-band--dark",
+        "routeExample": "glc-site/src/app/services/excavation-site-preparation/page.tsx (id=\"excavation-type-band\")",
+        "classPrefix": "gl-parallax-type-band__",
+        "cssAnchorComments": [
+          "Shared parallax \"type\" band — breaks section repetition"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "hub parallax band fields in excavation hub / page data feeding ParallaxTypeBand",
+        "propsType": "ParallaxTypeBandProps in parallax-type-band.tsx"
+      },
+      "visualDna": {
+        "layout": {
+          "section": "min-height clamp(280px, 42vw, 480px); flex align end; overflow hidden",
+          "media": "motion.div gl-parallax-type-band__media absolute inset -8% 0; next/image.fill gl-parallax-type-band__img object-position center 35%",
+          "content": "motion.div gl-parallax-type-band__content z2 container padding 48×40×52 (tighter on mobile)"
+        },
+        "parallax": {
+          "imgY": "useScroll start end → end start; transform ~ -6% to 10%",
+          "textY": "parallel spring ~ 12% to 0%"
+        },
+        "scrims": {
+          "darkTone": ".gl-parallax-type-band--dark .gl-parallax-type-band__media-scrim gradient bottom-heavy charcoal",
+          "lightTone": ".gl-parallax-type-band--light â€¦ warm white to transparent rightward"
+        },
+        "typography": {
+          "eyebrow": "10px 800 uppercase letter-spacing 0.22em; yellow-core dark / gold light",
+          "title": "Oswald clamp headline uppercase max-width 18ch",
+          "subtitle": "body 15px/1.65 optional"
+        },
+        "tokensUsed": [
+          "--container-max",
+          "--yellow-core",
+          "--gold",
+          "--charcoal-deep",
+          "--text-600",
+          "--font-display",
+          "--font-body"
+        ],
+        "contentShape": {
+          "propsContract": "id?, eyebrow, title, subtitle?, imageSrc, imageAlt, tone dark|light"
+        }
+      },
+      "layersBottomToTop": [
+        "gl-parallax-type-band__media + __img",
+        "gl-parallax-type-band__media-scrim",
+        "gl-parallax-type-band__content eyebrow + h2 + subtitle"
+      ],
+      "auditNotes": "Next/Image renders class gl-parallax-type-band__img with absolute fill; user DOM showed lazy image and srcset for optimisation. Same image file may repeat across hero/CTA elsewhere on hub — asset reuse, not CSS conflict."
+    },
+    {
+      "id": "exc-hub-parallax-cta-band",
+      "status": "candidate",
+      "displayName": "Excavation hub — parallax CTA band (fixed BG + scrim)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Centered phone CTA over fixed parallax photo with diagonal dark scrim",
+        "reactComponent": "glc-site/src/components/services/excavation-parallax-cta.tsx",
+        "domPath": "main#main-content > section.exc-parallax-cta.gl-reveal",
+        "routeExample": "glc-site/src/app/services/excavation-site-preparation/page.tsx",
+        "classPrefix": "exc-parallax-cta__",
+        "contentSource": "glc-site/src/content/pages/excavation-hub-seo.json → parallaxCta (heading, responsePromise); phone from site.json"
+      },
+      "referenceFiles": {},
+      "visualDna": {
+        "layout": {
+          "section": "min-height 320px (280px mobile); flex center; padding var(--section-v); overflow hidden",
+          "inner": "exc-parallax-cta__inner z1 max-width container centered text"
+        },
+        "ground": {
+          "bg": "exc-parallax-cta__bg absolute inset cover url /images/hero-armour-stone-retaining-walls.png; background-attachment fixed; scale(1.04); prefers-reduced-motion: scroll",
+          "scrim": "exc-parallax-cta__scrim linear-gradient 105deg charcoal opaque left → transparent right"
+        },
+        "accent": {
+          "stripe": "exc-parallax-cta__stripe 64×3px yellow-core centered above heading"
+        },
+        "typography": {
+          "heading": "h2#exc-parallax-cta-heading Oswald clamp uppercase white",
+          "phone": "a.exc-parallax-cta__phone Oswald clamp yellow-core hover gold",
+          "promise": "body 15px white 72% opacity"
+        },
+        "motion": {
+          "reveal": "inherits .gl-reveal scroll-visible pattern on section root"
+        },
+        "contentShape": {
+          "propsContract": "phoneDisplay, phoneHref; copy.heading and copy.responsePromise from hub JSON"
+        }
+      },
+      "layersBottomToTop": [
+        "exc-parallax-cta__bg",
+        "exc-parallax-cta__scrim",
+        "exc-parallax-cta__inner: stripe, h2, phone link, promise"
+      ],
+      "auditNotes": "User saw SegmentViewNode in React tree — section is a server-friendly wrapper; structure matches exc-parallax-cta.tsx. scrim is the gradient overlay div.exc-parallax-cta__scrim."
+    },
+    {
+      "id": "header-mega-services-panel-shell",
+      "status": "candidate",
+      "displayName": "Header — Services mega menu panel (#mega-services-panel)",
+      "implementation": {
+        "kind": "component",
+        "plainEnglishName": "Frosted light dropdown panel under nav: intro column + 3×2 service card grid",
+        "reactComponent": "glc-site/src/components/layout/site-header.tsx (panel shell + state megaMode)",
+        "childComponent": "glc-site/src/components/layout/mega-menu-services.tsx",
+        "domPath": "header#site-header > div#mega-services-panel.gl-mega-panel",
+        "aria": "role=region aria-label=\"Service lines\" aria-labelledby=mega-services-trigger; open class is-open on .gl-mega-panel",
+        "dataSource": "glc-site/src/content/navigation.json megaMenu",
+        "cssAnchorComments": [
+          "MEGA MENU — Rugged yet Refined"
+        ]
+      },
+      "referenceFiles": {},
+      "visualDna": {
+        "layout": {
+          "shell": "position absolute top 100% left 0 right 0; frosted rgba(250,250,248,0.97) backdrop blur; yellow 3px top border; padding 48×40",
+          "innerGrid": "gl-mega-panel__inner 256px intro + 1fr gap 56px; â‰¤1100px single column; mega grid 3-col → 2-col",
+          "mobile": "â‰¤768px .gl-mega-panel display none (drawer replaces)"
+        },
+        "interaction": {
+          "open": "hover .gl-nav-mega-wrap + click toggle on Services button; body.gl-mega-open; #gl-mega-backdrop fixed scrim",
+          "animation": "glmc-panel-in on is-open; gl-mega-card stagger glmc-item-in"
+        },
+        "typography": {
+          "kicker": "gl-mega-panel__kicker 9px 800 uppercase + yellow dash ::before",
+          "cards": "gl-mega-card__num Oswald 40px watermark; gl-mega-card__title uppercase; gl-mega-card__desc 12px body"
+        },
+        "tokensUsed": [
+          "--container-max",
+          "--yellow-core",
+          "--yellow-tint",
+          "--white",
+          "--charcoal-deep",
+          "--ease-expo"
+        ],
+        "contentShape": {
+          "cards": "navigation megaMenu.cards: num, title, description, slug, gridTitle[]",
+          "intro": "mega.kicker + megaIntro string (home vs inner page variant in SiteHeader)"
+        }
+      },
+      "layersBottomToTop": [
+        "body .gl-mega-backdrop when gl-mega-open",
+        "#mega-services-panel.gl-mega-panel",
+        ".gl-mega-panel__inner intro + .gl-mega-grid .gl-mega-card links"
+      ],
+      "auditNotes": "Captures the open mega-services-panel the user inspected; pairs with header-nav-primary-links-cluster for trigger wiring (.gl-nav-mega-wrap + #mega-services-trigger)."
+    },
+    {
+      "id": "header-primary-nav-links-cluster",
+      "status": "candidate",
+      "displayName": "Header — primary nav links row (.gl-header__nav-links)",
+      "implementation": {
+        "kind": "element",
+        "plainEnglishName": "Desktop primary nav: direct links + mega dropdown triggers (Services, Company) + remaining routes",
+        "reactComponent": "glc-site/src/components/layout/site-header.tsx",
+        "domPath": "header#site-header > nav.gl-header__nav-row > div.gl-header__nav-inner > div.gl-header__nav-links",
+        "relatedCss": "Selectors .gl-header__nav-links > a vs .gl-nav-mega-trigger (buttons are not direct children anchors)"
+      },
+      "referenceFiles": {},
+      "visualDna": {
+        "layout": {
+          "cluster": "flex row gap 2px; margin-left auto between logo and CTA wrap",
+          "children": "SmartLink about; gl-nav-mega-wrap + button#mega-services-trigger; gl-nav-mega-wrap + button#mega-company-trigger; SmartLink map for Process, Coverage, Projects (from navigation.primary)"
+        },
+        "typographyAndChrome": {
+          "directLinks": ".gl-header__nav-links > a body 13px 700 padding 8×14; color --text-600; ::after 2px yellow bar scaleX hover",
+          "megaTriggers": ".gl-nav-mega-trigger same family size weight; chevron ::after; hover yellow-tint; is-open yellow-tint-md + rotated chevron"
+        },
+        "tokensUsed": [
+          "--font-body",
+          "--text-600",
+          "--charcoal-deep",
+          "--yellow-core",
+          "--yellow-tint",
+          "--yellow-tint-md",
+          "--ease-expo"
+        ],
+        "motion": {
+          "underline": "0.2s color; ::after transform 0.2s var(--ease-expo)",
+          "megaTrigger": "0.22s color/background; chevron 0.3s"
+        }
+      },
+      "layersBottomToTop": [
+        "gl-header__nav-inner (logo | gl-header__nav-links | gl-header__cta-wrap)",
+        "gl-header__nav-links flex of anchors and mega wrap/buttons"
+      ],
+      "auditNotes": "Documents the nav strip called out in DevTools; mega panels render as siblings below nav row inside #site-header, not inside .gl-header__nav-links."
+    },
+    {
+      "id": "services-home-grid-cards",
+      "status": "candidate",
+      "displayName": "Services — homepage grid (dark cards + off-white ground)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Editorial header (2-col) plus full-width card grid: each service is a charcoal tile that inverts to white on hover/focus",
+        "reactComponent": "glc-site/src/components/sections/services-grid-section.tsx",
+        "childComponent": "glc-site/src/components/sections/services-grid-card.tsx",
+        "relatedComponents": [
+          "glc-site/src/components/sections/service-card-icon.tsx (svg.service-card__icon 40×40)",
+          "glc-site/src/components/ui/reveal.tsx",
+          "glc-site/src/hooks/use-reveal.ts (ref on SmartLink a.service-card)",
+          "glc-site/src/components/ui/smart-link.tsx",
+          "glc-site/src/components/ui/icon-arrow-small.tsx"
+        ],
+        "sectionRenderer": "type \"services\" merges props + navigation.megaMenu.cards",
+        "domPath": "main#main-content > section#services",
+        "sectionElementId": "services",
+        "aria": "aria-labelledby=\"services-heading\"; inner role=\"list\"; cards role=\"listitem\"",
+        "classPrefix": "services__ / service-card__",
+        "cssAnchorComments": [
+          "SERVICES GRID"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type services + glc-site/src/content/navigation.json megaMenu.cards",
+        "propsType": "ServicesSectionProps + MegaMenuCard[]"
+      },
+      "visualDna": {
+        "ground": {
+          "section": "#services background var(--off-white); padding var(--section-v) 0; overflow hidden",
+          "topBar": "#services::before absolute top full width height 4px var(--charcoal-deep) — GROUND seam"
+        },
+        "headerBlock": {
+          "container": ".services__header max-width --container-max margin auto; padding 0 40px 60px",
+          "layout": "grid 2 columns 1fr 1fr gap 40px align end",
+          "eyebrow": ".eyebrow.eyebrow--dark inside Reveal; marginBottom 16px inline",
+          "heading": "h2#services-heading .services__heading Oswald clamp(36px,3.5vw,52px) uppercase charcoal; line two wrapped; span line yellow-core",
+          "intro": ".services__intro 15px/1.7 --text-600 right column",
+          "motion": "Reveal on eyebrow; reveal--delay-1 heading; reveal--delay-2 intro"
+        },
+        "gridShell": {
+          "wrap": ".services__grid-wrap container padding 0 40px; position relative",
+          "leftRail": "::before absolute left edge top→bottom width 4px charcoal-deep — STRUCTURE rail",
+          "grid": ".services__grid CSS grid repeat(3,1fr) gap 2px — hairline gutters between cards",
+          "responsive": "â‰¤1024px 2 columns; â‰¤768px header 1 col + grid 1 col (global responsive block)"
+        },
+        "serviceCard": {
+          "element": "a.service-card SmartLink + classes reveal + optional reveal--delay-1|2 (pattern i%3)",
+          "geometry": "min-height 280px; padding 40×32; flex column; cursor pointer; overflow hidden",
+          "layers": "::before absolute inset white fill scaleY(0) origin bottom → scaleY(1) hover/focus-visible; z0. Children z1",
+          "hoverChrome": "box-shadow var(--shadow-card) + inset 1px gray-200 on hover/focus-visible",
+          "numWatermark": ".service-card__num absolute top-right Oswald 64px weight 700 rgba white 0.07 → hover rgba charcoal 0.12",
+          "icon": "svg.service-card__icon 40×40 margin-bottom 20px stroke currentColor yellow-core",
+          "title": "h3.service-card__title Oswald 20px uppercase white → hover charcoal; multi-line via card.gridTitle spans + br between lines",
+          "desc": ".service-card__desc 13px/1.65 rgba white 0.5 → hover --text-600; margin-bottom auto (pushes CTA to bottom)",
+          "ctaRow": ".service-card__link flex row gap 8→12 on hover; 11px 800 uppercase yellow-core letter-spacing 0.12em + IconArrowSmall",
+          "transitions": "background/box-shadow 0.3s --ease-expo; ::before transform 0.5s --ease-expo; text colors 0.3s"
+        },
+        "tokensUsed": [
+          "--off-white",
+          "--charcoal-deep",
+          "--white",
+          "--yellow-core",
+          "--text-600",
+          "--gray-200",
+          "--shadow-card",
+          "--container-max",
+          "--font-display",
+          "--ease-expo",
+          "--section-v"
+        ],
+        "contentShape": {
+          "megaMenuCard": "num, title, description, slug, gridTitle[] (1â€“2 lines), gridDescription",
+          "sectionProps": "eyebrow, headingLine1, headingLine2, intro"
+        },
+        "hierarchy": "Section eyebrow smallest → H2 dominant → intro paragraph → grid of peer cards with num (decorative) < icon < title < body < learn-more",
+        "balance": "2px negative space between cards reads as industrial grid; left rail aligns with card column edge"
+      },
+      "layersBottomToTop": [
+        "#services off-white + top 4px charcoal bar",
+        ".services__header (eyebrow, h2, intro)",
+        ".services__grid-wrap + ::before left rail",
+        ".services__grid",
+        "a.service-card: ::before white lift layer",
+        "card content: __num, svg.__icon, h3.__title, p.__desc, span.__link"
+      ],
+      "auditNotes": "SegmentViewNode in RSC output wraps section; class names are services__* and service-card (user DevTools typos .ervice. are OCR). Cards link to ROUTES.service(slug)."
+    },
+    {
+      "id": "why-why3-editorial-manifesto",
+      "status": "candidate",
+      "displayName": "Why — Why3 light editorial (split header + reason rows)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Off-white band: two-column headline + CTA intro, then stacked reason rows with ghost numbers and yellow hover sweep",
+        "reactComponent": "glc-site/src/components/sections/why-section.tsx",
+        "domPath": "main#main-content > section#why",
+        "sectionElementId": "why",
+        "relatedComponents": [
+          "framer-motion motion.div per .why3__reason",
+          "glc-site/src/components/ui/reveal.tsx",
+          "glc-site/src/components/ui/icon-arrow.tsx"
+        ],
+        "classPrefix": "why3__",
+        "cssAnchorComments": [
+          "WHY — v3 Light Editorial Manifesto",
+          "WHY — Typographic Reason Rows (v2)"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type why",
+        "propsType": "WhyProps"
+      },
+      "visualDna": {
+        "ground": {
+          "section": "#why background var(--off-white); overflow hidden",
+          "topSeam": "#why::before height 3px charcoal-deep full width (transition from dark stats above)"
+        },
+        "header": {
+          "layout": ".why3__header grid 1fr 1fr gap 60px align end; max-width container; padding var(--section-v) 40px 56px",
+          "left": "eyebrow + h2#why-heading .why3__heading Oswald clamp(34pxâ€¦54px) uppercase; em yellow-core",
+          "right": ".why3__header-right flex column gap 24px; .why3__intro 15px/1.8 --text-500 max 44ch; .btn-primary.why3__cta + IconArrow",
+          "motion": "Reveal delays on heading and right column"
+        },
+        "reasonRows": {
+          "container": ".why3__reasons border-top gray-200; each .why3__reason border-bottom gray-200; position relative overflow hidden",
+          "hoverLayers": ".why3__hover-fill absolute inset yellow-tint scaleX(0)→1 origin left 0.5s --ease-expo; ::before left 3px yellow bar scaleY hover",
+          "innerGrid": ".why3__reason-inner z1 grid columns 80px | 1px rule | 1fr | auto; gap 0 28px; padding 28px 40px; max-width container",
+          "num": ".why3__num Oswald 13px yellow-core uppercase tracking",
+          "divider": ".why3__divider 1px wide self-stretch gray-200",
+          "text": ".why3__text-block flex baseline wrap gap 24px; .why3__title Oswald 20px uppercase charcoal; .why3__desc 14px/1.65 --text-500 max 52ch",
+          "ghost": ".why3__ghost-num absolute right huge Oswald clamp(72pxâ€¦120px) charcoal 0.04 opacity",
+          "arrow": ".why3__arrow-mark → appears translateX on hover; hidden â‰¤1024px",
+          "motion": "framer whileInView each row opacity/y stagger delay i*0.07"
+        },
+        "responsive": {
+          "768": "smaller section padding; text-block stacks column",
+          "1024": "header 1 col; reason inner 52px col; hide arrow"
+        },
+        "tokensUsed": [
+          "--off-white",
+          "--charcoal-deep",
+          "--yellow-core",
+          "--yellow-tint",
+          "--gray-200",
+          "--text-500",
+          "--container-max",
+          "--section-v",
+          "--section-v-sm",
+          "--ease-expo",
+          "--font-display",
+          "--font-body"
+        ],
+        "contentShape": {
+          "props": "eyebrow, headingBefore, headingEmphasis (em), headingAfter, body, cta, reasons[{num,title,text}]"
+        }
+      },
+      "layersBottomToTop": [
+        "#why off-white + top seam",
+        ".why3__header",
+        ".why3__reasons",
+        "per .why3__reason: .why3__hover-fill (z0), ::before yellow bar, .why3__ghost-num, .why3__reason-inner, .why3__arrow-mark"
+      ],
+      "auditNotes": "v2 CSS block later retargets #why for unused layout — see conflictsToEliminate why-process-testimonials-cta-v2-cascade."
+    },
+    {
+      "id": "process-proc3-split-timeline",
+      "status": "candidate",
+      "displayName": "Process — Proc3 dark-left / white-right timeline",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Split layout: charcoal editorial panel with blueprint texture + step count ghost; white panel with vertical yellow thread and numbered nodes",
+        "reactComponent": "glc-site/src/components/sections/process-section.tsx",
+        "domPath": "main#main-content > section#process",
+        "sectionElementId": "process",
+        "relatedComponents": [
+          "framer-motion per .proc3__step",
+          "glc-site/src/components/ui/reveal.tsx"
+        ],
+        "classPrefix": "proc3__",
+        "cssAnchorComments": [
+          "PROCESS — v3 Dark Split Timeline",
+          "PROCESS — Editorial 2×2 Staggered Steps (v2)"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type process",
+        "propsType": "ProcessProps"
+      },
+      "visualDna": {
+        "ground": {
+          "section": "#process background var(--charcoal-deep); overflow hidden"
+        },
+        "layoutShell": {
+          "grid": ".proc3__layout display grid 38fr 62fr; min-height 600px",
+          "responsive": "â‰¤1024px single column; left panel loses right border gains bottom border; thread repositions"
+        },
+        "leftPanel": {
+          "surface": ".proc3__left-panel flex column gap 24px; padding var(--section-v) + horizontal clamp; border-right 1px rgba white 0.06",
+          "texture": "repeating-linear-gradient horizontal lines 40px step subtle white",
+          "accent": ".proc3__left-accent absolute top-left 120×3px yellow bar",
+          "type": ".proc3__eyebrow yellow + forced ::before bar; h2#process-heading .proc3__heading white uppercase + .proc3__heading-accent block yellow",
+          "intro": ".proc3__intro 14px rgba white 0.5 max 32ch — NOTE: copy hardcoded in process-section.tsx (not props)",
+          "ghostCount": ".proc3__count-mark huge white 0.04 opacity; margin-top auto; hidden tablet+"
+        },
+        "stepsPanel": {
+          "surface": ".proc3__steps-panel white; padding var(--section-v) + asymmetric horizontal padding",
+          "thread": ".proc3__thread absolute vertical 2px line gradient yellow → fade; positioned left clamp aligned with nodes",
+          "stepRow": ".proc3__step grid 48px + 1fr gap 28px; padding 28px 0; border-bottom gray-200; hover expands bg gray-100 with negative horizontal margin (desktop)",
+          "node": ".proc3__node 40px circle charcoal; flex center; border 2px transparent; margin-left -20px aligns on thread; hover yellow fill + scale",
+          "content": ".proc3__step-label body 10px 800 uppercase yellow tracking; .proc3__step-title Oswald 20px uppercase; .proc3__step-desc 13px --text-500 max 50ch"
+        },
+        "motion": {
+          "steps": "whileInView opacity x stagger per index"
+        },
+        "tokensUsed": [
+          "--charcoal-deep",
+          "--white",
+          "--yellow-core",
+          "--gray-100",
+          "--gray-200",
+          "--text-500",
+          "--section-v",
+          "--ease-expo",
+          "--font-display",
+          "--font-body"
+        ],
+        "contentShape": {
+          "props": "eyebrow, heading, headingAccent, steps[{num,title,desc}]",
+          "hardcodedIntro": "Fixed paragraph in TSX — change DNA if copy moves to JSON"
+        }
+      },
+      "layersBottomToTop": [
+        "#process charcoal",
+        ".proc3__layout",
+        ".proc3__left-panel: accent bar, eyebrow, h2, intro, count mark, blueprint lines",
+        ".proc3__steps-panel: .proc3__thread, each .proc3__step (.proc3__node + .proc3__step-content)"
+      ],
+      "auditNotes": "User DOM proc3__.tep.-panel = .proc3__steps-panel. Later #process v2 uses off-white + process-r2__* — cascade conflict documented."
+    },
+    {
+      "id": "coverage-dark-territory-band",
+      "status": "candidate",
+      "displayName": "Coverage — charcoal service territory (3-plane layout)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Dark band: intro column with yellow left rail + 2×2 territory cards with dots; radial glow + top gradient bar overlays",
+        "reactComponent": "glc-site/src/components/sections/coverage-section.tsx",
+        "domPath": "main#main-content > section#coverage.coverage.relative.overflow-hidden",
+        "sectionElementId": "coverage",
+        "relatedComponents": [
+          "glc-site/src/components/ui/reveal.tsx"
+        ],
+        "classPrefix": "coverage__",
+        "cssAnchorComments": [
+          "COVERAGE — dark band"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type coverage",
+        "propsType": "CoverageProps"
+      },
+      "visualDna": {
+        "ground": {
+          "inlineStyles": "React sets backgroundColor var(--charcoal), color var(--white), paddingTop/Bottom var(--section-v) — wins over Tailwind layer order in dev",
+          "cssFallback": "section#coverage in glc-base repeats charcoal + section padding",
+          "fxRadial": ".coverage__fx-radial absolute inset z0 radial warm yellow glow top-left quadrant",
+          "fxTopbar": ".coverage__fx-topbar top full width 3px gradient yellow → transparent z2"
+        },
+        "layout": {
+          "inner": ".coverage__inner max-width container padding 0 40px; grid 1fr 2fr gap clamp(48pxâ€¦80px) align center; z1",
+          "introColumn": ".coverage__intro border-left 3px yellow-core; padding-left 28px",
+          "areasGrid": ".coverage__areas grid 2×2 gap var(--gap-grid); Reveal wrapper delay--2",
+          "responsive": "â‰¤1024 inner stacks 1fr; areas stay 2-col then 1 col at 768"
+        },
+        "cards": {
+          "tile": ".coverage__area flex row gap 14px; padding 22×24; bg rgba white 0.05; border 1px rgba white 0.08; hover yellow-tint + border yellow + translateY(-2px) 0.35s --ease-expo",
+          "dot": ".coverage__area-dot 8px circle yellow-core",
+          "type": ".coverage__area-name body 14px 700 uppercase white; .coverage__area-sub 12px muted white"
+        },
+        "typography": {
+          "eyebrow": ".coverage__eyebrow margin-bottom 16px",
+          "heading": "h2#coverage-heading Oswald clamp(36pxâ€¦54px) uppercase white; em yellow-core",
+          "body": ".coverage__body 15px/1.7 rgba white 0.62 max 42ch — not --text-500 on charcoal (comment in CSS)"
+        },
+        "tokensUsed": [
+          "--charcoal",
+          "--white",
+          "--yellow-core",
+          "--yellow-tint",
+          "--container-max",
+          "--gap-grid",
+          "--section-v",
+          "--ease-expo",
+          "--font-display",
+          "--font-body"
+        ],
+        "contentShape": {
+          "props": "eyebrow, headingBefore, headingEmphasis (em), headingAfter, body, areas[{name,sub}]"
+        },
+        "hierarchy": "Eyebrow → H2 territory statement → supporting body → scannable area tiles"
+      },
+      "layersBottomToTop": [
+        "section#coverage charcoal fill",
+        ".coverage__fx-radial",
+        ".coverage__fx-topbar",
+        ".coverage__inner",
+        ".coverage__label-col .coverage__intro (eyebrow, h2, body)",
+        ".coverage__areas .coverage__area cards"
+      ],
+      "auditNotes": "User saw inline style on section in DevTools — intentional in CoverageSection.tsx. Tailwind classes on section are layout helpers only."
+    },
+    {
+      "id": "testimonials-tst3-editorial",
+      "status": "candidate",
+      "displayName": "Testimonials — Tst3 featured quote + supporting grid",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "White band with charcoal top seam: split header, large Source Serif featured quote with yellow quote mark, yellow accent rule, then 2-col gray cards",
+        "reactComponent": "glc-site/src/components/sections/testimonials-section.tsx",
+        "domPath": "main#main-content > section#testimonials",
+        "sectionElementId": "testimonials",
+        "relatedComponents": [
+          "framer-motion .tst3__featured + .tst3__card",
+          "glc-site/src/components/ui/reveal.tsx"
+        ],
+        "classPrefix": "tst3__",
+        "cssAnchorComments": [
+          "TESTIMONIALS — v3 Editorial Pull Quote",
+          "TESTIMONIALS — Featured Editorial Layout (v2)"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type testimonials",
+        "propsType": "TestimonialsProps"
+      },
+      "visualDna": {
+        "ground": {
+          "section": "#testimonials white overflow hidden",
+          "seam": "#testimonials::before top 3px charcoal-deep full width"
+        },
+        "header": {
+          "layout": ".tst3__header grid 1fr 1fr gap 40px align end; container padding var(--section-v) 40px 56px",
+          "left": ".tst3__header-left: .eyebrow.eyebrow--dark + h2#testimonials-heading .tst3__heading Oswald clamp(32pxâ€¦48px) uppercase; em yellow-core (not in Reveal — instant)",
+          "right": ".tst3__header-right .tst3__sub 15px/1.8 --text-500 max 44ch with reveal--delay-2"
+        },
+        "featured": {
+          "container": "motion.div.tst3__featured role article; grid auto+1fr gap 32px; padding 0 40px 64px; position relative",
+          "openQuote": ".tst3__open-mark Source Serif 4 italic huge clamp(100pxâ€¦160px) yellow-core ~0.7 opacity",
+          "quote": ".tst3__featured-quote Source Serif italic clamp(18pxâ€¦26px) charcoal",
+          "attribution": "flex row gap 16px: .tst3__featured-name body 13px 800 uppercase; .tst3__featured-sep 28×2 yellow bar; .tst3__featured-role 12px muted",
+          "accentBar": ".tst3__featured-accent bottom full width 1px gray-200; ::before 72×3 yellow segment",
+          "motion": "whileInView fade y 0.8s ease expo"
+        },
+        "supportingGrid": {
+          "layout": ".tst3__grid 2 columns gap 2px; padding 0 40px bottom section-v",
+          "card": "motion.article.tst3__card gray-100 padding 40×36; border-top 3px transparent → yellow hover; hover yellow-tint",
+          "internals": ".tst3__card-mark Source Serif quote 48px yellow; .tst3__card-quote body italic 14px --text-500; .tst3__card-rule 28×2 yellow; name uppercase; role small muted"
+        },
+        "responsive": {
+          "768": "tighter padding; featured single column; smaller open mark",
+          "1024": "header 1 col; grid 1 col"
+        },
+        "tokensUsed": [
+          "--white",
+          "--charcoal-deep",
+          "--yellow-core",
+          "--gray-100",
+          "--gray-200",
+          "--text-500",
+          "--text-400",
+          "--font-display",
+          "--font-body",
+          "--font-accent",
+          "--container-max",
+          "--section-v",
+          "--ease-expo"
+        ],
+        "contentShape": {
+          "props": "eyebrow, headingBefore, headingAccent (em), headingAfter, sub, items[{quote,name,role}] — first item featured"
+        }
+      },
+      "layersBottomToTop": [
+        "#testimonials white + top seam",
+        ".tst3__header",
+        ".tst3__featured: open mark, body, accent",
+        ".tst3__grid .tst3__card articles"
+      ],
+      "auditNotes": "Featured h2 lines use em for accent word; supporting cards use framer whileInView. v2 #testimonials block adds padding + alternate layout classes — cascade conflict entry."
+    },
+    {
+      "id": "cta-band-cta3-charcoal-close",
+      "status": "candidate",
+      "displayName": "CTA band — Cta3 charcoal close (diagonal wash + phone)",
+      "implementation": {
+        "kind": "section",
+        "plainEnglishName": "Dark charcoal closing band: skewed yellow wash, blueprint grid, two-column inner (headline + sub) vs stacked phone/email actions, bottom yellow gradient bar",
+        "reactComponent": "glc-site/src/components/sections/cta-band-section.tsx",
+        "domPath": "main#main-content > section#cta-band",
+        "sectionElementId": "cta-band",
+        "propsNote": "sectionId prop defaults cta-band",
+        "relatedComponents": [
+          "glc-site/src/components/ui/icon-arrow.tsx"
+        ],
+        "classPrefix": "cta3__",
+        "cssAnchorComments": [
+          "CTA BAND — v3 Dark Charcoal Close",
+          "CTA BAND — Charcoal Drama (v2)"
+        ]
+      },
+      "referenceFiles": {
+        "contentExample": "glc-site/src/content/pages/home.json type ctaBand",
+        "propsType": "CtaBandProps"
+      },
+      "visualDna": {
+        "ground": {
+          "section": "#cta-band var(--charcoal-deep) overflow hidden",
+          "blueprint": "#cta-band::before inset crossed 80px grid rgba white 0.012",
+          "diag": ".cta3__diag absolute skewed yellow rectangle opacity 0.07 pointer-events none — atmospheric depth",
+          "v2WatermarkNote": "Later #cta-band::after 'GLC' ghost text in v2 block — same id; see conflictsToEliminate"
+        },
+        "inner": {
+          "layout": ".cta3__inner container padding var(--section-v) 40px; grid 1fr auto gap 60px align center z1",
+          "copy": ".cta3__copy: .cta3__eyebrow-bar flex eyebrow + extending .cta3__eyebrow-line (1px rgba white 0.1); .cta3__eyebrow 10px 800 uppercase yellow tracking 0.22em",
+          "heading": "h2#cta-heading Oswald clamp(36pxâ€¦58px) uppercase white; line breaks + em yellow-core",
+          "sub": ".cta3__sub 14px rgba white 0.5 max 50ch"
+        },
+        "actions": {
+          "column": ".cta3__actions flex column gap 16px align end; min-width 280px",
+          "phone": ".cta3__phone-label micro uppercase muted; .cta3__phone block Oswald clamp yellow hover opacity",
+          "divider": ".cta3__divider 1px rgba white 0.12 full width",
+          "email": "a.btn-ghost.cta3__email-btn + IconArrow"
+        },
+        "footerAccent": ".cta3__bottom-bar height 4px gradient yellow → fade full width",
+        "responsive": {
+          "768": "reduced padding; email btn align start",
+          "1024": "inner 1 col; actions align start; phone text-align left"
+        },
+        "tokensUsed": [
+          "--charcoal-deep",
+          "--white",
+          "--yellow-core",
+          "--ease-expo",
+          "--font-display",
+          "--font-body",
+          "--section-v",
+          "--section-v-sm",
+          "--container-max"
+        ],
+        "contentShape": {
+          "props": "eyebrow, headingLine1, headingLine2, headingEmphasis (em), sub, phoneLabel, phone, phoneHref, emailCta{label,href}"
+        }
+      },
+      "layersBottomToTop": [
+        "#cta-band charcoal",
+        "#cta-band::before blueprint",
+        ".cta3__diag",
+        ".cta3__inner: copy + actions",
+        ".cta3__bottom-bar"
+      ],
+      "auditNotes": "RSC may show SegmentViewNode; markup is cta-band-section.tsx. v2 adds ::after watermark + cta-r2__* — documented cascade conflict."
+    },
+    {
+      "id": "footer-site-wide-gray-rail",
+      "status": "candidate",
+      "displayName": "Footer — brand grid + legal bar",
+      "implementation": {
+        "kind": "component",
+        "plainEnglishName": "Gray-100 footer: 4-column main grid (brand + 3 link columns), charcoal 4px top border, off-white legal strip",
+        "reactComponent": "glc-site/src/components/layout/site-footer.tsx",
+        "domPath": "footer#footer",
+        "dataSource": "glc-site/src/content/site.json + navigation.json footer",
+        "variant": "minimal prop renders bar-only copyright strip"
+      },
+      "referenceFiles": {},
+      "visualDna": {
+        "ground": {
+          "shell": "#footer background var(--gray-100); padding 80px 0 0; border-top 4px var(--charcoal-deep)"
+        },
+        "mainGrid": {
+          "layout": ".footer__main container padding 0 40px 60px; grid 280px 1fr 1fr 1fr gap 60px",
+          "brand": ".footer__brand: .footer__logo-row Image + .footer__wordmark-name Oswald 16px uppercase + .footer__wordmark-sub 9px yellow tracking; .footer__tagline Source Serif italic 14px --text-600",
+          "contact": ".footer__contact-item flex gap 10px 13px 600 --text-600; svg yellow-core; phone link hover yellow",
+          "columns": "per column .footer__col-title Oswald 14px uppercase + bottom border gray-200 + ::after 24×2 yellow accent; ul.footer__links li > SmartLink with ::before expanding yellow bar hover"
+        },
+        "legalBar": {
+          "surface": ".footer__bar off-white border-top gray-200",
+          "inner": ".footer__bar-inner flex space-between padding 20px 40px",
+          "copy": ".footer__copy 12px --text-400; span legal name yellow-core",
+          "legalLinks": ".footer__legal flex gap; links hover yellow-core"
+        },
+        "responsive": {
+          "768": "main 1 col; bar-inner stacks centered",
+          "1024": "main 2 columns; brand spans full width"
+        },
+        "tokensUsed": [
+          "--gray-100",
+          "--gray-200",
+          "--off-white",
+          "--charcoal-deep",
+          "--yellow-core",
+          "--text-600",
+          "--text-400",
+          "--font-display",
+          "--font-body",
+          "--font-accent",
+          "--container-max",
+          "--ease-expo"
+        ],
+        "contentShape": {
+          "footerNav": "footer.tagline, footer.columns[{title, links[]}], footer.legal[]",
+          "site": "name, slogan, telephone, telephoneDisplay, address, copyrightYear, legalName"
+        },
+        "interaction": "Link hover darkens text + yellow micro-bar animates width 0→16px"
+      },
+      "layersBottomToTop": [
+        "#footer gray-100 + top charcoal rule",
+        ".footer__main",
+        ".footer__bar"
+      ],
+      "auditNotes": "Rendered from app/layout.tsx with site + navigation props. Not a main#main-content section but part of every page chrome."
+    },
+    {
+      "id": "glc-snow-p14-midlower-cta",
+      "status": "candidate",
+      "displayName": "Commercial snow — P14 mid-to-lower CTA banner",
+      "implementation": {
+        "kind": "element",
+        "plainEnglishName": "Dark charcoal inline CTA strip: yellow left rail, headline + supporting line, primary + ghost SmartLinks — revealed on scroll with the snow page reveal wrapper",
+        "reactComponent": "glc-site/src/components/services/commercial-snow-page-main.tsx (comment P14 MID-TO-LOWER CTA BANNER)",
+        "wrapperComponent": "glc-site/src/components/services/commercial-snow-reveal-section.tsx → SnowRevealSection (div.reveal.glc-snow-reveal + useReveal ref)",
+        "route": "glc-site/src/app/services/snow-removal/page.tsx → CommercialSnowPageMain",
+        "domPath": "main#main-content > div.glc-snow-page > div.reveal.glc-snow-reveal.visible > div.glc-snow-midlower-cta",
+        "classPrefix": "glc-snow-midlower-cta__",
+        "cssAnchorComments": [
+          "P14 — Mid-to-lower CTA",
+          "SNOW PAGE (glc-snow-btn)"
+        ]
+      },
+      "referenceFiles": {
+        "ctasAndSharedCopy": "glc-site/src/content/commercial-snow-page-data.ts → commercialSnowClosingCta.ctas (href + labels for buttons; midlower block duplicates heading copy in TSX)"
+      },
+      "visualDna": {
+        "parentWrapper": {
+          "classes": "reveal glc-snow-reveal — inherits global .reveal scroll visibility; .glc-snow-reveal shortens transition to 0.28s (opacity/transform)",
+          "behavior": "useReveal adds .visible when intersecting; prefers-reduced-motion: .glc-snow-reveal transition none"
+        },
+        "ground": {
+          "banner": ".glc-snow-midlower-cta background var(--charcoal-deep); padding 48×40; box-shadow 0 8px 40px rgba(14,13,12,0.3)",
+          "mobilePadding": "â‰¤768px padding 36×20 (snow page responsive block)"
+        },
+        "layout": {
+          "inner": ".glc-snow-midlower-cta__inner max-width --container-max margin auto; grid minmax(0,1fr) + auto; align center; gap 32px",
+          "stackMobile": "â‰¤768px grid 1 column; align-items start",
+          "copyColumn": ".glc-snow-midlower-cta__copy min-width 0",
+          "accentRail": ".glc-snow-midlower-cta__copy--accent border-left 4px var(--yellow-core); padding-left 24px",
+          "actions": ".glc-snow-midlower-cta__btns flex row gap 12px wrap align center"
+        },
+        "typography": {
+          "heading": "p.glc-snow-midlower-cta__heading — Oswald clamp(1rem, 2vw, 1.3rem) 700 uppercase letter-spacing 0.04em white; margin 0 0 8px",
+          "sub": "p.glc-snow-midlower-cta__sub body 14px rgba(255,255,255,0.6) line-height 1.6"
+        },
+        "interactions": {
+          "primaryCta": "SmartLink.glc-snow-btn.glc-snow-btn--primary — yellow fill, gold gradient sweep on hover/focus, charcoal text, border yellow, translateY(-2px) on hover",
+          "ghostCta": "SmartLink.glc-snow-btn.glc-snow-btn--ghost — transparent + white border rgba 0.35; light gradient fill sweep hover; white text",
+          "reducedMotion": ".glc-snow-btn--primary/--ghost lose background-image sweep; hover transform none"
+        },
+        "tokensUsed": [
+          "--charcoal-deep",
+          "--yellow-core",
+          "--gold",
+          "--white",
+          "--container-max",
+          "--font-display",
+          "--font-body",
+          "--ease-expo"
+        ],
+        "contentShape": {
+          "note": "Heading and sub paragraphs are hardcoded strings in commercial-snow-page-main.tsx (~lines 426â€“430), not pulled from commercialSnowClosingCta object.",
+          "buttons": "Both use commercialSnowClosingCta.ctas[0].href and ctas[1].href; primary label hardcoded \"Request Free Commercial Assessment\" (matches data); secondary label from ctas[1].label (e.g. tel link text)."
+        },
+        "hierarchy": "Yellow rail + headline (dominant) → muted subcopy → action row (primary first, ghost second)"
+      },
+      "layersBottomToTop": [
+        "div.reveal.glc-snow-reveal (scroll fade/slide)",
+        ".glc-snow-midlower-cta surface + shadow",
+        ".glc-snow-midlower-cta__inner grid",
+        ".glc-snow-midlower-cta__copy.glc-snow-midlower-cta__copy--accent: __heading, __sub",
+        ".glc-snow-midlower-cta__btns: .glc-snow-btn--primary, .glc-snow-btn--ghost"
+      ],
+      "auditNotes": "DevTools class typos glc-.now-* are OCR errors; real prefix is glc-snow-. Part of long-form commercial snow page after process block (P13) and before FAQ (P15)."
+    }
+  ]
+}

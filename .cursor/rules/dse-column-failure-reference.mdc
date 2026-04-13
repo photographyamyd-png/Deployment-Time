@@ -1,0 +1,65 @@
+---
+description: Build-failure patterns — DSE rhythm, column balance, implementation hygiene (read before checkpoints)
+globs: glc-site/src/**/*.tsx, glc-site/src/styles/glc-base.css
+alwaysApply: false
+---
+
+# Failure reference — checkpoints before submit
+
+Read this **before** writing layout code and **confirm none apply** before submitting a checkpoint.
+
+## 0.1 — DSE alternation failures
+
+**FAIL:** Two dark sections adjacent (outside an approved pair). A light separator (light band, mist seam **A3**, or **accent** contact strip) must sit between DSE-family bands unless the brief explicitly allows a named back-to-back pair (e.g. homepage Hero + Stats only).
+
+**FAIL:** Every band on a page is the same light surface — no rhythm. Approved DSE bands must stay dark where the brief calls for them.
+
+**PASS (rhythm model):** Alternate DSE and light, with required light separators before final DSE CTA and similar closures. Header/footer rules follow site layout.
+
+**Homepage reference (approved exception):** Hero (DSE) may sit back-to-back with Stats (DSE) only; the next band must be light for contrast.
+
+## 0.2 — Column balance failures
+
+**Column balance test:** In any two-column layout, both columns must carry real visual weight. A column **fails** if it is a flat wall of paragraphs with no hierarchy, or if one column is ~3× heavier than the other without compensating structure.
+
+**FAIL:** Image column dominates and copy looks abandoned — widen copy column weight, add pull quote, credential grid, list, or CTA in copy.
+
+**FAIL:** Long copy column with token media aside (“flat text wall + small image”). **Fix:** Subheads, pull quotes, callouts, lists, yellow rules, or density components so copy never runs **more than four consecutive sentences** without a structural/visual break.
+
+**FAIL:** No hierarchy after the heading (eyebrow + H + endless paragraphs). **Fix:** After the heading, cap continuous body before a break; use pull quotes, callout blocks, or icon rows between groups.
+
+**PASS:** Copy column includes accent (e.g. yellow left rail), eyebrow/heading, short body chunk, then a visual break (quote, grid, list, rule, CTA); media column has full-height or intentional framed imagery with secondary accent (e.g. bottom bar), not a lone tiny thumbnail.
+
+**PASS (reference proportions):** Copy **55fr** / media **45fr** (or equivalent) when the brief calls for that balance.
+
+## 0.3 — Class names and style failures
+
+**Clarification:** The project **does** use shared classes such as `glc-snow-band`, `glc-drain-page__split-body`, `glc-density-split`, `glc-density-callout`, and `glc-density-list-cols` — they are defined in [`glc-site/src/styles/glc-base.css`](glc-site/src/styles/glc-base.css) and are **allowed**.
+
+**FAIL:** **Ad-hoc / undocumented** class names invented outside the GLC naming system (random strings, framework utilities pasted as `className`, or one-off prefixes not represented in `glc-base.css`).
+
+**FAIL:** `style={{}}` for static layout (e.g. `marginTop: '8px'`). **PASS:** Dynamic values only (e.g. accordion `maxHeight` from `scrollHeight`).
+
+**FAIL:** Tailwind utilities on components, CSS Modules for these pages, `display: none` to animate accordion panels, raw `<img>` where `next/image` applies, raw `<a>` for **internal** app routes (use `Link` or the repo’s [`SmartLink`](glc-site/src/components/ui/smart-link.tsx), which wraps `next/link` for internal paths).
+
+**FAIL:** `'use client'` on `page.tsx`.
+
+**FAIL:** Non-token font families, border-radius on elements forbidden by **DESIGN-SYSTEM.md** / Section 1.1.
+
+**FAIL:** Body copy allowed to span **full container width** — prose must be capped (**68ch** on drainage hub via scoped CSS; global `.glc-snow-prose` may differ — align the page shell to the brief).
+
+## Project file conventions (this repo)
+
+| Concern | Convention |
+|--------|--------------|
+| Global CSS | [`glc-site/src/styles/glc-base.css`](glc-site/src/styles/glc-base.css) — tokens + shared classes. |
+| App routes | [`glc-site/src/app/.../page.tsx`](glc-site/src/app) — compose sections; **no** `'use client'`; **no** layout CSS; **no** static `style={{}}`. |
+| Section TSX | Prefer `src/components/sections/` for home-style sections; service hubs may live under `components/services/`. One logical section per file when practical. |
+| UI primitives | [`glc-site/src/components/ui/`](glc-site/src/components/ui/) — import, do not redefine. |
+| Client | `'use client'` only where hooks / listeners are required — **not** on `page.tsx`. |
+| Images | `next/image` `<Image />`; preserve `src`. |
+| Internal links | `SmartLink` or `Link` — not raw `<a href="/...">`. |
+
+## Drainage hub — expected surface chain (registry order)
+
+Use [`glc-site/src/content/drainage-page-surfaces.ts`](glc-site/src/content/drainage-page-surfaces.ts) as source of truth. Verify DOM `data-glc-drain-surface` matches: **dse → light → … → dse only after light/accent/seam → … → final dse** with no illegal **dse|dse** adjacency.

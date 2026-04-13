@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Design System - Ground Level Contracting</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --charcoal-deep: #1e1c1a;
+      --charcoal-mid: #2e2b28;
+      --yellow-core: #f7c520;
+      --gray-100: rgba(30, 28, 26, 0.06);
+      --gray-200: rgba(30, 28, 26, 0.12);
+      --text-600: rgba(30, 28, 26, 0.9);
+      --text-500: rgba(30, 28, 26, 0.8);
+      --text-400: rgba(30, 28, 26, 0.55);
+      --container: 1100px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-600);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--charcoal-deep);
+      color: var(--white);
+      border-bottom: 3px solid var(--yellow-core);
+      padding: 20px;
+    }
+    main {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 { line-height: 1.2; }
+    h2 {
+      margin-top: 28px;
+      padding-top: 8px;
+      border-top: 1px solid var(--gray-200);
+    }
+    code {
+      background: var(--gray-100);
+      padding: 1px 4px;
+    }
+    pre {
+      background: #f7f7f7;
+      border: 1px solid var(--gray-200);
+      padding: 12px;
+      overflow-x: auto;
+    }
+    .note {
+      border-left: 4px solid var(--yellow-core);
+      background: #fffdf4;
+      padding: 10px 12px;
+      margin: 10px 0;
+    }
+    .muted { color: var(--text-400); }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ground Level Contracting - Master Design System</h1>
+    <div class="muted">Version 2026-04-07 | Consolidated from Docs 1-4</div>
+  </header>
+  <main>
+    <h2>1) Canonical Precedence</h2>
+    <ul>
+      <li>Visual/CSS baseline for shared system styles: <strong>Doc 4</strong></li>
+      <li>Section IDs, section DNA, and conflict map: <strong>Doc 2</strong></li>
+      <li>Motif taxonomy and slot mapping: <strong>Doc 3</strong></li>
+      <li>Doc 1 retained for non-conflicting historical context</li>
+    </ul>
+
+    <h2>2) Global Foundation (Canonical Tokens)</h2>
+    <pre>:root {
+  --white: #FFFFFF;
+  --gray-100: rgba(30,28,26,0.06);
+  --gray-200: rgba(30,28,26,0.12);
+  --charcoal-deep: #1E1C1A;
+  --charcoal-mid: #2E2B28;
+  --charcoal-light: #585653;
+  --yellow-core: #F7C520;
+  --gold: #D4A017;
+  --charcoal-tint: rgba(46,43,40,0.06);
+  --charcoal-tint-md: rgba(46,43,40,0.12);
+  --text-600: rgba(30,28,26,0.90);
+  --text-500: rgba(30,28,26,0.80);
+  --text-400: rgba(30,28,26,0.55);
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-industrial: 'Barlow', sans-serif;
+  --font-mono: 'Source Code Pro', monospace;
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --section-v: clamp(80px, 9vw, 120px);
+  --container-max: 1320px;
+  --header-h: 80px;
+}</pre>
+
+    <h2>3) Approved Section DNA (Canonical IDs)</h2>
+    <ol>
+      <li><code>stats-st3-dark-editorial</code></li>
+      <li><code>about-ab3-editorial-split</code></li>
+      <li><code>hero-v2-flagship-asymmetric</code></li>
+      <li><code>gl-parallax-type-band-shared</code></li>
+      <li><code>exc-hub-parallax-cta-band</code></li>
+      <li><code>header-mega-services-panel-shell</code></li>
+      <li><code>header-primary-nav-links-cluster</code></li>
+      <li><code>services-home-grid-cards</code></li>
+      <li><code>why-why3-editorial-manifesto</code></li>
+      <li><code>process-proc3-split-timeline</code></li>
+      <li><code>coverage-dark-territory-band</code></li>
+      <li><code>testimonials-tst3-editorial</code></li>
+      <li><code>cta-band-cta3-charcoal-close</code></li>
+      <li><code>footer-site-wide-gray-rail</code></li>
+      <li><code>glc-snow-p14-midlower-cta</code></li>
+    </ol>
+
+    <h2>4) Conflict Register and Resolution Policy</h2>
+    <h3>C-01 Stats Cascade</h3>
+    <p>Keep <code>st3</code> dark editorial as production owner. Scope/remove legacy v2 <code>#stats</code> overlaps.</p>
+    <h3>C-02 About Cascade</h3>
+    <p>Use <code>ab3__*</code> as owner for React implementation. Remove unused <code>.about__*</code> if dead.</p>
+    <h3>C-03 Why/Process/Testimonials/CTA Override Drift</h3>
+    <p>Treat late full-page v2 ID blocks as legacy-static only. Keep one owner per React section ID.</p>
+
+    <h2>5) Motif System (Doc 3)</h2>
+    <ul>
+      <li>Group A: Structural sweeps/transitions (A1-A6)</li>
+      <li>Group B: Corner/panel motifs (B1-B5)</li>
+      <li>Group C: Watermark planes (C1-C3)</li>
+      <li>Group D: Micro UI motifs (D1-D7)</li>
+    </ul>
+    <div class="note">
+      Canonical slot mappings: <code>.motif-corner</code>, <code>.motif-slash</code>, <code>.motif-cross</code>, <code>.motif-triangle</code>
+      remain the primary service-panel motif attachment points.
+    </div>
+
+    <h2>6) Hard Rules</h2>
+    <ul>
+      <li>Single primary accent token: <code>--yellow-core</code></li>
+      <li>No duplicate owner definitions for the same section ID</li>
+      <li>One animated watermark/sweep per page maximum</li>
+      <li>Watermark opacity range target: 0.025 to 0.10 maximum</li>
+      <li>Prefer section-prefixed class families (<code>st3__</code>, <code>ab3__</code>, <code>why3__</code>, etc.)</li>
+    </ul>
+
+    <h2>7) Raw SVG Appendix (Verbatim)</h2>
+
+    <h3>SVG-A3 Divider Thread</h3>
+    <pre>&lt;svg viewBox="0 0 1400 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="0,70 0,38 1400,0 1400,70" fill="#1E1C1A"/&gt;
+  &lt;polygon points="0,70 0,54 700,16 1400,30 1400,70" fill="#1E1C1A" opacity="0.5"/&gt;
+  &lt;polygon points="0,40 1400,2 1400,7 0,46" fill="#F7C520" opacity="0.42"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h3>SVG-B1 Corner</h3>
+    <pre>&lt;svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="200,0 0,200 200,200" fill="#F7C520"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h3>SVG-B2 Slash</h3>
+    <pre>&lt;svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="160,0 80,160 160,160" fill="#F7C520"/&gt;
+  &lt;polygon points="120,0 40,160 80,160 160,0" fill="#F7C520"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h3>SVG-B3 Cross</h3>
+    <pre>&lt;svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="0,0 120,0 120,120" fill="#F7C520"/&gt;
+  &lt;polygon points="0,0 0,120 120,120" fill="#F7C520" opacity="0.5"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h3>SVG-B4 Triangle</h3>
+    <pre>&lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="0,100 100,100 100,0" fill="#F7C520"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h3>SVG-B5 Inverted Corner</h3>
+    <pre>&lt;svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon points="0,0 120,0 0,120" fill="#F7C520"/&gt;
+&lt;/svg&gt;</pre>
+
+    <h2>8) Migration and Alignment Notes</h2>
+    <ul>
+      <li>Align <code>glc-site/src/styles/glc-base.css</code> to this ownership model (one owner per section)</li>
+      <li>Keep <code>design_system.json</code> token values synchronized with canonical token block</li>
+      <li>Scope legacy/static preview styles away from App Router section IDs</li>
+      <li>Use this document's section IDs as canonical references for future section work</li>
+    </ul>
+  </main>
+</body>
+</html>
+

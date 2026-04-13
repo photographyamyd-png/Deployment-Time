@@ -1,0 +1,18 @@
+{
+  "source": "glc-site/src/content/pages/home.json",
+  "note": "Snapshot for the static clone package.",
+  "sections": [
+    "hero",
+    "marquee",
+    "accordion",
+    "about",
+    "services",
+    "stats",
+    "why",
+    "process",
+    "coverage",
+    "testimonials",
+    "ctaBand"
+  ]
+}
+

@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ground Level Contracting — Unified Design System v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&family=Barlow:wght@300;400;500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   GLC UNIFIED DESIGN SYSTEM v2.0
+   Light-primary. DSE for contrast. White not off-white.
+   Oswald display · Plus Jakarta Sans body · Barlow industrial (DSE)
+   Source Code Pro mono · Single accent: #F7C520
+   Zero border-radius on internals · Charcoal tints only
+═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Surfaces — WHITE is primary, never off-white on page backgrounds */
+  --white:           #FFFFFF;
+  --gray-100:        rgba(30,28,26,0.06);
+  --gray-200:        rgba(30,28,26,0.12);
+
+  /* Charcoal family — warm-biased */
+  --charcoal-deep:   #1E1C1A;
+  --charcoal-mid:    #2E2B28;
+  --charcoal-light:  #585653;
+
+  /* Single accent */
+  --yellow-core:     #F7C520;
+  --gold:            #D4A017;
+
+  /* Tints — charcoal ONLY, never yellow tints */
+  --charcoal-tint:   rgba(46,43,40,0.06);
+  --charcoal-tint-md:rgba(46,43,40,0.12);
+
+  /* Text */
+  --text-600:        rgba(30,28,26,0.90);
+  --text-500:        rgba(30,28,26,0.80);
+  --text-400:        rgba(30,28,26,0.55);
+
+  /* Typography */
+  --font-display:    'Oswald', sans-serif;
+  --font-body:       'Plus Jakarta Sans', sans-serif;
+  --font-industrial: 'Barlow', sans-serif;   /* DSE sections only */
+  --font-mono:       'Source Code Pro', monospace;
+
+  /* Motion */
+  --ease-expo:       cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --section-v:       clamp(80px, 9vw, 120px);
+  --container-max:   1320px;
+  --header-h:        80px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text-500);
+  line-height: 1.8;
+  overflow-x: hidden;
+  cursor: none;
+}
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM CURSOR — yellow dot + lagging ring
+═══════════════════════════════════════════════════════════════ */
+.c-dot {
+  position: fixed; width: 7px; height: 7px;
+  background: var(--yellow-core); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.15s var(--ease-expo), background 0.2s;
+}
+.c-ring {
+  position: fixed; width: 36px; height: 36px;
+  border: 1px solid rgba(247,197,32,0.28); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width 0.35s var(--ease-expo), height 0.35s var(--ease-expo), border-color 0.25s;
+}
+.c-ring.on { width: 60px; height: 60px; border-color: var(--yellow-core); }
+.c-dot.on   { transform: translate(-50%,-50%) scale(1.8); background: var(--white); }
+.c-dot.bar  { transform: translate(-50%,-50%) scale(3); background: var(--charcoal-deep); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.65s var(--ease-expo), transform 0.65s var(--ease-expo);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal--d1 { transition-delay: 0.08s; }
+.reveal--d2 { transition-delay: 0.16s; }
+.reveal--d3 { transition-delay: 0.24s; }
+.reveal--d4 { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   SHARED PRIMITIVES
+═══════════════════════════════════════════════════════════════ */
+
+/* Eyebrow */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--yellow-core);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.eyebrow::before {
+  content: ''; display: inline-block;
+  width: 20px; height: 2px;
+  background: var(--yellow-core); flex-shrink: 0;
+}
+.eyebrow--on-dark { color: rgba(255,255,255,0.38); }
+.eyebrow--on-dark span { color: var(--yellow-core); }
+
+/* Button primary */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  background: var(--yellow-core); color: var(--charcoal-deep);
+  border: none; padding: 14px 28px;
+  cursor: none; position: relative; overflow: hidden;
+  transition: transform 0.22s var(--ease-expo), box-shadow 0.22s var(--ease-expo);
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.7s var(--ease-expo);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(247,197,32,0.30); }
+.btn-primary:hover::before { transform: translateX(100%); }
+
+/* Button ghost */
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  background: transparent; color: var(--white);
+  border: 1px solid rgba(255,255,255,0.32);
+  padding: 13px 28px; cursor: none;
+  transition: background 0.22s var(--ease-expo), border-color 0.22s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.60); }
+
+/* Arrow icon */
+.icon-arr {
+  width: 14px; height: 14px; fill: none;
+  stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.22s var(--ease-expo); flex-shrink: 0;
+}
+.btn-primary:hover .icon-arr,
+.btn-ghost:hover .icon-arr { transform: translateX(4px); }
+
+/* Blueprint grid — DSE section texture */
+.bp-grid::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 80px);
+}
+
+/* Light hairline grid — light sections */
+.line-grid::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0.022) 0px, rgba(0,0,0,0.022) 1px, transparent 1px, transparent 64px);
+}
+
+/* Yellow top rail */
+.yellow-rail {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; z-index: 3;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.14) 60%, transparent 100%);
+}
+
+/* Grain overlay */
+.grain {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px; opacity: 0.028; mix-blend-mode: overlay;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════════════ */
+.gl-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; height: var(--header-h);
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: box-shadow 0.3s;
+}
+.gl-header.scrolled { box-shadow: 0 4px 32px rgba(30,28,26,0.10); }
+.gl-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: var(--header-h);
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+}
+.gl-header__logo { display: flex; align-items: center; gap: 12px; }
+.gl-header__mark {
+  width: 32px; height: 32px;
+  background: var(--charcoal-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  color: var(--yellow-core); position: relative; flex-shrink: 0;
+}
+.gl-header__mark::after {
+  content: ''; position: absolute; bottom: -2px; right: -2px;
+  width: 6px; height: 6px; background: var(--yellow-core);
+}
+.gl-header__name {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--charcoal-deep); line-height: 1;
+}
+.gl-header__sub {
+  font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 0.20em; text-transform: uppercase; color: var(--text-400);
+  margin-top: 3px;
+}
+.gl-header__nav { display: flex; align-items: center; }
+.gl-header__nav a {
+  font-family: var(--font-body); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-400);
+  padding: 0 16px; height: var(--header-h); display: flex; align-items: center;
+  border-right: 1px solid var(--gray-100);
+  transition: color 0.18s, background 0.18s; position: relative; cursor: none;
+}
+.gl-header__nav a::after {
+  content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+  height: 2px; background: var(--yellow-core);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease-expo);
+}
+.gl-header__nav a:hover { color: var(--charcoal-deep); background: var(--charcoal-tint); }
+.gl-header__nav a:hover::after { transform: scaleX(1); }
+.gl-header__cta { display: flex; align-items: center; gap: 16px; }
+.gl-header__phone {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  color: var(--charcoal-deep); letter-spacing: 0.01em;
+  padding-right: 20px; border-right: 1px solid var(--gray-200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — DSE SPLIT (46/54) with seam + parallax
+═══════════════════════════════════════════════════════════════ */
+.hero {
+  display: grid;
+  grid-template-columns: 46fr 54fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "left right" "bar bar";
+  min-height: 100vh; overflow: hidden; position: relative;
+}
+
+/* LEFT PANEL */
+.hero__left {
+  grid-area: left; background: var(--charcoal-deep);
+  position: relative; display: flex; flex-direction: column;
+  padding: 0 72px 64px 80px;
+  padding-top: calc(var(--header-h) + 80px);
+  overflow: hidden; z-index: 2;
+}
+/* Blueprint grid */
+.hero__left::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px);
+}
+/* Ghost watermark */
+.hero__ghost {
+  position: absolute; bottom: 80px; right: -10px;
+  font-family: var(--font-display); font-size: clamp(88px, 11vw, 148px);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+  color: rgba(255,255,255,0.025); pointer-events: none; user-select: none; z-index: 0;
+}
+/* Yellow top rail */
+.hero__rail {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 4;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 65%, transparent 100%);
+}
+/* Eyebrow */
+.hero__eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 52px;
+  position: relative; z-index: 1;
+  opacity: 0; animation: aFade 0.7s var(--ease-expo) 0.3s forwards;
+}
+.hero__eyebrow-dash { width: 24px; height: 1px; background: var(--yellow-core); flex-shrink: 0; }
+.hero__eyebrow-txt {
+  font-family: var(--font-body); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.32);
+}
+/* Three-act headline */
+.hero__hl-wrap { position: relative; z-index: 1; margin-bottom: 48px; }
+.hero__hl {
+  display: block; overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(56px, 6.8vw, 110px);
+  line-height: 0.88; text-transform: uppercase; letter-spacing: -0.025em;
+}
+.hero__hl span { display: block; animation: aLineUp 1s var(--ease-expo) both; }
+.hero__hl--1 span { font-weight: 200; color: rgba(255,255,255,0.18); animation-delay: 0.45s; }
+.hero__hl--2 span { font-weight: 600; color: rgba(255,255,255,0.88); animation-delay: 0.62s; }
+.hero__hl--3 span { font-weight: 700; color: var(--yellow-core);      animation-delay: 0.78s; }
+/* Growing yellow rule */
+.hero__rule {
+  width: 0; height: 1px; background: rgba(247,197,32,0.30);
+  margin-bottom: 44px; position: relative; z-index: 1;
+  animation: aGrow 0.9s var(--ease-expo) 1.0s forwards;
+}
+/* Caption — Barlow 300 */
+.hero__caption-wrap {
+  position: relative; z-index: 1; margin-bottom: auto;
+  opacity: 0; animation: aFade 0.8s var(--ease-expo) 1.1s forwards;
+}
+.hero__caption {
+  font-family: var(--font-industrial); font-weight: 300;
+  font-size: 15px; line-height: 1.82;
+  color: rgba(255,255,255,0.62); max-width: 38ch;
+}
+.hero__caption strong { font-weight: 500; color: rgba(255,255,255,0.86); }
+/* Phone zone */
+.hero__phone-zone {
+  position: relative; z-index: 1;
+  padding-top: 44px; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  opacity: 0; animation: aSlide 0.8s var(--ease-expo) 1.35s forwards;
+}
+.hero__phone-block { display: flex; flex-direction: column; gap: 10px; }
+.hero__phone-lbl {
+  font-size: 8px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+}
+.hero__phone {
+  font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 46px);
+  font-weight: 700; letter-spacing: -0.01em; line-height: 1;
+  color: var(--white); position: relative; width: fit-content; padding-bottom: 5px; cursor: none;
+}
+.hero__phone::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--yellow-core);
+  transition: width 0.55s var(--ease-expo);
+}
+.hero__phone:hover::after { width: 100%; }
+.hero__trust { display: flex; flex-direction: column; gap: 7px; align-items: flex-end; flex-shrink: 0; }
+.hero__trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-industrial); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.28);
+}
+.hero__trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yellow-core); flex-shrink: 0; }
+
+/* YELLOW SEAM — structural weld */
+.hero__seam {
+  position: absolute; top: 0; bottom: 76px; left: calc(46% - 1.5px);
+  width: 3px; z-index: 20; pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, var(--yellow-core) 8%, var(--yellow-core) 92%, transparent 100%);
+  opacity: 0; animation: aFade 0.6s var(--ease-expo) 1.5s forwards;
+}
+.hero__seam::before {
+  content: ''; position: absolute; top: 0; left: -4px; right: -4px; bottom: 0;
+  background: repeating-linear-gradient(180deg,
+    transparent 0, transparent 24px, rgba(247,197,32,0.20) 24px, rgba(247,197,32,0.20) 25px);
+}
+
+/* RIGHT PANEL — image */
+.hero__right {
+  grid-area: right; position: relative; overflow: hidden; background: #0a0908;
+  opacity: 0; animation: rightEnter 1.1s var(--ease-expo) 0.15s forwards;
+}
+@keyframes rightEnter { from { opacity:0; transform: translateX(24px); } to { opacity:1; transform: translateX(0); } }
+.hero__img-wrap {
+  position: absolute; inset: -6%; will-change: transform;
+}
+.hero__img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
+  filter: contrast(1.12) brightness(0.80) saturate(0.65);
+  transform: scale(1.06); animation: imgBreath 3s var(--ease-expo) forwards;
+}
+.hero__img-edge {
+  position: absolute; top: 0; left: 0; bottom: 0; width: 70px; z-index: 1;
+  background: linear-gradient(90deg, var(--charcoal-deep) 0%, transparent 100%);
+}
+.hero__img-floor {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 35%; z-index: 1;
+  background: linear-gradient(to top, rgba(5,4,3,0.92) 0%, rgba(5,4,3,0.45) 55%, transparent 100%);
+}
+.hero__img-sky {
+  position: absolute; top: 0; left: 0; right: 0; height: 40%; z-index: 1;
+  background: linear-gradient(to bottom, rgba(10,8,6,0.45) 0%, rgba(10,8,6,0.12) 55%, transparent 100%);
+}
+/* Service chip badge on image */
+.hero__badge {
+  position: absolute; bottom: 52px; right: 48px; z-index: 5;
+  background: rgba(30,28,26,0.90); border: 1px solid rgba(247,197,32,0.20);
+  border-top: 3px solid var(--yellow-core); padding: 18px 22px;
+  opacity: 0; animation: aFade 0.8s var(--ease-expo) 1.8s forwards;
+}
+.hero__badge-lbl {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.30); margin-bottom: 5px;
+}
+.hero__badge-val {
+  font-family: var(--font-display); font-size: 26px; font-weight: 700;
+  color: var(--white); line-height: 1; letter-spacing: -0.02em;
+}
+.hero__badge-sub {
+  font-family: var(--font-mono); font-size: 8px; color: var(--yellow-core);
+  letter-spacing: 0.16em; text-transform: uppercase; margin-top: 4px;
+}
+
+/* CTA BAR — full width, yellow + dark */
+.hero__bar {
+  grid-area: bar; display: grid; grid-template-columns: 1fr auto; height: 76px;
+  position: relative; z-index: 20;
+  opacity: 0; animation: aSlide 0.7s var(--ease-expo) 1.8s forwards;
+}
+.hero__bar-main {
+  background: var(--yellow-core); display: flex; align-items: center;
+  justify-content: space-between; padding: 0 52px 0 80px; gap: 32px;
+  text-decoration: none; cursor: none; position: relative; overflow: hidden;
+}
+/* White wipe on hover */
+.hero__bar-main::before {
+  content: ''; position: absolute; inset: 0; background: var(--white);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.58s var(--ease-expo);
+}
+.hero__bar-main:hover::before { transform: scaleX(1); }
+.hero__bar-lbl {
+  font-family: var(--font-display); font-size: clamp(12px, 1.1vw, 15px);
+  font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--charcoal-deep); position: relative; z-index: 1;
+  transition: letter-spacing 0.35s var(--ease-expo);
+}
+.hero__bar-main:hover .hero__bar-lbl { letter-spacing: 0.28em; }
+.hero__bar-right {
+  display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; flex-shrink: 0;
+}
+.hero__bar-line {
+  width: 0; height: 1px; background: rgba(30,28,26,0.28);
+  transition: width 0.40s var(--ease-expo);
+}
+.hero__bar-main:hover .hero__bar-line { width: 40px; }
+.hero__bar-icon {
+  width: 38px; height: 38px; border: 1.5px solid rgba(30,28,26,0.22);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.4s var(--ease-expo);
+}
+.hero__bar-icon svg { width: 15px; height: 15px; transition: transform 0.4s var(--ease-expo); }
+.hero__bar-main:hover .hero__bar-icon svg { transform: rotate(-45deg); }
+.hero__bar-sec {
+  background: var(--charcoal-mid); border-left: 1px solid rgba(247,197,32,0.15);
+  padding: 0 40px; display: flex; align-items: center; gap: 10px;
+  text-decoration: none; cursor: none; position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.hero__bar-sec::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(247,197,32,0.09); transform: scaleX(0); transform-origin: right;
+  transition: transform 0.42s var(--ease-expo);
+}
+.hero__bar-sec:hover { background: #383330; }
+.hero__bar-sec:hover::before { transform: scaleX(1); }
+.hero__bar-sec svg {
+  width: 14px; height: 14px; fill: none; stroke: rgba(247,197,32,0.40);
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0; position: relative; z-index: 1; transition: stroke 0.25s;
+}
+.hero__bar-sec:hover svg { stroke: var(--yellow-core); }
+.hero__bar-sec-txt {
+  font-family: var(--font-body); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); position: relative; z-index: 1;
+  transition: color 0.25s; white-space: nowrap;
+}
+.hero__bar-sec:hover .hero__bar-sec-txt { color: rgba(255,255,255,0.65); }
+
+/* ═══════════════════════════════════════════════════════════════
+   STATS — ST3 Dark Editorial (Hero+Stats exception: back-to-back DSE ok)
+═══════════════════════════════════════════════════════════════ */
+.st3 {
+  background: var(--charcoal-deep); position: relative; overflow: hidden;
+}
+.st3::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.012) 0, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 80px);
+}
+.st3__top-rail {
+  position: relative; z-index: 2; height: 3px; width: 100%;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 45%, transparent 100%);
+}
+.st3__inner {
+  position: relative; z-index: 1; display: flex; align-items: stretch;
+}
+.st3__side-label {
+  width: 56px; flex-shrink: 0; display: flex; align-items: center;
+  justify-content: center; padding: 0;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.st3__side-label span {
+  font-family: var(--font-body); font-size: 9px; font-weight: 800;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.20);
+  writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap;
+}
+.st3__grid { display: flex; flex: 1; }
+.stat-cell {
+  flex: 1; padding: 52px 0; border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center; position: relative; overflow: hidden;
+  cursor: none; transition: background 0.3s;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px; background: var(--yellow-core);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease-expo);
+}
+.stat-cell:hover { background: rgba(255,255,255,0.025); }
+.stat-cell:hover::after { transform: scaleX(1); }
+.stat-cell__num {
+  font-family: var(--font-display); font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 700; line-height: 1; letter-spacing: -0.04em; color: var(--white);
+}
+.stat-cell__num span { color: var(--yellow-core); }
+.stat-cell__label {
+  font-family: var(--font-industrial); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT — AB3 Editorial Split (Light / White)
+═══════════════════════════════════════════════════════════════ */
+.ab3 {
+  background: var(--white); padding: var(--section-v) 0;
+  position: relative; overflow: hidden;
+}
+/* Light hairline grid */
+.ab3::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0.022) 0px, rgba(0,0,0,0.022) 1px, transparent 1px, transparent 64px);
+}
+/* Giant GLC watermark */
+.ab3__wm {
+  position: absolute; right: -0.06em; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-display); font-size: clamp(180px, 22vw, 320px);
+  font-weight: 700; line-height: 1; color: rgba(30,28,26,0.028);
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.ab3__layout {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 55fr 45fr;
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+  gap: 0; align-items: stretch;
+}
+/* Copy column */
+.ab3__copy {
+  padding-right: 72px; padding-top: 8px;
+  position: relative;
+}
+.ab3__copy::before {
+  content: ''; position: absolute; left: 0; top: 32px;
+  width: 4px; height: 56px; background: var(--yellow-core);
+}
+.ab3__top-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.ab3__since {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-400); padding: 4px 10px;
+  border: 1px solid var(--gray-200); background: var(--gray-100);
+}
+.ab3__heading {
+  font-family: var(--font-display); font-size: clamp(36px, 4vw, 58px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1; color: var(--charcoal-deep); margin-bottom: 6px;
+}
+.ab3__heading em {
+  font-style: normal; color: var(--yellow-core);
+}
+.ab3__rule { width: 48px; height: 3px; background: var(--yellow-core); margin-bottom: 24px; }
+.ab3__body {
+  font-family: var(--font-industrial); font-size: 15px; font-weight: 300;
+  line-height: 1.82; color: var(--text-500); max-width: 44ch; margin-bottom: 32px;
+}
+.ab3__creds {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 36px;
+}
+.ab3__cred {
+  padding: 16px 20px; background: var(--white);
+  border: 1px solid var(--gray-200); cursor: none;
+  transition: background 0.22s var(--ease-expo), border-color 0.22s;
+}
+.ab3__cred:hover { background: var(--charcoal-tint); border-color: var(--yellow-core); }
+.ab3__cred-label {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-400); margin-bottom: 4px;
+}
+.ab3__cred-value {
+  font-family: var(--font-body); font-size: 12px; font-weight: 700;
+  color: var(--text-600);
+}
+/* Media column */
+.ab3__media {
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  background: var(--charcoal-mid);
+}
+.ab3__media-img {
+  width: 100%; height: 100%; min-height: 480px;
+  object-fit: cover; object-position: center;
+  filter: contrast(1.06) saturate(0.82);
+  transition: transform 0.8s var(--ease-expo);
+}
+.ab3__media:hover .ab3__media-img { transform: scale(1.03); }
+/* Yellow bottom bar on image */
+.ab3__media::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px; background: var(--yellow-core); z-index: 2;
+}
+.ab3__chip {
+  position: absolute; top: 28px; left: -20px; z-index: 3;
+  background: var(--charcoal-deep); padding: 12px 18px;
+  border-left: 3px solid var(--yellow-core);
+}
+.ab3__chip-lbl {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 3px;
+}
+.ab3__chip-val {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+.ab3__corner-mark {
+  position: absolute; bottom: 24px; left: 24px; z-index: 3;
+  width: 40px; height: 40px; opacity: 0.50;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICES — STICKY TAB CONTAINER (STC1) — DSE
+═══════════════════════════════════════════════════════════════ */
+.stc1 { position: relative; }
+
+/* Sticky tab rail */
+.stc1__rail {
+  position: sticky; top: 0; z-index: 50; height: 64px;
+  background: var(--charcoal-deep); border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: stretch; overflow: hidden;
+}
+.stc1__rail::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+  background: var(--yellow-core);
+}
+.stc1__rail::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 120px);
+}
+.stc1__rail-label {
+  flex-shrink: 0; display: flex; align-items: center; gap: 10px;
+  padding: 0 24px 0 28px; border-right: 1px solid rgba(255,255,255,0.07); z-index: 1;
+}
+.stc1__rail-label span {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); white-space: nowrap;
+}
+.stc1__tabs {
+  display: flex; align-items: stretch; flex: 1; list-style: none;
+  position: relative; z-index: 1;
+}
+.stc1__tab {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  padding: 0 28px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  background: transparent; border: none; border-right: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer; white-space: nowrap;
+  transition: color 0.25s var(--ease-expo), background 0.25s var(--ease-expo);
+  outline: none;
+}
+.stc1__tab-num {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,0.18); transition: color 0.25s var(--ease-expo);
+}
+.stc1__tab::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+  background: var(--yellow-core);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease-expo);
+}
+.stc1__tab:hover { color: rgba(255,255,255,0.70); background: rgba(255,255,255,0.025); }
+.stc1__tab:hover .stc1__tab-num { color: rgba(255,255,255,0.35); }
+.stc1__tab.active { color: var(--white); background: rgba(247,197,32,0.06); }
+.stc1__tab.active .stc1__tab-num { color: var(--yellow-core); }
+.stc1__tab.active::after { transform: scaleX(1); }
+
+/* Tab panels */
+.stc1__panels { position: relative; }
+.stc1__panel { display: none; position: relative; min-height: 600px; overflow: hidden; }
+.stc1__panel.active { display: block; }
+/* Panel background */
+.stc1__panel-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  z-index: 0; transition: transform 8s linear;
+}
+.stc1__panel.active .stc1__panel-bg { transform: scale(1.04); }
+/* Panel overlay */
+.stc1__panel-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(105deg, rgba(30,28,26,0.94) 0%, rgba(30,28,26,0.80) 45%, rgba(30,28,26,0.48) 100%);
+}
+/* Blueprint grid */
+.stc1__panel-grid {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 80px);
+}
+/* SVG Motif layer */
+.stc1__motif { position: absolute; z-index: 2; pointer-events: none; }
+.motif-corner  { bottom: 0; right: 0;   width: 200px; height: 200px; opacity: 0.12; }
+.motif-slash   { top: 20px; right: 60px; width: 160px; height: 160px; opacity: 0.08; }
+.motif-cross   { top: 50%; right: 44%; transform: translateY(-50%); width: 120px; height: 120px; opacity: 0.06; }
+.motif-triangle { bottom: 40px; left: 40px; width: 100px; height: 100px; opacity: 0.08; }
+/* Panel content */
+.stc1__panel-content {
+  position: relative; z-index: 3;
+  padding: clamp(52px,7vw,96px) clamp(32px,8vw,120px);
+  max-width: 1200px; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center; min-height: 600px;
+}
+/* Panel entrance */
+@keyframes panelIn { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
+.stc1__panel.active .stc1__panel-content { animation: panelIn 0.55s var(--ease-expo) both; }
+/* Panel text */
+.stc1__panel-heading {
+  font-family: var(--font-display); font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 700; line-height: 1.0; letter-spacing: -0.02em;
+  text-transform: uppercase; color: var(--white); margin-bottom: 20px;
+}
+.stc1__panel-heading em { font-style: normal; color: var(--yellow-core); }
+.stc1__panel-rule { width: 48px; height: 3px; background: var(--yellow-core); margin-bottom: 24px; }
+.stc1__panel-body {
+  font-family: var(--font-industrial); font-size: 15px; font-weight: 300;
+  line-height: 1.80; color: rgba(255,255,255,0.58); max-width: 44ch; margin-bottom: 32px;
+}
+.stc1__panel-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+.stc1__panel-features li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.stc1__panel-features li::before {
+  content: ''; width: 6px; height: 6px; background: var(--yellow-core); flex-shrink: 0;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+/* Glass stat card */
+.stc1__card {
+  background: rgba(30,28,26,0.72); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--yellow-core);
+  padding: 40px 36px; display: flex; flex-direction: column; gap: 28px;
+}
+.stc1__card-badge {
+  display: inline-block; font-size: 9px; font-weight: 800;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--yellow-core); background: rgba(247,197,32,0.12);
+  padding: 5px 10px; align-self: flex-start;
+}
+.stc1__stat { display: flex; flex-direction: column; gap: 4px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.stc1__stat:last-of-type { border-bottom: none; padding-bottom: 0; }
+.stc1__stat-num {
+  font-family: var(--font-display); font-size: clamp(36px,4vw,52px);
+  font-weight: 700; line-height: 1; letter-spacing: -0.03em; color: var(--white);
+}
+.stc1__stat-num em { font-style: normal; color: var(--yellow-core); }
+.stc1__stat-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
+}
+.stc1__stat-sub { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 2px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   WHY3 — Light Editorial Manifesto
+═══════════════════════════════════════════════════════════════ */
+.why3 {
+  background: var(--white); padding: var(--section-v) 0;
+  position: relative; overflow: hidden;
+}
+.why3::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0.022) 0px, rgba(0,0,0,0.022) 1px, transparent 1px, transparent 64px);
+}
+/* Ghost watermark */
+.why3__wm {
+  position: absolute; right: -0.05em; bottom: -0.1em;
+  font-family: var(--font-display); font-size: clamp(120px, 18vw, 260px);
+  font-weight: 700; letter-spacing: -0.05em; line-height: 1;
+  color: rgba(30,28,26,0.028); pointer-events: none; user-select: none; z-index: 0;
+}
+.why3__inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 80px; align-items: start;
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+}
+.why3__heading {
+  font-family: var(--font-display); font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1; color: var(--charcoal-deep); margin-bottom: 20px;
+}
+.why3__heading em { font-style: normal; color: var(--yellow-core); }
+.why3__intro {
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  line-height: 1.82; color: var(--text-400); max-width: 28ch; margin-bottom: 36px;
+}
+/* Manifesto rows */
+.why3__rows { display: flex; flex-direction: column; }
+.why3__row {
+  display: grid; grid-template-columns: 80px 1px 1fr;
+  gap: 0 32px; padding: 40px 0;
+  border-bottom: 1px solid var(--gray-200);
+  position: relative; cursor: none; overflow: hidden;
+}
+.why3__row:first-child { border-top: 1px solid var(--gray-200); }
+/* Yellow tint hover fill */
+.why3__row::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--charcoal-tint);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease-expo);
+}
+.why3__row:hover::before { transform: scaleX(1); }
+.why3__row-num {
+  font-family: var(--font-display); font-size: clamp(40px, 5vw, 60px);
+  font-weight: 200; letter-spacing: -0.04em;
+  color: var(--gray-200); line-height: 1; align-self: start;
+  transition: color 0.3s; position: relative; z-index: 1;
+}
+.why3__row:hover .why3__row-num { color: rgba(247,197,32,0.35); }
+.why3__row-line { background: var(--gray-200); width: 1px; position: relative; z-index: 1; }
+.why3__row-content { position: relative; z-index: 1; }
+.why3__row-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  color: var(--charcoal-deep); line-height: 1; margin-bottom: 10px;
+  transition: color 0.3s;
+}
+.why3__row:hover .why3__row-title { color: var(--charcoal-deep); }
+.why3__row-body {
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  line-height: 1.75; color: var(--text-400);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS — PROC3 Hybrid Split Timeline (Light)
+═══════════════════════════════════════════════════════════════ */
+.proc3 {
+  background: var(--white); padding: var(--section-v) 0; overflow: hidden;
+}
+.proc3__inner {
+  display: grid; grid-template-columns: 38fr 62fr; gap: 80px; align-items: start;
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+}
+/* Left: charcoal DSE panel */
+.proc3__left {
+  background: var(--charcoal-deep); padding: 52px 44px 52px 48px;
+  position: relative; overflow: hidden;
+}
+.proc3__left::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px);
+}
+.proc3__left-rail {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 65%, transparent 100%);
+}
+.proc3__left-wm {
+  position: absolute; bottom: -10px; right: -10px;
+  font-family: var(--font-display); font-size: clamp(80px, 12vw, 140px);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+  color: rgba(255,255,255,0.025); pointer-events: none; user-select: none;
+}
+.proc3__left-content { position: relative; z-index: 1; }
+.proc3__heading {
+  font-family: var(--font-display); font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1; color: var(--white); margin-bottom: 20px;
+}
+.proc3__body {
+  font-family: var(--font-industrial); font-size: 14px; font-weight: 300;
+  line-height: 1.82; color: rgba(255,255,255,0.55); max-width: 30ch; margin-bottom: 36px;
+}
+/* Thread timeline — right side */
+.proc3__thread { position: relative; padding-top: 8px; }
+.proc3__connector {
+  position: absolute; top: 24px; left: 16px; bottom: 24px; width: 1px;
+  background: linear-gradient(180deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 100%);
+}
+.proc3__step { display: grid; grid-template-columns: 44px 1fr; gap: 24px; padding-bottom: 44px; position: relative; }
+.proc3__step:last-child { padding-bottom: 0; }
+.proc3__step-num {
+  width: 32px; height: 32px; background: var(--charcoal-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  color: var(--yellow-core); flex-shrink: 0; position: relative; z-index: 1;
+  transition: background 0.3s, color 0.3s;
+}
+.proc3__step:hover .proc3__step-num { background: var(--yellow-core); color: var(--charcoal-deep); }
+.proc3__step-title {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  color: var(--charcoal-deep); line-height: 1; margin-bottom: 8px; margin-top: 7px;
+}
+.proc3__step-body {
+  font-family: var(--font-body); font-size: 13px; font-weight: 400;
+  line-height: 1.75; color: var(--text-400);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PARALLAX QUOTE BAND — Full bleed DSE
+═══════════════════════════════════════════════════════════════ */
+.quote-band {
+  position: relative; height: 70vh; min-height: 480px;
+  overflow: hidden; display: flex; align-items: center;
+}
+.quote-band__bg {
+  position: absolute; inset: -8%; will-change: transform;
+}
+.quote-band__bg img {
+  width: 100%; height: 120%; object-fit: cover; object-position: center 45%;
+  filter: contrast(1.10) brightness(0.55) saturate(0.5);
+}
+.quote-band__overlay-l {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(105deg, rgba(14,12,10,0.82) 0%, rgba(14,12,10,0.55) 35%, rgba(14,12,10,0.48) 100%);
+}
+.quote-band__overlay-t {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 1; height: 55%;
+  background: linear-gradient(to bottom, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.18) 55%, transparent 100%);
+}
+.quote-band__overlay-b {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; height: 30%;
+  background: linear-gradient(to top, rgba(10,8,6,0.95) 0%, rgba(10,8,6,0.55) 55%, transparent 100%);
+}
+.quote-band__grain {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px; opacity: 0.030;
+}
+.quote-band__content {
+  position: relative; z-index: 10; max-width: 800px;
+  margin: 0 auto; padding: 0 80px; text-align: center;
+}
+.quote-band__rule { width: 40px; height: 2px; background: var(--yellow-core); margin: 0 auto 36px; }
+.quote-band__quote {
+  font-family: var(--font-industrial); font-style: italic; font-weight: 300;
+  font-size: clamp(20px, 2.8vw, 34px); line-height: 1.58;
+  color: rgba(255,255,255,0.88); letter-spacing: 0.01em; margin-bottom: 36px;
+}
+.quote-band__attr { display: flex; align-items: center; gap: 16px; justify-content: center; }
+.quote-band__attr-line { width: 24px; height: 1px; background: rgba(255,255,255,0.25); }
+.quote-band__attr-name {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.40);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALS — TST3 Pull Quote Grid (Light)
+═══════════════════════════════════════════════════════════════ */
+.tst3 {
+  background: var(--white); padding: var(--section-v) 0; overflow: hidden;
+}
+.tst3__header { text-align: center; margin-bottom: 56px; }
+.tst3__heading {
+  font-family: var(--font-display); font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1;
+  color: var(--charcoal-deep);
+}
+.tst3__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+}
+.tst3__card {
+  background: var(--white); padding: 40px 36px; position: relative;
+  overflow: hidden; border-top: 3px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s; cursor: none;
+}
+.tst3__card:hover { border-color: var(--yellow-core); box-shadow: 0 12px 40px rgba(30,28,26,0.10); }
+.tst3__card--featured { border-color: var(--yellow-core); border-top-width: 3px; }
+/* Big open mark */
+.tst3__open-mark {
+  position: absolute; top: 20px; left: 28px;
+  font-family: var(--font-display); font-size: 120px; font-weight: 700;
+  line-height: 1; color: rgba(30,28,26,0.04); pointer-events: none; user-select: none;
+}
+.tst3__stars { display: flex; gap: 4px; margin-bottom: 20px; position: relative; z-index: 1; }
+.tst3__star { width: 12px; height: 12px; fill: var(--yellow-core); }
+.tst3__quote {
+  font-family: var(--font-industrial); font-style: italic; font-weight: 300;
+  font-size: 15px; line-height: 1.78; color: var(--text-500);
+  margin-bottom: 28px; position: relative; z-index: 1;
+}
+.tst3__divider { width: 24px; height: 1px; background: var(--yellow-core); margin-bottom: 20px; }
+.tst3__name {
+  font-family: var(--font-body); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-deep); margin-bottom: 4px;
+}
+.tst3__role {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-400);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COVERAGE — Territory Band (DSE)
+═══════════════════════════════════════════════════════════════ */
+.coverage {
+  background: var(--charcoal-mid); padding: var(--section-v) 0;
+  position: relative; overflow: hidden;
+}
+.coverage::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.010) 0, rgba(255,255,255,0.010) 1px, transparent 1px, transparent 80px);
+}
+.coverage__rail {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 55%, transparent 100%);
+}
+.coverage__ghost {
+  position: absolute; bottom: -20px; left: -20px;
+  font-family: var(--font-display); font-size: clamp(80px, 14vw, 180px);
+  font-weight: 700; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.020); pointer-events: none; user-select: none; z-index: 0; line-height: 1;
+}
+.coverage__inner {
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+.coverage__heading {
+  font-family: var(--font-display); font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1; color: var(--white); margin-bottom: 16px;
+}
+.coverage__sub {
+  font-family: var(--font-industrial); font-size: 14px; font-weight: 300;
+  line-height: 1.8; color: rgba(255,255,255,0.45); max-width: 28ch; margin-bottom: 32px;
+}
+.coverage__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.coverage__item {
+  padding: 18px 22px; background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 12px;
+  transition: background 0.25s; cursor: none;
+}
+.coverage__item:hover { background: rgba(247,197,32,0.06); }
+.coverage__item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow-core); flex-shrink: 0; }
+.coverage__item-name {
+  font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); transition: color 0.25s;
+}
+.coverage__item:hover .coverage__item-name { color: var(--white); }
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT STRIP — Light (separator between coverage DSE + CTA DSE)
+═══════════════════════════════════════════════════════════════ */
+.contact-strip {
+  background: var(--white); padding: clamp(48px,6vw,80px) 0;
+  position: relative; overflow: hidden;
+}
+.contact-strip::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: repeating-linear-gradient(0deg,
+    rgba(0,0,0,0.022) 0px, rgba(0,0,0,0.022) 1px, transparent 1px, transparent 64px);
+}
+.contact-strip__inner {
+  max-width: var(--container-max); margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  position: relative; z-index: 1;
+}
+.contact-strip__copy {}
+.contact-strip__heading {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 1; color: var(--charcoal-deep); margin-bottom: 12px;
+}
+.contact-strip__heading span { color: var(--yellow-core); }
+.contact-strip__sub {
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  color: var(--text-400); max-width: 42ch; line-height: 1.75;
+}
+.contact-strip__actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.contact-strip__phone-lbl {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-400); margin-bottom: 6px;
+}
+.contact-strip__phone {
+  font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 700; letter-spacing: -0.01em; line-height: 1; color: var(--charcoal-deep);
+  display: block; position: relative; width: fit-content; padding-bottom: 4px; cursor: none;
+}
+.contact-strip__phone::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--yellow-core);
+  transition: width 0.55s var(--ease-expo);
+}
+.contact-strip__phone:hover::after { width: 100%; }
+.btn-ghost--dark {
+  color: var(--charcoal-deep); border-color: rgba(30,28,26,0.25);
+}
+.btn-ghost--dark:hover { background: var(--charcoal-tint); border-color: var(--charcoal-deep); color: var(--charcoal-deep); }
+
+/* ═══════════════════════════════════════════════════════════════
+   CTA FINAL — glc-cta-final-v2 (Full bleed, the crown jewel)
+═══════════════════════════════════════════════════════════════ */
+.cta-final {
+  position: relative; min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+}
+/* Full-bleed image */
+.cta-final__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.cta-final__bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 55%;
+  transform: scale(1.06); animation: imgBreath 3s var(--ease-expo) forwards;
+}
+/* Three-layer atmospheric overlay */
+.cta-final__overlay-l {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(105deg, rgba(14,12,10,0.82) 0%, rgba(14,12,10,0.55) 30%, rgba(14,12,10,0.20) 55%, rgba(14,12,10,0.28) 100%);
+}
+.cta-final__overlay-t {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 1; height: 55%;
+  background: linear-gradient(to bottom, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.20) 55%, transparent 100%);
+}
+.cta-final__overlay-b {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; height: 30%;
+  background: linear-gradient(to top, rgba(10,8,6,0.96) 0%, rgba(10,8,6,0.60) 55%, transparent 100%);
+}
+.cta-final__grain {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px; opacity: 0.032; mix-blend-mode: overlay;
+}
+/* Content */
+.cta-final__content {
+  position: relative; z-index: 10; flex: 1;
+  display: flex; flex-direction: column; justify-content: space-between; padding: 0;
+}
+/* Top zone — in the sky */
+.cta-final__top { padding: 72px 80px 0; max-width: 760px; }
+.cta-final__eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 56px;
+  opacity: 0; animation: aFade 0.7s var(--ease-expo) 0.4s forwards;
+}
+.cta-final__eyebrow.in-view { animation: aFade 0.7s var(--ease-expo) 0.1s forwards; }
+.cta-final__eyebrow-dash { width: 24px; height: 1px; background: var(--yellow-core); flex-shrink: 0; }
+.cta-final__eyebrow-txt {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+/* Three-act headline */
+.cta-final__hl {
+  display: block; overflow: hidden;
+  font-family: var(--font-display); font-size: clamp(58px, 8vw, 118px);
+  line-height: 0.90; text-transform: uppercase; letter-spacing: -0.02em;
+}
+.cta-final__hl span { display: block; }
+.cta-final__hl--1 span { font-weight: 200; color: rgba(255,255,255,0.25); }
+.cta-final__hl--2 span { font-weight: 600; color: rgba(255,255,255,0.92); }
+.cta-final__hl--3 span { font-weight: 700; color: var(--yellow-core); }
+.cta-final.in-view .cta-final__hl--1 span { animation: aLineUp 1s var(--ease-expo) 0.55s both; }
+.cta-final.in-view .cta-final__hl--2 span { animation: aLineUp 1s var(--ease-expo) 0.72s both; }
+.cta-final.in-view .cta-final__hl--3 span { animation: aLineUp 1s var(--ease-expo) 0.88s both; }
+/* Mid zone */
+.cta-final__mid {
+  padding: 56px 80px 0; max-width: 520px;
+  opacity: 0; animation: aFade 0.8s var(--ease-expo) 1.15s forwards;
+}
+.cta-final.in-view .cta-final__mid { animation: aFade 0.8s var(--ease-expo) 0.95s forwards; }
+.cta-final__caption {
+  font-family: var(--font-industrial); font-weight: 300;
+  font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.68);
+}
+.cta-final__caption strong { font-family: var(--font-industrial); font-weight: 500; color: rgba(255,255,255,0.88); }
+/* Bottom zone */
+.cta-final__bottom {
+  padding: 0 80px 44px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.cta-final__phone-block {
+  opacity: 0; animation: aSlide 0.8s var(--ease-expo) 1.4s forwards;
+}
+.cta-final.in-view .cta-final__phone-block { animation: aSlide 0.8s var(--ease-expo) 1.2s forwards; }
+.cta-final__phone-lbl {
+  display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); margin-bottom: 10px;
+}
+.cta-final__phone {
+  display: block; font-family: var(--font-display); font-size: clamp(30px, 3.8vw, 56px);
+  font-weight: 700; letter-spacing: -0.01em; line-height: 1; color: var(--white);
+  position: relative; width: fit-content; padding-bottom: 6px; cursor: none;
+}
+.cta-final__phone::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--yellow-core);
+  transition: width 0.55s var(--ease-expo);
+}
+.cta-final__phone:hover::after { width: 100%; }
+.cta-final__trust {
+  display: flex; flex-direction: column; gap: 8px;
+  opacity: 0; animation: aFade 0.7s var(--ease-expo) 1.6s forwards;
+}
+.cta-final.in-view .cta-final__trust { animation: aFade 0.7s var(--ease-expo) 1.3s forwards; }
+.cta-final__trust-item {
+  display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+}
+.cta-final__trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yellow-core); flex-shrink: 0; }
+/* CTA bar */
+.cta-final__bar {
+  display: grid; grid-template-columns: 1fr auto; height: 76px;
+  position: relative; z-index: 20;
+  opacity: 0; animation: aSlide 0.7s var(--ease-expo) 1.9s forwards;
+}
+.cta-final.in-view .cta-final__bar { animation: aSlide 0.7s var(--ease-expo) 1.6s forwards; }
+.cta-final__bar-main {
+  background: var(--yellow-core); display: flex; align-items: center;
+  justify-content: space-between; padding: 0 52px 0 80px; gap: 32px;
+  text-decoration: none; cursor: none; position: relative; overflow: hidden;
+}
+.cta-final__bar-main::before {
+  content: ''; position: absolute; inset: 0; background: var(--white);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.58s var(--ease-expo);
+}
+.cta-final__bar-main:hover::before { transform: scaleX(1); }
+.cta-final__bar-lbl {
+  font-family: var(--font-display); font-size: clamp(12px,1.1vw,15px);
+  font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--charcoal-deep); position: relative; z-index: 1;
+  transition: letter-spacing 0.35s var(--ease-expo);
+}
+.cta-final__bar-main:hover .cta-final__bar-lbl { letter-spacing: 0.28em; }
+.cta-final__bar-right { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; flex-shrink: 0; }
+.cta-final__bar-line { width: 0; height: 1px; background: rgba(30,28,26,0.28); transition: width 0.40s var(--ease-expo); }
+.cta-final__bar-main:hover .cta-final__bar-line { width: 40px; }
+.cta-final__bar-icon {
+  width: 38px; height: 38px; border: 1.5px solid rgba(30,28,26,0.22);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.4s var(--ease-expo);
+}
+.cta-final__bar-icon svg { width: 15px; height: 15px; fill: none; stroke: var(--charcoal-deep); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition: transform 0.4s var(--ease-expo); }
+.cta-final__bar-main:hover .cta-final__bar-icon svg { transform: rotate(-45deg); }
+.cta-final__bar-sec {
+  background: var(--charcoal-mid); border-left: 1px solid rgba(247,197,32,0.15);
+  padding: 0 40px; display: flex; align-items: center; gap: 10px;
+  text-decoration: none; cursor: none; position: relative; overflow: hidden; transition: background 0.3s;
+}
+.cta-final__bar-sec:hover { background: #383330; }
+.cta-final__bar-sec svg { width: 14px; height: 14px; fill: none; stroke: rgba(247,197,32,0.40); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; position: relative; z-index:1; transition: stroke 0.25s; }
+.cta-final__bar-sec:hover svg { stroke: var(--yellow-core); }
+.cta-final__bar-sec-txt {
+  font-family: var(--font-body); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); position: relative; z-index: 1; transition: color 0.25s; white-space: nowrap;
+}
+.cta-final__bar-sec:hover .cta-final__bar-sec-txt { color: rgba(255,255,255,0.65); }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER — Brand Grid + Legal Bar (DSE)
+═══════════════════════════════════════════════════════════════ */
+.footer {
+  background: var(--charcoal-deep); position: relative; overflow: hidden;
+}
+.footer::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.008) 0, rgba(255,255,255,0.008) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.008) 0, rgba(255,255,255,0.008) 1px, transparent 1px, transparent 80px);
+}
+.footer__rail {
+  height: 3px;
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 55%, transparent 100%);
+}
+.footer__main {
+  max-width: var(--container-max); margin: 0 auto; padding: 72px 40px 64px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  position: relative; z-index: 1;
+}
+.footer__mark {
+  width: 40px; height: 40px; background: var(--yellow-core); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  color: var(--charcoal-deep); position: relative;
+}
+.footer__mark::after {
+  content: ''; position: absolute; bottom: -2px; right: -2px;
+  width: 8px; height: 8px; background: var(--charcoal-deep);
+}
+.footer__logo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.footer__name { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+.footer__name-sub { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.30); margin-top: 3px; }
+.footer__tagline {
+  font-family: var(--font-industrial); font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.38); line-height: 1.7; max-width: 28ch; margin-bottom: 24px;
+}
+.footer__contact-item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.55); margin-bottom: 8px; cursor: none; transition: color 0.2s;
+}
+.footer__contact-item:hover { color: var(--white); }
+.footer__contact-item svg { width: 14px; height: 14px; fill: none; stroke: var(--yellow-core); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink: 0; }
+.footer__col-title {
+  font-family: var(--font-body); font-size: 9px; font-weight: 800;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--yellow-core);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+}
+.footer__col-title::before { content: ''; width: 16px; height: 2px; background: var(--yellow-core); flex-shrink: 0; }
+.footer__links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer__links a {
+  font-family: var(--font-industrial); font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.40); cursor: none; display: block;
+  transition: color 0.2s, padding-left 0.25s var(--ease-expo);
+}
+.footer__links a:hover { color: var(--white); padding-left: 6px; }
+.footer__bar { border-top: 1px solid rgba(255,255,255,0.07); position: relative; z-index: 1; }
+.footer__bar-inner {
+  max-width: var(--container-max); margin: 0 auto; padding: 20px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.footer__copy { font-family: var(--font-mono); font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
+.footer__copy span { color: rgba(255,255,255,0.40); }
+.footer__legal { display: flex; align-items: center; gap: 24px; }
+.footer__legal a { font-family: var(--font-mono); font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.22); cursor: none; transition: color 0.2s; }
+.footer__legal a:hover { color: rgba(255,255,255,0.55); }
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════════════════ */
+@keyframes aFade   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes aLineUp { from { transform: translateY(110%); } to { transform: translateY(0); } }
+@keyframes aGrow   { from { width: 0; } to { width: 100%; } }
+@keyframes aSlide  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes imgBreath { to { transform: scale(1.00); } }
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTAINER UTILITY
+═══════════════════════════════════════════════════════════════ */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 40px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+/* ─────────────────────────────────────────────────
+   TABLET  ≤1024px
+───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Header */
+  .gl-header__nav { display: none; }
+  .gl-header__phone { display: none; }
+  .gl-header__inner { padding: 0 24px; }
+
+  /* Hero — stack image above copy */
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "right" "left" "bar";
+  }
+  .hero__right  { min-height: 52vw; }
+  .hero__left   { padding: 48px 32px 48px; padding-top: 48px; }
+  .hero__seam   { display: none; }
+  .hero__ghost  { display: none; }
+
+  /* Stats */
+  .st3__side-label { display: none; }
+  .st3__grid { flex-wrap: wrap; }
+  .stat-cell { flex: 0 0 50%; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+  /* About */
+  .ab3__layout { grid-template-columns: 1fr; }
+  .ab3__copy   { padding-right: 0; margin-bottom: 0; }
+  .ab3__media  { min-height: 300px; overflow: hidden; clip-path: none; }
+  .ab3__wm     { display: none; }
+  .ab3__chip   { left: 12px; }
+
+  /* Services tab */
+  .stc1__rail-label { display: none; }
+  .stc1__tab        { padding: 0 18px; font-size: 10px; }
+  .stc1__panel-content { grid-template-columns: 1fr; gap: 40px; min-height: auto; padding-bottom: 48px; }
+
+  /* Why */
+  .why3__inner { grid-template-columns: 1fr; gap: 40px; }
+  .why3__wm    { display: none; }
+
+  /* Process */
+  .proc3__inner { grid-template-columns: 1fr; gap: 0; }
+  .proc3__left  { padding: 40px 32px; }
+  .proc3__thread { padding-top: 48px; }
+
+  /* Testimonials */
+  .tst3__grid { grid-template-columns: 1fr 1fr; }
+  .tst3__grid .tst3__card:last-child { display: none; }
+
+  /* Coverage */
+  .coverage__inner { grid-template-columns: 1fr; gap: 40px; }
+  .coverage__grid  { grid-template-columns: repeat(2,1fr); }
+  .coverage__ghost { display: none; }
+
+  /* Contact strip */
+  .contact-strip__inner { flex-direction: column; align-items: flex-start; gap: 32px; }
+
+  /* CTA Final */
+  .cta-final__top    { padding: 60px 32px 0; max-width: 100%; }
+  .cta-final__mid    { padding: 36px 32px 0; max-width: 100%; }
+  .cta-final__bottom { padding: 36px 32px 40px; }
+  .cta-final__bar-main { padding: 0 28px 0 32px; }
+  .cta-final__bar-sec  { padding: 0 24px; }
+
+  /* Footer */
+  .footer__main { grid-template-columns: 1fr 1fr; gap: 32px; padding: 52px 24px 48px; }
+}
+
+/* ─────────────────────────────────────────────────
+   MOBILE  ≤640px
+───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Base spacing */
+  :root { --section-v: clamp(56px,10vw,80px); }
+  .container { padding: 0 20px; }
+
+  /* Header */
+  .gl-header__inner { padding: 0 20px; }
+  .gl-header__name  { font-size: 11px; }
+  .gl-header__sub   { display: none; }
+  .gl-header__mark  { width: 28px; height: 28px; font-size: 10px; }
+  .btn-primary      { font-size: 10px; padding: 11px 18px; }
+
+  /* Hero */
+  .hero__right  { min-height: 56vw; }
+  .hero__left   { padding: calc(var(--header-h) + 32px) 20px 40px; }
+  .hero__hl     { font-size: clamp(44px, 12vw, 72px); }
+  .hero__caption { font-size: 14px; max-width: 100%; }
+  .hero__phone  { font-size: clamp(24px, 7vw, 36px); }
+  .hero__trust  { display: none; }
+  .hero__badge  { display: none; }
+  .hero__bar    { height: 60px; }
+  .hero__bar-main { padding: 0 20px; }
+  .hero__bar-lbl  { font-size: 10px; letter-spacing: 0.12em; }
+  .hero__bar-sec  { padding: 0 18px; }
+  .hero__bar-sec-txt { display: none; }
+  .hero__bar-icon { width: 30px; height: 30px; }
+
+  /* Stats */
+  .stat-cell { flex: 0 0 50%; padding: 36px 0; }
+  .stat-cell__num { font-size: clamp(32px, 9vw, 48px); }
+
+  /* About */
+  .ab3 { padding: var(--section-v) 0; }
+  .ab3__layout { padding: 0 20px; }
+  .ab3__copy::before { display: none; }
+  .ab3__heading { font-size: clamp(30px, 9vw, 46px); }
+  .ab3__creds { grid-template-columns: 1fr 1fr; }
+  .ab3__media { min-height: 240px; clip-path: none; }
+  .ab3__chip  { left: 0; top: 16px; }
+
+  /* Tab container */
+  .stc1__tab     { padding: 0 14px; font-size: 10px; }
+  .stc1__tab-num { display: none; }
+  .stc1__panel-content { padding: 36px 20px 48px; }
+  .stc1__panel-heading { font-size: clamp(28px, 8vw, 48px); }
+  .stc1__card  { padding: 28px 20px; }
+
+  /* Why */
+  .why3 { padding: var(--section-v) 0; }
+  .why3__inner { padding: 0 20px; }
+  .why3__heading { font-size: clamp(28px, 9vw, 44px); }
+  .why3__row { grid-template-columns: 48px 1px 1fr; gap: 0 20px; padding: 28px 0; }
+  .why3__row-num { font-size: clamp(32px, 8vw, 48px); }
+  .why3__row-title { font-size: 14px; }
+  .why3__row-body  { font-size: 13px; }
+
+  /* Process */
+  .proc3__inner { padding: 0; }
+  .proc3__left  { padding: 36px 20px; }
+  .proc3__thread { padding: 36px 20px 0; }
+  .proc3__heading { font-size: clamp(26px, 8vw, 44px); }
+
+  /* Quote band */
+  .quote-band__content { padding: 0 24px; }
+  .quote-band__quote   { font-size: clamp(16px, 4.5vw, 24px); }
+
+  /* Testimonials */
+  .tst3__header { padding: 0 20px; }
+  .tst3__grid   { grid-template-columns: 1fr; padding: 0 20px; }
+  .tst3__grid .tst3__card:last-child { display: block; }
+  .tst3__card   { padding: 28px 24px; }
+
+  /* Coverage */
+  .coverage__inner  { padding: 0 20px; }
+  .coverage__grid   { grid-template-columns: 1fr 1fr; }
+  .coverage__heading { font-size: clamp(28px, 9vw, 44px); }
+
+  /* Contact strip */
+  .contact-strip { padding: var(--section-v) 0; }
+  .contact-strip__inner { padding: 0 20px; }
+  .contact-strip__heading { font-size: clamp(22px, 7vw, 36px); }
+  .contact-strip__phone   { font-size: clamp(20px, 6.5vw, 30px); }
+
+  /* CTA Final */
+  .cta-final         { min-height: auto; }
+  .cta-final__top    { padding: 56px 20px 0; }
+  .cta-final__hl     { font-size: clamp(44px, 13vw, 72px); }
+  .cta-final__mid    { padding: 28px 20px 0; }
+  .cta-final__caption { font-size: 14px; }
+  .cta-final__bottom { padding: 28px 20px 36px; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .cta-final__phone  { font-size: clamp(26px, 8vw, 40px); }
+  .cta-final__trust  { align-items: flex-start; }
+  .cta-final__bar    { height: 60px; }
+  .cta-final__bar-main { padding: 0 20px; }
+  .cta-final__bar-lbl  { font-size: 10px; letter-spacing: 0.12em; }
+  .cta-final__bar-sec  { padding: 0 18px; }
+  .cta-final__bar-sec-txt { display: none; }
+
+  /* Footer */
+  .footer__main  { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 28px; }
+  .footer__bar-inner { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer__legal { flex-wrap: wrap; gap: 16px; }
+
+  /* Hide cursor on touch */
+  .c-dot, .c-ring { display: none; }
+  body { cursor: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="c-dot" id="dot"></div>
+<div class="c-ring" id="ring"></div>
+
+
+<!-- ════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════ -->
+<header class="gl-header" id="gl-header">
+  <div class="gl-header__inner">
+    <div class="gl-header__logo">
+      <div class="gl-header__mark">GL</div>
+      <div>
+        <div class="gl-header__name">Ground Level</div>
+        <div class="gl-header__sub">Contracting Inc.</div>
+      </div>
+    </div>
+    <nav class="gl-header__nav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why GLC</a>
+      <a href="#process">Process</a>
+      <a href="#coverage">Coverage</a>
+    </nav>
+    <div class="gl-header__cta">
+      <span class="gl-header__phone">249.989.2233</span>
+      <a href="#contact" class="btn-primary">Get a Quote
+        <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════════════
+     HERO — DSE Split 46/54
+════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+
+  <div class="hero__left">
+    <div class="hero__rail"></div>
+    <div class="hero__ghost" aria-hidden="true">GLC</div>
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-dash"></div>
+      <span class="hero__eyebrow-txt">Barrie, Ontario — Simcoe County</span>
+    </div>
+    <div class="hero__hl-wrap">
+      <span class="hero__hl hero__hl--1"><span>Commercial</span></span>
+      <span class="hero__hl hero__hl--2"><span id="hero-heading">Excavation</span></span>
+      <span class="hero__hl hero__hl--3"><span>&amp; Site Work.</span></span>
+    </div>
+    <div class="hero__rule"></div>
+    <div class="hero__caption-wrap">
+      <p class="hero__caption">
+        <strong>Ground Level Contracting</strong> delivers commercial excavation, foundations, drainage, and site preparation for project managers who need it done right — on schedule, with their own crews and equipment. No subcontracting. No runaround.
+      </p>
+    </div>
+    <div class="hero__phone-zone">
+      <div class="hero__phone-block">
+        <span class="hero__phone-lbl">Direct Line</span>
+        <a href="tel:2499892233" class="hero__phone">249.989.2233</a>
+      </div>
+      <div class="hero__trust">
+        <span class="hero__trust-item"><span class="hero__trust-dot"></span>WSIB Compliant</span>
+        <span class="hero__trust-item"><span class="hero__trust-dot"></span>Fully Insured</span>
+        <span class="hero__trust-item"><span class="hero__trust-dot"></span>Est. 2010</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__seam" aria-hidden="true"></div>
+
+  <div class="hero__right" id="hero-right">
+    <div class="hero__img-wrap" id="hero-img-wrap">
+      <img class="hero__img"
+           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80"
+           alt="Yellow excavator at commercial site Barrie Ontario">
+    </div>
+    <div class="hero__img-edge" aria-hidden="true"></div>
+    <div class="hero__img-floor" aria-hidden="true"></div>
+    <div class="hero__img-sky" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="hero__badge">
+      <div class="hero__badge-lbl">Est.</div>
+      <div class="hero__badge-val">2010</div>
+      <div class="hero__badge-sub">Simcoe County</div>
+    </div>
+  </div>
+
+  <div class="hero__bar">
+    <a class="hero__bar-main" href="#services" id="hero-bar">
+      <span class="hero__bar-lbl">Excavation · Foundations · Drainage · Snow Removal — Simcoe County</span>
+      <div class="hero__bar-right">
+        <div class="hero__bar-line"></div>
+        <div class="hero__bar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+    <a class="hero__bar-sec" href="#contact">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="hero__bar-sec-txt">Request Quote</span>
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     STATS — ST3 (Hero+Stats exception: back-to-back DSE ok)
+════════════════════════════════════════════════════════ -->
+<section class="st3" id="stats" aria-label="Company statistics">
+  <div class="st3__top-rail"></div>
+  <div class="st3__inner">
+    <div class="st3__side-label"><span>Performance</span></div>
+    <div class="st3__grid">
+      <div class="stat-cell reveal">
+        <div class="stat-cell__num" data-target="15">0<span>+</span></div>
+        <div class="stat-cell__label">Years in Business</div>
+      </div>
+      <div class="stat-cell reveal reveal--d1">
+        <div class="stat-cell__num" data-target="200">0<span>+</span></div>
+        <div class="stat-cell__label">Projects Completed</div>
+      </div>
+      <div class="stat-cell reveal reveal--d2">
+        <div class="stat-cell__num" data-target="100">0<span>%</span></div>
+        <div class="stat-cell__label">Own Crews &amp; Equipment</div>
+      </div>
+      <div class="stat-cell reveal reveal--d3">
+        <div class="stat-cell__num" data-target="5">0<span>–10 Days</span></div>
+        <div class="stat-cell__label">Mobilization Window</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     ABOUT — AB3 Editorial Split (Light / White)
+════════════════════════════════════════════════════════ -->
+<section class="ab3" id="about" aria-labelledby="about-heading">
+  <div class="ab3__wm" aria-hidden="true">GLC</div>
+  <div class="ab3__layout">
+
+    <div class="ab3__copy">
+      <div class="ab3__top-row">
+        <div class="eyebrow reveal">About GLC</div>
+        <div class="ab3__since">Est. 2010</div>
+      </div>
+      <h2 id="about-heading" class="ab3__heading reveal reveal--d1">
+        Built from the<br>ground <em>up.</em>
+      </h2>
+      <div class="ab3__rule"></div>
+      <p class="ab3__body reveal reveal--d2">
+        Ground Level Contracting is Barrie's commercial-first excavation and site services company. No residential sidework, no brokered subcontracting — when we're on your project, we're doing the work. Every crew is ours. Every piece of equipment is ours.
+      </p>
+      <div class="ab3__creds reveal reveal--d2">
+        <div class="ab3__cred">
+          <div class="ab3__cred-label">Compliance</div>
+          <div class="ab3__cred-value">WSIB Cleared</div>
+        </div>
+        <div class="ab3__cred">
+          <div class="ab3__cred-label">Coverage</div>
+          <div class="ab3__cred-value">Commercial Liability</div>
+        </div>
+        <div class="ab3__cred">
+          <div class="ab3__cred-label">Staffing</div>
+          <div class="ab3__cred-value">Own Operators</div>
+        </div>
+        <div class="ab3__cred">
+          <div class="ab3__cred-label">Quotes</div>
+          <div class="ab3__cred-value">Line-Item Detail</div>
+        </div>
+      </div>
+      <a href="#process" class="btn-primary reveal reveal--d3">
+        How We Work
+        <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <div class="ab3__media reveal reveal--d1">
+      <img class="ab3__media-img"
+           src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80"
+           alt="GLC crew commercial site preparation" loading="lazy"
+           style="min-height:300px"
+           onerror="this.style.cssText='display:block;width:100%;min-height:300px;background:#2E2B28';">
+      <div class="ab3__chip">
+        <div class="ab3__chip-lbl">Head Office</div>
+        <div class="ab3__chip-val">Barrie, ON</div>
+      </div>
+      <svg class="ab3__corner-mark" viewBox="0 0 40 40" fill="none" stroke="#F7C520" stroke-width="1.5">
+        <path d="M0 40 L0 0 L40 0"/>
+        <path d="M6 40 L6 6 L40 6" opacity="0.4"/>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     SERVICES — STC1 Sticky Tab Container (DSE)
+════════════════════════════════════════════════════════ -->
+<section class="stc1" id="services" aria-label="Services">
+
+  <nav class="stc1__rail" aria-label="Service navigation">
+    <div class="stc1__rail-label">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <rect x="0" y="0" width="6" height="6" fill="#F7C520" opacity="0.7"/>
+        <rect x="8" y="0" width="6" height="6" fill="#F7C520" opacity="0.3"/>
+        <rect x="0" y="8" width="6" height="6" fill="#F7C520" opacity="0.3"/>
+        <rect x="8" y="8" width="6" height="6" fill="#F7C520" opacity="0.15"/>
+      </svg>
+      <span>Services</span>
+    </div>
+    <ul class="stc1__tabs" role="tablist">
+      <li><button class="stc1__tab active" data-tab="0" role="tab" aria-selected="true"><span class="stc1__tab-num">01</span>Excavation</button></li>
+      <li><button class="stc1__tab" data-tab="1" role="tab" aria-selected="false"><span class="stc1__tab-num">02</span>Foundations</button></li>
+      <li><button class="stc1__tab" data-tab="2" role="tab" aria-selected="false"><span class="stc1__tab-num">03</span>Drainage</button></li>
+      <li><button class="stc1__tab" data-tab="3" role="tab" aria-selected="false"><span class="stc1__tab-num">04</span>Snow Removal</button></li>
+    </ul>
+  </nav>
+
+  <div class="stc1__panels">
+
+    <!-- Panel 1: Excavation -->
+    <div class="stc1__panel active" data-panel="0">
+      <div class="stc1__panel-bg" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=70')"></div>
+      <div class="stc1__panel-overlay"></div>
+      <div class="stc1__panel-grid"></div>
+      <!-- SVG Motif: corner bracket -->
+      <svg class="stc1__motif motif-corner" viewBox="0 0 200 200" fill="none" stroke="#F7C520" stroke-width="1">
+        <path d="M200 0 L0 0 L0 200"/>
+        <path d="M200 20 L20 20 L20 200"/>
+        <path d="M200 40 L40 40 L40 200" opacity="0.5"/>
+      </svg>
+      <!-- SVG Motif: diagonal slash -->
+      <svg class="stc1__motif motif-slash" viewBox="0 0 160 160" fill="none" stroke="#F7C520" stroke-width="1">
+        <line x1="0" y1="160" x2="160" y2="0"/>
+        <line x1="20" y1="160" x2="160" y2="20"/>
+        <line x1="40" y1="160" x2="160" y2="40"/>
+        <line x1="60" y1="160" x2="160" y2="60"/>
+        <line x1="80" y1="160" x2="160" y2="80"/>
+      </svg>
+      <div class="stc1__panel-content">
+        <div>
+          <div class="eyebrow eyebrow--on-dark"><span>01 / Excavation</span></div>
+          <h3 class="stc1__panel-heading">Site <em>Preparation</em><br>&amp; Excavation</h3>
+          <div class="stc1__panel-rule"></div>
+          <p class="stc1__panel-body">Full-site stripping, grading, bulk excavation, and haul-away for commercial pads, institutional sites, and residential subdivisions. Machine selection matched to soil conditions and access constraints.</p>
+          <ul class="stc1__panel-features">
+            <li>Bulk excavation &amp; mass grading</li>
+            <li>Site stripping &amp; topsoil removal</li>
+            <li>Precision grade control</li>
+            <li>Haul-away &amp; disposal</li>
+          </ul>
+          <a href="#contact" class="btn-primary">
+            Get a Quote
+            <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div class="stc1__card">
+          <div class="stc1__card-badge">Service Stats</div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">100<em>+</em></div>
+            <div class="stc1__stat-label">Excavation Projects</div>
+            <div class="stc1__stat-sub">Commercial &amp; Institutional</div>
+          </div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">5<em>–10</em></div>
+            <div class="stc1__stat-label">Day Mobilization</div>
+            <div class="stc1__stat-sub">From contract execution</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Foundations -->
+    <div class="stc1__panel" data-panel="1">
+      <div class="stc1__panel-bg" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=70')"></div>
+      <div class="stc1__panel-overlay"></div>
+      <div class="stc1__panel-grid"></div>
+      <!-- SVG Motif: crosshair circle -->
+      <svg class="stc1__motif motif-cross" viewBox="0 0 120 120" fill="none" stroke="#F7C520" stroke-width="1">
+        <circle cx="60" cy="60" r="55"/>
+        <circle cx="60" cy="60" r="35"/>
+        <circle cx="60" cy="60" r="15"/>
+        <line x1="0" y1="60" x2="120" y2="60"/>
+        <line x1="60" y1="0" x2="60" y2="120"/>
+      </svg>
+      <!-- SVG Motif: concentric squares -->
+      <svg class="stc1__motif motif-slash" viewBox="0 0 160 160" fill="none" stroke="#F7C520" stroke-width="1">
+        <rect x="10" y="10" width="140" height="140"/>
+        <rect x="30" y="30" width="100" height="100"/>
+        <rect x="50" y="50" width="60" height="60"/>
+        <rect x="70" y="70" width="20" height="20"/>
+      </svg>
+      <div class="stc1__panel-content">
+        <div>
+          <div class="eyebrow eyebrow--on-dark"><span>02 / Foundations</span></div>
+          <h3 class="stc1__panel-heading">Foundations &amp;<br><em>Civil Infrastructure</em></h3>
+          <div class="stc1__panel-rule"></div>
+          <p class="stc1__panel-body">Foundation excavation, backfill, frost wall prep, and civil infrastructure cuts. Precision grade control and compaction testing. Municipal and commercial grade work built to spec.</p>
+          <ul class="stc1__panel-features">
+            <li>Foundation excavation &amp; backfill</li>
+            <li>Frost wall preparation</li>
+            <li>Compaction testing</li>
+            <li>Civil infrastructure cuts</li>
+          </ul>
+          <a href="#contact" class="btn-primary">
+            Get a Quote
+            <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div class="stc1__card">
+          <div class="stc1__card-badge">Service Stats</div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">60<em>+</em></div>
+            <div class="stc1__stat-label">Foundation Projects</div>
+            <div class="stc1__stat-sub">Commercial &amp; Institutional</div>
+          </div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">0</div>
+            <div class="stc1__stat-label">Subcontracted Jobs</div>
+            <div class="stc1__stat-sub">All work done in-house</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Drainage -->
+    <div class="stc1__panel" data-panel="2">
+      <div class="stc1__panel-bg" style="background-image:url('https://images.unsplash.com/photo-1590086782792-42dd2350140d?auto=format&fit=crop&w=1600&q=70')"></div>
+      <div class="stc1__panel-overlay"></div>
+      <div class="stc1__panel-grid"></div>
+      <!-- SVG Motif: triangle slab -->
+      <svg class="stc1__motif motif-triangle" viewBox="0 0 100 100" fill="none" stroke="#F7C520" stroke-width="1">
+        <polygon points="50,0 100,100 0,100"/>
+        <polygon points="50,20 80,80 20,80" opacity="0.5"/>
+        <polygon points="50,40 65,65 35,65" opacity="0.3"/>
+      </svg>
+      <div class="stc1__panel-content">
+        <div>
+          <div class="eyebrow eyebrow--on-dark"><span>03 / Drainage</span></div>
+          <h3 class="stc1__panel-heading">Drainage &amp;<br><em>Hardscaping</em></h3>
+          <div class="stc1__panel-rule"></div>
+          <p class="stc1__panel-body">Storm drainage systems, catch basins, swales, weeping tile, and lot grading for drainage compliance. Interlocking, retaining walls, and commercial hardscape installation done right.</p>
+          <ul class="stc1__panel-features">
+            <li>Storm drainage systems</li>
+            <li>Catch basins &amp; swales</li>
+            <li>Weeping tile installation</li>
+            <li>Retaining walls &amp; hardscape</li>
+          </ul>
+          <a href="#contact" class="btn-primary">
+            Get a Quote
+            <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div class="stc1__card">
+          <div class="stc1__card-badge">Service Stats</div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">80<em>+</em></div>
+            <div class="stc1__stat-label">Drainage Projects</div>
+          </div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">0</div>
+            <div class="stc1__stat-label">Change Orders</div>
+            <div class="stc1__stat-sub">Scope locked before mobilization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Snow -->
+    <div class="stc1__panel" data-panel="3">
+      <div class="stc1__panel-bg" style="background-image:url('https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1600&q=70')"></div>
+      <div class="stc1__panel-overlay"></div>
+      <div class="stc1__panel-grid"></div>
+      <!-- SVG Motif: corner bracket rotated -->
+      <svg class="stc1__motif motif-corner" viewBox="0 0 200 200" fill="none" stroke="#F7C520" stroke-width="1" style="transform:rotate(180deg)">
+        <path d="M200 0 L0 0 L0 200"/>
+        <path d="M200 20 L20 20 L20 200"/>
+      </svg>
+      <div class="stc1__panel-content">
+        <div>
+          <div class="eyebrow eyebrow--on-dark"><span>04 / Snow Removal</span></div>
+          <h3 class="stc1__panel-heading">Commercial<br><em>Snow Removal</em></h3>
+          <div class="stc1__panel-rule"></div>
+          <p class="stc1__panel-body">Seasonal contracts for commercial properties, industrial sites, and multi-unit developments. 24/7 response protocols, salting and sanding, and full-season coverage agreements. We work when others won't.</p>
+          <ul class="stc1__panel-features">
+            <li>24/7 storm response</li>
+            <li>Salting &amp; sanding</li>
+            <li>Full-season contracts</li>
+            <li>Plazas, lots &amp; MURBs</li>
+          </ul>
+          <a href="#contact" class="btn-primary">
+            Get a Quote
+            <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div class="stc1__card">
+          <div class="stc1__card-badge">Service Stats</div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">24<em>/7</em></div>
+            <div class="stc1__stat-label">Storm Response</div>
+            <div class="stc1__stat-sub">Year-round availability</div>
+          </div>
+          <div class="stc1__stat">
+            <div class="stc1__stat-num">40<em>+</em></div>
+            <div class="stc1__stat-label">Active Contracts</div>
+            <div class="stc1__stat-sub">Commercial properties</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     WHY3 — Editorial Manifesto (Light)
+════════════════════════════════════════════════════════ -->
+<section class="why3" id="why" aria-labelledby="why-heading">
+  <div class="why3__wm" aria-hidden="true">WHY</div>
+  <div class="why3__inner">
+
+    <div>
+      <div class="eyebrow reveal">Why GLC</div>
+      <h2 id="why-heading" class="why3__heading reveal reveal--d1">
+        No fluff.<br>Just <em>ground work.</em>
+      </h2>
+      <p class="why3__intro reveal reveal--d2">We don't win work on price alone. We win it on accountability, equipment, and the willingness to be on-site when it matters.</p>
+      <a href="#contact" class="btn-primary reveal reveal--d3" style="margin-top:8px;">Start a Conversation
+        <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <div class="why3__rows reveal reveal--d1">
+      <div class="why3__row">
+        <div class="why3__row-num">01</div>
+        <div class="why3__row-line"></div>
+        <div class="why3__row-content">
+          <div class="why3__row-title">No Subcontracting. Ever.</div>
+          <p class="why3__row-body">Every service GLC quotes is performed by our own operators on our own equipment. We don't broker work. If we're on your project, we're doing the work — not someone you've never met.</p>
+        </div>
+      </div>
+      <div class="why3__row">
+        <div class="why3__row-num">02</div>
+        <div class="why3__row-line"></div>
+        <div class="why3__row-content">
+          <div class="why3__row-title">Owner-Accessible. Always.</div>
+          <p class="why3__row-body">Project managers call us and talk to a decision-maker. Questions get answered. Scope changes get discussed. There's no call centre, no ticketing system, no waiting.</p>
+        </div>
+      </div>
+      <div class="why3__row">
+        <div class="why3__row-num">03</div>
+        <div class="why3__row-line"></div>
+        <div class="why3__row-content">
+          <div class="why3__row-title">Line-Item Transparency.</div>
+          <p class="why3__row-body">Our quotes are detailed, itemized, and locked before we mobilize. No scope creep surprises — we define scope precisely upfront, then hold to it. Certificate of insurance on request.</p>
+        </div>
+      </div>
+      <div class="why3__row">
+        <div class="why3__row-num">04</div>
+        <div class="why3__row-line"></div>
+        <div class="why3__row-content">
+          <div class="why3__row-title">Built for Commercial.</div>
+          <p class="why3__row-body">We're not a residential landscaper who occasionally takes on commercial jobs. Commercial projects are our primary work — our equipment, crews, and processes are built around that.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     PROCESS — PROC3 Hybrid Split Timeline (Light)
+════════════════════════════════════════════════════════ -->
+<section class="proc3" id="process" aria-labelledby="proc3-heading">
+  <div class="proc3__inner">
+
+    <div class="proc3__left">
+      <div class="proc3__left-rail"></div>
+      <div class="proc3__left-wm" aria-hidden="true">04</div>
+      <div class="proc3__left-content">
+        <div class="eyebrow eyebrow--on-dark reveal">How We Work</div>
+        <h2 id="proc3-heading" class="proc3__heading reveal reveal--d1">From first call to final grade.</h2>
+        <p class="proc3__body reveal reveal--d2">A repeatable process that keeps your project moving — and keeps you informed at every step without chasing us.</p>
+        <a href="#contact" class="btn-primary reveal reveal--d3" style="margin-top:8px;">
+          Request a Site Assessment
+          <svg class="icon-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="proc3__thread reveal reveal--d1">
+      <div class="proc3__connector" aria-hidden="true"></div>
+      <div class="proc3__step">
+        <div class="proc3__step-num">01</div>
+        <div>
+          <div class="proc3__step-title">Discovery Call</div>
+          <p class="proc3__step-body">You speak directly with the owner. We discuss your project scope, timeline, site conditions, and access constraints. No forms, no call centres — straight answer, first call.</p>
+        </div>
+      </div>
+      <div class="proc3__step">
+        <div class="proc3__step-num">02</div>
+        <div>
+          <div class="proc3__step-title">Site Visit &amp; Assessment</div>
+          <p class="proc3__step-body">We visit the site at no charge. We assess soil conditions, access, grade requirements, and underground utility proximity before quoting anything. No surprises later.</p>
+        </div>
+      </div>
+      <div class="proc3__step">
+        <div class="proc3__step-num">03</div>
+        <div>
+          <div class="proc3__step-title">Line-Item Quote</div>
+          <p class="proc3__step-body">You receive a detailed, itemized written quote with locked scope. What we quote is what we deliver — no scope creep, no surprise addendums mid-project.</p>
+        </div>
+      </div>
+      <div class="proc3__step">
+        <div class="proc3__step-num">04</div>
+        <div>
+          <div class="proc3__step-title">Mobilization &amp; Execution</div>
+          <p class="proc3__step-body">Typical mobilization within 5–10 business days of contract execution. Our crews arrive with the right machines for your site and complete work to grade spec, on time.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     QUOTE BAND — Full bleed parallax (DSE)
+════════════════════════════════════════════════════════ -->
+<section class="quote-band" aria-label="Client testimonial pull quote">
+  <div class="quote-band__bg" id="quote-bg">
+    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1800&q=80"
+         alt="Aerial view commercial construction site">
+  </div>
+  <div class="quote-band__overlay-l" aria-hidden="true"></div>
+  <div class="quote-band__overlay-t" aria-hidden="true"></div>
+  <div class="quote-band__overlay-b" aria-hidden="true"></div>
+  <div class="quote-band__grain" aria-hidden="true"></div>
+  <div class="quote-band__content">
+    <div class="quote-band__rule reveal"></div>
+    <blockquote class="quote-band__quote reveal">
+      Ground Level showed up on time, kept the site clean, communicated every day, and hit grade within spec on a tight urban lot. We've moved all our Simcoe County site prep to them.
+    </blockquote>
+    <div class="quote-band__attr reveal reveal--d1">
+      <div class="quote-band__attr-line"></div>
+      <span class="quote-band__attr-name">Senior Project Manager — Commercial Developer, Barrie ON</span>
+      <div class="quote-band__attr-line"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     TESTIMONIALS — TST3 Pull Quote Grid (Light)
+════════════════════════════════════════════════════════ -->
+<section class="tst3" id="testimonials" aria-labelledby="tst3-heading">
+  <div class="tst3__header">
+    <div class="eyebrow reveal" style="justify-content:center;">Client Feedback</div>
+    <h2 id="tst3-heading" class="tst3__heading reveal reveal--d1">What Project Managers Say</h2>
+  </div>
+  <div class="tst3__grid">
+
+    <div class="tst3__card tst3__card--featured reveal">
+      <div class="tst3__open-mark" aria-hidden="true">"</div>
+      <div class="tst3__stars" aria-label="5 stars">
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+      </div>
+      <p class="tst3__quote">Hired GLC for a full commercial excavation and foundation prep on a tight downtown lot. They were the only crew that actually walked the site before quoting. Mobilized in 6 days and didn't lose a single workday to equipment issues.</p>
+      <div class="tst3__divider"></div>
+      <div class="tst3__name">James Kowalski</div>
+      <div class="tst3__role">Site Superintendent — Innisfil Industrial Development</div>
+    </div>
+
+    <div class="tst3__card reveal reveal--d1">
+      <div class="tst3__open-mark" aria-hidden="true">"</div>
+      <div class="tst3__stars" aria-label="5 stars">
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+      </div>
+      <p class="tst3__quote">Our drainage installation was complicated — high water table, clay soil, restricted access. GLC scoped the solution in one visit and executed it without a single change order. That almost never happens.</p>
+      <div class="tst3__divider"></div>
+      <div class="tst3__name">Michelle Tran</div>
+      <div class="tst3__role">Project Manager — Barrie Multi-Unit Residential</div>
+    </div>
+
+    <div class="tst3__card reveal reveal--d2">
+      <div class="tst3__open-mark" aria-hidden="true">"</div>
+      <div class="tst3__stars" aria-label="5 stars">
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+        <svg class="tst3__star" viewBox="0 0 20 20"><path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z"/></svg>
+      </div>
+      <p class="tst3__quote">Three years, four projects. Same crew lead, same standard of work. GLC is the only excavation contractor in Simcoe County I'd put in a tender recommendation without hesitation.</p>
+      <div class="tst3__divider"></div>
+      <div class="tst3__name">Rob Castellan</div>
+      <div class="tst3__role">Development Manager — Springwater Township</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     COVERAGE — Territory Band (DSE)
+════════════════════════════════════════════════════════ -->
+<section class="coverage" id="coverage" aria-labelledby="coverage-heading">
+  <div class="coverage__rail" aria-hidden="true"></div>
+  <div class="coverage__ghost" aria-hidden="true">SIMCOE</div>
+  <div class="coverage__inner">
+    <div>
+      <div class="eyebrow eyebrow--on-dark reveal"><span>Where We Work</span></div>
+      <h2 id="coverage-heading" class="coverage__heading reveal reveal--d1">Simcoe<br>County &amp;<br>Beyond.</h2>
+      <p class="coverage__sub reveal reveal--d2">Based in Barrie — deployed across the full Simcoe County region for commercial and institutional projects.</p>
+      <a href="#contact" class="btn-ghost reveal reveal--d3" style="margin-top:8px;">Check Your Area</a>
+    </div>
+    <div class="coverage__grid reveal reveal--d1">
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Barrie</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Innisfil</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Springwater</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Midhurst</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Oro-Medonte</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Bradford</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Essa Township</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Angus</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">New Tecumseth</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Collingwood</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">Wasaga Beach</span></div>
+      <div class="coverage__item"><div class="coverage__item-dot"></div><span class="coverage__item-name">+ Surrounding Areas</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     CONTACT STRIP — Light (separates two DSE sections)
+════════════════════════════════════════════════════════ -->
+<section class="contact-strip" id="contact" aria-labelledby="contact-heading">
+  <div class="contact-strip__inner">
+    <div class="contact-strip__copy">
+      <div class="eyebrow reveal">Ready to Start</div>
+      <h2 id="contact-heading" class="contact-strip__heading reveal reveal--d1">
+        Let's Build <span>Something</span> Lasting.
+      </h2>
+      <p class="contact-strip__sub reveal reveal--d2">
+        Site assessment included at no charge. Line-item quote within 48 hours. Talk directly to the owner from call one.
+      </p>
+    </div>
+    <div class="contact-strip__actions reveal reveal--d1">
+      <div>
+        <div class="contact-strip__phone-lbl">Call Us Directly</div>
+        <a href="tel:2499892233" class="contact-strip__phone">249.989.2233</a>
+      </div>
+      <a href="mailto:info@groundlevelcontracting.ca" class="btn-ghost btn-ghost--dark" style="margin-top:20px;">
+        <svg style="width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.5;flex-shrink:0" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Send an Email
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     CTA FINAL — glc-cta-final-v2 (Full bleed, crown jewel DSE)
+════════════════════════════════════════════════════════ -->
+<section class="cta-final" id="cta-final" aria-labelledby="cta-final-heading">
+
+  <div class="cta-final__bg">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80"
+         alt="GLC excavator fleet on commercial site Barrie Ontario">
+  </div>
+  <div class="cta-final__overlay-l" aria-hidden="true"></div>
+  <div class="cta-final__overlay-t" aria-hidden="true"></div>
+  <div class="cta-final__overlay-b" aria-hidden="true"></div>
+  <div class="cta-final__grain" aria-hidden="true"></div>
+
+  <div class="cta-final__content">
+
+    <div class="cta-final__top">
+      <div class="cta-final__eyebrow">
+        <div class="cta-final__eyebrow-dash"></div>
+        <span class="cta-final__eyebrow-txt">Ready to Break Ground</span>
+      </div>
+      <div>
+        <div class="cta-final__hl cta-final__hl--1"><span>Let's</span></div>
+        <div class="cta-final__hl cta-final__hl--2"><span id="cta-final-heading">Build</span></div>
+        <div class="cta-final__hl cta-final__hl--3"><span>Something.</span></div>
+      </div>
+    </div>
+
+    <div class="cta-final__mid">
+      <p class="cta-final__caption">
+        Contact <strong>Barrie's commercial contracting team</strong> for a site assessment and written quote. No call centres. No runaround. Straight to the owner.
+      </p>
+    </div>
+
+    <div class="cta-final__bottom">
+      <div class="cta-final__phone-block">
+        <span class="cta-final__phone-lbl">Call Us Directly</span>
+        <a href="tel:2499892233" class="cta-final__phone">249.989.2233</a>
+      </div>
+      <div class="cta-final__trust">
+        <div class="cta-final__trust-item"><div class="cta-final__trust-dot"></div>Free Site Assessment</div>
+        <div class="cta-final__trust-item"><div class="cta-final__trust-dot"></div>Line-Item Quote</div>
+        <div class="cta-final__trust-item"><div class="cta-final__trust-dot"></div>No Obligation</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta-final__bar">
+    <a class="cta-final__bar-main" href="tel:2499892233" id="cta-bar">
+      <span class="cta-final__bar-lbl">Call Now — Talk Directly to the Owner — 249.989.2233</span>
+      <div class="cta-final__bar-right">
+        <div class="cta-final__bar-line"></div>
+        <div class="cta-final__bar-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+    <a class="cta-final__bar-sec" href="mailto:info@groundlevelcontracting.ca">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="cta-final__bar-sec-txt">Email Us</span>
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER — Brand Grid + Legal (DSE)
+════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__rail" aria-hidden="true"></div>
+  <div class="footer__main">
+    <div>
+      <div class="footer__logo-row">
+        <div class="footer__mark">GL</div>
+        <div>
+          <div class="footer__name">Ground Level</div>
+          <div class="footer__name-sub">Contracting Inc.</div>
+        </div>
+      </div>
+      <p class="footer__tagline">Built from the ground up — every project, every time.</p>
+      <div class="footer__contact-item">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <a href="tel:2499892233">249.989.2233</a>
+      </div>
+      <div class="footer__contact-item">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        <span>Barrie, Ontario — Simcoe County</span>
+      </div>
+    </div>
+    <div>
+      <h3 class="footer__col-title">Services</h3>
+      <ul class="footer__links">
+        <li><a href="#">Excavation &amp; Site Prep</a></li>
+        <li><a href="#">Foundations &amp; Civil</a></li>
+        <li><a href="#">Drainage &amp; Hardscaping</a></li>
+        <li><a href="#">Decks, Fences &amp; Structures</a></li>
+        <li><a href="#">Commercial Snow Removal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="footer__col-title">Company</h3>
+      <ul class="footer__links">
+        <li><a href="#">About GLC</a></li>
+        <li><a href="#">Our Process</a></li>
+        <li><a href="#">Project Gallery</a></li>
+        <li><a href="#">Coverage Area</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="footer__col-title">Service Area</h3>
+      <ul class="footer__links">
+        <li><a href="#">Barrie</a></li>
+        <li><a href="#">Innisfil</a></li>
+        <li><a href="#">Springwater &amp; Midhurst</a></li>
+        <li><a href="#">Oro-Medonte</a></li>
+        <li><a href="#">Bradford &amp; Essa</a></li>
+        <li><a href="#">Angus &amp; New Tecumseth</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <div class="footer__bar-inner">
+      <p class="footer__copy">© 2025 <span>Ground Level Contracting Inc.</span> — All rights reserved.</p>
+      <nav class="footer__legal" aria-label="Legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── CURSOR ── */
+  const dot  = document.getElementById('dot');
+  const ring = document.getElementById('ring');
+  let mx=0, my=0, rx=0, ry=0;
+
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+
+  // Standard hover
+  document.querySelectorAll('a, button, .stat-cell, .why3__row, .coverage__item, .ab3__cred').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('on'); ring.classList.add('on'); dot.classList.remove('bar'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('on'); ring.classList.remove('on'); });
+  });
+
+  // CTA bars get big dark dot
+  ['hero-bar','cta-bar'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('mouseenter', () => { dot.classList.add('bar'); ring.classList.add('on'); });
+      el.addEventListener('mouseleave', () => { dot.classList.remove('bar'); ring.classList.remove('on'); });
+    }
+  });
+
+  (function loop() {
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+    rx += (mx-rx)*0.09; ry += (my-ry)*0.09;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+
+
+  /* ── HERO PARALLAX (image follows mouse) ── */
+  const heroEl   = document.getElementById('hero');
+  const heroWrap = document.getElementById('hero-img-wrap');
+  let px=0, py=0, nx=0, ny=0;
+  if (heroEl && heroWrap) {
+    heroEl.addEventListener('mousemove', e => {
+      const r = heroEl.getBoundingClientRect();
+      nx = ((e.clientX-r.left)/r.width  - 0.5) * -18;
+      ny = ((e.clientY-r.top) /r.height - 0.5) * -10;
+    });
+    heroEl.addEventListener('mouseleave', () => { nx=0; ny=0; });
+    (function parallax() {
+      px += (nx-px)*0.055; py += (ny-py)*0.055;
+      heroWrap.style.transform = 'translate('+px+'px,'+py+'px)';
+      requestAnimationFrame(parallax);
+    })();
+  }
+
+
+  /* ── QUOTE BAND SCROLL PARALLAX ── */
+  const quoteBg = document.getElementById('quote-bg');
+  function quoteParallax() {
+    if (!quoteBg) return;
+    const rect = quoteBg.parentElement.getBoundingClientRect();
+    const diff = (rect.top + rect.height/2 - window.innerHeight/2) / window.innerHeight;
+    quoteBg.style.transform = 'translateY('+(diff*44)+'px)';
+  }
+  window.addEventListener('scroll', quoteParallax, {passive:true});
+
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+
+  /* ── CTA FINAL: trigger scroll-based entrance animations ── */
+  const ctaFinal = document.querySelector('.cta-final');
+  if (ctaFinal) {
+    const ctaObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { ctaFinal.classList.add('in-view'); ctaObs.unobserve(ctaFinal); }
+      });
+    }, { threshold: 0.15 });
+    ctaObs.observe(ctaFinal);
+  }
+
+
+  /* ── COUNT-UP STATS (ST3) ── */
+  function animateCount(el, target, duration) {
+    const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+    let start = null;
+    const step = ts => {
+      if (!start) start = ts;
+      const progress = Math.min((ts-start)/duration, 1);
+      const eased = 1 - Math.pow(1-progress, 3);
+      el.innerHTML = Math.floor(eased*target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.innerHTML = target + suffix;
+    };
+    requestAnimationFrame(step);
+  }
+  const statNums = document.querySelectorAll('.stat-cell__num[data-target]');
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target, parseInt(e.target.dataset.target), 1800);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => countObs.observe(el));
+
+
+  /* ── TAB CONTAINER (STC1) ── */
+  const tabs   = document.querySelectorAll('.stc1__tab');
+  const panels = document.querySelectorAll('.stc1__panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = parseInt(tab.dataset.tab);
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      if (panels[idx]) panels[idx].classList.add('active');
+    });
+  });
+
+
+  /* ── HEADER SCROLL ── */
+  const header = document.getElementById('gl-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, {passive:true});
+
+
+  /* ── SMOOTH ANCHOR SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" role="img" aria-label="Ground Level corner L motif (stylized)">
+  <defs>
+    <linearGradient id="glcGoldS1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2B705"/>
+      <stop offset="100%" stop-color="#D9A004"/>
+    </linearGradient>
+  </defs>
+  <path fill="none" stroke="#202020" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+        d="M 10 70 L 10 18 Q 10 10 18 10 L 70 10"/>
+  <path fill="url(#glcGoldS1)" stroke="#202020" stroke-width="2" stroke-linejoin="miter"
+        d="M 18 8 L 18 48 L 52 48 L 60 40 L 56 36 L 26 36 L 26 8 Z"/>
+</svg>

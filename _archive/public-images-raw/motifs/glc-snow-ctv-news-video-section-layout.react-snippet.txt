@@ -1,0 +1,31 @@
+// Copy into glc-site (e.g. a section component). Data: @/content/commercial-snow-page-data → commercialSnowVideoSection
+
+      <section className="glc-snow-ctv" id="ctv-news-barrie" aria-labelledby="ctv-heading">
+        <div className="glc-snow-ctv__inner">
+          <p className="glc-snow-ctv__eyebrow">{commercialSnowVideoSection.eyebrow}</p>
+          <h2 id="ctv-heading" className="glc-snow-ctv__title">
+            {commercialSnowVideoSection.heading}
+          </h2>
+          <h3 className="glc-snow-ctv__segment-title">{commercialSnowVideoSection.segmentTitle}</h3>
+          <div className="glc-snow-ctv__body">
+            <p className="glc-snow-ctv__subtitle">{commercialSnowVideoSection.ctvBodyParagraphs[0]}</p>
+            <p className="glc-snow-ctv__published">{commercialSnowVideoSection.ctvBodyParagraphs[1]}</p>
+          </div>
+          <div className="glc-snow-ctv__frame">
+            <iframe
+              title={`${commercialSnowVideoSection.segmentTitle} — ${commercialSnowVideoSection.ctvBodyParagraphs[0]}`}
+              src={commercialSnowVideoSection.segmentEmbedSrc}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
+          <p className="glc-snow-ctv__note">
+            <span className="glc-snow-ctv__note-label">Source — </span>
+            <a href={commercialSnowVideoSection.ctvArticleUrl} target="_blank" rel="noopener noreferrer">
+              CTV News Barrie: full segment and article
+            </a>
+          </p>
+        </div>
+      </section>

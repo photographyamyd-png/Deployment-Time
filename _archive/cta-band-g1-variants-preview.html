@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GLC — CTA band variants (Ground Level Logo.svg)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal: #202020;
+      --charcoal-deep: #1e1c1a;
+      --yellow-core: #f2b705;
+      --gold: #d9a004;
+      --white: #ffffff;
+      --cream: #f4f1ec;
+      --section-v: 64px;
+      --container-max: 1200px;
+      --font-display: "Oswald", sans-serif;
+      --font-body: "Plus Jakarta Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: #0d0d0d;
+      color: var(--white);
+    }
+
+    .preview-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(13, 13, 13, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+    }
+    .preview-nav a {
+      color: var(--yellow-core);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .preview-nav a:hover { text-decoration: underline; }
+
+    .preview-label {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 24px 40px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Shared CTA structure (mirrors cta3 layout) ── */
+    .cta-g1 {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-g1__diag {
+      position: absolute;
+      top: -20%;
+      left: -5%;
+      width: 42%;
+      height: 140%;
+      background: var(--yellow-core);
+      opacity: 0.07;
+      transform: skewX(-12deg);
+      pointer-events: none;
+    }
+
+    .cta-g1__grid::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.012) 79px, rgba(255,255,255,0.012) 80px),
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.012) 79px, rgba(255,255,255,0.012) 80px);
+      pointer-events: none;
+    }
+
+    .cta-g1__inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: var(--section-v) 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-g1__eyebrow-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .cta-g1__eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .cta-g1__eyebrow-line {
+      display: block;
+      height: 1px;
+      flex: 1;
+    }
+
+    .cta-g1__heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+    .cta-g1__heading em {
+      font-style: normal;
+      color: var(--yellow-core);
+    }
+
+    .cta-g1__sub {
+      font-size: 14px;
+      line-height: 1.75;
+      margin-top: 14px;
+      max-width: 50ch;
+    }
+
+    .cta-g1__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+      min-width: 240px;
+    }
+    .cta-g1__phone-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .cta-g1__phone {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--yellow-core);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .cta-g1__divider {
+      width: 100%;
+      height: 1px;
+    }
+    .cta-g1__email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .cta-g1__bottom-bar {
+      height: 4px;
+      margin-top: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .cta-g1__inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .cta-g1__actions { align-items: flex-start; min-width: 0; }
+      .cta-g1__phone-wrap { text-align: left; }
+    }
+
+    /* ── Variant A: Dark charcoal + logo corner watermark ── */
+    .cta-g1--a {
+      background: var(--charcoal-deep);
+      color: var(--white);
+    }
+    .cta-g1--a .cta-g1__grid { position: absolute; inset: 0; pointer-events: none; }
+    .cta-g1--a .cta-g1__wm {
+      position: absolute;
+      right: -8%;
+      bottom: -18%;
+      width: min(58vw, 520px);
+      height: auto;
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-g1--a .cta-g1__eyebrow { color: var(--yellow-core); }
+    .cta-g1--a .cta-g1__eyebrow-line { background: rgba(255,255,255,0.1); }
+    .cta-g1--a .cta-g1__heading { color: var(--white); }
+    .cta-g1--a .cta-g1__sub { color: rgba(255,255,255,0.5); }
+    .cta-g1--a .cta-g1__phone-label { color: rgba(255,255,255,0.38); }
+    .cta-g1--a .cta-g1__divider { background: rgba(255,255,255,0.12); }
+    .cta-g1--a .cta-g1__email {
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 12px 20px;
+    }
+    .cta-g1--a .cta-g1__bottom-bar {
+      background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.08) 50%, transparent 100%);
+    }
+
+    /* ── Variant B: Light cream + logo ink ghost ── */
+    .cta-g1--b {
+      background: var(--cream);
+      color: var(--charcoal);
+    }
+    .cta-g1--b .cta-g1__wm {
+      position: absolute;
+      right: -6%;
+      bottom: -14%;
+      width: min(52vw, 480px);
+      height: auto;
+      opacity: 0.06;
+      pointer-events: none;
+      filter: brightness(0) saturate(100%);
+      z-index: 0;
+    }
+    .cta-g1--b .cta-g1__subtle-lines {
+      position: absolute;
+      inset: 0;
+      opacity: 0.4;
+      background: repeating-linear-gradient(
+        -12deg,
+        transparent,
+        transparent 24px,
+        rgba(32,32,32,0.02) 24px,
+        rgba(32,32,32,0.02) 25px
+      );
+      pointer-events: none;
+    }
+    .cta-g1--b .cta-g1__eyebrow { color: var(--gold); }
+    .cta-g1--b .cta-g1__eyebrow-line { background: rgba(32,32,32,0.12); }
+    .cta-g1--b .cta-g1__heading { color: var(--charcoal); }
+    .cta-g1--b .cta-g1__heading em { color: var(--gold); }
+    .cta-g1--b .cta-g1__sub { color: rgba(32,32,32,0.58); }
+    .cta-g1--b .cta-g1__phone-label { color: rgba(32,32,32,0.45); }
+    .cta-g1--b .cta-g1__phone { color: var(--charcoal); }
+    .cta-g1--b .cta-g1__divider { background: rgba(32,32,32,0.12); }
+    .cta-g1--b .cta-g1__email {
+      color: var(--charcoal);
+      border: 1px solid rgba(32,32,32,0.25);
+      padding: 12px 20px;
+    }
+    .cta-g1--b .cta-g1__bottom-bar {
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(217,160,4,0.15) 45%, transparent 100%);
+    }
+
+    /* ── Variant C: Diagonal clipped logo behind yellow band ── */
+    .cta-g1--c {
+      background: var(--charcoal-deep);
+      color: var(--white);
+    }
+    .cta-g1--c .cta-g1__slice-wrap {
+      position: absolute;
+      top: -10%;
+      left: -8%;
+      width: 55%;
+      height: 120%;
+      transform: skewX(-12deg);
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-g1--c .cta-g1__slice-logo {
+      position: absolute;
+      top: 5%;
+      left: -5%;
+      width: 140%;
+      height: auto;
+      opacity: 0.11;
+      transform: skewX(12deg);
+    }
+    .cta-g1--c .cta-g1__slice-wash {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(242,183,5,0.14) 0%, transparent 65%);
+      mix-blend-mode: screen;
+    }
+    .cta-g1--c .cta-g1__eyebrow { color: var(--yellow-core); }
+    .cta-g1--c .cta-g1__eyebrow-line { background: rgba(255,255,255,0.1); }
+    .cta-g1--c .cta-g1__heading { color: var(--white); }
+    .cta-g1--c .cta-g1__sub { color: rgba(255,255,255,0.5); }
+    .cta-g1--c .cta-g1__phone-label { color: rgba(255,255,255,0.38); }
+    .cta-g1--c .cta-g1__divider { background: rgba(255,255,255,0.12); }
+    .cta-g1--c .cta-g1__email {
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 12px 20px;
+    }
+    .cta-g1--c .cta-g1__bottom-bar {
+      background: linear-gradient(90deg, transparent 0%, var(--yellow-core) 50%, transparent 100%);
+      opacity: 0.9;
+    }
+
+    /* ── Variant D: “Busy site” backdrop + frosted panel + faint logo ── */
+    .cta-g1--d {
+      background: #2a2420;
+      color: var(--white);
+    }
+    .cta-g1--d .cta-g1__photo-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(14,12,10,0.75), rgba(30,28,26,0.88)),
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(242,183,5,0.12), transparent),
+        linear-gradient(135deg, #3d3530 0%, #1e1c1a 50%, #2a2622 100%);
+      pointer-events: none;
+    }
+    .cta-g1--d .cta-g1__wm-faint {
+      position: absolute;
+      right: 4%;
+      bottom: 8%;
+      width: min(42vw, 380px);
+      height: auto;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-g1--d .cta-g1__frost {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      max-width: calc(var(--container-max) + 80px);
+      padding: 8px;
+    }
+    .cta-g1--d .cta-g1__frost-inner {
+      border-radius: 0;
+      background: rgba(32,32,32,0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+    }
+    .cta-g1--d .cta-g1__inner {
+      padding: calc(var(--section-v) * 0.85) 36px;
+    }
+    .cta-g1--d .cta-g1__eyebrow { color: var(--yellow-core); }
+    .cta-g1--d .cta-g1__eyebrow-line { background: rgba(255,255,255,0.12); }
+    .cta-g1--d .cta-g1__sub { color: rgba(255,255,255,0.55); }
+    .cta-g1--d .cta-g1__phone-label { color: rgba(255,255,255,0.4); }
+    .cta-g1--d .cta-g1__divider { background: rgba(255,255,255,0.12); }
+    .cta-g1--d .cta-g1__email {
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 12px 20px;
+    }
+    .cta-g1--d .cta-g1__bottom-bar {
+      background: linear-gradient(90deg, var(--yellow-core), rgba(242,183,5,0.2));
+    }
+
+    /* ── Variant E: Minimal — inline logo lockup + clean field ── */
+    .cta-g1--e {
+      background: var(--white);
+      color: var(--charcoal);
+      border-top: 1px solid rgba(32,32,32,0.08);
+      border-bottom: 1px solid rgba(32,32,32,0.08);
+    }
+    .cta-g1--e .cta-g1__inner {
+      grid-template-columns: auto 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+    .cta-g1--e .cta-g1__mark {
+      width: 88px;
+      flex-shrink: 0;
+      opacity: 0.92;
+    }
+    .cta-g1--e .cta-g1__mark img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .cta-g1--e .cta-g1__eyebrow { color: var(--gold); }
+    .cta-g1--e .cta-g1__eyebrow-line { background: rgba(32,32,32,0.1); }
+    .cta-g1--e .cta-g1__heading { color: var(--charcoal); font-size: clamp(24px, 4vw, 40px); }
+    .cta-g1--e .cta-g1__heading em { color: var(--gold); }
+    .cta-g1--e .cta-g1__sub { color: rgba(32,32,32,0.55); }
+    .cta-g1--e .cta-g1__phone-label { color: rgba(32,32,32,0.45); }
+    .cta-g1--e .cta-g1__phone { color: var(--charcoal); }
+    .cta-g1--e .cta-g1__divider { background: rgba(32,32,32,0.1); }
+    .cta-g1--e .cta-g1__email {
+      color: var(--charcoal);
+      border: 1px solid rgba(32,32,32,0.22);
+      padding: 12px 20px;
+    }
+    .cta-g1--e .cta-g1__bottom-bar {
+      height: 3px;
+      background: var(--yellow-core);
+      opacity: 0.85;
+    }
+
+    @media (max-width: 1024px) {
+      .cta-g1--e .cta-g1__inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .cta-g1--e .cta-g1__mark {
+        width: 72px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav" aria-label="Variant shortcuts">
+    <a href="#variant-a">A · Charcoal corner</a>
+    <a href="#variant-b">B · Light cream</a>
+    <a href="#variant-c">C · Diagonal slice</a>
+    <a href="#variant-d">D · Frosted on busy</a>
+    <a href="#variant-e">E · Inline lockup</a>
+  </nav>
+
+  <p class="preview-label">Variant A — Dark charcoal + large corner watermark (closest to live #cta-band)</p>
+  <section id="variant-a" class="cta-g1 cta-g1--a" aria-labelledby="cta-a-heading">
+    <div class="cta-g1__grid" aria-hidden="true"></div>
+    <div class="cta-g1__diag" aria-hidden="true"></div>
+    <img class="cta-g1__wm" src="../Ground%20Level%20Logo.svg" alt="" width="520" height="390" decoding="async" />
+    <div class="cta-g1__inner">
+      <div class="cta-g1__copy">
+        <div class="cta-g1__eyebrow-bar" aria-hidden="true">
+          <span class="cta-g1__eyebrow">Ready to build?</span>
+          <span class="cta-g1__eyebrow-line"></span>
+        </div>
+        <h2 id="cta-a-heading" class="cta-g1__heading">Start with a site <em>consultation</em></h2>
+        <p class="cta-g1__sub">Commercial projects across Barrie, Midland, Orillia, and Simcoe County. Affordable, reliable, satisfaction guaranteed.</p>
+      </div>
+      <div class="cta-g1__actions">
+        <div class="cta-g1__phone-wrap">
+          <div class="cta-g1__phone-label">Call direct</div>
+          <a class="cta-g1__phone" href="tel:+17056194902">705-619-4902</a>
+        </div>
+        <div class="cta-g1__divider" aria-hidden="true"></div>
+        <a class="cta-g1__email" href="mailto:info@example.com">Email us →</a>
+      </div>
+    </div>
+    <div class="cta-g1__bottom-bar" aria-hidden="true"></div>
+  </section>
+
+  <p class="preview-label">Variant B — Light / cream background + ink-style ghost logo</p>
+  <section id="variant-b" class="cta-g1 cta-g1--b" aria-labelledby="cta-b-heading">
+    <div class="cta-g1__subtle-lines" aria-hidden="true"></div>
+    <img class="cta-g1__wm" src="../Ground%20Level%20Logo.svg" alt="" width="480" height="360" decoding="async" />
+    <div class="cta-g1__inner">
+      <div class="cta-g1__copy">
+        <div class="cta-g1__eyebrow-bar" aria-hidden="true">
+          <span class="cta-g1__eyebrow">Ready to build?</span>
+          <span class="cta-g1__eyebrow-line"></span>
+        </div>
+        <h2 id="cta-b-heading" class="cta-g1__heading">Start with a site <em>consultation</em></h2>
+        <p class="cta-g1__sub">Commercial projects across Barrie, Midland, Orillia, and Simcoe County. Affordable, reliable, satisfaction guaranteed.</p>
+      </div>
+      <div class="cta-g1__actions">
+        <div class="cta-g1__phone-wrap">
+          <div class="cta-g1__phone-label">Call direct</div>
+          <a class="cta-g1__phone" href="tel:+17056194902">705-619-4902</a>
+        </div>
+        <div class="cta-g1__divider" aria-hidden="true"></div>
+        <a class="cta-g1__email" href="mailto:info@example.com">Email us →</a>
+      </div>
+    </div>
+    <div class="cta-g1__bottom-bar" aria-hidden="true"></div>
+  </section>
+
+  <p class="preview-label">Variant C — Skewed band + logo clipped in diagonal zone (yellow wash)</p>
+  <section id="variant-c" class="cta-g1 cta-g1--c" aria-labelledby="cta-c-heading">
+    <div class="cta-g1__slice-wrap" aria-hidden="true">
+      <img class="cta-g1__slice-logo" src="../Ground%20Level%20Logo.svg" alt="" width="400" height="300" decoding="async" />
+      <div class="cta-g1__slice-wash"></div>
+    </div>
+    <div class="cta-g1__inner">
+      <div class="cta-g1__copy">
+        <div class="cta-g1__eyebrow-bar" aria-hidden="true">
+          <span class="cta-g1__eyebrow">Ready to build?</span>
+          <span class="cta-g1__eyebrow-line"></span>
+        </div>
+        <h2 id="cta-c-heading" class="cta-g1__heading">Start with a site <em>consultation</em></h2>
+        <p class="cta-g1__sub">Commercial projects across Barrie, Midland, Orillia, and Simcoe County. Affordable, reliable, satisfaction guaranteed.</p>
+      </div>
+      <div class="cta-g1__actions">
+        <div class="cta-g1__phone-wrap">
+          <div class="cta-g1__phone-label">Call direct</div>
+          <a class="cta-g1__phone" href="tel:+17056194902">705-619-4902</a>
+        </div>
+        <div class="cta-g1__divider" aria-hidden="true"></div>
+        <a class="cta-g1__email" href="mailto:info@example.com">Email us →</a>
+      </div>
+    </div>
+    <div class="cta-g1__bottom-bar" aria-hidden="true"></div>
+  </section>
+
+  <p class="preview-label">Variant D — Simulated busy backdrop + frosted panel + faint watermark</p>
+  <section id="variant-d" class="cta-g1 cta-g1--d" aria-labelledby="cta-d-heading">
+    <div class="cta-g1__photo-bg" aria-hidden="true"></div>
+    <img class="cta-g1__wm-faint" src="../Ground%20Level%20Logo.svg" alt="" width="380" height="285" decoding="async" />
+    <div class="cta-g1__frost">
+      <div class="cta-g1__frost-inner">
+        <div class="cta-g1__inner">
+          <div class="cta-g1__copy">
+            <div class="cta-g1__eyebrow-bar" aria-hidden="true">
+              <span class="cta-g1__eyebrow">Ready to build?</span>
+              <span class="cta-g1__eyebrow-line"></span>
+            </div>
+            <h2 id="cta-d-heading" class="cta-g1__heading">Start with a site <em>consultation</em></h2>
+            <p class="cta-g1__sub">Commercial projects across Barrie, Midland, Orillia, and Simcoe County. Affordable, reliable, satisfaction guaranteed.</p>
+          </div>
+          <div class="cta-g1__actions">
+            <div class="cta-g1__phone-wrap">
+              <div class="cta-g1__phone-label">Call direct</div>
+              <a class="cta-g1__phone" href="tel:+17056194902">705-619-4902</a>
+            </div>
+            <div class="cta-g1__divider" aria-hidden="true"></div>
+            <a class="cta-g1__email" href="mailto:info@example.com">Email us →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-g1__bottom-bar" aria-hidden="true"></div>
+  </section>
+
+  <p class="preview-label">Variant E — White / minimal: small inline logo lockup + editorial layout</p>
+  <section id="variant-e" class="cta-g1 cta-g1--e" aria-labelledby="cta-e-heading">
+    <div class="cta-g1__inner">
+      <div class="cta-g1__mark" aria-hidden="true">
+        <img src="../Ground%20Level%20Logo.svg" alt="" width="88" height="66" decoding="async" />
+      </div>
+      <div class="cta-g1__copy">
+        <div class="cta-g1__eyebrow-bar" aria-hidden="true">
+          <span class="cta-g1__eyebrow">Ready to build?</span>
+          <span class="cta-g1__eyebrow-line"></span>
+        </div>
+        <h2 id="cta-e-heading" class="cta-g1__heading">Start with a site <em>consultation</em></h2>
+        <p class="cta-g1__sub">Commercial projects across Barrie, Midland, Orillia, and Simcoe County. Affordable, reliable, satisfaction guaranteed.</p>
+      </div>
+      <div class="cta-g1__actions">
+        <div class="cta-g1__phone-wrap">
+          <div class="cta-g1__phone-label">Call direct</div>
+          <a class="cta-g1__phone" href="tel:+17056194902">705-619-4902</a>
+        </div>
+        <div class="cta-g1__divider" aria-hidden="true"></div>
+        <a class="cta-g1__email" href="mailto:info@example.com">Email us →</a>
+      </div>
+    </div>
+    <div class="cta-g1__bottom-bar" aria-hidden="true"></div>
+  </section>
+
+</body>
+</html>

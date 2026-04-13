@@ -1,0 +1,44 @@
+---
+description: Reusable workflow for section refactors using approved DNA, GLC motifs, and design system rules
+globs: glc-site/src/components/sections/**/*.tsx
+alwaysApply: false
+---
+
+# Section layout refactor (default workflow)
+
+When asked to refactor, redesign, or replace a **page section**, follow this unless the user opts out.
+
+## Non-negotiables
+
+- **Compliance gate**: `.cursor/rules/design-compliance-preflight.mdc` (band rhythm, layout roots, contrast, targeted DESIGN-SYSTEM reads)—pass before calling the refactor done.
+- **Styling**: `DESIGN-SYSTEM.md` tokens and classes in `glc-site/src/styles/glc-base.css`—no Tailwind utilities on components (repo standard).
+- **Section uniqueness (per page)**: A section is **unique** — it must not appear twice on the same page. That means **one** top-level instance per distinct `id`/anchor, **and** the same *layout pattern* (same band/split/grid DNA) must not be reused; add a variant or consolidate. Large copy needs tabs, accordion, columns, or progressive disclosure—not a wall of text.
+- **Parallax budget**: At most **one** animated parallax stack **per page** among **C3**, **D7**, or hero **A1/A2** polygon stacks. If the page already uses one, use static motifs or B-slots here.
+- **B-slot décor**: Empty decorative nodes only; `aria-hidden="true"`; parent is `position: relative`.
+
+## DNA (inspiration, not cloning)
+
+- Open `section-dna/approved-sections.json` and cite **2–3** `sections[].id` whose `visualDna` and `layersBottomToTop` match the section’s **job** (band, split, grid, CTA, etc.).
+- The shipped layout must be **new**: distinct grid/asymmetry and a **new class prefix**—not a copy of a cited id.
+
+## Motifs (canonical set only)
+
+- Pick from **DESIGN-SYSTEM.md** → **Production primitives (21 motif IDs)** — table lists Shell (`.dse`, `.ls`, grain, …), **A1–A6**, **B1–B5**, **C1–C3**, **D1–D7**, type watermark.
+- State **motif ID + concrete class names** and **one-sentence rationale** (e.g. D1 for clipped media, A3 for light↔dark seam, D6 for split seam).
+- Respect **globalDnaDraft** / **conflictsToEliminate** in `approved-sections.json` when touching shared `#id` CSS.
+
+## Reusable chat prompt (fill the brackets)
+
+```
+Goal: Refactor [section name] on [page/route] — outcome: [what should feel/be different].
+
+Hard constraints: DESIGN-SYSTEM.md + glc-base.css only; section layout uniqueness on this page; one parallax stack max (C3/D7/hero A1–A2) site-wide for this page; B-slots aria-hidden.
+
+DNA: From section-dna/approved-sections.json, use inspiration from ids [id1], [id2], [id3] — deliver a NEW layout + new class prefix, not a duplicate.
+
+Motif: Chosen ID(s) from the 21-motif table in DESIGN-SYSTEM.md + shell classes; justify in one sentence.
+
+Deliver: (1) IA eyebrow→headline→support→CTA (2) layout/asymmetry sketch (3) motif + z-order (4) files: TSX, content JSON if needed, glc-base.css block with anchor comment.
+```
+
+**Optional:** Paste this block into a Cursor **Notepad** and `@`-mention it in Agent/Chat for a one-click “load the whole prompt.”
