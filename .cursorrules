@@ -16,7 +16,13 @@ Drop this file into your project root as `.cursorrules` **and** keep `GLC_MASTER
 
 ## CURSOR AGENT — GIT WORKFLOW (POST-EDIT)
 
-After every successful code generation or multi-file edit, you must check the git status. If there are unstaged changes, provide a concise conventional commit message and ask: *"I've made changes; should I commit these for you now?"* If I am in **Agent** or **Composer** mode, automatically run `git add .` and `git commit -m 'AI: [brief description]'` after every major step without asking.
+After every successful code generation or multi-file edit, check the git status.
+
+If there are unstaged changes, identify the specific files you just modified for the current task. Provide a concise conventional commit message and ask: *"I've made changes; should I commit these for you now?"*
+
+In **Agent** or **Composer** mode, automatically stage only the specific task-related paths using `git add <file1> <file2>`. Do not use `git add .` unless you have verified the working tree is otherwise clean of unrelated modifications.
+
+After staging the specific files, automatically run `git commit -m 'AI: [brief description]'` after every major step without asking.
 
 **Pro tip:** In Composer (Ctrl+I), you can tell the agent at the start of a session: *"For the next hour, every time you finish a task, automatically commit the changes with a clear message."*
 
