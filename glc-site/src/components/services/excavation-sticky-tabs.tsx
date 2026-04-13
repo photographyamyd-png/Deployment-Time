@@ -2,6 +2,7 @@ import type { ServiceDetailContent, SiteConfig } from "@/content/types";
 import { SmartLink } from "@/components/ui/smart-link";
 import { ROUTES } from "@/lib/routes";
 import { getResolvedSections } from "@/lib/section-engine";
+import Image from "next/image";
 
 type Props = {
   service: ServiceDetailContent;
@@ -63,7 +64,13 @@ export function ExcavationStickyTabs({ service, site }: Props) {
               <div className="about__inner">
                 <div className="about__media reveal">
                   <div className="about__media-shell">
-                    <img src={sectionImage(section.id, section.image)} alt="" loading="lazy" decoding="async" />
+                    <Image
+                      src={sectionImage(section.id, section.image)}
+                      alt=""
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                   </div>
                 </div>
                 <div className="about__copy">
@@ -111,7 +118,13 @@ export function ExcavationStickyTabs({ service, site }: Props) {
               </div>
               <div className="why__media reveal">
                 <div className="why__photo-shell">
-                  <img src={sectionImage(section.id, section.image)} alt="" loading="lazy" decoding="async" />
+                  <Image
+                    src={sectionImage(section.id, section.image)}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>

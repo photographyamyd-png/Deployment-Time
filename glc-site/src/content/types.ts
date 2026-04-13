@@ -4,6 +4,8 @@ export type AccordionContentItem = {
   id: number;
   title: string;
   imageUrl: string;
+  /** Panel link target; featured accordion falls back to `/services/` when omitted. */
+  href?: string;
 };
 
 export type HeroProps = {
