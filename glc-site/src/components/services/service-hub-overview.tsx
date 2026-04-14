@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function ServiceHubOverview({ service, hubStats }: Props) {
-  const media = service.heroImage ?? DEFAULT_MEDIA;
+  const media = service.overviewImage ?? service.heroImage ?? DEFAULT_MEDIA;
   const body = service.hero.body ?? service.intro;
   const [lead, ...restBody] = body;
   return (

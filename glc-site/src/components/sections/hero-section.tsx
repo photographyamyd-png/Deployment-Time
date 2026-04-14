@@ -12,6 +12,7 @@ import {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 import { SmartLink } from "@/components/ui/smart-link";
+import { MotionSmartLink } from "@/components/ui/motion-smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
 import type { HeroProps } from "@/content/types";
@@ -312,6 +313,11 @@ export function HeroSection(props: HeroProps) {
             const brand = 'Ground Level Contracting';
             const hasBrand = ledeLead.startsWith(brand);
             const leadRemainder = hasBrand ? ledeLead.slice(brand.length) : ledeLead;
+            const ledeBodyTrimmed = ledeBody?.trimStart() ?? "";
+            const ledeBodyFormatted =
+              ledeBody && ledeBodyTrimmed.length > 0
+                ? ledeBodyTrimmed.charAt(0).toUpperCase() + ledeBodyTrimmed.slice(1)
+                : ledeBody;
 
             return (
               <motion.div
@@ -327,8 +333,8 @@ export function HeroSection(props: HeroProps) {
                     <><strong className="hero-v2__lede-brand">{brand}</strong>{leadRemainder}</>
                   ) : ledeLead}
                 </p>
-                {ledeBody && (
-                  <p className="hero-v2__lede-body">{ledeBody}</p>
+                {ledeBodyFormatted && (
+                  <p className="hero-v2__lede-body">{ledeBodyFormatted}</p>
                 )}
               </motion.div>
             );
@@ -353,15 +359,15 @@ export function HeroSection(props: HeroProps) {
               <IconArrow />
             </motion.a>
 
-            <motion.div
+            <MotionSmartLink
+              href={secondaryCta.href}
+              className="btn-hero-glass"
               whileHover={{ scale: 1.025, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 380, damping: 18 }}
             >
-              <SmartLink href={secondaryCta.href} className="btn-hero-glass">
-                {secondaryCta.label}
-              </SmartLink>
-            </motion.div>
+              {secondaryCta.label}
+            </MotionSmartLink>
           </motion.div>
         </motion.div>
       </div>

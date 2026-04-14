@@ -48,6 +48,11 @@ export function ServicePageView({ service, site }: Props) {
         }
       : null;
 
+  const isDrainageV2 = service.slug === "drainage-hardscaping";
+  const mainClassName = isDrainageV2
+    ? "service-page--drainage-v2"
+    : undefined;
+
   return (
     <>
       <JsonLdService
@@ -57,9 +62,14 @@ export function ServicePageView({ service, site }: Props) {
         description={service.meta.description}
       />
       <JsonLdFaq items={service.faq ?? []} />
-      <main id="main-content">
+      <main id="main-content" className={mainClassName}>
         <ServicePageHero service={service} />
-        {marquee && marquee.type === "marquee" ? <MarqueeTicker {...marquee.props} /> : null}
+        {marquee && marquee.type === "marquee" ? (
+          <MarqueeTicker
+            {...marquee.props}
+            {...(isDrainageV2 ? { bandTone: "light" as const } : {})}
+          />
+        ) : null}
 
         <ScopeStrip links={service.scopeStrip} />
 

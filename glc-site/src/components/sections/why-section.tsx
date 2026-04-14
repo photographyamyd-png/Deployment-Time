@@ -36,7 +36,7 @@ export function WhySection(props: WhyProps) {
             <Reveal>
               <figure className="why-v3__media">
                 <Image
-                  src="/images/hero-armour-stone-retaining-walls.png"
+                  src="/images/excavation-and-foundations-orillia-barrie.png"
                   alt="Ground Level Contracting heavy equipment on a Simcoe County commercial site"
                   fill
                   className="why-v3__media-img"

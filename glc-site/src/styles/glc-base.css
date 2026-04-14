@@ -1458,17 +1458,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gl-mobile-overlay.open { opacity: 1; pointer-events: auto; }
 
 /* ═══════════════════════════════════════════
-   HERO
+   HERO — legacy `.hero__*` (masthead v2 = `.hero-v2`)
 ═══════════════════════════════════════════ */
-#hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  background: var(--charcoal-deep);
-  padding-top: calc(var(--gl-header-height) + 36px);
-}
-
 /* GROUND plane: photo background */
 .hero__plane--ground {
   position: absolute; inset: 0;
@@ -2238,7 +2229,8 @@ a.hero__service-item {
    SERVICES — homepage layered band (#services.svlayer)
    Three-plane motif + yellow rail; copy / <details> deck / tall image column
 ═══════════════════════════════════════════ */
-#services.svlayer {
+#services.svlayer,
+#scope.svlayer {
   position: relative;
   overflow: clip;
   padding: var(--section-v) 0 calc(var(--section-v) + 12px);
@@ -2246,7 +2238,8 @@ a.hero__service-item {
 }
 
 /* Former #services::before top hairline — kept as a node so ::before can be blueprint grid (DSE + CTA skin) */
-#services.svlayer .services-band__top-accent {
+#services.svlayer .services-band__top-accent,
+#scope.svlayer .services-band__top-accent {
   position: absolute;
   top: 0;
   left: 0;
@@ -2567,7 +2560,8 @@ a.hero__service-item {
 }
 
 @media (max-width: 900px) {
-  #services.svlayer {
+  #services.svlayer,
+  #scope.svlayer {
     padding-bottom: var(--section-v);
   }
 
@@ -2628,7 +2622,8 @@ a.hero__service-item {
 }
 
 /* Homepage services — DSE shell (section registry) + CTA-band charcoal drama (grid, watermark, diag, bar) */
-#services.svlayer.svlayer--dse {
+#services.svlayer.svlayer--dse,
+#scope.svlayer.svlayer--dse {
   background: var(--charcoal-deep);
   color: rgba(255, 255, 255, 0.82);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -2638,81 +2633,100 @@ a.hero__service-item {
 }
 
 /* Stack: blueprint + watermark (::pseudo z0) → mist layers (z1) → diagonal (z2) → content (z3) */
-#services.svlayer.svlayer--dse .svlayer__layers {
+#services.svlayer.svlayer--dse .svlayer__layers,
+#scope.svlayer.svlayer--dse .svlayer__layers {
   z-index: 1;
 }
 
-#services.svlayer.svlayer--dse .cta3__diag {
+#services.svlayer.svlayer--dse .cta3__diag,
+#scope.svlayer.svlayer--dse .cta3__diag {
   z-index: 2;
 }
 
-#services.svlayer.svlayer--dse .svlayer__inner {
+#services.svlayer.svlayer--dse .svlayer__inner,
+#scope.svlayer.svlayer--dse .svlayer__inner {
   z-index: 3;
 }
 
-#services.svlayer.svlayer--dse .svlayer__sheet--back {
+#services.svlayer.svlayer--dse .svlayer__sheet--back,
+#scope.svlayer.svlayer--dse .svlayer__sheet--back {
   background: rgba(255, 255, 255, 0.045);
 }
 
-#services.svlayer.svlayer--dse .svlayer__sheet--front {
+#services.svlayer.svlayer--dse .svlayer__sheet--front,
+#scope.svlayer.svlayer--dse .svlayer__sheet--front {
   border-color: rgba(255, 255, 255, 0.16);
 }
 
-#services.svlayer.svlayer--dse .services__heading {
+#services.svlayer.svlayer--dse .services__heading,
+#scope.svlayer.svlayer--dse .services__heading {
   color: var(--white);
 }
 
-#services.svlayer.svlayer--dse .services__heading span {
+#services.svlayer.svlayer--dse .services__heading span,
+#scope.svlayer.svlayer--dse .services__heading span {
   color: var(--yellow-core);
 }
 
-#services.svlayer.svlayer--dse .services__intro {
+#services.svlayer.svlayer--dse .services__intro,
+#scope.svlayer.svlayer--dse .services__intro {
   color: rgba(255, 255, 255, 0.62);
 }
 
-#services.svlayer.svlayer--dse .services__kicker {
+#services.svlayer.svlayer--dse .services__kicker,
+#scope.svlayer.svlayer--dse .services__kicker {
   color: rgba(255, 255, 255, 0.88);
 }
 
-#services.svlayer.svlayer--dse .svlayer__scope li {
+#services.svlayer.svlayer--dse .svlayer__scope li,
+#scope.svlayer.svlayer--dse .svlayer__scope li {
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-#services.svlayer.svlayer--dse .svlayer__caption {
+#services.svlayer.svlayer--dse .svlayer__caption,
+#scope.svlayer.svlayer--dse .svlayer__caption {
   color: rgba(255, 255, 255, 0.48);
 }
 
-#services.svlayer.svlayer--dse .svlayer__figure-frame {
+#services.svlayer.svlayer--dse .svlayer__figure-frame,
+#scope.svlayer.svlayer--dse .svlayer__figure-frame {
   border-color: rgba(255, 255, 255, 0.14);
   box-shadow: 0 28px 72px rgba(0, 0, 0, 0.42);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card {
+#services.svlayer.svlayer--dse .svlayer__card,
+#scope.svlayer.svlayer--dse .svlayer__card {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-summary {
+#services.svlayer.svlayer--dse .svlayer__card-summary,
+#scope.svlayer.svlayer--dse .svlayer__card-summary {
   color: var(--white);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-num {
+#services.svlayer.svlayer--dse .svlayer__card-num,
+#scope.svlayer.svlayer--dse .svlayer__card-num {
   color: rgba(255, 255, 255, 0.22);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-signal {
+#services.svlayer.svlayer--dse .svlayer__card-signal,
+#scope.svlayer.svlayer--dse .svlayer__card-signal {
   border-right-color: rgba(255, 255, 255, 0.55);
   border-bottom-color: rgba(255, 255, 255, 0.55);
 }
 
 #services.svlayer.svlayer--dse .svlayer__card:hover .svlayer__card-summary,
-#services.svlayer.svlayer--dse .svlayer__card:focus-within .svlayer__card-summary {
+#scope.svlayer.svlayer--dse .svlayer__card:hover .svlayer__card-summary,
+#services.svlayer.svlayer--dse .svlayer__card:focus-within .svlayer__card-summary,
+#scope.svlayer.svlayer--dse .svlayer__card:focus-within .svlayer__card-summary {
   background: rgba(255, 255, 255, 0.07);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-panel {
+#services.svlayer.svlayer--dse .svlayer__card-panel,
+#scope.svlayer.svlayer--dse .svlayer__card-panel {
   border-top-color: rgba(255, 255, 255, 0.1);
   background: linear-gradient(
     180deg,
@@ -2721,20 +2735,24 @@ a.hero__service-item {
   );
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-desc {
+#services.svlayer.svlayer--dse .svlayer__card-desc,
+#scope.svlayer.svlayer--dse .svlayer__card-desc {
   color: rgba(255, 255, 255, 0.68);
 }
 
-#services.svlayer.svlayer--dse .svlayer__card-cta {
+#services.svlayer.svlayer--dse .svlayer__card-cta,
+#scope.svlayer.svlayer--dse .svlayer__card-cta {
   color: var(--yellow-core);
 }
 
 /* DSE homepage — one vertical yellow: drop the centered 46% spine (fights the grid); balance the figure seam rail */
-#services.svlayer.svlayer--dse .svlayer__sheet--mid {
+#services.svlayer.svlayer--dse .svlayer__sheet--mid,
+#scope.svlayer.svlayer--dse .svlayer__sheet--mid {
   display: none;
 }
 
-#services.svlayer.svlayer--dse .svlayer__figure-bite {
+#services.svlayer.svlayer--dse .svlayer__figure-bite,
+#scope.svlayer.svlayer--dse .svlayer__figure-bite {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -2753,7 +2771,8 @@ a.hero__service-item {
 }
 
 @media (max-width: 1024px) {
-  #services.svlayer.svlayer--dse .svlayer__figure-bite {
+  #services.svlayer.svlayer--dse .svlayer__figure-bite,
+  #scope.svlayer.svlayer--dse .svlayer__figure-bite {
     left: 12px;
     top: auto;
     bottom: 28px;
@@ -9123,6 +9142,16 @@ body.gl-mega-open .gl-mega-backdrop {
   /* Header clearance handled by padding-top on canvas */
 }
 
+/*
+ * Homepage `#hero` previously applied this shell; drainage hub uses `#drainage-hub-hero`.
+ * Keep metrics identical so typography, canvas, and service bar align.
+ */
+#hero.hero-v2,
+#drainage-hub-hero.hero-v2 {
+  min-height: 100vh;
+  padding-top: calc(var(--gl-header-height) + 36px);
+}
+
 /* ── Grain texture overlay — sits above everything, blends multiply ─── */
 .hero-v2::after {
   content: '';
@@ -9494,6 +9523,20 @@ body.gl-mega-open .gl-mega-backdrop {
 .hero-v2__headline .hero-v2__line-overflow:nth-child(3) .hero-v2__line {
   font-size: 0.74em;
   letter-spacing: -0.01em;
+}
+
+/* Drainage hub (and any hero-v2): H1 split may yield 1–2 lines — avoid wrong nth-child scales */
+.hero-v2__headline[data-glc-hub-h1-lines="1"] .hero-v2__line-overflow:nth-child(1) .hero-v2__line {
+  font-size: 1em;
+  font-weight: 700;
+  opacity: 1;
+  letter-spacing: -0.025em;
+}
+
+.hero-v2__headline[data-glc-hub-h1-lines="2"] .hero-v2__line-overflow:nth-child(2) .hero-v2__line:not(.hero-v2__line--accent) {
+  font-size: 0.74em;
+  letter-spacing: -0.01em;
+  font-weight: 600;
 }
 
 /* Overflow wrapper clips each line for the reveal animation */
@@ -16256,7 +16299,8 @@ body.gl-mega-open .gl-mega-backdrop {
 #cta-band::before,
 #request-service-hub::before,
 .glc-snow-close__dispatch::before,
-#services.svlayer.svlayer--dse::before {
+#services.svlayer.svlayer--dse::before,
+#scope.svlayer.svlayer--dse::before {
   content: '';
   position: absolute; inset: 0;
   background:
@@ -16274,7 +16318,8 @@ body.gl-mega-open .gl-mega-backdrop {
 #cta-band::after,
 #request-service-hub::after,
 .glc-snow-close__dispatch::after,
-#services.svlayer.svlayer--dse::after {
+#services.svlayer.svlayer--dse::after,
+#scope.svlayer.svlayer--dse::after {
   content: 'GLC';
   position: absolute;
   right: -40px; bottom: -40px;
@@ -24675,4 +24720,1487 @@ body.gl-mega-open .gl-mega-backdrop {
   .glc-drain-l07 .glc-snow-band__inner {
     padding-left: calc(20px + 14px);
   }
+}
+
+/* --- DRAINAGE HUB V2: band rhythm + capability explorer ---
+   Scoped under #main-content.service-page--drainage-v2
+   --- */
+
+/* --- Overview: light shell --- */
+.service-page--drainage-v2 #overview.service-hub {
+  background: var(--white);
+  padding: 0 0 var(--section-v-sm);
+}
+.service-page--drainage-v2 #overview.service-hub::before {
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 50%, rgba(242, 183, 5, 0.08) 0%, transparent 60%),
+    repeating-linear-gradient(
+      0deg, transparent, transparent 39px,
+      rgba(32, 32, 32, 0.035) 39px, rgba(32, 32, 32, 0.035) 40px
+    );
+}
+.service-page--drainage-v2 #overview.service-hub .about__heading {
+  color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 #overview.service-hub .about__heading span {
+  color: var(--yellow-core);
+}
+.service-page--drainage-v2 #overview.service-hub .service-hub__lead {
+  color: var(--text-700);
+}
+.service-page--drainage-v2 #overview.service-hub .service-hub__support {
+  color: var(--text-600);
+}
+.service-page--drainage-v2 #overview.service-hub .service-hub__support--offset {
+  color: var(--text-600);
+  border-left-color: rgba(242, 183, 5, 0.55);
+}
+.service-page--drainage-v2 #overview.service-hub .service-hub__chip {
+  background: var(--charcoal-deep);
+  border-top-color: var(--yellow-core);
+}
+.service-page--drainage-v2 #overview.service-hub .service-hub__chip:hover {
+  background: var(--charcoal);
+}
+
+/* —— Scope: DSE band —— */
+.service-page--drainage-v2 #scope.service-scope-band {
+  background: var(--charcoal-deep);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.service-page--drainage-v2 #scope .service-scope-band__title {
+  color: var(--white);
+}
+.service-page--drainage-v2 #scope .service-scope-band__eyebrow.eyebrow--dark {
+  color: rgba(255, 255, 255, 0.55);
+}
+.service-page--drainage-v2 #scope .service-scope-band__eyebrow.eyebrow--dark::before {
+  background: var(--yellow-core);
+}
+.service-page--drainage-v2 #scope .service-scope-band__closing {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+.service-page--drainage-v2 #scope .service-scope-band__closing-title {
+  color: var(--white);
+}
+.service-page--drainage-v2 #scope .service-scope-band__deliverables {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+}
+.service-page--drainage-v2 #scope .service-scope-band--editorial::before {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(242, 183, 5, 0.05) 55%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+}
+
+/* —— Capabilities: single light band + explorer —— */
+.service-page--drainage-v2 .service-field-capabilities--explorer {
+  background: var(--white);
+  padding: var(--section-v) 0;
+}
+.service-page--drainage-v2 .svc-cap-explorer .svc-cap-sticky-split__aside {
+  top: calc(var(--gl-header-height) + 12px);
+}
+.service-page--drainage-v2 .svc-cap-explorer__aside-heading {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.08;
+  color: var(--charcoal-deep);
+  margin: 0 0 14px;
+  max-width: 22ch;
+}
+.service-page--drainage-v2 .svc-cap-explorer__aside-lede {
+  margin: 0 0 22px;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.65;
+  color: var(--text-600);
+  max-width: 38ch;
+}
+.service-page--drainage-v2 .svc-cap-explorer__main {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+  min-width: 0;
+}
+.service-page--drainage-v2 .svc-cap-explorer__tablist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--charcoal-deep);
+  background: var(--off-white);
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+  transition:
+    border-color 0.25s var(--ease-expo),
+    background 0.25s var(--ease-expo),
+    color 0.25s var(--ease-expo);
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab:hover {
+  border-color: rgba(242, 183, 5, 0.55);
+  background: var(--white);
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab--active {
+  border-color: var(--yellow-core);
+  background: var(--white);
+  box-shadow: 0 12px 36px rgba(32, 32, 32, 0.08);
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab-num {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--yellow-core);
+  opacity: 0.85;
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab--active .svc-cap-explorer__tab-num {
+  opacity: 1;
+}
+.service-page--drainage-v2 .svc-cap-explorer__tab-label {
+  display: block;
+  line-height: 1.35;
+}
+.service-page--drainage-v2 .svc-cap-explorer__detail {
+  min-width: 0;
+}
+.service-page--drainage-v2 .svc-cap-explorer__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+}
+.service-page--drainage-v2 .svc-cap-explorer__img {
+  object-fit: cover;
+  transition: opacity 0.35s var(--ease-expo);
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel {
+  scroll-margin-top: calc(var(--gl-header-height) + 100px);
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--yellow-core);
+  margin-bottom: 16px;
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel-heading {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--charcoal-deep);
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel-body {
+  max-width: 68ch;
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel-body p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--text-600);
+}
+.service-page--drainage-v2 .svc-cap-explorer__panel-closing {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--charcoal-deep);
+}
+@media (max-width: 900px) {
+  .service-page--drainage-v2 .svc-cap-explorer__main {
+    grid-template-columns: 1fr;
+  }
+  .service-page--drainage-v2 .svc-cap-explorer__tablist {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .service-page--drainage-v2 .svc-cap-explorer__tab {
+    flex: 1 1 auto;
+    min-width: min(100%, 200px);
+  }
+}
+
+/* —— Process: extra blueprint read (drainage only) —— */
+.service-page--drainage-v2 #process .proc3__left-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 42%),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 47px,
+      rgba(255, 255, 255, 0.09) 47px,
+      rgba(255, 255, 255, 0.09) 48px
+    );
+}
+
+/* —— FAQ: light + Related: A3 seam —— */
+.service-page--drainage-v2 .service-faq {
+  background: var(--off-white);
+  border-top: 4px solid var(--charcoal-deep);
+}
+.service-page--drainage-v2 .service-faq .service-faq__eyebrow {
+  color: var(--text-500);
+}
+.service-page--drainage-v2 .service-faq .service-faq__eyebrow::before {
+  background: var(--yellow-core);
+}
+.service-page--drainage-v2 .service-faq__title {
+  color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 .service-faq__title span {
+  color: var(--yellow-core);
+}
+.service-page--drainage-v2 .service-faq__details {
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+}
+.service-page--drainage-v2 .service-faq__details[open] {
+  border-color: var(--yellow-core);
+  background: var(--white);
+}
+.service-page--drainage-v2 .service-faq__summary {
+  color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 .service-faq__summary::after {
+  border-color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 .service-faq__answer {
+  color: var(--text-600);
+}
+.service-page--drainage-v2 .service-related-services {
+  border-top: 1px solid var(--gray-200);
+  box-shadow: inset 0 3px 0 rgba(242, 183, 5, 0.45);
+}
+
+/* —— Coverage → Stats: both dark; yellow seam before stats —— */
+.service-page--drainage-v2 #stats {
+  background: var(--charcoal-deep);
+  border-top: 4px solid var(--yellow-core);
+}
+.service-page--drainage-v2 #stats::before {
+  background:
+    repeating-linear-gradient(
+      90deg, transparent, transparent 79px,
+      rgba(255, 255, 255, 0.04) 79px, rgba(255, 255, 255, 0.04) 80px
+    ),
+    repeating-linear-gradient(
+      0deg, transparent, transparent 79px,
+      rgba(255, 255, 255, 0.04) 79px, rgba(255, 255, 255, 0.04) 80px
+    );
+}
+.service-page--drainage-v2 #stats .st3__top-rail {
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242, 183, 5, 0.15) 50%, transparent 100%);
+}
+.service-page--drainage-v2 #stats .st3__side-label {
+  border-right-color: rgba(255, 255, 255, 0.12);
+}
+.service-page--drainage-v2 #stats .st3__side-label span {
+  color: rgba(255, 255, 255, 0.45);
+}
+.service-page--drainage-v2 #stats .stat-cell {
+  background: rgba(255, 255, 255, 0.03);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.service-page--drainage-v2 #stats .stat-cell:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.service-page--drainage-v2 #stats .stat-cell__num {
+  color: var(--white);
+}
+.service-page--drainage-v2 #stats .stat-cell__num > span:last-child:not(.stat-cell__suffix) {
+  color: var(--yellow-core) !important;
+}
+.service-page--drainage-v2 #stats .stat-cell__label {
+  color: rgba(255, 255, 255, 0.92);
+}
+.service-page--drainage-v2 #stats .stat-cell__sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* —— Final CTA: light “wake up” close —— */
+.service-page--drainage-v2 #request-site-visit {
+  background: var(--white);
+}
+.service-page--drainage-v2 #request-site-visit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg, transparent, transparent 79px,
+      rgba(32, 32, 32, 0.04) 79px, rgba(32, 32, 32, 0.04) 80px
+    ),
+    repeating-linear-gradient(
+      0deg, transparent, transparent 79px,
+      rgba(32, 32, 32, 0.04) 79px, rgba(32, 32, 32, 0.04) 80px
+    );
+}
+.service-page--drainage-v2 #request-site-visit .cta3__diag {
+  background: rgba(242, 183, 5, 0.14);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__eyebrow-line {
+  background: var(--gray-300);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__heading {
+  color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__heading em {
+  color: var(--yellow-core);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__sub {
+  color: var(--text-600);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__phone-label {
+  color: var(--text-500);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__phone {
+  color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__divider {
+  background: var(--gray-200);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__email-btn {
+  color: var(--charcoal-deep);
+  border-color: var(--charcoal-deep);
+}
+.service-page--drainage-v2 #request-site-visit .cta3__bottom-bar {
+  background: var(--yellow-core);
+}
+
+/* === DRAINAGE & HARDSCAPING HUB — custom route (glc-drain-hub*) ===
+   Band rhythm: D hero+trust | L overview | D scope | L interactive | D why/process |
+   L FAQ | D trust | L coverage | D related | L final CTA
+   === */
+
+.glc-drain-hub__b-slot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glc-drain-hub-prose {
+  max-width: 68ch;
+  position: relative;
+  z-index: 1;
+  color: var(--text-700);
+}
+.glc-drain-hub-prose p {
+  margin: 0 0 1rem;
+  line-height: 1.65;
+}
+
+/* —— Hero + trust (DSE) —— */
+.glc-drain-hub__hero {
+  position: relative;
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+   padding: var(--section-v, 96px) 0 64px;
+}
+.glc-drain-hub__hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.glc-drain-hub__hero-img {
+  object-fit: cover;
+}
+.glc-drain-hub__hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(30, 28, 26, 0.55) 0%,
+    rgba(30, 28, 26, 0.88) 100%
+  );
+}
+.glc-drain-hub__hero-inner {
+  position: relative;
+  z-index: 2;
+}
+.glc-drain-hub__breadcrumb {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 20px;
+}
+.glc-drain-hub__breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+}
+.glc-drain-hub__breadcrumb a:hover {
+  color: var(--white);
+}
+.glc-drain-hub__hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 2.85rem);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--white);
+  margin: 0 0 16px;
+  max-width: 22ch;
+}
+.glc-drain-hub__hero-sub {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 28px;
+  max-width: 40ch;
+}
+.glc-drain-hub__hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.glc-drain-hub__trust {
+  padding: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glc-drain-hub__trust--tight {
+  margin-top: -1px;
+}
+.glc-drain-hub__trust-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 24px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .glc-drain-hub__trust-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.glc-drain-hub__trust-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.glc-drain-hub__trust-stat {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.glc-drain-hub__trust-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* —— Overview — Drainage hub uses homepage §7 ab3 layout inside #overview —— */
+.glc-drain-hub__overview {
+  padding: 0;
+}
+#overview.glc-drain-hub__overview .ab3__layout {
+  position: relative;
+  z-index: 1;
+}
+#overview .ab3__photo-img {
+  object-fit: cover;
+}
+#overview .glc-drain-hub__readmore-inner p {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--text-500);
+  max-width: min(68ch, 100%);
+  margin: 0 0 1rem;
+}
+#overview .glc-drain-hub__readmore-inner p:last-child {
+  margin-bottom: 0;
+}
+.glc-drain-hub__rule {
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--yellow-core);
+  margin-bottom: 20px;
+}
+.glc-drain-hub__rule--on-dark {
+  background: var(--yellow-core);
+}
+
+/* —— Drainage hub #scope — uses homepage §8 svlayer grid (padding from #scope.svlayer) —— */
+.glc-drain-hub__scope {
+  padding: 0;
+}
+
+/* —— Interactive capabilities (light) —— */
+.glc-drain-hub__interactive {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__interactive-inner {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__interactive-split {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.38fr) minmax(0, 1fr);
+  gap: 40px 48px;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .glc-drain-hub__interactive-split {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__interactive-aside {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+.glc-drain-hub__interactive-sticky-h {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--charcoal-deep);
+  margin: 0 0 20px;
+}
+.glc-drain-hub__mid-cta {
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 20px;
+}
+.glc-drain-hub__mid-cta-heading {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 0 0 10px;
+}
+.glc-drain-hub__mid-cta-support {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-600);
+  margin: 0 0 16px;
+}
+.glc-drain-hub__mid-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.glc-drain-hub__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.glc-drain-hub__tab {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+  color: var(--charcoal-deep);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.glc-drain-hub__tab:hover {
+  border-color: var(--charcoal-deep);
+}
+.glc-drain-hub__tab--active {
+  background: var(--charcoal-deep);
+  color: var(--white);
+  border-color: var(--charcoal-deep);
+}
+
+.glc-drain-hub__panels {
+  position: relative;
+  min-height: 120px;
+}
+/* Inactive tab panels: visually hidden clip stack (not display:none) — SEO + a11y */
+.glc-drain-hub__tab-panel:not(.glc-drain-hub__tab-panel--active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+.glc-drain-hub__tab-panel--active {
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.glc-drain-hub__tab-panel-inner {
+  padding-bottom: 8px;
+}
+.glc-drain-hub__cap-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 0 0 16px;
+}
+.glc-drain-hub__cap-h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 28px 0 12px;
+}
+.glc-drain-hub__cap-h3:first-of-type {
+  margin-top: 12px;
+}
+.glc-drain-hub__cap-p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-700);
+  margin: 0 0 14px;
+}
+.glc-drain-hub__cap-hr {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 24px 0;
+}
+.glc-drain-hub__cap-ul,
+.glc-drain-hub__cap-ol {
+  margin: 0 0 16px;
+  padding-left: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-700);
+}
+.glc-drain-hub__cap-figures {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+}
+.glc-drain-hub__cap-figure {
+  margin: 0;
+  border: 1px dashed var(--gray-300);
+  padding: 12px;
+  background: var(--off-white, #f7f7f5);
+}
+.glc-drain-hub__cap-figure-slot {
+  min-height: 120px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.04) 0,
+    rgba(0, 0, 0, 0.04) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+.glc-drain-hub__cap-figcap {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-600);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.glc-drain-hub__inline-link {
+  font-weight: 700;
+  color: var(--charcoal-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.glc-drain-hub__inline-link:hover {
+  color: var(--yellow-core);
+}
+
+/* —— Why + process (DSE) —— */
+.glc-drain-hub__why-process {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__why-process-inner {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__section-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--white);
+  margin: 0 0 24px;
+  max-width: 30ch;
+}
+.glc-drain-hub__why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 32px;
+}
+@media (max-width: 800px) {
+  .glc-drain-hub__why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__why-point-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: var(--yellow-core);
+}
+.glc-drain-hub__why-point-body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+}
+.glc-drain-hub__why-media {
+  margin: 32px 0 0;
+  position: relative;
+}
+.glc-drain-hub__why-media .about__media-shell {
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.glc-drain-hub__why-media .service-cap-split__media-slab {
+  background: rgba(247, 197, 32, 0.12);
+  border-color: rgba(247, 197, 32, 0.28);
+}
+
+.glc-drain-hub__a3-seam {
+  height: 3px;
+  margin: 48px 0;
+  background: linear-gradient(90deg, var(--yellow-core), transparent);
+  opacity: 0.85;
+}
+
+.glc-drain-hub__process-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  counter-reset: proc;
+}
+.glc-drain-hub__process-step {
+  border-left: 3px solid rgba(242, 183, 5, 0.35);
+  padding-left: 20px;
+}
+.glc-drain-hub__process-step-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+  display: block;
+  margin-bottom: 8px;
+}
+.glc-drain-hub__process-step-body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+  display: block;
+}
+
+/* —— FAQ (light) —— */
+.glc-drain-hub__faq {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__faq-inner {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__faq-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 0 0 12px;
+  max-width: 32ch;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+.glc-drain-hub__faq-h2 .glc-drain-hub__heading-accent {
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+  color: var(--yellow-core);
+}
+.glc-drain-hub__faq-list {
+  max-width: 72ch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.glc-drain-hub__faq-details {
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  padding: 0;
+}
+.glc-drain-hub__faq-details[open] {
+  border-color: var(--charcoal-deep);
+}
+.glc-drain-hub__faq-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 18px;
+}
+.glc-drain-hub__faq-summary::-webkit-details-marker {
+  display: none;
+}
+.glc-drain-hub__faq-q {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 0;
+  display: inline;
+}
+.glc-drain-hub__faq-answer {
+  padding: 0 18px 18px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-700);
+}
+.glc-drain-hub__faq-answer p {
+  margin: 0;
+}
+
+/* —— Trust signals (DSE) —— */
+.glc-drain-hub__trust-signals {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__trust-signals-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 24px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .glc-drain-hub__trust-signals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .glc-drain-hub__trust-signals-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__trust-signal {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+.glc-drain-hub__trust-signal-check {
+  color: var(--yellow-core);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* —— Coverage (light) —— */
+.glc-drain-hub__coverage {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__coverage-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.42fr);
+  gap: 40px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .glc-drain-hub__coverage-split {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__coverage-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  margin: 0 0 16px;
+}
+.glc-drain-hub__coverage-ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+.glc-drain-hub__coverage-figure {
+  margin: 0;
+}
+.glc-drain-hub__coverage-figure-slot {
+  min-height: 240px;
+  background: var(--gray-100, #eee);
+  border: 1px solid var(--gray-200);
+}
+.glc-drain-hub__coverage-figcap {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-600);
+  margin-top: 8px;
+}
+
+/* —— Related (DSE) —— */
+.glc-drain-hub__related {
+  padding: var(--section-v, 96px) 0;
+}
+.glc-drain-hub__related-eyebrow {
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 800px) {
+  .glc-drain-hub__related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__related-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.glc-drain-hub__related-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.glc-drain-hub__related-card-title a {
+  color: var(--white);
+}
+.glc-drain-hub__related-card-title a:hover {
+  color: var(--yellow-core);
+}
+.glc-drain-hub__related-card-body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+/* —— Final CTA (light + accent bar) —— */
+.glc-drain-hub__final {
+  padding: var(--section-v, 96px) 0 120px;
+  border-bottom: 4px solid var(--yellow-core);
+}
+.glc-drain-hub__final-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.glc-drain-hub__final-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.2;
+  color: var(--charcoal-deep);
+  margin: 0 0 16px;
+}
+.glc-drain-hub__final-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-700);
+  margin: 0 0 10px;
+}
+.glc-drain-hub__final-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 28px 0 20px;
+}
+.glc-drain-hub__final-foot {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-600);
+  font-style: italic;
+  margin: 0;
+}
+
+/* —— Drainage hub: micro-layout (typography, readmore, layers) —— */
+.glc-drain-hub__hero-h1-accent {
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+  font-weight: 500;
+  color: var(--yellow-core);
+}
+.glc-drain-hub__hero-sub--inner {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.glc-drain-hub__trust {
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__trust-bar-pin {
+  position: absolute;
+  bottom: 6%;
+  right: 4%;
+  width: min(320px, 48%);
+  height: 58%;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.glc-drain-hub-prose .glc-drain-hub-prose-lede,
+.glc-drain-hub-prose .glc-drain-hub-prose-inner {
+  color: var(--text-700);
+}
+
+/* Next/Image fill inside clipped shell — RULE 5 framing */
+.glc-drain-hub__media-shell--fill {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.glc-drain-hub__media-fill {
+  object-fit: cover;
+}
+
+.glc-drain-hub__why-process--layered {
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__why-diag {
+  opacity: 0.35;
+}
+.glc-drain-hub__why-rule,
+.glc-drain-hub__process-rule {
+  margin-bottom: 24px;
+}
+.glc-drain-hub__why-point-body--inner,
+.glc-drain-hub__process-step-body--inner {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.glc-drain-hub__faq-rule {
+  margin-bottom: 24px;
+}
+
+.glc-drain-hub__trust-signals--layered {
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__trust-signals-visual {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  opacity: 0.2;
+  pointer-events: none;
+}
+.glc-drain-hub__trust-signals-inner {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__trust-signals-rule {
+  margin-bottom: 28px;
+}
+
+.glc-drain-hub__coverage-eyebrow {
+  margin-bottom: 12px;
+}
+.glc-drain-hub__coverage-rule {
+  margin-bottom: 20px;
+}
+.glc-drain-hub__coverage-h2 .glc-drain-hub__heading-accent {
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+  color: var(--yellow-core);
+}
+.glc-drain-hub__coverage-visual {
+  position: relative;
+  align-self: start;
+}
+.glc-drain-hub__coverage-visual .service-hub__visual-slab {
+  top: 18px;
+  left: -12px;
+  width: 78%;
+  height: 72%;
+}
+.glc-drain-hub__coverage-figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.glc-drain-hub__related-inner {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__related {
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__related-diag {
+  opacity: 0.3;
+}
+.glc-drain-hub__related-h2 {
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+.glc-drain-hub__related-rule {
+  margin-bottom: 28px;
+}
+.glc-drain-hub__related-card-body--inner {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.dse .glc-drain-hub__section-h2 .glc-drain-hub__heading-accent,
+.glc-drain-hub__related-h2 .glc-drain-hub__heading-accent {
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+  font-weight: 500;
+  color: var(--yellow-core);
+}
+
+.glc-drain-hub__final--cta3 {
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__final-cta3 {
+  align-items: start;
+}
+.glc-drain-hub__final-actions-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+@media (max-width: 900px) {
+  .glc-drain-hub__final-cta3 {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__final--cta3 .glc-drain-hub__final-foot {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.glc-drain-hub__readmore {
+  margin: 12px 0 18px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+}
+.glc-drain-hub__readmore summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  color: var(--charcoal-deep);
+}
+.glc-drain-hub__readmore summary::-webkit-details-marker {
+  display: none;
+}
+.glc-drain-hub__readmore-inner {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--gray-200);
+}
+.glc-drain-hub__readmore--on-dse {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+.glc-drain-hub__readmore--on-dse summary {
+  color: var(--yellow-core);
+}
+.glc-drain-hub__readmore--on-dse .glc-drain-hub__readmore-inner {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+.glc-drain-hub__faq-readmore {
+  margin-top: 12px;
+}
+
+.glc-drain-hub__interactive .glc-drain-hub__heading-accent {
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+  color: var(--yellow-core);
+  font-weight: 500;
+}
+
+.glc-drain-hub__panels--editorial {
+  min-height: 520px;
+}
+@media (max-width: 960px) {
+  .glc-drain-hub__panels--editorial {
+    min-height: 0;
+  }
+}
+
+.glc-drain-hub__cap-editorial {
+  position: relative;
+  padding: 0;
+  border: none;
+  margin: 0;
+}
+.glc-drain-hub__cap-split-grid.about__inner {
+  padding: 20px 0 32px;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .glc-drain-hub__cap-split-grid.about__inner {
+    grid-template-columns: 1fr;
+  }
+}
+.glc-drain-hub__cap-editorial .about__heading.glc-drain-hub__cap-hero-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+.glc-drain-hub__cap-editorial .about__divider {
+  margin-bottom: 16px;
+}
+.glc-drain-hub__cap-editorial .about__body,
+.glc-drain-hub__cap-lede {
+  color: var(--text-700);
+  margin-bottom: 0;
+}
+.glc-drain-hub__cap-editorial .about__credentials {
+  grid-template-columns: 1fr;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+.glc-drain-hub__cap-editorial .about__credential {
+  background: var(--off-white, #f7f7f5);
+  border-color: rgba(242, 183, 5, 0.45);
+}
+.glc-drain-hub__cap-editorial .about__credential-title {
+  color: var(--charcoal-deep);
+}
+.glc-drain-hub__cap-editorial .about__credential-sub {
+  color: var(--text-600);
+}
+.glc-drain-hub__cap-media .service-cap-split__media-slab {
+  position: absolute;
+  top: 14%;
+  right: -10px;
+  width: 48%;
+  height: 70%;
+  background: rgba(247, 197, 32, 0.14);
+  border: 1px solid rgba(247, 197, 32, 0.3);
+  z-index: 0;
+  pointer-events: none;
+}
+.glc-drain-hub__cap-media .about__media-shell {
+  position: relative;
+  z-index: 1;
+}
+.glc-drain-hub__cap-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* —— Drainage hub — hero-v2 (homepage parity) —— */
+.glc-drain-hub__hero-v2.hero-v2 {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+#drainage-hub-hero .glc-drain-hub__hero-breadcrumb {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 16px;
+  max-width: 52ch;
+}
+#drainage-hub-hero .glc-drain-hub__hero-breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+}
+#drainage-hub-hero .glc-drain-hub__hero-breadcrumb a:hover {
+  color: var(--white);
+}
+#drainage-hub-hero .glc-drain-hub__hero-cta-row.hero-v2__cta-row {
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* —— Hub audit v2: st3 text cells, svlayer--dse scope, proc3 J/K, light coverage —— */
+.service-page--drainage-v2 #stats .stat-cell--drain-trust .stat-cell__num--text {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  max-width: 26ch;
+  margin: 0 auto;
+}
+.service-page--drainage-v2 #stats .stat-cell--drain-trust .stat-cell__label {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.glc-drain-hub__scope.svlayer.svlayer--dse {
+  background: var(--charcoal-deep);
+  color: rgba(255, 255, 255, 0.82);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.glc-drain-hub__scope.svlayer.svlayer--dse .svlayer__sheet--back {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.glc-drain-hub__scope.svlayer.svlayer--dse .svlayer__sheet--mid {
+  display: none;
+}
+.glc-drain-hub__scope.svlayer.svlayer--dse .svlayer__sheet--front {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.glc-drain-hub__jk {
+  background: var(--charcoal-deep);
+  position: relative;
+  overflow: hidden;
+}
+.glc-drain-hub__proc3-h2 {
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.1;
+  max-width: none;
+  font-size: clamp(26px, 2.8vw, 40px);
+}
+.glc-drain-hub__proc3-h2 .glc-drain-hub__heading-accent {
+  color: var(--yellow-core);
+  font-style: italic;
+  font-family: var(--font-quote, "Source Serif 4", serif);
+}
+.glc-drain-hub__proc3-rule {
+  background: var(--yellow-core);
+}
+.glc-drain-hub__why-points {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.glc-drain-hub__jk-media {
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+.glc-drain-hub__jk-media .service-cap-split__media-slab {
+  background: rgba(247, 197, 32, 0.1);
+  border-color: rgba(247, 197, 32, 0.25);
+}
+.glc-drain-hub__process-band-eyebrow {
+  margin-bottom: 16px;
+}
+.glc-drain-hub__proc-step-desc--more {
+  margin-top: 8px;
+}
+.glc-drain-hub__coverage--lightfx {
+  position: relative;
+  overflow: hidden;
+  background: var(--off-white);
+}
+.glc-drain-hub__coverage-fx-radial {
+  opacity: 0.35;
+}
+.glc-drain-hub__coverage-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--charcoal-deep);
+  line-height: 1.12;
+  margin: 0 0 12px;
+}
+.glc-drain-hub__coverage-lede-inner {
+  color: var(--text-600);
+}
+.glc-drain-hub__coverage-label .coverage__lede {
+  color: var(--text-600);
+}
+.glc-drain-hub__coverage-map-shell {
+  min-height: 260px;
+}
+.glc-drain-hub__coverage-svlayer-fig {
+  grid-area: auto;
+  min-height: 0;
+  margin-bottom: 20px;
+}
+.glc-drain-hub__coverage-frame {
+  background: var(--white);
+}
+.glc-drain-hub__coverage-cap {
+  color: var(--text-500);
+}
+.glc-drain-hub__coverage-subh {
+  margin: 16px 0 8px;
+}
+.glc-drain-hub__final-sub--more {
+  color: var(--text-600);
 }

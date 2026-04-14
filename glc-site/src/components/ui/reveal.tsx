@@ -7,7 +7,8 @@ export type RevealDelayClass =
   | "reveal--delay-1"
   | "reveal--delay-2"
   | "reveal--delay-3"
-  | "reveal--delay-4";
+  | "reveal--delay-4"
+  | "reveal--delay-5";
 
 type RevealProps = {
   children?: ReactNode;

@@ -16,11 +16,11 @@ const siteData = site as SiteConfig;
 const homeSeo = pageMetadata({
   title: "Excavation & Site Preparation Barrie | Simcoe County | Orillia | Innisfil",
   description:
-    "Professional excavation, grading, trenching & site prep across Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County. Residential, commercial & industrial. Free quotes.",
+    "Professional commercial & industrial excavation, grading, trenching & site prep across Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County. Free quotes.",
   path: ROUTES.home,
   ogTitle: "Expert Excavation & Site Prep — Serving All of Simcoe County",
   ogDescription:
-    "From single-lot grading to full commercial site prep — we dig deep across Barrie, Orillia, Wasaga Beach & beyond. Call for a free estimate.",
+    "From precision grading to full commercial & industrial site prep — we dig deep across Barrie, Orillia, Wasaga Beach & beyond. Call for a free estimate.",
 });
 
 export const metadata: Metadata = {

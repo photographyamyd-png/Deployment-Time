@@ -282,7 +282,7 @@ export function SiteHeader({ navigation }: Props) {
           <SmartLink
             href={ROUTES.home}
             className="gl-header__logo"
-            aria-label="Ground Level Contracting"
+            aria-label="Ground Level Contracting Home"
           >
             <div className="gl-logo-mark" style={{ width: 32, height: 32 }}>
               <Image src={LOGO} alt="" width={40} height={40} />

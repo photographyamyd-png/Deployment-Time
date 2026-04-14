@@ -62,8 +62,9 @@ export function HashScrollHandler() {
         return;
       }
 
-      // On homepage: jump to section without a full navigation round-trip
-      const homePath = pathname === "/" || pathname === "";
+      // On homepage: jump to section without a full navigation round-trip.
+      // Normalize trailing slashes so this matches Next trailingSlash + usePathname quirks.
+      const homePath = (pathname ?? "").replace(/\/+$/, "") === "";
       if (homePath && href.startsWith("/#") && href.length > 3) {
         const id = href.slice(2);
         if (!id) return;

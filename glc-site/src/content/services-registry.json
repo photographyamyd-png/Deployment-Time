@@ -439,7 +439,8 @@
         "title": "Drainage & Hardscaping | Ground Level Contracting",
         "description": "Drainage & Hardscaping — commercial excavation and civil services for Barrie, Midland, Orillia, and Simcoe County."
       },
-      "heroImage": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&auto=format",
+      "heroImage": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format",
+      "overviewImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format",
       "hubStats": [
         { "value": "Storm +", "label": "Surface", "sub": "Integrated systems" },
         { "value": "Armor", "label": "Stone ready", "sub": "Heavy loads" },
@@ -496,11 +497,18 @@
           "From commercial lots to tight urban sites, we coordinate tie-ins, erosion control, and inspection holds so your landscape and paving scopes stay on schedule."
         ]
       },
+      "capabilitiesExplorer": {
+        "headline": "Precision from the Ground Up. Explore Our Capabilities.",
+        "lede": "Storm systems, grades, wall bases, and hardscape-ready subgrades — built to engineer drawings for commercial sites across Barrie, Midland, Orillia, and Simcoe County.",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "#request-site-visit"
+      },
       "subServiceSections": [
         {
           "id": "storm-pipe-runs",
           "layout": "split-default",
           "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format",
+          "imageAlt": "Commercial storm pipe bedding and trench work with heavy equipment on site",
           "heading": "Storm pipe & catchment",
           "paragraphs": [
             "Catch basins, manhole leads, and lateral runs are set to design invert with stable bedding and joint integrity before backfill.",
@@ -512,6 +520,7 @@
           "id": "french-drains",
           "layout": "split-reverse",
           "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80&auto=format",
+          "imageAlt": "French drain detail with geotextile, clear stone, and perimeter drainage at a commercial foundation",
           "heading": "French & trench drains",
           "paragraphs": [
             "Perimeter and interior trench drains are excavated to width and slope with geotextile and clean stone placement as specified.",
@@ -523,6 +532,7 @@
           "id": "lot-grading",
           "layout": "split-offset",
           "image": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1400&q=80&auto=format",
+          "imageAlt": "Grader establishing subgrade on a large commercial parking or loading area",
           "heading": "Parking & loading grades",
           "paragraphs": [
             "Mass grading establishes sheet flow and cross-slope before curb, island, and pavement scopes begin.",
@@ -534,6 +544,7 @@
           "id": "retaining-base",
           "layout": "contrast-band",
           "image": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1400&q=80&auto=format",
+          "imageAlt": "Structural footing trench with compaction and fill placement for retaining wall base prep",
           "heading": "Retaining wall base prep",
           "paragraphs": [
             "Footing trenches for segmental and concrete walls are over-excavated and replaced with structural fills where geotech requires.",
@@ -545,6 +556,7 @@
           "id": "paver-asphalt-base",
           "layout": "grid-3-col",
           "image": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=1400&q=80&auto=format",
+          "imageAlt": "Compacted granular base ready for asphalt or interlock on a commercial site",
           "heading": "Paver & asphalt subgrade",
           "paragraphs": [
             "Interlock and asphalt bases are shaped in layers with compaction checkpoints for pavement designers.",
@@ -556,6 +568,7 @@
           "id": "erosion-swales",
           "layout": "media-bleed",
           "image": "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1400&q=80&auto=format",
+          "imageAlt": "Erosion control with silt fencing and graded swale directing runoff on a commercial development",
           "heading": "Erosion control & swales",
           "paragraphs": [
             "Swales and berms are cut to convey water without saturating building pads or sensitive soils.",
@@ -567,6 +580,7 @@
           "id": "armor-interlock",
           "layout": "stacked-highlight",
           "image": "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=1400&q=80&auto=format",
+          "imageAlt": "Heavy equipment placing armor stone or finished segmental wall at a commercial yard",
           "heading": "Armor stone & interlock readiness",
           "paragraphs": [
             "Heavy-use areas get crushed stone profiles and compaction levels that support loaders and seasonal movement.",

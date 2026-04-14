@@ -34,6 +34,8 @@ export type HeroProps = {
 
 export type MarqueeProps = {
   items: string[];
+  /** When `light`, uses `.marquee-band--light` (e.g. before a light overview band). */
+  bandTone?: "default" | "light";
 };
 
 /**
@@ -313,6 +315,8 @@ export type ServiceDetailContent = {
   };
   /** Full-bleed hero photograph (optional). */
   heroImage?: string;
+  /** Overview band media when different from hero (optional). */
+  overviewImage?: string;
   /** Overview hub stat bridge (optional; defaults per slug in UI if omitted). */
   hubStats?: ServiceHubStat[];
   /** Four-step process rail (`#process`). */
@@ -341,6 +345,7 @@ export type ServiceDetailContent = {
     paragraphs: string[];
     closing?: string;
     image?: string;
+    imageAlt?: string;
     /** Resolved layout id for `ServiceLayoutVariantSection` (see `section-engine.js`). */
     layout?: string;
     layoutVariant?: "default" | "reverse" | "offset" | string;
@@ -363,6 +368,17 @@ export type ServiceDetailContent = {
     subtitle?: string;
     image: string;
     imageAlt: string;
+  };
+  /**
+   * Sticky-aside + tabbed capability explorer (`ServiceCapabilitiesExplorer`).
+   * Used by drainage hub; other services omit and keep the variant list.
+   */
+  capabilitiesExplorer?: {
+    headline: string;
+    lede: string;
+    ctaLabel: string;
+    /** Hash path or app route; defaults to `#request-site-visit` in UI if omitted. */
+    ctaHref?: string;
   };
 };
 
