@@ -1,4 +1,5 @@
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { SmartLink } from "@/components/ui/smart-link";
 import type { CtaBandProps } from "@/content/types";
 
 type CtaBandSectionProps = CtaBandProps & {
@@ -28,8 +29,12 @@ export function CtaBandSection({ sectionId = "cta-band", ...props }: CtaBandSect
           <p className="cta3__sub">{props.sub}</p>
         </div>
 
-        {/* RIGHT — phone + email actions */}
-        <div className="cta3__actions">
+        {/* RIGHT — written estimate, phone, process (+ optional email) */}
+        <div className="cta3__actions cta3__actions--stack">
+          <SmartLink href={props.formCta.href} className="btn-primary cta3__form-cta">
+            {props.formCta.label}
+            <IconArrow />
+          </SmartLink>
           <div className="cta3__phone-wrap">
             <div className="cta3__phone-label">{props.phoneLabel}</div>
             <a href={props.phoneHref} className="cta3__phone">
@@ -37,10 +42,16 @@ export function CtaBandSection({ sectionId = "cta-band", ...props }: CtaBandSect
             </a>
           </div>
           <div className="cta3__divider" aria-hidden />
-          <a href={props.emailCta.href} className="btn-ghost cta3__email-btn">
-            {props.emailCta.label}
+          <SmartLink href={props.processCta.href} className="btn-ghost cta3__email-btn">
+            {props.processCta.label}
             <IconArrow />
-          </a>
+          </SmartLink>
+          {props.emailCta ? (
+            <a href={props.emailCta.href} className="btn-ghost cta3__email-btn cta3__email-btn--quiet">
+              {props.emailCta.label}
+              <IconArrow />
+            </a>
+          ) : null}
         </div>
 
       </div>

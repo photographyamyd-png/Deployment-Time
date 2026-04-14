@@ -30,15 +30,15 @@ type Props = { site: SiteConfig };
 function FaqAnswerDense({ answer }: { answer: string }) {
   const { lead, remainder } = splitFirstTwoSentences(answer);
   if (!remainder) {
-    return <p>{answer}</p>;
+    return <p className="glc-drain-hub__faq-answer-p">{answer}</p>;
   }
   return (
     <>
-      <p>{lead}</p>
+      <p className="glc-drain-hub__faq-answer-p">{lead}</p>
       <details className="service-cap-readmore glc-drain-hub__readmore glc-drain-hub__faq-readmore">
         <summary>Technical depth &amp; field notes</summary>
         <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
-          <p>{remainder}</p>
+          <p className="glc-drain-hub__faq-answer-p">{remainder}</p>
         </div>
       </details>
     </>
@@ -46,9 +46,9 @@ function FaqAnswerDense({ answer }: { answer: string }) {
 }
 
 /**
- * Drainage & hardscaping hub — 10-step L/D rhythm, service-hub primitives,
- * homepage-style hero-v2 + st3 trust, svlayer--dse scope, InteractiveCapabilities (client),
- * proc3 why/process, FAQ, trust grid, coverage + density acc, related, cta3.
+ * Drainage & hardscaping hub — L/D rhythm per HOMEPAGE_SECTION_CLONE_SPEC + `.cursor/rules/service-hub-section-rhythm.mdc`.
+ * Tone boundaries use `.glc-drain-page__mist-seam` (A3-class); outer `--section-v` on band sections is in `glc-base.css`
+ * under `.service-page--drainage-v2` / `glc-drain-hub__*`.
  */
 export function DrainageHubView({ site }: Props) {
   const telHref = site.telephone.startsWith("tel:")
@@ -61,17 +61,29 @@ export function DrainageHubView({ site }: Props) {
     <main id="main-content" className="service-page--drainage-v2 glc-drain-hub">
       <DrainageHubHeroV2 site={site} megaCards={navData.megaMenu.cards} />
       <DrainageHubTrustSt3 />
+
       <DrainageHubOverview />
+
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__overview-to-scope-seam" aria-hidden />
 
       <DrainageHubScope />
 
-      <InteractiveCapabilities tabs={DRAINAGE_HUB_CAPABILITY_TABS} site={site} />
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__scope-to-interactive-seam" aria-hidden />
+
+      <div className="glc-drain-hub__interactive">
+        <InteractiveCapabilities tabs={DRAINAGE_HUB_CAPABILITY_TABS} site={site} />
+      </div>
+
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__interactive-to-why-seam" aria-hidden />
 
       <DrainageHubWhyProcess />
 
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__why-to-faq-seam" aria-hidden />
+
       <section id="faq" className="glc-drain-hub__faq ls" aria-labelledby="drainage-hub-faq-h2">
         <span className="glc-drain-hub__b-slot" aria-hidden />
-        <div className="container glc-drain-hub__faq-inner">
+        <div className="cta3__diag glc-drain-hub__faq-diag" aria-hidden />
+        <div className="container glc-drain-hub__faq-inner ls-c">
           <div className="eyebrow eyebrow--dark glc-drain-hub__faq-eyebrow">{DRAINAGE_HUB_FAQ_EYEBROW}</div>
           <DrainageFragmentedH2
             id="drainage-hub-faq-h2"
@@ -93,6 +105,8 @@ export function DrainageHubView({ site }: Props) {
           </div>
         </div>
       </section>
+
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__faq-to-trust-seam" aria-hidden />
 
       <section
         id="trust-signals"
@@ -119,18 +133,25 @@ export function DrainageHubView({ site }: Props) {
                 <span className="glc-drain-hub__trust-signal-check" aria-hidden>
                   {"\u2713"}
                 </span>
-                <span className="glc-drain-hub__trust-signal-copy">
-                  <strong>{row.title}</strong>
-                  {" — "}
-                  {row.body.replace("[YEAR]", year)}
-                </span>
+                <div className="glc-drain-hub__trust-signal-copy">
+                  <strong className="glc-drain-hub__trust-signal-title">{row.title}</strong>
+                  <DrainageDenseText
+                    text={row.body.replace("[YEAR]", year)}
+                    ledeClassName="glc-drain-hub__trust-signal-body"
+                    innerClassName="glc-drain-hub__trust-signal-body glc-drain-hub__trust-signal-body--inner"
+                  />
+                </div>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__trust-to-coverage-seam" aria-hidden />
+
       <DrainageHubCoverage />
+
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__coverage-to-related-seam" aria-hidden />
 
       <section id="related-services" className="glc-drain-hub__related dse" aria-label="Related services">
         <span className="glc-drain-hub__b-slot" aria-hidden />

@@ -36,8 +36,7 @@ export function DrainageHubOverview() {
   const readmoreParas = remainder ? [remainder, ...otherParas] : [...otherParas];
 
   return (
-    <section id="overview" className="glc-drain-hub__overview ls" aria-labelledby="overview-heading">
-      <span className="glc-drain-hub__b-slot" aria-hidden />
+    <section id="overview" className="glc-drain-hub__overview" aria-labelledby="overview-heading">
       <span className="ab3__wm" aria-hidden>
         GLC
       </span>

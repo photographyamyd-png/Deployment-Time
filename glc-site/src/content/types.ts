@@ -30,6 +30,10 @@ export type HeroProps = {
    * When omitted, hero-v2 uses the default engineered texture fill.
    */
   parallaxBackgroundImage?: string;
+  /** Short reassurance line under the hero CTAs. */
+  ctaMicrocopy?: string;
+  /** Compact trust bullets (e.g. licensed, WSIB) — rendered above the service bar. */
+  trustItems?: string[];
 };
 
 export type MarqueeProps = {
@@ -87,6 +91,8 @@ export type AboutProps = {
   cta: { label: string; href: string };
   mediaStat: { value: string; label: string };
   badgeText: string;
+  /** Optional compact audience chips — avoids a separate “who we serve” section. */
+  whoWeServe?: { title: string; intro: string; chips: string[] };
 };
 
 export type ServicesSectionProps = {
@@ -133,8 +139,13 @@ export type CoverageProps = {
   headingBefore: string;
   headingEmphasis: string;
   headingAfter: string;
+  /** Short visible lede under the heading (service hubs may omit — falls back in the section). */
+  intro?: string;
   body: string;
   areas: Array<{ name: string; sub: string }>;
+  /** Crawlable locality string inside the expandable panel (e.g. pipe-separated cities). */
+  localityLine?: string;
+  closingLine?: string;
 };
 
 export type Testimonial = {
@@ -150,6 +161,7 @@ export type TestimonialsProps = {
   headingAfter: string;
   sub: string;
   items: Testimonial[];
+  googleReviews?: { label: string; href: string };
 };
 
 export type CtaBandProps = {
@@ -161,7 +173,11 @@ export type CtaBandProps = {
   phoneLabel: string;
   phone: string;
   phoneHref: string;
-  emailCta: { label: string; href: string };
+  /** Primary written-estimate path (e.g. `/contact/`). */
+  formCta: { label: string; href: string };
+  /** Secondary anchor (e.g. `/` + `#process`). */
+  processCta: { label: string; href: string };
+  emailCta?: { label: string; href: string };
 };
 
 export type HomeParallaxBandProps = {

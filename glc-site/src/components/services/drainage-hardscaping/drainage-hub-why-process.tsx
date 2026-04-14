@@ -33,6 +33,7 @@ export function DrainageHubWhyProcess() {
       aria-label="Why choose us and our process"
     >
       <span className="glc-drain-hub__b-slot" aria-hidden />
+      <div className="cta3__diag glc-drain-hub__proc3-diag" aria-hidden />
       <div className="proc3__layout glc-drain-hub__proc3">
         <div className="proc3__left-panel">
           <div className="proc3__left-accent" aria-hidden />

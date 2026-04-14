@@ -22,8 +22,8 @@ export function StatCellAnimated({
         data-target={target}
         data-format={format ?? afterNumber}
       >
-        <span>{target}</span>
-        <span style={{ color: "var(--yellow-core)" }}>{afterNumber}</span>
+        <span className="stat-cell__num-val">{target}</span>
+        <span className="stat-cell__suffix">{afterNumber}</span>
       </span>
       <span className="stat-cell__label">{label}</span>
       <span className="stat-cell__sub">{sub}</span>

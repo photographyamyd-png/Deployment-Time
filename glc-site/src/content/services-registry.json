@@ -28,29 +28,78 @@
       },
       "heroImage": "https://images.unsplash.com/photo-1617098474202-0d0d7f60f2d3?w=1600&q=80&auto=format",
       "hubStats": [
-        { "value": "500+", "label": "Projects", "sub": "Commercial scale" },
-        { "value": "15+", "label": "Years", "sub": "Field leadership" },
-        { "value": "4", "label": "Regions", "sub": "Central Ontario" }
+        {
+          "value": "500+",
+          "label": "Projects",
+          "sub": "Commercial scale"
+        },
+        {
+          "value": "15+",
+          "label": "Years",
+          "sub": "Field leadership"
+        },
+        {
+          "value": "4",
+          "label": "Regions",
+          "sub": "Central Ontario"
+        }
       ],
       "processSection": {
         "eyebrow": "Field process",
         "heading": "From mobilization to ",
         "headingAccent": "final grade",
         "steps": [
-          { "num": "01", "title": "Site review", "desc": "Benchmarks, access, utilities, and geotech context before the first machine moves." },
-          { "num": "02", "title": "Cut & shape", "desc": "Rough grading, trenching, and structural digs to engineered tolerances." },
-          { "num": "03", "title": "Backfill & compaction", "desc": "Correct lifts, moisture control, and testing coordination." },
-          { "num": "04", "title": "Handoff", "desc": "Fine grading, inspection-ready documentation, and clean turnover to trades." }
+          {
+            "num": "01",
+            "title": "Site review",
+            "desc": "Benchmarks, access, utilities, and geotech context before the first machine moves."
+          },
+          {
+            "num": "02",
+            "title": "Cut & shape",
+            "desc": "Rough grading, trenching, and structural digs to engineered tolerances."
+          },
+          {
+            "num": "03",
+            "title": "Backfill & compaction",
+            "desc": "Correct lifts, moisture control, and testing coordination."
+          },
+          {
+            "num": "04",
+            "title": "Handoff",
+            "desc": "Fine grading, inspection-ready documentation, and clean turnover to trades."
+          }
         ]
       },
       "scopeStrip": [
-        { "label": "Overview", "href": "#overview" },
-        { "label": "Scope", "href": "#scope" },
-        { "label": "Capabilities", "href": "#field-capabilities" },
-        { "label": "Process", "href": "#process" },
-        { "label": "FAQ", "href": "#faq" },
-        { "label": "Related", "href": "#related-services" },
-        { "label": "Request a site visit", "href": "#request-site-visit" }
+        {
+          "label": "Overview",
+          "href": "#overview"
+        },
+        {
+          "label": "Scope",
+          "href": "#scope"
+        },
+        {
+          "label": "Capabilities",
+          "href": "#field-capabilities"
+        },
+        {
+          "label": "Process",
+          "href": "#process"
+        },
+        {
+          "label": "FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Related",
+          "href": "#related-services"
+        },
+        {
+          "label": "Request a site visit",
+          "href": "#request-site-visit"
+        }
       ],
       "intro": [
         "We mobilize excavators, dozers, and hauling assets to prepare raw land for commercial construction — from initial tree and stump removal through precision rough grading.",
@@ -246,191 +295,37 @@
       "slug": "foundations-civil-infrastructure",
       "schemaOfferName": "Foundations & Civil Infrastructure",
       "meta": {
-        "title": "Commercial Foundation Excavation Barrie | Civil Infrastructure | Ground Level",
-        "description": "Commercial foundation excavation, footings, shoring, trenches & structural backfill for GCs & developers in Barrie, Orillia, Innisfil, Wasaga Beach & Simcoe County. IFC-driven. 705-619-4902."
-      },
-      "heroImage": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80&auto=format",
-      "hubStats": [
-        { "value": "200+", "label": "Foundations", "sub": "Field-delivered" },
-        { "value": "100%", "label": "QC documentation", "sub": "Civil certified" },
-        { "value": "All", "label": "Soil types", "sub": "Engineered specs" }
-      ],
-      "processSection": {
-        "eyebrow": "Civil sequence",
-        "heading": "Structure-ready excavation ",
-        "headingAccent": "and backfill",
-        "steps": [
-          { "num": "01", "title": "Set benchmarks", "desc": "Survey, shoring plan review, and trench safety setup before spoils move." },
-          { "num": "02", "title": "Structural dig", "desc": "Footings, pits, and trenches to structural drawings with tight tolerances." },
-          { "num": "03", "title": "Utilities & bedding", "desc": "Storm, sanitary, and water runs with code-compliant bedding and compaction lifts." },
-          { "num": "04", "title": "Inspection handoff", "desc": "Geotech-ready surfaces, documented placements, and clean access for trades." }
-        ]
+        "title": "Foundations & Civil Infrastructure | Barrie, Simcoe County",
+        "description": "Commercial & civil foundation contractor serving Barrie, Orillia, Innisfil & Simcoe County. Excavation, forming, site servicing & underpinning. Get a quote."
       },
       "hero": {
         "breadcrumbParent": "Services",
-        "titleBefore": "Commercial Foundation & Civil Infrastructure Excavation — ",
-        "titleEmphasis": "Barrie, Orillia & Simcoe County",
-        "lede": "IFC-driven footing trenches, frost walls, shoring, site servicing, and structural backfill for commercial GCs, developers, and consultants across Simcoe County.",
-        "body": [
-          "Ground Level excavates to structural drawings with tight tolerances for footings, elevator pits, and mechanical trenches. We coordinate penetrations and backfill schedules with your structural and MEP trades so concrete, steel, and underground scopes stay on schedule.",
-          "From site servicing to storm and sanitary laterals, we install the underground infrastructure your build depends on — documented, compacted, and inspection-ready across Barrie, Midland, Orillia, and Simcoe County."
-        ]
+        "titleBefore": "Foundations & Civil Infrastructure — ",
+        "titleEmphasis": "Barrie & Simcoe County",
+        "lede": "Full hub copy, eight dedicated scopes, FAQs, and CTAs live on the Foundations & Civil Infrastructure route."
       },
       "scopeStrip": [
-        { "label": "Overview", "href": "#overview" },
-        { "label": "Scope", "href": "#scope" },
-        { "label": "Capabilities", "href": "#field-capabilities" },
-        { "label": "Process", "href": "#process" },
-        { "label": "FAQ", "href": "#faq" },
-        { "label": "Related", "href": "#related-services" },
-        { "label": "Get a quote", "href": "#request-site-visit" }
+        {
+          "label": "Hub services",
+          "href": "#foundations-hub-services"
+        },
+        {
+          "label": "FAQ",
+          "href": "#foundations-hub-faq"
+        },
+        {
+          "label": "Request quote",
+          "href": "#fnd-hub-request-quote"
+        }
       ],
       "intro": [
-        "Ground Level excavates to structural drawings with tight tolerances for footings, elevator pits, and mechanical trenches. We coordinate penetrations and backfill schedules with your structural and MEP trades.",
-        "From site servicing to storm and sanitary laterals, we install the underground infrastructure your build depends on — documented and inspection-ready."
+        "Ground Level Contracting is Simcoe County's civil and foundation partner for residential, commercial, and municipal scopes — with WSIB coverage, liability insurance, and engineer-led field standards."
       ],
-      "deliverablesHeading": "What we deliver",
+      "deliverablesHeading": "On the hub",
       "deliverables": [
-        "Footing and frost wall excavation",
-        "Shoring and benching for deep excavations",
-        "Elevator pit and loading dock excavation",
-        "Utility trenching for site servicing",
-        "Structural backfill and compaction",
-        "Mass excavation and pad preparation"
+        "Eight dedicated foundation and civil pages branch from /services/foundations-civil-infrastructure/"
       ],
-      "closingHeading": "Ready to scope your site?",
-      "trustBlock": {
-        "id": "trust-foundations",
-        "heading": "Engineered digs with commercial discipline",
-        "paragraphs": [
-          "We work from IFC sets, geotech reports, and inspection schedules — not guesses. That means benching, dewatering, and trench protection align with your structural engineer and municipal inspector from day one.",
-          "Whether it is a multi-level parkade or a single-storey industrial shell, our crews keep elevations honest, utilities separated, and backfill lifts verifiable when testing is required."
-        ]
-      },
-      "subServiceSections": [
-        {
-          "id": "footing-frost-excavation",
-          "layout": "split-default",
-          "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=80&auto=format",
-          "heading": "Footing & frost wall excavation",
-          "paragraphs": [
-            "We excavate strip footings, pad footings, and frost walls to structural tolerances with clear spoil management and survey checks at critical lifts.",
-            "Cold-climate details — keyed joints, step footings, and insulation zones — are executed to drawings so your foundation contractor forms against true lines and levels."
-          ],
-          "closing": "Commercial and industrial foundations across Simcoe County."
-        },
-        {
-          "id": "shoring-benching",
-          "layout": "split-reverse",
-          "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1400&q=80&auto=format",
-          "heading": "Shoring, benching & deep excavations",
-          "paragraphs": [
-            "Deep cuts are staged with benching or shoring coordination so slopes stay safe while maintaining access for trades and inspections.",
-            "We align with temporary works designers and site supers to sequence excavation, support installation, and backfill without compromising adjacent structures."
-          ],
-          "closing": "Deep utility and foundation digs with documented safety plans."
-        },
-        {
-          "id": "elevator-pit-dock",
-          "layout": "split-asym-left",
-          "image": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1400&q=80&auto=format",
-          "heading": "Elevator pits & loading docks",
-          "paragraphs": [
-            "Pits and dock trenches demand tight dimensional control and clean corners for waterproofing and anchor placement.",
-            "We coordinate sump locations, drain leads, and slab ties so vertical transportation and receiving areas meet manufacturer and structural requirements."
-          ],
-          "closing": "Precision pits for commercial cores and logistics facilities."
-        },
-        {
-          "id": "site-servicing-trenches",
-          "layout": "stacked-card-grid",
-          "image": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1400&q=80&auto=format",
-          "heading": "Site servicing trenches",
-          "paragraphs": [
-            "Storm, sanitary, and water runs are trenched with accurate grades, separation from parallel utilities, and proper bedding material.",
-            "We protect existing services, maintain dry trenches where possible, and stage backfill so inspections can occur without re-digging."
-          ],
-          "closing": "Municipal and private site servicing for new builds and expansions."
-        },
-        {
-          "id": "structural-backfill",
-          "layout": "contrast-inset",
-          "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=80&auto=format",
-          "heading": "Structural backfill & compaction",
-          "paragraphs": [
-            "Backfill around foundations and utilities uses engineered materials, moisture control, and lifts that match geotech specifications.",
-            "We coordinate proof rolling and density testing when required so your slab-on-grade and pavement designs perform long term."
-          ],
-          "closing": "Compaction-focused crews for commercial slabs and heavy loads."
-        },
-        {
-          "id": "civil-coordination",
-          "layout": "timeline-flow",
-          "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80&auto=format",
-          "heading": "Civil coordination with trades",
-          "paragraphs": [
-            "We align dig windows with forming, waterproofing, and underground mechanical scopes to avoid idle crews and rework.",
-            "Clear communication on penetrations, sleeves, and tie-in locations keeps the civil package moving in the right order."
-          ],
-          "closing": "Integrated scheduling with GC and trade partners."
-        },
-        {
-          "id": "qa-documentation",
-          "layout": "media-bleed",
-          "image": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1400&q=80&auto=format",
-          "heading": "QA & documentation",
-          "paragraphs": [
-            "Elevation shots, trench photos, and as-built sketches are organized for consultants and owners who need traceability on civil scope.",
-            "When specifications call for third-party verification, we stage work so tests happen without delaying the critical path."
-          ],
-          "closing": "Inspection-ready documentation on request."
-        },
-        {
-          "id": "mass-excavation-pad-prep",
-          "layout": "split-default",
-          "image": "https://images.unsplash.com/photo-1504309092620-359d6f89a352?w=1400&q=80&auto=format",
-          "heading": "Mass excavation & pad preparation",
-          "paragraphs": [
-            "Before footings and utilities, bulk cut-to-fill and pad preparation establish subgrade and platform levels for commercial shells, industrial additions, and phased developments.",
-            "We coordinate rough grading and pad certification with your survey and geotechnical consultants so structural excavation and building placement proceed on an approved surface."
-          ],
-          "closing": "Mass excavation for commercial developments across Simcoe County."
-        }
-      ],
-      "faq": [
-        {
-          "question": "Do you only excavate elevator and dock pits?",
-          "answer": "No. Ground Level Contracting delivers the full civil excavation package for commercial and industrial projects — footings, frost walls, deep cuts with benching or shoring, site servicing trenches, structural backfill, and mass pad work — so your foundation and underground scopes stay with one field partner across Barrie, Orillia, Innisfil, Wasaga Beach, and Simcoe County."
-        },
-        {
-          "question": "Can you work directly from structural IFC drawings?",
-          "answer": "Yes. We build dig, trench, and backfill plans from the latest IFC issue, RFI responses, and geotechnical reports. When details change, we adjust benching, spoils handling, and sequencing so forming and mechanical trades are not left waiting."
-        },
-        {
-          "question": "How do you manage inspection holds on deep trenches or structural backfill?",
-          "answer": "We coordinate inspection windows with your team, keep trenches safe and accessible for reviewers, and protect completed work so re-inspections are uncommon. When density or proof tests are specified, we stage lifts so testing fits the critical path."
-        },
-        {
-          "question": "Do you provide documentation for consultants and owners?",
-          "answer": "Yes. We organize elevation records, photos, and as-built notes suitable for QA and turnover when your specification or contract requires traceability on civil excavation scope."
-        },
-        {
-          "question": "What regions do you serve for commercial foundation excavation?",
-          "answer": "We mobilize for commercial and industrial civil excavation across Barrie, Orillia, Innisfil, Wasaga Beach, Midland, and Simcoe County — including projects that require coordination with municipal servicing and private site plans."
-        }
-      ],
-      "parallaxBand": {
-        "eyebrow": "Civil discipline",
-        "title": "Structure-ready digs & backfill",
-        "subtitle": "IFC-driven sequencing, geotech holds, and trade coordination for commercial shells across Barrie, Orillia, and Simcoe County.",
-        "image": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format",
-        "imageAlt": "Commercial foundation excavation trenching civil infrastructure Barrie Ontario Simcoe County"
-      },
-      "ctaOverride": {
-        "heading": "Book a foundations walkthrough",
-        "buttonLabel": "Call dispatch",
-        "supportingCopy": "Share your structural drawings and schedule — we will align excavation, utilities, and backfill with your concrete and steel milestones."
-      }
+      "closingHeading": "Open the Foundations hub"
     },
     {
       "slug": "drainage-hardscaping",
@@ -442,19 +337,47 @@
       "heroImage": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format",
       "overviewImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format",
       "hubStats": [
-        { "value": "Storm +", "label": "Surface", "sub": "Integrated systems" },
-        { "value": "Armor", "label": "Stone ready", "sub": "Heavy loads" },
-        { "value": "Interlock", "label": "Base prep", "sub": "Engineer lines" }
+        {
+          "value": "Storm +",
+          "label": "Surface",
+          "sub": "Integrated systems"
+        },
+        {
+          "value": "Armor",
+          "label": "Stone ready",
+          "sub": "Heavy loads"
+        },
+        {
+          "value": "Interlock",
+          "label": "Base prep",
+          "sub": "Engineer lines"
+        }
       ],
       "processSection": {
         "eyebrow": "Drainage workflow",
         "heading": "Grade, drain, protect — ",
         "headingAccent": "then pave",
         "steps": [
-          { "num": "01", "title": "Analyze flow", "desc": "Grading plans, catchment, and tie-ins to municipal storm networks." },
-          { "num": "02", "title": "Excavate runs", "desc": "Swales, trench drains, and pipe runs with proper fall and bedding." },
-          { "num": "03", "title": "Structure prep", "desc": "Wall footings, paver bases, and armor placement to specification." },
-          { "num": "04", "title": "Finish coordination", "desc": "Top course elevations for asphalt, concrete, or landscape trades." }
+          {
+            "num": "01",
+            "title": "Analyze flow",
+            "desc": "Grading plans, catchment, and tie-ins to municipal storm networks."
+          },
+          {
+            "num": "02",
+            "title": "Excavate runs",
+            "desc": "Swales, trench drains, and pipe runs with proper fall and bedding."
+          },
+          {
+            "num": "03",
+            "title": "Structure prep",
+            "desc": "Wall footings, paver bases, and armor placement to specification."
+          },
+          {
+            "num": "04",
+            "title": "Finish coordination",
+            "desc": "Top course elevations for asphalt, concrete, or landscape trades."
+          }
         ]
       },
       "hero": {
@@ -468,13 +391,34 @@
         ]
       },
       "scopeStrip": [
-        { "label": "Overview", "href": "#overview" },
-        { "label": "Scope", "href": "#scope" },
-        { "label": "Capabilities", "href": "#field-capabilities" },
-        { "label": "Process", "href": "#process" },
-        { "label": "FAQ", "href": "#faq" },
-        { "label": "Related", "href": "#related-services" },
-        { "label": "Get a quote", "href": "#request-site-visit" }
+        {
+          "label": "Overview",
+          "href": "#overview"
+        },
+        {
+          "label": "Scope",
+          "href": "#scope"
+        },
+        {
+          "label": "Capabilities",
+          "href": "#field-capabilities"
+        },
+        {
+          "label": "Process",
+          "href": "#process"
+        },
+        {
+          "label": "FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Related",
+          "href": "#related-services"
+        },
+        {
+          "label": "Get a quote",
+          "href": "#request-site-visit"
+        }
       ],
       "intro": [
         "We establish positive drainage away from structures, install catch basins and storm pipe runs, and prepare subgrades for pavers, asphalt, and retaining walls.",
@@ -622,19 +566,47 @@
       },
       "heroImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80&auto=format",
       "hubStats": [
-        { "value": "All", "label": "Materials", "sub": "Import / export" },
-        { "value": "Full", "label": "Logistics", "sub": "Site coordination" },
-        { "value": "Same-day", "label": "Dispatch", "sub": "When scheduled" }
+        {
+          "value": "All",
+          "label": "Materials",
+          "sub": "Import / export"
+        },
+        {
+          "value": "Full",
+          "label": "Logistics",
+          "sub": "Site coordination"
+        },
+        {
+          "value": "Same-day",
+          "label": "Dispatch",
+          "sub": "When scheduled"
+        }
       ],
       "processSection": {
         "eyebrow": "Site logistics",
         "heading": "Move material, clear lines, ",
         "headingAccent": "keep pace",
         "steps": [
-          { "num": "01", "title": "Waste streams", "desc": "Segregate spoils, demo debris, and brush for efficient haul-out and tipping." },
-          { "num": "02", "title": "Import schedule", "desc": "Granular and structural fill coordinated with your geotech and placement plan." },
-          { "num": "03", "title": "Clear & stage", "desc": "Vegetation, stumps, and obstructions removed to keep production lanes open." },
-          { "num": "04", "title": "Traffic control", "desc": "Truck routes, pile locations, and dust control aligned with site rules." }
+          {
+            "num": "01",
+            "title": "Waste streams",
+            "desc": "Segregate spoils, demo debris, and brush for efficient haul-out and tipping."
+          },
+          {
+            "num": "02",
+            "title": "Import schedule",
+            "desc": "Granular and structural fill coordinated with your geotech and placement plan."
+          },
+          {
+            "num": "03",
+            "title": "Clear & stage",
+            "desc": "Vegetation, stumps, and obstructions removed to keep production lanes open."
+          },
+          {
+            "num": "04",
+            "title": "Traffic control",
+            "desc": "Truck routes, pile locations, and dust control aligned with site rules."
+          }
         ]
       },
       "hero": {
@@ -648,13 +620,34 @@
         ]
       },
       "scopeStrip": [
-        { "label": "Overview", "href": "#overview" },
-        { "label": "Scope", "href": "#scope" },
-        { "label": "Capabilities", "href": "#field-capabilities" },
-        { "label": "Process", "href": "#process" },
-        { "label": "FAQ", "href": "#faq" },
-        { "label": "Related", "href": "#related-services" },
-        { "label": "Get a quote", "href": "#request-site-visit" }
+        {
+          "label": "Overview",
+          "href": "#overview"
+        },
+        {
+          "label": "Scope",
+          "href": "#scope"
+        },
+        {
+          "label": "Capabilities",
+          "href": "#field-capabilities"
+        },
+        {
+          "label": "Process",
+          "href": "#process"
+        },
+        {
+          "label": "FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Related",
+          "href": "#related-services"
+        },
+        {
+          "label": "Get a quote",
+          "href": "#request-site-visit"
+        }
       ],
       "intro": [
         "Our fleet supports ongoing excavation with tri-axle and dump truck hauling for topsoil, fill, granular, and export spoils.",
@@ -790,19 +783,47 @@
       },
       "heroImage": "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=1600&q=80&auto=format",
       "hubStats": [
-        { "value": "Seasonal", "label": "Contracts", "sub": "Commercial focus" },
-        { "value": "24hr", "label": "Storm response", "sub": "When contracted" },
-        { "value": "Lots +", "label": "Roads", "sub": "Industrial yards" }
+        {
+          "value": "Seasonal",
+          "label": "Contracts",
+          "sub": "Commercial focus"
+        },
+        {
+          "value": "24hr",
+          "label": "Storm response",
+          "sub": "When contracted"
+        },
+        {
+          "value": "Lots +",
+          "label": "Roads",
+          "sub": "Industrial yards"
+        }
       ],
       "processSection": {
         "eyebrow": "Winter operations",
         "heading": "Monitor, dispatch, clear — ",
         "headingAccent": "document",
         "steps": [
-          { "num": "01", "title": "Storm watch", "desc": "Weather triggers and route priority aligned with your contract tier." },
-          { "num": "02", "title": "Open lanes", "desc": "Plowing sequence for lots, drives, and critical fire routes first." },
-          { "num": "03", "title": "Ice control", "desc": "Salt or melt products per site rules and environmental constraints." },
-          { "num": "04", "title": "Stack & report", "desc": "Loader stacking where space is tight plus service logs for property teams." }
+          {
+            "num": "01",
+            "title": "Storm watch",
+            "desc": "Weather triggers and route priority aligned with your contract tier."
+          },
+          {
+            "num": "02",
+            "title": "Open lanes",
+            "desc": "Plowing sequence for lots, drives, and critical fire routes first."
+          },
+          {
+            "num": "03",
+            "title": "Ice control",
+            "desc": "Salt or melt products per site rules and environmental constraints."
+          },
+          {
+            "num": "04",
+            "title": "Stack & report",
+            "desc": "Loader stacking where space is tight plus service logs for property teams."
+          }
         ]
       },
       "hero": {
@@ -816,13 +837,34 @@
         ]
       },
       "scopeStrip": [
-        { "label": "Overview", "href": "#overview" },
-        { "label": "Scope", "href": "#scope" },
-        { "label": "Capabilities", "href": "#field-capabilities" },
-        { "label": "Process", "href": "#process" },
-        { "label": "FAQ", "href": "#faq" },
-        { "label": "Related", "href": "#related-services" },
-        { "label": "Get a quote", "href": "#request-site-visit" }
+        {
+          "label": "Overview",
+          "href": "#overview"
+        },
+        {
+          "label": "Scope",
+          "href": "#scope"
+        },
+        {
+          "label": "Capabilities",
+          "href": "#field-capabilities"
+        },
+        {
+          "label": "Process",
+          "href": "#process"
+        },
+        {
+          "label": "FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Related",
+          "href": "#related-services"
+        },
+        {
+          "label": "Get a quote",
+          "href": "#request-site-visit"
+        }
       ],
       "intro": [
         "Ground Level provides reliable winter maintenance for properties across Barrie, Midland, Orillia, and Simcoe County — with clear routes, documented service, and rapid response during storms.",

@@ -50,10 +50,12 @@ export default function ContactPage() {
             {cta.phone}
           </a>
         </p>
-        <a href={cta.emailCta.href} className="btn-primary" style={{ marginBottom: 48 }}>
-          {cta.emailCta.label}
-          <IconArrow />
-        </a>
+        {cta.emailCta ? (
+          <a href={cta.emailCta.href} className="btn-primary" style={{ marginBottom: 48 }}>
+            {cta.emailCta.label}
+            <IconArrow />
+          </a>
+        ) : null}
 
         <h2 className="services__heading" style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", marginBottom: 16 }}>
           Mailing <span>address</span>

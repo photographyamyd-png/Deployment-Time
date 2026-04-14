@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { SmartLink } from "@/components/ui/smart-link";
+import { DrainageDenseText } from "@/components/services/drainage-hardscaping/drainage-typography";
 import { DRAINAGE_HUB_CAPABILITY_TABS } from "@/content/drainage-hub-capability-tabs";
 import {
   DRAINAGE_HUB_SCOPE_CARDS,
@@ -55,13 +56,18 @@ export function DrainageHubScope() {
               {line2 ? (
                 <>
                   <br />
-                  <span>{line2}</span>
+                  <em className="svlayer__headline-accent">{line2}</em>
                 </>
               ) : null}
             </h2>
+            <div className="about__divider glc-drain-hub__scope-head-rule" aria-hidden />
           </Reveal>
           <Reveal delayClass="reveal--delay-2">
-            <p className="services__intro">{introFromLinkLabels}</p>
+            <DrainageDenseText
+              text={introFromLinkLabels}
+              ledeClassName="services__intro"
+              innerClassName="services__intro glc-drain-hub__scope-intro--more"
+            />
             <ul className="svlayer__scope" aria-label="Service lines on this hub">
               {DRAINAGE_HUB_SCOPE_CARDS.map((c) => (
                 <li key={c.id}>{c.title}</li>
@@ -102,7 +108,11 @@ export function DrainageHubScope() {
                   <span className="svlayer__card-signal" aria-hidden />
                 </summary>
                 <div className="svlayer__card-panel">
-                  <p className="svlayer__card-desc">{card.body}</p>
+                  <DrainageDenseText
+                    text={card.body}
+                    ledeClassName="svlayer__card-desc"
+                    innerClassName="svlayer__card-desc glc-drain-hub__scope-card-desc--more"
+                  />
                   <SmartLink href={card.href} className="svlayer__card-cta">
                     {card.linkLabel}
                     <IconArrow />

@@ -23,7 +23,8 @@ export function CoverageSection(props: CoverageProps) {
             </Reveal>
             <Reveal delayClass="reveal--delay-2">
               <p className="coverage__lede">
-                Headquartered in Barrie with county-wide dispatch — no travel surcharges within Simcoe County.
+                {props.intro ??
+                  "Headquartered in Barrie with county-wide dispatch — no travel surcharges within Simcoe County."}
               </p>
             </Reveal>
           </div>
@@ -52,6 +53,9 @@ export function CoverageSection(props: CoverageProps) {
             >
               <div className="glc-density-acc__panel-inner">
                 <p className="coverage__panel-body">{props.body}</p>
+                {props.localityLine ? (
+                  <p className="coverage__locality-line">{props.localityLine}</p>
+                ) : null}
                 <div className="coverage__areas" role="list">
                   {props.areas.map((a) => (
                     <div key={a.name} className="coverage__area" role="listitem">
@@ -63,6 +67,9 @@ export function CoverageSection(props: CoverageProps) {
                     </div>
                   ))}
                 </div>
+                {props.closingLine ? (
+                  <p className="coverage__panel-close">{props.closingLine}</p>
+                ) : null}
               </div>
             </div>
           </div>

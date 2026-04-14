@@ -10,9 +10,19 @@
           "line3": "To Creation",
           "emphasizeLine": 2
         },
-        "lede": "Ground Level Contracting is Barrie's trusted commercial excavation and civil infrastructure contractor — delivering excavation (including septic and utility trenching), foundations, drainage, and site servicing for project managers and site supervisors across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County. We prepare land for development, on time, every time.",
-        "primaryCta": { "label": "Request a Quote", "href": "tel:+17056194902" },
-        "secondaryCta": { "label": "View Our Services", "href": "/#services" },
+        "subheadline": "Site prep, foundations, drainage, hardscaping & commercial snow — one contractor, every phase.",
+        "lede": "Ground Level Contracting is Barrie and Simcoe County's full-service civil contractor — builders, developers, engineers, municipalities, and property owners choose us when the ground has to be right. Commercial equipment, crew depth, and accountable coordination from first cut to final grade across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County.",
+        "primaryCta": { "label": "Get a Free Project Estimate", "href": "/contact/" },
+        "secondaryCta": { "label": "Call Us: 705-619-4902", "href": "tel:+17056194902" },
+        "ctaMicrocopy": "No obligation. Free site visit. Fully licensed & insured. We respond within 24 hours.",
+        "trustItems": [
+          "Fully Licensed & Insured in Ontario",
+          "WSIB Registered & In Good Standing",
+          "OBC Compliant — All Work to Code",
+          "Commercial, Residential & Municipal Projects",
+          "GPS-Tracked Equipment Fleet",
+          "Free On-Site Estimates — Simcoe County"
+        ],
         "stats": [
           { "value": "15+", "label": "Years of Commercial Field Experience" },
           { "value": "500+", "label": "Commercial Projects Completed" }
@@ -98,16 +108,28 @@
         ],
         "cta": { "label": "Discuss Your Project", "href": "tel:+17056194902" },
         "mediaStat": { "value": "15+", "label": "Yrs. Field Experience" },
-        "badgeText": "Licensed & Insured"
+        "badgeText": "Licensed & Insured",
+        "whoWeServe": {
+          "title": "Who we work with",
+          "intro": "Ground Level Contracting serves clients at every level of the construction and development industry across Simcoe County.",
+          "chips": [
+            "General contractors & builders",
+            "Residential developers",
+            "Engineers & architects",
+            "Commercial property owners",
+            "Municipal & public sector",
+            "Homeowners & custom builders"
+          ]
+        }
       }
     },
     {
       "type": "services",
       "props": {
         "eyebrow": "What We Do",
-        "headingLine1": "Five Core",
-        "headingLine2": "Service Lines",
-        "intro": "Ground Level Contracting delivers the full scope of civil infrastructure for commercial builds across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County — from first cuts on the ground through utilities, drainage, and winter operations."
+        "headingLine1": "Full-Service Civil",
+        "headingLine2": "Across Simcoe County",
+        "intro": "Ground Level Contracting is built to handle every phase of civil and site work — from raw land to finished project. Five coordinated service lines cover excavation, foundations, drainage & hardscaping, hauling & clearing, and commercial snow — one dispatch standard for builds across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County."
       }
     },
     {
@@ -217,7 +239,11 @@
             "name": "James R.",
             "role": "Construction coordinator — owner-led retail rollout (Central Ontario)"
           }
-        ]
+        ],
+        "googleReviews": {
+          "label": "Read more reviews on Google",
+          "href": "https://www.google.com/search?q=Ground+Level+Contracting+Barrie+reviews"
+        }
       }
     },
     {
@@ -227,7 +253,10 @@
         "headingBefore": "Serving ",
         "headingEmphasis": "Barrie, Midland, Orillia, Innisfil, Wasaga Beach & Simcoe County",
         "headingAfter": "",
-        "body": "Ground Level Contracting is headquartered in Barrie and operates commercially across our full service territory. We move quickly — no extended mobilization delays and no travel surcharges within Simcoe County.",
+        "intro": "Based in Simcoe County, our equipment and crews operate throughout the region — from Barrie's growth corridors and the Highway 400 spine to lakeside work, rural lots, and expanding development in Innisfil and surrounding municipalities.",
+        "body": "Ground Level Contracting is headquartered in Barrie and dispatches county-wide for commercial excavation and civil work. We plan mobilization for efficiency — no unnecessary travel delays and no travel surcharges within Simcoe County for qualifying projects.",
+        "localityLine": "Barrie · Orillia · Innisfil · Wasaga Beach · Angus · Springwater · Oro-Medonte · New Tecumseth · Collingwood · Midland · Penetanguishene · Bradford · Cookstown · Alcona · Stroud · Thornton · Minesing · Churchill · Gilford · Essa · Simcoe County",
+        "closingLine": "Working on a project outside these areas? Call us — if we can get a machine there, we will.",
         "areas": [
           { "name": "Barrie", "sub": "Primary base, dispatch hub & largest market" },
           { "name": "Midland", "sub": "Commercial, industrial & municipal projects" },
@@ -279,6 +308,14 @@
         "phoneLabel": "Call Direct",
         "phone": "705-619-4902",
         "phoneHref": "tel:+17056194902",
+        "formCta": {
+          "label": "Get a Free Estimate",
+          "href": "/contact/"
+        },
+        "processCta": {
+          "label": "Learn About Our Process",
+          "href": "/#process"
+        },
         "emailCta": {
           "label": "Email Us",
           "href": "mailto:info@groundlevelcontracting.com"

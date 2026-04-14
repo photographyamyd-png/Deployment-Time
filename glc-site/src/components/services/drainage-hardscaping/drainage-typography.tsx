@@ -1,5 +1,6 @@
 import { splitFirstTwoSentences, splitHeadingForDisplay } from "@/lib/copy-density";
 
+/** Mandatory clone pattern — summary label verbatim. */
 const READMORE_SUMMARY = "Technical depth & field notes";
 
 type DenseProps = {
@@ -27,7 +28,7 @@ export function DrainageDenseParagraphStack({
       {hasReadmore ? (
         <details className="service-cap-readmore glc-drain-hub__readmore">
           <summary>{READMORE_SUMMARY}</summary>
-          <div className="service-cap-readmore__inner">
+          <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
             {remainder ? <p className={innerClassName}>{remainder}</p> : null}
             {rest.map((p) => (
               <p key={p.slice(0, 40)} className={innerClassName}>
@@ -60,7 +61,7 @@ export function DrainageDenseText({
       <p className={ledeClassName}>{lead}</p>
       <details className="service-cap-readmore glc-drain-hub__readmore">
         <summary>{READMORE_SUMMARY}</summary>
-        <div className="service-cap-readmore__inner">
+        <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
           <p className={innerClassName}>{remainder}</p>
         </div>
       </details>

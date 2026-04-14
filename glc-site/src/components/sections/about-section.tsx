@@ -42,6 +42,20 @@ export function AboutSection(props: AboutProps) {
             <p className="ab3__body">{props.body}</p>
           </Reveal>
 
+          {props.whoWeServe ? (
+            <Reveal delayClass="reveal--delay-2" className="ab3__who-serve">
+              <p className="ab3__who-serve-title">{props.whoWeServe.title}</p>
+              <p className="ab3__who-serve-intro">{props.whoWeServe.intro}</p>
+              <ul className="ab3__who-serve-chips" aria-label="Who we work with">
+                {props.whoWeServe.chips.map((c) => (
+                  <li key={c} className="ab3__who-serve-chip">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ) : null}
+
           {/* Credentials — 4-cell compact grid */}
           <Reveal delayClass="reveal--delay-3" className="ab3__creds">
             {props.credentials.map((c, i) => (

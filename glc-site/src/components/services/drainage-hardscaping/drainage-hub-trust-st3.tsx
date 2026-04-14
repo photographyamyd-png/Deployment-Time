@@ -13,7 +13,7 @@ const DELAYS: (RevealDelayClass | undefined)[] = [
 /** Step 1b — st3 trust rail + grid (text cells, not counters). */
 export function DrainageHubTrustSt3() {
   return (
-    <section id="stats" aria-label={DRAINAGE_HUB_TRUST_ST3.ariaLabel}>
+    <section id="stats" className="st3" aria-label={DRAINAGE_HUB_TRUST_ST3.ariaLabel}>
       <div className="st3__top-rail" aria-hidden />
       <div className="st3__inner">
         <div className="st3__side-label" aria-hidden>

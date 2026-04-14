@@ -2,7 +2,6 @@ import type { HomePageContent } from "@/content/types";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
 import type { NavigationConfig } from "@/content/types";
-import { SectionRenderer } from "@/components/sections/section-renderer";
 import type { Metadata } from "next";
 import site from "@/content/site.json";
 import type { SiteConfig } from "@/content/types";
@@ -14,13 +13,13 @@ const navData = navigation as NavigationConfig;
 const siteData = site as SiteConfig;
 
 const homeSeo = pageMetadata({
-  title: "Excavation & Site Preparation Barrie | Simcoe County | Orillia | Innisfil",
+  title: "Ground Level Contracting | Barrie & Simcoe County Contractor",
   description:
-    "Professional commercial & industrial excavation, grading, trenching & site prep across Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County. Free quotes.",
+    "Full-service civil contractor in Barrie & Simcoe County. Excavation, foundations, drainage, hardscaping & commercial snow removal. Licensed, insured. Free estimates.",
   path: ROUTES.home,
-  ogTitle: "Expert Excavation & Site Prep — Serving All of Simcoe County",
+  ogTitle: "Ground Level Contracting | Barrie's Civil & Site Services Contractor",
   ogDescription:
-    "From precision grading to full commercial & industrial site prep — we dig deep across Barrie, Orillia, Wasaga Beach & beyond. Call for a free estimate.",
+    "Excavation, foundations, civil infrastructure, drainage, hardscaping & commercial snow removal — serving Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County.",
 });
 
 export const metadata: Metadata = {
@@ -28,18 +27,23 @@ export const metadata: Metadata = {
   openGraph: {
     ...homeSeo.openGraph,
     siteName: siteData.name,
-    title: "Expert Excavation & Site Prep — Serving All of Simcoe County",
+    title: "Ground Level Contracting | Barrie's Civil & Site Services Contractor",
+    type: "website",
+    locale: "en_CA",
     url: canonicalUrl(ROUTES.home),
   },
 };
 
-export default function HomePage() {
+/** Kept in `home.json` for service hub reuse; omitted on the homepage for a shorter scroll. */
+const HOME_SECTION_SKIP = new Set<string>(["stats", "marquee", "parallaxBand"]);
+
+export default async function HomePage() {
+  const { SectionRenderer } = await import("@/components/sections/section-renderer");
+  const sections = homeContent.sections.filter((s) => !HOME_SECTION_SKIP.has(s.type));
+
   return (
     <main id="main-content">
-      <SectionRenderer
-        sections={homeContent.sections}
-        megaCards={navData.megaMenu.cards}
-      />
+      <SectionRenderer sections={sections} megaCards={navData.megaMenu.cards} />
     </main>
   );
 }

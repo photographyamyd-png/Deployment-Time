@@ -106,7 +106,12 @@ export function HeroSection(props: HeroProps) {
     coverage,
     serviceBarSlugTitles,
     parallaxBackgroundImage,
+    ctaMicrocopy,
+    trustItems,
   } = props;
+
+  const isTelOrMail = (href: string) =>
+    href.startsWith("tel:") || href.startsWith("mailto:");
 
   const sectionRef  = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -342,38 +347,82 @@ export function HeroSection(props: HeroProps) {
 
           {/* ── CTA row ── */}
           <motion.div
-            className="hero-v2__cta-row"
+            className="hero-v2__cta-stack"
             variants={FADE_UP}
             custom={1}
             initial="hidden"
             animate="visible"
           >
-            <motion.a
-              href={primaryCta.href}
-              className="btn-primary"
-              whileHover={{ scale: 1.025, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 380, damping: 18 }}
-            >
-              {primaryCta.label}
-              <IconArrow />
-            </motion.a>
+            <div className="hero-v2__cta-row">
+              {isTelOrMail(primaryCta.href) ? (
+                <motion.a
+                  href={primaryCta.href}
+                  className="btn-primary"
+                  whileHover={{ scale: 1.025, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                >
+                  {primaryCta.label}
+                  <IconArrow />
+                </motion.a>
+              ) : (
+                <MotionSmartLink
+                  href={primaryCta.href}
+                  className="btn-primary"
+                  whileHover={{ scale: 1.025, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                >
+                  {primaryCta.label}
+                  <IconArrow />
+                </MotionSmartLink>
+              )}
 
-            <MotionSmartLink
-              href={secondaryCta.href}
-              className="btn-hero-glass"
-              whileHover={{ scale: 1.025, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 380, damping: 18 }}
-            >
-              {secondaryCta.label}
-            </MotionSmartLink>
+              {isTelOrMail(secondaryCta.href) ? (
+                <motion.a
+                  href={secondaryCta.href}
+                  className="btn-hero-glass"
+                  whileHover={{ scale: 1.025, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                >
+                  {secondaryCta.label}
+                </motion.a>
+              ) : (
+                <MotionSmartLink
+                  href={secondaryCta.href}
+                  className="btn-hero-glass"
+                  whileHover={{ scale: 1.025, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                >
+                  {secondaryCta.label}
+                </MotionSmartLink>
+              )}
+            </div>
+            {ctaMicrocopy ? (
+              <p className="hero-v2__cta-microcopy">{ctaMicrocopy}</p>
+            ) : null}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* ════ SERVICE BAR ═══════════════════════════════════════════════════ */}
+      {/* Single frosted footer (spec §4.2 layer 4): optional trust row + service tiles — one gold rail, no extra mid-hero band */}
       <div className="hero-v2__service-bar">
+        {trustItems && trustItems.length > 0 ? (
+          <div className="hero-v2__trust-row" aria-label="Credentials">
+            <div className="hero-v2__trust-inner">
+              {trustItems.map((t) => (
+                <span key={t} className="hero-v2__trust-item">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {trustItems && trustItems.length > 0 ? (
+          <div className="hero-v2__trust-seam" aria-hidden />
+        ) : null}
         <div className="hero-v2__service-inner">
           {serviceBarSlugTitles.map((s, i) => (
             <motion.div

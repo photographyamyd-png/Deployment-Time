@@ -1,6 +1,7 @@
 "use client";
 
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { SmartLink } from "@/components/ui/smart-link";
 import type { TestimonialsProps } from "@/content/types";
 
 export function TestimonialsSection(props: TestimonialsProps) {
@@ -34,11 +35,17 @@ export function TestimonialsSection(props: TestimonialsProps) {
           </div>
         ))}
       </div>
-      <div className="tst3__cta">
+      <div className="tst3__cta-row">
         <a href="tel:+17056194902" className="btn-primary">
           Request a Quote
           <IconArrow />
         </a>
+        {props.googleReviews ? (
+          <SmartLink href={props.googleReviews.href} className="tst3__google-link">
+            {props.googleReviews.label}
+            <IconArrow />
+          </SmartLink>
+        ) : null}
       </div>
     </section>
   );

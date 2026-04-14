@@ -1,16 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useId, useState } from "react";
+import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { Reveal } from "@/components/ui/reveal";
-import { DrainageFragmentedH2 } from "@/components/services/drainage-hardscaping/drainage-typography";
+import {
+  DrainageDenseText,
+  DrainageFragmentedH2,
+} from "@/components/services/drainage-hardscaping/drainage-typography";
 import type { HubCapabilityBlock, HubCapabilityTab } from "@/content/drainage-hub-types";
-import { DRAINAGE_HUB_INTERACTIVE, DRAINAGE_HUB_MID_CTA } from "@/content/drainage-hardscaping-page";
+import {
+  DRAINAGE_HUB_INTERACTIVE,
+  DRAINAGE_HUB_MID_CTA,
+  DRAINAGE_HUB_OVERVIEW_MEDIA_STAT,
+} from "@/content/drainage-hardscaping-page";
 import { splitFirstTwoSentences } from "@/lib/copy-density";
 import { ROUTES } from "@/lib/routes";
 import type { SiteConfig } from "@/content/types";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+const FEATURES_MAX = 6;
+const READMORE_SUMMARY = "Technical depth & field notes";
 
 function buildTabLedeAndReadmore(blocks: HubCapabilityBlock[]): {
   h2Text: string;
@@ -36,21 +48,10 @@ function buildTabLedeAndReadmore(blocks: HubCapabilityBlock[]): {
   return { h2Text, lede: lead, readmoreBlocks };
 }
 
-function CapabilityTabMedia({ tab }: { tab: HubCapabilityTab }) {
-  return (
-    <div className="about__media service-cap-split__media glc-drain-hub__cap-media">
-      <div className="service-cap-split__media-slab" aria-hidden />
-      <div className="about__media-shell glc-drain-hub__media-shell--fill">
-        <Image
-          src={tab.imageSrc}
-          alt={tab.imageAlt}
-          fill
-          className="glc-drain-hub__media-fill"
-          sizes="(max-width: 900px) 100vw, min(560px, 50vw)"
-        />
-      </div>
-    </div>
-  );
+function firstUlItems(blocks: HubCapabilityBlock[], maxItems: number): string[] {
+  const ul = blocks.find((b): b is Extract<HubCapabilityBlock, { kind: "ul" }> => b.kind === "ul");
+  if (!ul) return [];
+  return ul.items.slice(0, maxItems);
 }
 
 function HubCapabilityBlocks({ blocks }: { blocks: HubCapabilityBlock[] }) {
@@ -86,7 +87,7 @@ function HubCapabilityBlocks({ blocks }: { blocks: HubCapabilityBlock[] }) {
                   {lead}
                 </p>
                 <details className="service-cap-readmore glc-drain-hub__readmore glc-drain-hub__readmore--nested">
-                  <summary>Technical depth &amp; field notes</summary>
+                  <summary>{READMORE_SUMMARY}</summary>
                   <div className="service-cap-readmore__inner">
                     <p className="about__body glc-drain-hub__cap-readmore-p">{remainder}</p>
                   </div>
@@ -182,90 +183,84 @@ function HubCapabilityBlocks({ blocks }: { blocks: HubCapabilityBlock[] }) {
   );
 }
 
-function CapabilityEditorialSplit({
-  tab,
-  tabPrimaryCta,
-  tabSecondaryCta,
-  tabSecondaryHref,
-}: {
-  tab: HubCapabilityTab;
-  tabPrimaryCta: string;
-  tabSecondaryCta: string;
-  tabSecondaryHref: string;
-}) {
-  const { h2Text, lede, readmoreBlocks } = buildTabLedeAndReadmore(tab.blocks);
-  const hasReadmore = readmoreBlocks.length > 0;
-  const hasH2 = Boolean(h2Text);
+function Stc1RailIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+      <rect x="0" y="0" width="6" height="6" fill="var(--yellow-core)" opacity="0.7" />
+      <rect x="8" y="0" width="6" height="6" fill="var(--yellow-core)" opacity="0.3" />
+      <rect x="0" y="8" width="6" height="6" fill="var(--yellow-core)" opacity="0.3" />
+      <rect x="8" y="8" width="6" height="6" fill="var(--yellow-core)" opacity="0.15" />
+    </svg>
+  );
+}
 
-  if (!hasH2) {
+function Stc1PanelMotif({ index }: { index: number }) {
+  const v = index % 4;
+  if (v === 0) {
     return (
-      <section className="service-cap-block service-cap-block--split service-cap-block--editorial glc-drain-hub__cap-editorial">
-        <div className="about__inner service-cap-split__grid glc-drain-hub__cap-split-grid">
-          <div className="about__copy service-cap-split__copy glc-drain-hub__cap-fallback-copy">
-            <Reveal>
-              <HubCapabilityBlocks blocks={tab.blocks} />
-            </Reveal>
-          </div>
-          <CapabilityTabMedia tab={tab} />
-        </div>
-      </section>
+      <svg
+        className="stc1__motif motif-corner"
+        viewBox="0 0 200 200"
+        fill="none"
+        stroke="var(--yellow-core)"
+        strokeWidth="1"
+        aria-hidden
+      >
+        <path d="M200 0 L0 0 L0 200" />
+        <path d="M200 20 L20 20 L20 200" />
+        <path d="M200 40 L40 40 L40 200" opacity="0.5" />
+      </svg>
     );
   }
-
+  if (v === 1) {
+    return (
+      <svg
+        className="stc1__motif motif-slash"
+        viewBox="0 0 160 160"
+        fill="none"
+        stroke="var(--yellow-core)"
+        strokeWidth="1"
+        aria-hidden
+      >
+        <line x1="0" y1="160" x2="160" y2="0" />
+        <line x1="20" y1="160" x2="160" y2="20" />
+        <line x1="40" y1="160" x2="160" y2="40" />
+        <line x1="60" y1="160" x2="160" y2="60" />
+        <line x1="80" y1="160" x2="160" y2="80" />
+      </svg>
+    );
+  }
+  if (v === 2) {
+    return (
+      <svg
+        className="stc1__motif motif-cross"
+        viewBox="0 0 120 120"
+        fill="none"
+        stroke="var(--yellow-core)"
+        strokeWidth="1"
+        aria-hidden
+      >
+        <circle cx="60" cy="60" r="55" />
+        <circle cx="60" cy="60" r="35" />
+        <circle cx="60" cy="60" r="15" />
+        <line x1="0" y1="60" x2="120" y2="60" />
+        <line x1="60" y1="0" x2="60" y2="120" />
+      </svg>
+    );
+  }
   return (
-    <section className="service-cap-block service-cap-block--split service-cap-block--editorial glc-drain-hub__cap-editorial">
-      <div className="about__inner service-cap-split__grid glc-drain-hub__cap-split-grid">
-        <div className="about__copy service-cap-split__copy">
-          <Reveal>
-            <div className="eyebrow eyebrow--dark">{tab.eyebrow}</div>
-          </Reveal>
-          <Reveal delayClass="reveal--delay-1">
-            <DrainageFragmentedH2
-              text={h2Text}
-              className="about__heading glc-drain-hub__cap-hero-h2"
-            />
-          </Reveal>
-          <Reveal delayClass="reveal--delay-1">
-            <div className="about__divider service-cap-split__rule" />
-          </Reveal>
-          {lede ? (
-            <Reveal delayClass="reveal--delay-2">
-              <p className="about__body service-cap-split__lede glc-drain-hub__cap-lede">{lede}</p>
-            </Reveal>
-          ) : null}
-          {hasReadmore ? (
-            <Reveal delayClass="reveal--delay-3">
-              <details className="service-cap-readmore glc-drain-hub__readmore">
-                <summary>Technical depth &amp; field notes</summary>
-                <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
-                  <HubCapabilityBlocks blocks={readmoreBlocks} />
-                </div>
-              </details>
-            </Reveal>
-          ) : null}
-          <Reveal delayClass="reveal--delay-4">
-            <div className="about__credentials service-cap-split__key">
-              <div className="about__credential">
-                <div className="about__credential-title">{tab.credentialTitle}</div>
-                <div className="about__credential-sub">{tab.credentialSub}</div>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delayClass="reveal--delay-5">
-            <div className="service-cap-split__actions glc-drain-hub__cap-actions">
-              <SmartLink href={ROUTES.contact} className="btn-primary">
-                {tabPrimaryCta}
-                <IconArrow />
-              </SmartLink>
-              <SmartLink href={tabSecondaryHref} className="btn-ghost-dark">
-                {tabSecondaryCta} <IconArrow />
-              </SmartLink>
-            </div>
-          </Reveal>
-        </div>
-        <CapabilityTabMedia tab={tab} />
-      </div>
-    </section>
+    <svg
+      className="stc1__motif motif-triangle"
+      viewBox="0 0 100 100"
+      fill="none"
+      stroke="var(--yellow-core)"
+      strokeWidth="1"
+      aria-hidden
+    >
+      <polygon points="50,0 100,100 0,100" />
+      <polygon points="50,20 80,80 20,80" opacity="0.5" />
+      <polygon points="50,40 65,65 35,65" opacity="0.3" />
+    </svg>
   );
 }
 
@@ -275,7 +270,6 @@ type Props = {
 };
 
 export function InteractiveCapabilities({ tabs, site }: Props) {
-  const baseId = useId();
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -308,108 +302,282 @@ export function InteractiveCapabilities({ tabs, site }: Props) {
     ? site.telephone
     : `tel:${site.telephone}`;
 
+  const activeTab = tabs[activeIndex] ?? tabs[0];
+  const {
+    h2Text: detailH2,
+    lede: detailLede,
+    readmoreBlocks: detailReadmoreBlocks,
+  } = buildTabLedeAndReadmore(activeTab.blocks);
+  const detailHeading = detailH2 || activeTab.tabLabel;
+  const hasDetailReadmore = detailReadmoreBlocks.length > 0;
+
   return (
-    <section
-      id="field-capabilities"
-      className="glc-drain-hub__interactive ls"
-      aria-labelledby="drainage-hub-capabilities-h2"
-    >
-      <span className="glc-drain-hub__b-slot" aria-hidden />
-      <div className="glc-drain-hub__interactive-inner container">
-        <div className="glc-drain-hub__interactive-split">
-          <aside className="glc-drain-hub__interactive-aside">
+    <>
+    <div className="glc-drain-site-stc1 glc-drain-hub__stc1">
+      <section
+        id="field-capabilities"
+        className="stc1"
+        aria-labelledby="drainage-hub-capabilities-h2"
+      >
+        <header className="glc-drain-hub__stc1-intro">
+          <div className="glc-drain-hub__stc1-intro-inner">
             <Reveal>
-              <div className="eyebrow eyebrow--dark glc-drain-hub__interactive-eyebrow">
-                {DRAINAGE_HUB_INTERACTIVE.eyebrow}
+              <div className="eyebrow eyebrow--on-dark glc-drain-hub__stc1-intro-eyebrow">
+                <span>{DRAINAGE_HUB_INTERACTIVE.eyebrow}</span>
               </div>
             </Reveal>
             <Reveal delayClass="reveal--delay-1">
-              <h2
-                id="drainage-hub-capabilities-h2"
-                className="glc-drain-hub__interactive-sticky-h"
-              >
-                {DRAINAGE_HUB_INTERACTIVE.stickyH2Line1}{" "}
-                <em className="glc-drain-hub__heading-accent">{DRAINAGE_HUB_INTERACTIVE.stickyH2Accent}</em>
+              <h2 id="drainage-hub-capabilities-h2" className="glc-drain-hub__stc1-intro-h2">
+                {DRAINAGE_HUB_INTERACTIVE.stickyH2Line1}
+                <br />
+                <em className="glc-drain-hub__stc1-intro-h2-em">{DRAINAGE_HUB_INTERACTIVE.stickyH2Accent}</em>
               </h2>
-            </Reveal>
-            <Reveal delayClass="reveal--delay-1">
-              <div className="about__divider service-cap-split__rule glc-drain-hub__interactive-rule" />
+              <div className="stc1__panel-rule glc-drain-hub__stc1-intro-rule" aria-hidden />
             </Reveal>
             <Reveal delayClass="reveal--delay-2">
-              <div className="glc-drain-hub__mid-cta">
-                <p className="glc-drain-hub__mid-cta-heading">{DRAINAGE_HUB_MID_CTA.heading}</p>
-                <p className="glc-drain-hub__mid-cta-support">{DRAINAGE_HUB_MID_CTA.supporting}</p>
-                <div className="glc-drain-hub__mid-cta-row">
-                  <SmartLink href={ROUTES.contact} className="btn-primary">
-                    {DRAINAGE_HUB_MID_CTA.primaryLabel}
-                    <IconArrow />
-                  </SmartLink>
-                  <a href={telHref} className="btn-ghost-dark">
-                    {DRAINAGE_HUB_MID_CTA.secondaryLabel}: {site.telephoneDisplay}
-                  </a>
+              <div className="glc-drain-hub__stc1-intro-body">
+                <p className="glc-drain-hub__stc1-intro-lead">
+                  <strong>{DRAINAGE_HUB_MID_CTA.heading}</strong>
+                </p>
+                <DrainageDenseText
+                  text={DRAINAGE_HUB_MID_CTA.supporting}
+                  ledeClassName="glc-drain-hub__stc1-intro-support"
+                  innerClassName="glc-drain-hub__stc1-intro-support glc-drain-hub__stc1-intro-support--more"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </header>
+
+        <nav className="stc1__rail" aria-label="Capability topics">
+          <div className="stc1__rail-label">
+            <Stc1RailIcon />
+            <span>Capabilities</span>
+          </div>
+          <ul className="stc1__tabs" role="tablist">
+            {tabs.map((tab, i) => {
+              const selected = i === activeIndex;
+              return (
+                <li key={tab.id}>
+                  <button
+                    type="button"
+                    id={tab.id}
+                    role="tab"
+                    aria-selected={selected}
+                    aria-controls={tab.panelId}
+                    tabIndex={selected ? 0 : -1}
+                    className={`stc1__tab${selected ? " active" : ""}`}
+                    onClick={() => setActiveIndex(i)}
+                    onKeyDown={onKeyDown}
+                  >
+                    <span className="stc1__tab-num">{String(i + 1).padStart(2, "0")}</span>
+                    {tab.tabLabel}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div className="stc1__panels">
+          {tabs.map((tab, i) => {
+            const selected = i === activeIndex;
+            const { h2Text, lede } = buildTabLedeAndReadmore(tab.blocks);
+            const headingText = h2Text || tab.tabLabel;
+            const features = firstUlItems(tab.blocks, FEATURES_MAX);
+            const bgUrl = tab.imageSrc.replace(/'/g, "%27");
+
+            return (
+              <div
+                key={tab.id}
+                id={tab.panelId}
+                role="tabpanel"
+                aria-labelledby={tab.id}
+                className={`stc1__panel${selected ? " active" : ""}`}
+              >
+                <div
+                  className="stc1__panel-bg"
+                  style={{ backgroundImage: `url('${bgUrl}')` }}
+                  aria-hidden
+                />
+                <div className="stc1__panel-overlay" aria-hidden />
+                <div className="stc1__panel-grid" aria-hidden />
+                <Stc1PanelMotif index={i} />
+
+                <div className="stc1__panel-content">
+                  <div>
+                    <div className="eyebrow eyebrow--on-dark">
+                      <span>
+                        {String(i + 1).padStart(2, "0")} / {tab.eyebrow}
+                      </span>
+                    </div>
+                    <DrainageFragmentedH2
+                      text={headingText}
+                      className="stc1__panel-heading"
+                      accentClassName="glc-drain-hub__heading-accent"
+                    />
+                    <div className="stc1__panel-rule" aria-hidden />
+                    {lede ? <p className="stc1__panel-body">{lede}</p> : null}
+                    {features.length > 0 ? (
+                      <ul className="stc1__panel-features">
+                        {features.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    <div className="glc-drain-hub__stc1-panel-actions">
+                      <SmartLink href={ROUTES.contact} className="btn-primary">
+                        {DRAINAGE_HUB_INTERACTIVE.tabPanelPrimaryCta}
+                        <IconArrow />
+                      </SmartLink>
+                      <a href={telHref} className="btn-ghost">
+                        {DRAINAGE_HUB_INTERACTIVE.tabPanelSecondaryCta}: {site.telephoneDisplay}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="stc1__card">
+                    <span className="stc1__card-badge">Capability focus</span>
+                    <div className="stc1__stat">
+                      <span className="stc1__stat-label">{tab.credentialTitle}</span>
+                      <p className="stc1__stat-sub">{tab.credentialSub}</p>
+                    </div>
+                    <div className="stc1__stat">
+                      <div className="stc1__stat-num">
+                        48<em>Hr</em>
+                      </div>
+                      <span className="stc1__stat-label">Written quotes</span>
+                      <p className="stc1__stat-sub">Free site assessments · {DRAINAGE_HUB_OVERVIEW_MEDIA_STAT.value} {DRAINAGE_HUB_OVERVIEW_MEDIA_STAT.label}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </div>
+
+      {/* HOMEPAGE_SECTION_CLONE_SPEC §7 — ab3 editorial split, mirrored (media column first / 45–55) */}
+      <section
+        id="field-capability-detail"
+        className="glc-drain-hub__cap-detail-mirror"
+        aria-labelledby="drainage-hub-cap-detail-h2"
+      >
+        <span className="ab3__wm" aria-hidden>
+          GLC
+        </span>
+
+        <div className="ab3__layout glc-drain-hub__ab3-mirror">
+          <div className="ab3__media">
+            <div className="ab3__badge" aria-hidden>
+              <span>{activeTab.tabLabel}</span>
+            </div>
+
+            <div
+              className="ab3__photo ab3__photo--has-img"
+              role="img"
+              aria-label={activeTab.imageAlt}
+            >
+              <Image
+                key={activeTab.id}
+                src={activeTab.imageSrc}
+                alt=""
+                fill
+                className="ab3__photo-img glc-drain-hub__cap-detail-photo-img"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+            </div>
+
+            <motion.div
+              className="ab3__chip"
+              initial={{ opacity: 0, x: -24, y: 8 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.75, delay: 0.35, ease: EASE }}
+              aria-hidden
+            >
+              <div className="ab3__chip-num">{String(activeIndex + 1).padStart(2, "0")}</div>
+              <div className="ab3__chip-lbl">{activeTab.tabLabel}</div>
+            </motion.div>
+
+            <div className="ab3__corner-mark glc-drain-hub__ab3-mirror__corner" aria-hidden />
+          </div>
+
+          <div className="ab3__copy">
+            <Reveal className="ab3__top-row">
+              <span className="eyebrow">Capability depth</span>
+              <span
+                className="ab3__since"
+                aria-label={`${activeTab.eyebrow} — ${activeTab.tabLabel}`}
+              >
+                {activeTab.eyebrow}
+                <span> · {String(activeIndex + 1).padStart(2, "0")}</span>
+              </span>
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-1" className="ab3__heading-wrap">
+              <DrainageFragmentedH2
+                id="drainage-hub-cap-detail-h2"
+                text={detailHeading}
+                className="ab3__heading"
+                accentClassName="ab3__heading-em"
+              />
+              <span className="ab3__heading-rule" aria-hidden />
+            </Reveal>
+
+            {detailLede ? (
+              <Reveal delayClass="reveal--delay-2">
+                <p className="ab3__body">{detailLede}</p>
+              </Reveal>
+            ) : null}
+
+            {hasDetailReadmore ? (
+              <Reveal delayClass="reveal--delay-3">
+                <details className="service-cap-readmore glc-drain-hub__readmore glc-drain-hub__cap-detail-readmore">
+                  <summary>{READMORE_SUMMARY}</summary>
+                  <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
+                    <HubCapabilityBlocks blocks={detailReadmoreBlocks} />
+                  </div>
+                </details>
+              </Reveal>
+            ) : null}
+
+            <Reveal delayClass="reveal--delay-4" className="ab3__creds glc-drain-hub__cap-detail-creds">
+              <div className="ab3__cred">
+                <div className="ab3__cred-idx" aria-hidden>
+                  01
+                </div>
+                <div className="ab3__cred-body">
+                  <div className="ab3__cred-title">{activeTab.credentialTitle}</div>
+                  <div className="ab3__cred-sub">{activeTab.credentialSub}</div>
+                </div>
+              </div>
+              <div className="ab3__cred">
+                <div className="ab3__cred-idx" aria-hidden>
+                  02
+                </div>
+                <div className="ab3__cred-body">
+                  <div className="ab3__cred-title">Written quotes</div>
+                  <div className="ab3__cred-sub">48-hour turnaround · Free site assessments</div>
                 </div>
               </div>
             </Reveal>
-          </aside>
 
-          <div className="glc-drain-hub__interactive-main">
-            <div className="glc-drain-hub__tablist" role="tablist" aria-label="Capability topics">
-              {tabs.map((tab, index) => {
-                const selected = index === activeIndex;
-                const tabId = `${baseId}-${tab.tabId}`;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    id={tabId}
-                    role="tab"
-                    aria-selected={selected}
-                    aria-controls={tab.id}
-                    tabIndex={selected ? 0 : -1}
-                    className={
-                      selected
-                        ? "glc-drain-hub__tab glc-drain-hub__tab--active"
-                        : "glc-drain-hub__tab"
-                    }
-                    onClick={() => setActiveIndex(index)}
-                    onKeyDown={onKeyDown}
-                  >
-                    <span className="glc-drain-hub__tab-label">{tab.tabLabel}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="glc-drain-hub__panels glc-drain-hub__panels--editorial">
-              {tabs.map((tab, index) => {
-                const selected = index === activeIndex;
-                const tabId = `${baseId}-${tab.tabId}`;
-                return (
-                  <div
-                    key={tab.id}
-                    id={tab.id}
-                    role="tabpanel"
-                    aria-labelledby={tabId}
-                    aria-hidden={!selected}
-                    className={
-                      selected
-                        ? "glc-drain-hub__tab-panel glc-drain-hub__tab-panel--active"
-                        : "glc-drain-hub__tab-panel"
-                    }
-                  >
-                    <CapabilityEditorialSplit
-                      tab={tab}
-                      tabPrimaryCta={DRAINAGE_HUB_INTERACTIVE.tabPanelPrimaryCta}
-                      tabSecondaryCta={DRAINAGE_HUB_INTERACTIVE.tabPanelSecondaryCta}
-                      tabSecondaryHref={DRAINAGE_HUB_INTERACTIVE.tabPanelSecondaryHref}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+            <Reveal delayClass="reveal--delay-5">
+              <div className="glc-drain-hub__cap-detail-actions">
+                <SmartLink href={ROUTES.contact} className="btn-primary">
+                  {DRAINAGE_HUB_INTERACTIVE.tabPanelPrimaryCta}
+                  <IconArrow />
+                </SmartLink>
+                <a href={telHref} className="btn-ghost-dark">
+                  {DRAINAGE_HUB_MID_CTA.secondaryLabel}: {site.telephoneDisplay} <IconArrow />
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

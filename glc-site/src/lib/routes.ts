@@ -8,6 +8,9 @@ export const ROUTES = {
   contact: "/contact/",
   services: "/services/",
   service: (slug: string) => `/services/${slug}/`,
+  /** Child pages under the Foundations & Civil hub. */
+  foundationsSub: (subSlug: string) =>
+    `/services/foundations-civil-infrastructure/${subSlug}/`,
   /** Commercial snow location landing pages (strategy doc URLs). */
   snowLocation: (slug: string) => `/locations/${slug}/`,
   privacy: "/privacy/",

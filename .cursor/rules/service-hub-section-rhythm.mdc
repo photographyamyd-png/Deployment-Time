@@ -1,0 +1,43 @@
+---
+description: Mandatory section rhythm for service hubs and non-homepage routes (matches homepage + HOMEPAGE_SECTION_CLONE_SPEC.md).
+alwaysApply: false
+globs:
+  - glc-site/src/components/services/**/*.tsx
+  - glc-site/src/app/services/**/*.tsx
+  - glc-site/src/styles/glc-base.css
+---
+
+# Service hub section rhythm (GLC)
+
+When adding or editing **page-level sections** on any route that is **not** assembled via `section-renderer.tsx` / `home.json`, treat this as **mandatory**. Homepage parity is defined by `HOMEPAGE_SECTION_CLONE_SPEC.md` and `:root` tokens in `glc-base.css`.
+
+## Non-negotiables
+
+1. **Vertical rhythm** — Every full-width band uses **`padding-block: var(--section-v)`** on the section (or the canonical inner shell that owns padding for that pattern). At **`max-width: 768px`** use **`var(--section-v-sm)`** unless the reference homepage block explicitly uses a different breakpoint.
+2. **Tokens only** — Spacing, backgrounds, and typography come from **`glc-base.css`** (`--section-v`, `--section-v-sm`, `--container-max`, `--ease-expo`, etc.). No Tailwind layout utilities on section roots; no static `style={{}}` for margins/padding on layout.
+3. **Shell class** — If a page composes multiple subsections inside one “chapter” (e.g. capabilities + detail), wrap them in a **named shell** class defined in `glc-base.css` (e.g. `glc-drain-hub__interactive`) so **outer** `--section-v` padding is applied once and is grep-able.
+4. **DSE adjacency** — Do not place two charcoal-weight (**`.dse` / svlayer--dse / st3-on-charcoal**) bands adjacent without a **light separator**: mist seam (`.glc-drain-page__mist-seam`), light section, or accent strip. See `design-compliance-preflight.mdc` and HOMEPAGE §3.3.
+5. **DOM order** — Keep the same **eyebrow → heading → rule → body → CTA** hierarchy as the cited homepage section (spec §2–11).
+
+## Checklist before merge
+
+- [ ] Each `<section>` (or single-purpose wrapper) has **documented** vertical padding in `glc-base.css` or inherits it from a homepage-equivalent selector (e.g. `#scope.svlayer`, `#stats.st3`).
+- [ ] **Interactive / multi-block segments** use a wrapper with **outer** `--section-v` so chunks do not visually merge with neighbors.
+- [ ] **Tone changes** (dark → light → dark) use an **A3-class seam** (`.glc-drain-page__mist-seam`) or an existing light band; no raw back-to-back DSE.
+- [ ] **Prose width** on drainage-style hubs respects **68ch** where the brief requires it (scoped classes, not unconstrained body width).
+- [ ] After changing TSX or section CSS: `npm run lint` and `npm run build` from repo root.
+
+## Reference map (homepage → implementation)
+
+| Homepage (spec §3.2) | Tokens / classes |
+|---------------------|------------------|
+| Hero `hero-v2` | `#hero` / hub `#drainage-hub-hero` + shared `hero-v2` CSS |
+| Stats `st3` | `#stats.st3` |
+| About `ab3` | `#about` / hub `#overview` + `ab3__*` |
+| Services `svlayer--dse` | `#services` / hub `#scope` + `svlayer` |
+| Process `proc3` | `#process` / hub `#why-process` + `proc3__layout` |
+| Coverage / CTA | `coverage__*` / `cta3__*` patterns |
+
+## Failure mode this rule prevents
+
+Shipping a new “section” with **only inner content padding** and **no outer section shell**, so bands **visually run together** despite correct typography—because **`--section-v` was never applied at the layout root** and no **mist seam** was inserted at tone boundaries.

@@ -10,7 +10,7 @@ export function StatsSection({ cells }: StatsProps) {
   ] as const;
 
   return (
-    <section id="stats" aria-label="Company statistics">
+    <section id="stats" className="st3" aria-label="Company statistics">
       {/* Yellow punctuation rail */}
       <div className="st3__top-rail" aria-hidden />
 

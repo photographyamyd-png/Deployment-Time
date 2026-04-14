@@ -1,9 +1,10 @@
 {
   "name": "ground-level-contracting",
   "private": true,
-  "description": "Single production app: Next.js in glc-site. Run npm run dev (webpack, port 3040) or npm run dev:alt (3041). Use npm run dev:turbo in glc-site for Turbopack. npm run build && npm run start for production locally.",
+  "description": "Single production app: Next.js in glc-site. Run npm run dev (webpack, port 3040) or npm run dev:alt (3041). After build/start or weird chunk errors, use npm run dev:fresh (cleans .next). Use npm run dev:turbo in glc-site for Turbopack. npm run build && npm run start for production locally.",
   "scripts": {
     "dev": "npm run dev --prefix glc-site",
+    "dev:fresh": "npm run dev:fresh --prefix glc-site",
     "dev:turbo": "npm run dev:turbo --prefix glc-site",
     "dev:alt": "npm run dev:alt --prefix glc-site",
     "build": "npm run build --prefix glc-site",
