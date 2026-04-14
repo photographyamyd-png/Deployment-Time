@@ -71,6 +71,8 @@ export type AccordionSectionProps = {
   items: AccordionContentItem[];
   /** When omitted, production uses split-copy-left-strip-right (current FeaturedAccordion markup). */
   layoutVariant?: FeaturedAccordionLayoutVariant;
+  /** Copy-column badge number; e.g. `05` when there are five service lines. */
+  sectionBadge?: string;
 };
 
 export type AboutProps = {
@@ -160,6 +162,27 @@ export type CtaBandProps = {
   emailCta: { label: string; href: string };
 };
 
+export type HomeParallaxBandProps = {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  imageSrc: string;
+  imageAlt: string;
+  tone: "dark" | "light";
+  cta?: { label: string; href: string };
+};
+
+export type HomeContactStripProps = {
+  eyebrow: string;
+  heading: string;
+  sub: string;
+  phone: { label: string; value: string; href: string };
+  email: { label: string; value: string; href: string };
+  address: { label: string; lines: string[] };
+  cta: { label: string; href: string };
+};
+
 export type HomeSectionBlock =
   | { type: "hero"; props: HeroProps }
   | { type: "marquee"; props: MarqueeProps }
@@ -171,6 +194,8 @@ export type HomeSectionBlock =
   | { type: "process"; props: ProcessProps }
   | { type: "coverage"; props: CoverageProps }
   | { type: "testimonials"; props: TestimonialsProps }
+  | { type: "parallaxBand"; props: HomeParallaxBandProps }
+  | { type: "contactStrip"; props: HomeContactStripProps }
   | { type: "ctaBand"; props: CtaBandProps };
 
 export type HomePageContent = {

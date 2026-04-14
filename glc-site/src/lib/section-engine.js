@@ -56,8 +56,6 @@ const SERVICE_VARIANT_MAP = {
   "excavation-site-preparation": "HEAVY_CONTENT",
   "foundations-civil": "TRUST_FIRST",
   "foundations-civil-infrastructure": "TRUST_FIRST",
-  "septic-utilities": "HEAVY_CONTENT",
-  "septic-utility-systems": "HEAVY_CONTENT",
   "drainage-hardscaping": "HEAVY_CONTENT",
   "hauling-clearing": "TRUST_FIRST",
   "hauling-site-clearing-logistics": "TRUST_FIRST",
@@ -85,14 +83,6 @@ const SERVICE_LAYOUT_TRACKS = {
     "stacked-feature",
     "contrast-left-bar",
     "grid-2-col",
-    "timeline-flow",
-  ],
-  "septic-utility-systems": [
-    "split-default",
-    "split-reverse",
-    "stacked-card-grid",
-    "contrast-inset",
-    "grid-inline-icons",
     "timeline-flow",
   ],
   "drainage-hardscaping": [

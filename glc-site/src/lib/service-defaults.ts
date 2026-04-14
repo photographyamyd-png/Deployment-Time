@@ -14,11 +14,6 @@ export function resolveHubStats(service: ServiceDetailContent): ServiceHubStat[]
       { value: "100%", label: "Civil certified", sub: "QC documentation" },
       { value: "All", label: "Soil types", sub: "Engineered specs" },
     ],
-    "septic-utility-systems": [
-      { value: "OWEA", label: "Licensed", sub: "Septic systems" },
-      { value: "Muni +", label: "Commercial", sub: "Utility corridors" },
-      { value: "Full", label: "Permits", sub: "Inspection-ready" },
-    ],
     "drainage-hardscaping": [
       { value: "Storm +", label: "Surface", sub: "Drainage" },
       { value: "Armor", label: "Stone", sub: "Hardscape prep" },

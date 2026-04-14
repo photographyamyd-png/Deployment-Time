@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/reveal";
 import { IconArrow } from "@/components/ui/icon-arrow";
@@ -8,62 +9,99 @@ import type { WhyProps } from "@/content/types";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function WhySection(props: WhyProps) {
+  const tags = ["Logistics", "Expertise", "Coordination", "Accountability"];
+
   return (
-    <section id="why" aria-labelledby="why-heading">
-
-      {/* ══ Header block — 2-col editorial split ══ */}
-      <div className="why3__header">
-        <div className="why3__header-left">
-          <Reveal className="eyebrow">{props.eyebrow}</Reveal>
-          <Reveal delayClass="reveal--delay-1">
-            <h2 id="why-heading" className="why3__heading">
-              {props.headingBefore}
-              <em>{props.headingEmphasis}</em>
-              {props.headingAfter}
-            </h2>
-          </Reveal>
+    <section id="why" className="why-v3-shell glc-motif-a6-watermark" aria-labelledby="why-heading">
+      <span className="glc-motif-b2 why-v3__motif-b2" aria-hidden />
+      <span className="glc-motif-b4 why-v3__motif-b4" aria-hidden />
+      <div className="why-v3__container">
+        <div className="why-v3__header">
+          <Reveal className="eyebrow eyebrow--dark why-v3__eyebrow">{props.eyebrow}</Reveal>
+          <div className="why-v3__header-grid">
+            <Reveal delayClass="reveal--delay-1">
+              <h2 id="why-heading" className="why-v3__heading">
+                {props.headingBefore}
+                <em>{props.headingEmphasis}</em>
+                {props.headingAfter}
+              </h2>
+            </Reveal>
+            <Reveal delayClass="reveal--delay-2">
+              <p className="why-v3__header-body">{props.body}</p>
+            </Reveal>
+          </div>
         </div>
-        <Reveal delayClass="reveal--delay-2" className="why3__header-right">
-          <p className="why3__intro">{props.body}</p>
-          <a href={props.cta.href} className="btn-primary why3__cta">
-            {props.cta.label}
-            <IconArrow />
-          </a>
-        </Reveal>
-      </div>
-
-      {/* ══ Reason rows — large editorial format ══ */}
-      <div className="why3__reasons">
-        {props.reasons.map((r, i) => (
-          <motion.div
-            key={r.num}
-            className="why3__reason"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, delay: i * 0.07, ease: EASE }}
-          >
-            {/* Ghost number — large background watermark */}
-            <span className="why3__ghost-num" aria-hidden>{r.num}</span>
-
-            {/* Content row */}
-            <div className="why3__reason-inner">
-              <div className="why3__num" aria-hidden>{r.num}</div>
-              <div className="why3__divider" aria-hidden />
-              <div className="why3__text-block">
-                <div className="why3__title">{r.title}</div>
-                <p className="why3__desc">{r.text}</p>
+        <div className="why-v3__body-grid">
+          <div className="why-v3__feature">
+            <Reveal>
+              <figure className="why-v3__media">
+                <Image
+                  src="/images/hero-armour-stone-retaining-walls.png"
+                  alt="Ground Level Contracting heavy equipment on a Simcoe County commercial site"
+                  fill
+                  className="why-v3__media-img"
+                  sizes="(max-width: 980px) 100vw, 42vw"
+                />
+                <figcaption className="why-v3__media-cap">
+                  Commercial-grade equipment for unstable ground and tight schedules.
+                </figcaption>
+              </figure>
+            </Reveal>
+            <Reveal delayClass="reveal--delay-1">
+              <div className="why-v3__proof-chip" aria-label="Proof point">
+                <span className="why-v3__chip-label">{props.floatChip.line1}</span>
+                <strong className="why-v3__chip-value">{props.floatChip.line2}</strong>
               </div>
-              {/* Arrow tick on hover */}
-              <div className="why3__arrow-mark" aria-hidden>→</div>
+            </Reveal>
+            <Reveal delayClass="reveal--delay-2">
+              <a href={props.cta.href} className="btn-primary">
+                {props.cta.label}
+                <IconArrow />
+              </a>
+            </Reveal>
+          </div>
+          <div className="why-v3__reasons-col">
+            <div className="why-v3__rail" aria-hidden />
+            <div className="why-v3__rows">
+              {props.reasons.map((r, i) => (
+                <motion.div
+                  key={r.num}
+                  className="why-v3__row"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.6, delay: i * 0.07, ease: EASE }}
+                >
+                  <div className="why-v3__row-bg" aria-hidden />
+                  <div className="why-v3__num" aria-hidden>{r.num}</div>
+                  <div className="why-v3__row-divide" aria-hidden />
+                  <div className="why-v3__row-body">
+                    <div className="why-v3__row-top">
+                      <h3 className="why-v3__title">{r.title}</h3>
+                      <span className="why-v3__tag">{tags[i] ?? "Field"}</span>
+                    </div>
+                    <p className="why-v3__text">{r.text}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-
-            {/* Hover yellow fill layer */}
-            <div className="why3__hover-fill" aria-hidden />
-          </motion.div>
-        ))}
+            <div className="why-v3__proof-bar">
+              <div className="why-v3__proof-item">
+                <span className="why-v3__proof-value">24-Hr</span>
+                <span className="why-v3__proof-label">Site Mobilization</span>
+              </div>
+              <div className="why-v3__proof-item">
+                <span className="why-v3__proof-value">100%</span>
+                <span className="why-v3__proof-label">Simcoe Coverage</span>
+              </div>
+              <div className="why-v3__proof-item">
+                <span className="why-v3__proof-value">Full Scope</span>
+                <span className="why-v3__proof-label">Single Contractor</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
     </section>
   );
 }

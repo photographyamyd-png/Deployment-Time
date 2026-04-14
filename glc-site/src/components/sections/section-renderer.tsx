@@ -10,6 +10,8 @@ import { ProcessSection } from "@/components/sections/process-section";
 import { CoverageSection } from "@/components/sections/coverage-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { CtaBandSection } from "@/components/sections/cta-band-section";
+import { ParallaxTypeBand } from "@/components/sections/parallax-type-band";
+import { ContactStripSection } from "@/components/sections/contact-strip-section";
 
 type Props = {
   sections: HomeSectionBlock[];
@@ -57,6 +59,10 @@ export function SectionRenderer({ sections, megaCards }: Props) {
             return <CoverageSection key={key} {...section.props} />;
           case "testimonials":
             return <TestimonialsSection key={key} {...section.props} />;
+          case "parallaxBand":
+            return <ParallaxTypeBand key={key} {...section.props} />;
+          case "contactStrip":
+            return <ContactStripSection key={key} {...section.props} />;
           case "ctaBand":
             return <CtaBandSection key={key} {...section.props} />;
           default:

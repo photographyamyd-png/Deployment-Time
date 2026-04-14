@@ -1,81 +1,45 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Reveal } from "@/components/ui/reveal";
+import { IconArrow } from "@/components/ui/icon-arrow";
 import type { TestimonialsProps } from "@/content/types";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
 export function TestimonialsSection(props: TestimonialsProps) {
-  const [featured, ...rest] = props.items;
-
   return (
-    <section id="testimonials" aria-labelledby="testimonials-heading">
-
-      {/* ══ Header ══ */}
+    <section id="testimonials" className="testimonials-section testimonials-section--tst3 tst3" aria-labelledby="testimonials-heading">
       <div className="tst3__header">
-        <Reveal className="tst3__header-left">
-          <span className="eyebrow eyebrow--dark">{props.eyebrow}</span>
-          <h2 id="testimonials-heading" className="tst3__heading">
-            {props.headingBefore}
-            <em>{props.headingAccent}</em>
-            {props.headingAfter}
-          </h2>
-        </Reveal>
-        <Reveal delayClass="reveal--delay-2" className="tst3__header-right">
-          <p className="tst3__sub">{props.sub}</p>
-        </Reveal>
+        <div className="tst3__eyebrow-row">
+          <div className="eyebrow"><span>{props.eyebrow}</span></div>
+        </div>
+        <h2 id="testimonials-heading" className="tst3__heading">
+          {props.headingBefore}<em>{props.headingAccent}</em>{props.headingAfter}
+        </h2>
+        <p className="tst3__lede">{props.sub}</p>
       </div>
 
-      {/* ══ Featured quote — full editorial spread ══ */}
-      {featured && (
-        <motion.div
-          className="tst3__featured"
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          role="article"
-        >
-          {/* Large decorative open quote */}
-          <span className="tst3__open-mark" aria-hidden>&ldquo;</span>
-
-          <div className="tst3__featured-body">
-            <p className="tst3__featured-quote">&ldquo;{featured.quote}&rdquo;</p>
-            <div className="tst3__featured-attribution">
-              <span className="tst3__featured-name">{featured.name}</span>
-              <span className="tst3__featured-sep" aria-hidden />
-              <span className="tst3__featured-role">{featured.role}</span>
+      <div className="tst3__grid">
+        {props.items.map((t, i) => (
+          <div key={t.name} className={`tst3__card${i === 0 ? " tst3__card--featured" : ""}`}>
+            <div className="tst3__open-mark" aria-hidden>&quot;</div>
+            <div className="tst3__stars" aria-label="5 stars">
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <svg key={`${t.name}-${idx}`} className="tst3__star" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M10 1l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 16l-6.2 4.3 2.4-7.4L0 8.4h7.6z" />
+                </svg>
+              ))}
             </div>
+            <p className="tst3__quote">{t.quote}</p>
+            <div className="tst3__divider" />
+            <div className="tst3__name">{t.name}</div>
+            <div className="tst3__role">{t.role}</div>
           </div>
-
-          {/* Yellow structural accent */}
-          <div className="tst3__featured-accent" aria-hidden />
-        </motion.div>
-      )}
-
-      {/* ══ Supporting quotes — 2-col grid ══ */}
-      {rest.length > 0 && (
-        <div className="tst3__grid">
-          {rest.map((t, i) => (
-            <motion.article
-              key={t.name}
-              className="tst3__card"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: EASE }}
-            >
-              <span className="tst3__card-mark" aria-hidden>&ldquo;</span>
-              <p className="tst3__card-quote">&ldquo;{t.quote}&rdquo;</p>
-              <div className="tst3__card-rule" aria-hidden />
-              <div className="tst3__card-name">{t.name}</div>
-              <div className="tst3__card-role">{t.role}</div>
-            </motion.article>
-          ))}
-        </div>
-      )}
-
+        ))}
+      </div>
+      <div className="tst3__cta">
+        <a href="tel:+17056194902" className="btn-primary">
+          Request a Quote
+          <IconArrow />
+        </a>
+      </div>
     </section>
   );
 }

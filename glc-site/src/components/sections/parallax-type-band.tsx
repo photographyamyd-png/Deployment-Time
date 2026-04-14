@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { IconArrow } from "@/components/ui/icon-arrow";
 
 export type ParallaxTypeBandProps = {
   id?: string;
@@ -11,6 +12,7 @@ export type ParallaxTypeBandProps = {
   subtitle?: string;
   imageSrc: string;
   imageAlt: string;
+  cta?: { label: string; href: string };
   /** Excavation: dark typographic slab on image. Foundations: light editorial rail. */
   tone: "dark" | "light";
 };
@@ -26,6 +28,7 @@ export function ParallaxTypeBand({
   subtitle,
   imageSrc,
   imageAlt,
+  cta,
   tone,
 }: ParallaxTypeBandProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -79,6 +82,14 @@ export function ParallaxTypeBand({
         </h2>
         {subtitle ? (
           <p className="gl-parallax-type-band__subtitle">{subtitle}</p>
+        ) : null}
+        {cta ? (
+          <div className="gl-parallax-type-band__cta-row">
+            <a href={cta.href} className="btn-primary">
+              {cta.label}
+              <IconArrow />
+            </a>
+          </div>
         ) : null}
       </motion.div>
     </section>

@@ -1,0 +1,188 @@
+.gitignore
+_build-services.mjs
+_extract-logo-png.mjs
+2022-08-17.webp
+3.png
+469462472_18042049721332957_7770248251073254913_n.jpg
+and con.png
+App.css
+App.tsx
+button.tsx
+Commercial Snow Removal.png
+components.json
+Construction Excavation Ground Level Contracting Barrie, Simcoe County, Orillia, Innisfil.png
+Construction Excavation Ground Level Contracting Barrie, Simcoe County, Orillia.png
+demo.tsx
+design_system.json
+download (1).jpg
+download.jpg
+embed-tailwind.css
+eslint.config.js
+Excavation .jpg
+Excavation and Site Preparation.png
+Excavation Ground Level Contracting Barrie, Simcoe County, Orillia.png
+Excavation Ground Level Contracting.png
+Excavation Research Findings.pdf
+excavation-service-canon.tsx
+favicon.svg
+FB_IMG_1762459261771.jpg
+FB_IMG_1762459273292.jpg
+FB_IMG_1762459275877.jpg
+FB_IMG_1762459279835.jpg
+FB_IMG_1762459282006.jpg
+FB_IMG_1762459284133.jpg
+FB_IMG_1762459286261.jpg
+FB_IMG_1762459289029.jpg
+FB_IMG_1762459291185.jpg
+FB_IMG_1762459293746.jpg
+FB_IMG_1762459295906.jpg
+FB_IMG_1762459298339.jpg
+FB_IMG_1762459305805.jpg
+FB_IMG_1762459307869.jpg
+FB_IMG_1762459310355.jpg
+FB_IMG_1762459312846.jpg
+FB_IMG_1762459315301.jpg
+FB_IMG_1762459317187.jpg
+FB_IMG_1762459319731.jpg
+FB_IMG_1762459322083.jpg
+FB_IMG_1762459324107.jpg
+FB_IMG_1762459326499.jpg
+FB_IMG_1762459328750.jpg
+FB_IMG_1762459331138.jpg
+FB_IMG_1762459333111.jpg
+FB_IMG_1762459335307.jpg
+FB_IMG_1762459337326.jpg
+FB_IMG_1762459339663.jpg
+FB_IMG_1762459341890.jpg
+FB_IMG_1762459343947.jpg
+FB_IMG_1762459346184.jpg
+FB_IMG_1762459349493.jpg
+FB_IMG_1762459351382.jpg
+FB_IMG_1762459353890.jpg
+FB_IMG_1762459355902.jpg
+FB_IMG_1762459357912.jpg
+FB_IMG_1762459360187.jpg
+FB_IMG_1762459362147.jpg
+FB_IMG_1762459364706.jpg
+FB_IMG_1762459366952.jpg
+FB_IMG_1762459369263.jpg
+FB_IMG_1762459372137.jpg
+FB_IMG_1762459374035.jpg
+FB_IMG_1762459376477.jpg
+FB_IMG_1762459379514.jpg
+FB_IMG_1762459381756.jpg
+FB_IMG_1762459388087.jpg
+featured-accordion-pattern-registry.json
+Firefly_Generate a natural looking excavation taking place using a large machine, digging out 335125.jpg
+From_Concept_to_Foundation_version_1.mp4
+g1.svg
+g1-wm-01-ultra-light.svg
+g1-wm-02-horizontal-band-mask.svg
+g1-wm-03-diagonal-crop.svg
+g1-wm-04-corner-ghost.svg
+g1-wm-05-layered-bars-over-logo.svg
+g1-wm-06-tiled-light-grid.svg
+Gemini_Generated_Image_4kovpp4kovpp4kov.png
+Gemini_Generated_Image_4l6d7m4l6d7m4l6d.png
+Gemini_Generated_Image_5lr10g5lr10g5lr1.png
+Gemini_Generated_Image_6vt8lw6vt8lw6vt8.png
+Gemini_Generated_Image_82mlsn82mlsn82ml.png
+Gemini_Generated_Image_8sp8nb8sp8nb8sp8.png
+Gemini_Generated_Image_a7yz1oa7yz1oa7yz.png
+Gemini_Generated_Image_bxehkhbxehkhbxeh.png
+Gemini_Generated_Image_by8dcwby8dcwby8d.png
+Gemini_Generated_Image_cbbl9rcbbl9rcbbl.png
+Gemini_Generated_Image_chfj2chfj2chfj2c.png
+Gemini_Generated_Image_eee8ukeee8ukeee8.png
+Gemini_Generated_Image_fdzba5fdzba5fdzb.png
+Gemini_Generated_Image_gb7zm9gb7zm9gb7z (1).png
+Gemini_Generated_Image_gb7zm9gb7zm9gb7z.png
+Gemini_Generated_Image_i74trki74trki74t.png
+Gemini_Generated_Image_jae95fjae95fjae9 (1).png
+Gemini_Generated_Image_jae95fjae95fjae9.png
+Gemini_Generated_Image_m5k8e4m5k8e4m5k8.png
+Gemini_Generated_Image_n8rk7kn8rk7kn8rk.png
+Gemini_Generated_Image_nq4ejpnq4ejpnq4e.png
+Gemini_Generated_Image_twy4ostwy4ostwy4.png
+Gemini_Generated_Image_vqqhdwvqqhdwvqqh.png
+gg.png
+GLC_Homepage.html
+GLC_MASTER_SYSTEM.html
+GLC-lockup-traced-compact.svg
+GLC-motif-01-corner-L.svg
+GLC-motif-01-corner-traced.svg
+GLC-motif-02-g-arc-traced.svg
+GLC-motif-02-g-frame-arc.svg
+GLC-motif-03-divider-strip.svg
+GLC-motif-03-divider-traced.svg
+GLC-motif-04-border-tile-horizontal.svg
+GLC-motif-04-border-tile-horizontal-traced.svg
+GLC-motif-04-border-tile-vertical.svg
+GLC-motif-04-border-tile-vertical-traced.svg
+glc-wm-01-layered-bars.svg
+glc-wm-02-diagonal-90.svg
+glc-wm-03-horizontal-stack.svg
+glc-wm-04-corner-90-brackets.svg
+glc-wm-05-perpendicular-grid.svg
+glc-wm-06-overlap-parallelograms.svg
+glc-wm-07-stepped-chevron.svg
+Ground Level Clip.mp4
+Ground Level Contracting - Excavation and Foundations Orillia and Barrie Commercial.png
+Ground Level Contracting - Excavation and Foundations Orillia and Barrie Pools.png
+Ground Level Contracting - Excavation and Foundations Orillia and Barrie Pools3.png
+Ground Level Contracting - Excavation and Foundations Orillia and Barrie.png
+Ground Level Contracting - Excavation and Foundations Orillia.png
+Ground Level Contracting - Excavation and Foundations.png
+Ground Level Contracting Barrie - Armour Stone Retaining Walls.png
+Ground Level Contracting Barrie -.png
+Ground Level Contracting Barrie -excavation.png
+Ground Level Contracting barrie snow 2.png
+Ground Level Contracting barrie snow removal.png
+Ground Level Contracting barrie snow removal2.png
+Ground Level Contracting barrie snow removal23.png
+Ground Level Contracting Excavator in Commercial Lot.png
+Ground Level Contracting grading.png
+Ground Level Contracting grading2.png
+Ground Level Contracting grading256.png
+Ground Level Contracting grading256k.png
+Ground Level Contracting landscape.png
+Ground Level Contracting Logo (1 of 1).png
+Ground Level Contracting Logo (1 of 1)-2.png
+Ground Level Contracting Septic Excavation.png
+Ground Level Contracting Septic Excavation5.png
+Ground Level Contracting.png
+Ground Level Logo Short.png
+Ground Level Logo.png
+Ground Level Logo.svg
+Ground Level Logoq.png
+ground-level-logo.png
+Harscaping and Landscaping Excavation Ground Level Contracting.png
+hero.png
+hero-armour-stone-retaining-walls.png
+hero-bg.jpg
+htnl attempts Backup.code-workspace
+icons.svg
+images (1).jpg
+images.jpg
+index.css
+index.html
+INDEX.txt
+interactive-image-accordion.tsx
+land-clearing-before-lot-prep Overgrown residential lot requiring land clearing in Innisfil..png
+main.tsx
+mount-accordion.tsx
+package.json
+package-lock.json
+page.tsx
+react.svg
+README.md
+Residential Excavation Ground Level Contracting.png
+services-index.json
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+Untitled document.pdf
+utils.ts
+vite.config.ts
+vite.embed.config.ts
+vite.svg

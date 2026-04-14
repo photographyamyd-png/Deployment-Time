@@ -13,6 +13,7 @@ export function ServiceCardIcon({ slug, className = "service-card__icon" }: Prop
 
   switch (slug) {
     case "excavation-site-prep":
+    case "excavation-site-preparation":
       return (
         <svg {...common}>
           <path d="M5 30L20 8l15 22H5z" />
@@ -20,19 +21,13 @@ export function ServiceCardIcon({ slug, className = "service-card__icon" }: Prop
         </svg>
       );
     case "foundations-civil":
+    case "foundations-civil-infrastructure":
       return (
         <svg {...common}>
           <rect x="6" y="22" width="28" height="12" />
           <rect x="10" y="14" width="20" height="10" />
           <line x1="18" y1="6" x2="18" y2="14" />
           <line x1="22" y1="6" x2="22" y2="14" />
-        </svg>
-      );
-    case "septic-utilities":
-      return (
-        <svg {...common}>
-          <circle cx="20" cy="20" r="10" />
-          <path d="M20 10V4M20 36v-6M10 20H4M36 20h-6" />
         </svg>
       );
     case "drainage-hardscaping":
@@ -50,6 +45,7 @@ export function ServiceCardIcon({ slug, className = "service-card__icon" }: Prop
         </svg>
       );
     case "hauling-clearing":
+    case "hauling-site-clearing-logistics":
       return (
         <svg {...common}>
           <rect x="4" y="22" width="32" height="12" />
@@ -82,6 +78,7 @@ export function HeroServiceIcon({ slug }: { slug: string }) {
   const c = "hero__service-icon";
   switch (slug) {
     case "excavation-site-prep":
+    case "excavation-site-preparation":
       return (
         <svg className={c} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
           <path d="M5 30L20 8l15 22H5z" />
@@ -89,17 +86,11 @@ export function HeroServiceIcon({ slug }: { slug: string }) {
         </svg>
       );
     case "foundations-civil":
+    case "foundations-civil-infrastructure":
       return (
         <svg className={c} viewBox="0 0 40 40" aria-hidden>
           <rect x="6" y="20" width="28" height="14" stroke="currentColor" fill="none" strokeWidth="2.5" />
           <rect x="10" y="14" width="20" height="8" stroke="currentColor" fill="none" strokeWidth="2" />
-        </svg>
-      );
-    case "septic-utilities":
-      return (
-        <svg className={c} viewBox="0 0 40 40" aria-hidden>
-          <circle cx="20" cy="20" r="10" stroke="currentColor" fill="none" strokeWidth="2.5" />
-          <path d="M20 10V4M20 36v-6M10 20H4M36 20h-6" stroke="currentColor" strokeWidth="2" />
         </svg>
       );
     case "drainage-hardscaping":
@@ -110,6 +101,7 @@ export function HeroServiceIcon({ slug }: { slug: string }) {
         </svg>
       );
     case "hauling-clearing":
+    case "hauling-site-clearing-logistics":
       return (
         <svg className={c} viewBox="0 0 40 40" aria-hidden>
           <rect x="4" y="22" width="32" height="12" stroke="currentColor" fill="none" strokeWidth="2.5" />

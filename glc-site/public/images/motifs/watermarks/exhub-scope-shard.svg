@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" fill="none">
+  <path d="M20 300L300 20L300 170L170 300H20Z" fill="rgba(242,183,5,0.14)"/>
+  <path d="M92 300L300 92V150L150 300H92Z" fill="rgba(255,255,255,0.08)"/>
+  <path d="M170 300L300 170V300H170Z" fill="rgba(255,255,255,0.12)"/>
+</svg>

@@ -2,6 +2,8 @@
 
 export const ROUTES = {
   home: "/",
+  /** Internal playground — not linked from production nav. */
+  sandbox: "/sandbox/",
   about: "/about/",
   contact: "/contact/",
   services: "/services/",
@@ -15,7 +17,6 @@ export const ROUTES = {
 export const SERVICE_SLUGS = [
   "excavation-site-preparation",
   "foundations-civil-infrastructure",
-  "septic-utility-systems",
   "drainage-hardscaping",
   "hauling-site-clearing-logistics",
   "snow-removal",
