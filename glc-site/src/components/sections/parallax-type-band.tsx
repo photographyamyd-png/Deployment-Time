@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { useIsClient } from "@/lib/use-is-client";
 
 export type ParallaxTypeBandProps = {
   id?: string;
@@ -32,11 +33,7 @@ export function ParallaxTypeBand({
   tone,
 }: ParallaxTypeBandProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

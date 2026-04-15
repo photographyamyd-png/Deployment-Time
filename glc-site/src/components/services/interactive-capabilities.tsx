@@ -276,7 +276,9 @@ export function InteractiveCapabilities({ tabs, site }: Props) {
     const raw = typeof window !== "undefined" ? window.location.hash.replace(/^#/, "") : "";
     if (!raw) return;
     const ix = tabs.findIndex((t) => t.id === raw);
-    if (ix >= 0) setActiveIndex(ix);
+    if (ix >= 0) {
+      queueMicrotask(() => setActiveIndex(ix));
+    }
   }, [tabs]);
 
   const onKeyDown = useCallback(

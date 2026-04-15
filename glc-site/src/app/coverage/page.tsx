@@ -59,6 +59,7 @@ export default function CoveragePage() {
           </>
         }
         lede={heroLede}
+        cta={ctaProps.formCta}
       />
 
       <CoveragePageFigureBand

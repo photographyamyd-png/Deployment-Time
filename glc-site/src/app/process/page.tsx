@@ -55,6 +55,7 @@ export default function ProcessPage() {
           </>
         }
         lede={heroLede}
+        cta={ctaProps.formCta}
       />
 
       <ProcessSection {...processProps} />

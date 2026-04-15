@@ -2,6 +2,7 @@ import Image from "next/image";
 import { SmartLink } from "@/components/ui/smart-link";
 import type { SiteConfig } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
+import { SandboxDsMoreSections } from "./sandbox-ds-more-sections";
 import { SandboxDsQuoteBand } from "./sandbox-ds-quote-band";
 
 const AB3_IMG =
@@ -22,9 +23,9 @@ const COVERAGE_TILES = [
   "Simcoe County + surrounding",
 ];
 
-type Props = { site: SiteConfig };
+type Props = { site: SiteConfig; showVariantMatrix?: boolean };
 
-export function SandboxDesignSystemV2Sections({ site }: Props) {
+export function SandboxDesignSystemV2Sections({ site, showVariantMatrix = false }: Props) {
   const telHref = site.telephone.replace(/\s/g, "");
 
   return (
@@ -251,6 +252,11 @@ export function SandboxDesignSystemV2Sections({ site }: Props) {
           </div>
         </div>
       </section>
+
+      <div className="glc-motif-divider-a3--to-light" aria-hidden />
+
+      {/* Extended static HTML parity: CERT1, tickers, SECT1, proc3, fleet, project, gallery, TST3, CARE1 */}
+      <SandboxDsMoreSections site={site} showVariantMatrix={showVariantMatrix} />
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
     </>

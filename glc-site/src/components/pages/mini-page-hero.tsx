@@ -4,11 +4,12 @@ type Props = {
   breadcrumb: ReactNode;
   title: ReactNode;
   lede: string;
+  cta?: { label: string; href: string };
   /** Dark charcoal (default) or light mist shell */
   variant?: "dark" | "light";
 };
 
-export function MiniPageHero({ breadcrumb, title, lede, variant = "dark" }: Props) {
+export function MiniPageHero({ breadcrumb, title, lede, cta, variant = "dark" }: Props) {
   const shell = variant === "dark" ? "mini-page-hero mini-page-hero--dark" : "mini-page-hero mini-page-hero--light";
   return (
     <section className={shell} aria-labelledby="mini-page-hero-heading">
@@ -26,6 +27,13 @@ export function MiniPageHero({ breadcrumb, title, lede, variant = "dark" }: Prop
           {title}
         </h1>
         {lede ? <p className="mini-page-hero__lede">{lede}</p> : null}
+        {cta ? (
+          <div className="mini-page-hero__cta">
+            <a href={cta.href} className="btn-primary">
+              {cta.label}
+            </a>
+          </div>
+        ) : null}
       </div>
     </section>
   );

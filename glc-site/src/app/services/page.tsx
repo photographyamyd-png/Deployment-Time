@@ -73,6 +73,11 @@ export default function ServicesIndexPage() {
             <em>{hubData.titleEmphasis}</em>
           </h1>
           <p className="service-page-hero__lede">{hubData.lede}</p>
+          <div className="service-page-hero__cta">
+            <SmartLink href={ctaProps.formCta.href} className="btn-primary">
+              {ctaProps.formCta.label}
+            </SmartLink>
+          </div>
         </div>
       </section>
 

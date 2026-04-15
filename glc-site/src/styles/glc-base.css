@@ -5050,7 +5050,8 @@ section#coverage,
    HOME — Contact strip (light separator before final CTA)
 ═══════════════════════════════════════════ */
 #contact-strip.home-contact-strip,
-#company-contact-strip.home-contact-strip {
+#company-contact-strip.home-contact-strip,
+#projects-contact-strip.home-contact-strip {
   position: relative;
   background: var(--white);
   border-top: 1px solid var(--gray-200);
@@ -6035,7 +6036,7 @@ body.gl-mega-open .gl-mega-backdrop {
 .service-page-hero__bg {
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&auto=format') center/cover no-repeat;
+  background: url('/images/drainage-hardscaping/hero-wide.png') center/cover no-repeat;
   z-index: 0;
 }
 .service-page-hero__scrim {
@@ -6089,6 +6090,9 @@ body.gl-mega-open .gl-mega-backdrop {
   line-height: 1.65;
   color: rgba(255,255,255,0.65);
   max-width: 640px;
+}
+.service-page-hero__cta {
+  margin-top: 22px;
 }
 
 /* —— Hauling service page — hero motifs (C1 watermark + dse-grain); z bump so copy sits above grain —— */
@@ -31083,6 +31087,12 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--off-white);
   padding: var(--section-v) 0;
 }
+.gl-parallax-wf--dark {
+  background: var(--charcoal);
+}
+.gl-parallax-wf--dark .gl-parallax-wf__media {
+  border-color: rgba(255, 255, 255, 0.16);
+}
 .gl-parallax-wf__frame-outer {
   position: relative;
   max-width: calc(var(--container-max) + 80px);
@@ -31181,7 +31191,7 @@ body.gl-mega-open .gl-mega-backdrop {
 .mini-page-hero--dark .mini-page-hero__bg {
   position: absolute;
   inset: 0;
-  background: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&auto=format") center/cover no-repeat;
+  background: url("/images/drainage-hardscaping/hero-wide.png") center/cover no-repeat;
   opacity: 0.35;
 }
 .mini-page-hero--dark .mini-page-hero__scrim {
@@ -31244,6 +31254,9 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .mini-page-hero--dark .mini-page-hero__lede { color: rgba(255, 255, 255, 0.65); }
 .mini-page-hero--light .mini-page-hero__lede { color: var(--text-500); }
+.mini-page-hero__cta {
+  margin-top: 22px;
+}
 
 /* —— Process page ledger —— */
 .proc-pg-ledger {
@@ -31964,6 +31977,11 @@ body.gl-mega-open .gl-mega-backdrop {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
+}
+.company-pg-trio__cta {
+  max-width: var(--container-max);
+  margin: 24px auto 0;
+  padding: 0 40px;
 }
 .company-pg-trio__h {
   font-family: var(--font-display);

@@ -90,7 +90,7 @@ export const DRAINAGE_HUB_OVERVIEW_PARAS: string[] = [
 
 /** Overview column — field photo: dry creek drainage, stone steps, pergola patio */
 export const DRAINAGE_HUB_OVERVIEW_IMAGE =
-  "/images/services/drainage-hardscaping/work-overview-dry-creek-steps.jpg";
+  "/images/drainage-hardscaping/work-overview-dry-creek-steps.jpg";
 export const DRAINAGE_HUB_OVERVIEW_IMAGE_ALT =
   "Completed backyard showing river-rock dry creek drainage, wide stone steps, and wood pergola over a patio tied to grade work";
 
@@ -190,7 +190,7 @@ export const DRAINAGE_HUB_WHY_FIG_CAPTION =
   "Field-built drainage and hardscape integration — Simcoe County";
 
 export const DRAINAGE_HUB_WHY_IMAGE =
-  "/images/services/drainage-hardscaping/work-why-boulder-pergola-patio.jpg";
+  "/images/drainage-hardscaping/work-why-boulder-pergola-patio.jpg";
 
 export const DRAINAGE_HUB_PROCESS_EYEBROW = "Process";
 
@@ -350,7 +350,7 @@ export const DRAINAGE_HUB_COVERAGE_MAP_ALT =
 
 /** Coverage figure — lakeside / cottage-country hardscape (territory band visual) */
 export const DRAINAGE_HUB_COVERAGE_MAP_IMAGE =
-  "/images/services/drainage-hardscaping/work-coverage-lakeside-flagstone.jpg";
+  "/images/drainage-hardscaping/work-coverage-lakeside-flagstone.jpg";
 
 export const DRAINAGE_HUB_RELATED_SECTION = {
   eyebrow: "Related",
@@ -393,4 +393,4 @@ export const DRAINAGE_HUB_FINAL = {
 
 /** Hero — served from `glc-site/public/images/services/drainage-hardscaping/hero-wide.png` */
 export const DRAINAGE_HUB_HERO_IMAGE =
-  "/images/services/drainage-hardscaping/hero-wide.png";
+  "/images/drainage-hardscaping/hero-wide.png";

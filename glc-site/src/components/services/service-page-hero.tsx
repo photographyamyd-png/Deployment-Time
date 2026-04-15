@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { SmartLink } from "@/components/ui/smart-link";
 import type { ServiceDetailContent } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
+import { useIsClient } from "@/lib/use-is-client";
 
 const DEFAULT_HERO_IMG =
   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&auto=format";
@@ -16,11 +17,7 @@ type Props = {
 export function ServicePageHero({ service }: Props) {
   const bg = service.heroImage ?? DEFAULT_HERO_IMG;
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { DrainageFragmentedH2 } from "@/components/services/drainage-hardscaping/drainage-typography";
 import {
@@ -15,6 +15,7 @@ import {
   DRAINAGE_HUB_WHY_IMAGE_ALT,
   DRAINAGE_HUB_WHY_POINTS,
 } from "@/content/drainage-hardscaping-page";
+import { useIsClient } from "@/lib/use-is-client";
 
 function parseProcessStep(title: string, index: number): { num: string; title: string } {
   const m = title.match(/^Step\s*(\d+)\s*:\s*(.+)$/i);
@@ -30,14 +31,10 @@ function parseProcessStep(title: string, index: number): { num: string; title: s
  */
 export function DrainageHubWhyProcess() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const reduceMotion = useReducedMotion();
   const [whyOpen, setWhyOpen] = useState<number | null>(0);
   const [procOpen, setProcOpen] = useState<number | null>(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

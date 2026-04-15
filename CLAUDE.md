@@ -16,10 +16,10 @@ All commands run from the **repo root** and delegate to `glc-site/`:
 
 | Command | Purpose |
 |---------|---------|
-| `npm run dev` | Next.js dev server at **`http://localhost:3040`** (webpack; stable) |
-| `npm run dev:turbo` | Same port with **Turbopack** (run from `glc-site/`; optional) |
-| `npm run dev:alt` | Second dev instance at port 3041 |
-| `npm run build` | Production build (`glc-site/.next`) |
+| `npm run dev` | Next.js **16** dev server at **`http://localhost:3040`** (`next dev --webpack`; matches custom `webpack` in `next.config.ts`) |
+| `npm run dev:turbo` | Same port with **Turbopack** (`next dev --turbopack`; optional) |
+| `npm run dev:alt` | Second dev instance at port 3041 (`--webpack`) |
+| `npm run build` | Production build (`next build --webpack` → `glc-site/.next`) |
 | `npm run start` | Serve production build locally (run build first) |
 | `npm run lint` | ESLint for `glc-site/` |
 | `npm run dev:legacy-static` | Static file server at `http://localhost:3456` for legacy HTML files |
@@ -28,13 +28,17 @@ All commands run from the **repo root** and delegate to `glc-site/`:
 
 **First-time setup:** `cd glc-site && npm install && cd .. && npm run dev`
 
+**Bundler note:** Next.js 16 defaults to Turbopack for dev and build. This repo passes **`--webpack`** on `dev` / `build` / `build:fresh` so the **`webpack`** hook in `glc-site/next.config.ts` (dev cache disabled on Windows) stays in effect. Use `dev:turbo` or `build:turbo` only if you intentionally want Turbopack.
+
+**Lint:** ESLint **9** with **`glc-site/eslint.config.mjs`** (flat config: `eslint-config-next/core-web-vitals` + `typescript`).
+
 ---
 
 ## Architecture
 
 ### Two parallel layers
 
-**Production app** — `glc-site/` is the only thing deployed. It is a Next.js 15 App Router app using React 19, TypeScript, and Tailwind v4. Deploy `glc-site/` only.
+**Production app** — `glc-site/` is the only thing deployed. It is a Next.js **16** App Router app using React 19, TypeScript, and Tailwind v4. Deploy `glc-site/` only.
 
 **Static reference layer** — `index.html`, `assets/`, `services/*.html`, and the preview HTML files at repo root are legacy experiments and design references. They are not part of the production build. Use `npm run dev:legacy-static` to preview them.
 

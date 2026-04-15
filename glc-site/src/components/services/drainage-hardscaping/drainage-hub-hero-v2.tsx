@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
@@ -19,6 +19,7 @@ import {
   DRAINAGE_HUB_TRUST_BAR,
 } from "@/content/drainage-hardscaping-page";
 import { ROUTES } from "@/lib/routes";
+import { useIsClient } from "@/lib/use-is-client";
 import type { MegaMenuCard, SiteConfig } from "@/content/types";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -144,10 +145,7 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
   const { lines: titleLines, emphasizeLine } = drainageHubHeroTitleLines(h1Full);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

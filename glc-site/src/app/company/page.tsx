@@ -51,6 +51,7 @@ export default function CompanyPage() {
         }
         title={<>{mega.kicker}</>}
         lede={heroLede}
+        cta={ctaProps.formCta}
       />
 
       <section className="company-pg-trio" aria-label="Company navigation">
@@ -69,6 +70,12 @@ export default function CompanyPage() {
               </ul>
             </div>
           ))}
+        </div>
+        <div className="company-pg-trio__cta">
+          <SmartLink href={ctaProps.formCta.href} className="btn-primary">
+            {ctaProps.formCta.label}
+            <IconArrow />
+          </SmartLink>
         </div>
       </section>
 

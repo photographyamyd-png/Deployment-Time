@@ -1,4 +1,4 @@
-# Ground Level Contracting — DESIGN-SYSTEM
+﻿# Ground Level Contracting — DESIGN-SYSTEM
 
 **Purpose:** This is the **single file Cursor should read** for GLC design, layout, tokens, section rules, and supporting references.  
 **Priority:** The **Unified Design System v2.0** content (formerly `Clean.MD`) is canonical for **numeric tokens, full CSS export, motif HTML/JS, JSON registries, and appendices** — reproduced in full at the end of this document.
@@ -21,10 +21,10 @@ When earlier sources disagreed, the following **win for production intent**:
 
 | Topic | Canonical choice |
 |--------|------------------|
-| Primary accent yellow | `#F7C520` → CSS `--yellow-core` (not `#F2B705` from old JSON) |
-| Gold | `#D4A017` → `--gold` (not `#D9A004` from old JSON) |
-| Container max width | `1320px` → `--container-max` (not `1200px`) |
-| Header height | `80px` → `--header-h` (not `100px`) |
+| Primary accent yellow | `#F2B705` → CSS `var(--yellow-core)` (`.cursorrules` / `GLC_MASTER_SYSTEM.html`) |
+| Gold | `#D9A004` → `var(--gold)` |
+| Container max width | **`1200px`** → `var(--container-max)` in production `glc-site/src/styles/glc-base.css`; static Unified v2 HTML scratch files may still show `1320px` until ported |
+| Header height | **`100px`** → `var(--gl-header-height)` in production; legacy v2 prose may cite `80px` |
 | Section vertical rhythm | `clamp(80px, 9vw, 120px)` → `--section-v` (not fixed 96/64 only) |
 | Industrial / mono fonts | **Barlow** (`--font-industrial`), **Source Code Pro** (`--font-mono`) in unified CSS; **Source Serif 4** remains valid for **pull-quotes / accent** where used in App Router fonts stack |
 | Surface tints | Prefer **charcoal-based** tints (`--charcoal-tint`, `--charcoal-tint-md`); avoid yellow “noise” outside approved motif/overlay contexts (see Section Rules) |
@@ -58,8 +58,8 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 | `--charcoal-deep` | #1E1C1A — dark sections, text on light |
 | `--charcoal-mid` | #2E2B28 |
 | `--charcoal-light` | #585653 |
-| `--yellow-core` | #F7C520 — **single primary accent** |
-| `--gold` | #D4A017 — secondary gold |
+| `--yellow-core` | #F2B705 — **single primary accent** |
+| `--gold` | #D9A004 — secondary gold (hover / deepen) |
 | `--charcoal-tint` / `--charcoal-tint-md` | rgba(46,43,40,…) — **preferred** tints |
 | `--text-600` / `--text-500` / `--text-400` | body text ramp (rgba charcoal) |
 
@@ -98,7 +98,7 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(247,197,32,0.07), transparent 60%);
+  background: linear-gradient(135deg, rgba(242,183,5,0.07), transparent 60%);
   pointer-events: none;
 }
 ```
@@ -187,7 +187,7 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 <svg viewBox="0 0 1400 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <polygon points="0,70 0,38 1400,0 1400,70" fill="#1E1C1A"/>
   <polygon points="0,70 0,54 700,16 1400,30 1400,70" fill="#1E1C1A" opacity="0.5"/>
-  <polygon points="0,40 1400,2 1400,7 0,46" fill="#F7C520" opacity="0.42"/>
+  <polygon points="0,40 1400,2 1400,7 0,46" fill="#F2B705" opacity="0.42"/>
 </svg>
 ```
 
@@ -195,7 +195,7 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 
 ```svg
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="200,0 0,200 200,200" fill="#F7C520"/>
+  <polygon points="200,0 0,200 200,200" fill="#F2B705"/>
 </svg>
 ```
 
@@ -203,8 +203,8 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 
 ```svg
 <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="160,0 80,160 160,160" fill="#F7C520"/>
-  <polygon points="120,0 40,160 80,160 160,0" fill="#F7C520"/>
+  <polygon points="160,0 80,160 160,160" fill="#F2B705"/>
+  <polygon points="120,0 40,160 80,160 160,0" fill="#F2B705"/>
 </svg>
 ```
 
@@ -212,8 +212,8 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 
 ```svg
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,0 120,0 120,120" fill="#F7C520"/>
-  <polygon points="0,0 0,120 120,120" fill="#F7C520" opacity="0.5"/>
+  <polygon points="0,0 120,0 120,120" fill="#F2B705"/>
+  <polygon points="0,0 0,120 120,120" fill="#F2B705" opacity="0.5"/>
 </svg>
 ```
 
@@ -221,7 +221,7 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 
 ```svg
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,100 100,100 100,0" fill="#F7C520"/>
+  <polygon points="0,100 100,100 100,0" fill="#F2B705"/>
 </svg>
 ```
 
@@ -229,7 +229,7 @@ Archived `design_system.json` is preserved **verbatim** in an appendix below for
 
 ```svg
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,0 120,0 0,120" fill="#F7C520"/>
+  <polygon points="0,0 120,0 0,120" fill="#F2B705"/>
 </svg>
 ```
 
@@ -696,7 +696,7 @@ Remember: Claude is capable of extraordinary creative work. Don't hold back, sho
 **Blueprint snippets** (duplicate of Components section — kept for archival parity):
 
 - Shard button: `<button class="btn-primary">Get a Quote</button>`
-- Watermark layer `::before` gradient: `linear-gradient(135deg, rgba(247,197,32,0.07), transparent 60%)`
+- Watermark layer `::before` gradient: `linear-gradient(135deg, rgba(242,183,5,0.07), transparent 60%)`
 
 > The **full Doc 2 JSON appendix** from EXPORT is **not duplicated here**; it overlaps the JSON embedded inside the **verbatim Clean appendix** below. Use the Clean appendix for the complete registry + DNA.
 
@@ -1012,8 +1012,8 @@ Sources merged: Doc 1 (Unified v2), Doc 2 (Approved Sections registry), Doc 3 (S
   --charcoal-deep: #1E1C1A;
   --charcoal-mid: #2E2B28;
   --charcoal-light: #585653;
-  --yellow-core: #F7C520;
-  --gold: #D4A017;
+  --yellow-core: #F2B705;
+  --gold: #D9A004;
   --charcoal-tint: rgba(46,43,40,0.06);
   --charcoal-tint-md: rgba(46,43,40,0.12);
   --text-600: rgba(30,28,26,0.90);
@@ -1129,7 +1129,7 @@ CSS variables: `--charcoal-tint`, `--charcoal-tint-md`, `--charcoal-light`, `--c
 **Folder:** `glc-site/public/images/motifs/preview-v2/`  
 **URLs (production / dev):** `https://<host>/images/motifs/preview-v2/<filename>`
 
-Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SVG-MOTIF-PREVIEW.html`): same `viewBox`, points, fills, and opacities. Use for specs, Figma import, `<img>` / `next/image`, or pasting into JSX. Motif accent in files is **`#F7C520`** (unified preview token); site-wide UI may still use a different `--yellow-core` until tokens are merged.
+Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SVG-MOTIF-PREVIEW.html`): same `viewBox`, points, fills, and opacities. Use for specs, Figma import, `<img>` / `next/image`, or pasting into JSX. Motif accent in files is **`#F2B705`** (unified preview token); site-wide UI may still use a different `--yellow-core` until tokens are merged.
 
 | ID | File | Notes |
 | --- | --- | --- |
@@ -1176,7 +1176,7 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 <svg viewBox="0 0 1400 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <polygon points="0,70 0,38 1400,0 1400,70" fill="#1E1C1A"/>
   <polygon points="0,70 0,54 700,16 1400,30 1400,70" fill="#1E1C1A" opacity="0.5"/>
-  <polygon points="0,40 1400,2 1400,7 0,46" fill="#F7C520" opacity="0.42"/>
+  <polygon points="0,40 1400,2 1400,7 0,46" fill="#F2B705" opacity="0.42"/>
 </svg>
 ```
 
@@ -1184,7 +1184,7 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 
 ```svg
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="200,0 0,200 200,200" fill="#F7C520"/>
+  <polygon points="200,0 0,200 200,200" fill="#F2B705"/>
 </svg>
 ```
 
@@ -1192,8 +1192,8 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 
 ```svg
 <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="160,0 80,160 160,160" fill="#F7C520"/>
-  <polygon points="120,0 40,160 80,160 160,0" fill="#F7C520"/>
+  <polygon points="160,0 80,160 160,160" fill="#F2B705"/>
+  <polygon points="120,0 40,160 80,160 160,0" fill="#F2B705"/>
 </svg>
 ```
 
@@ -1201,8 +1201,8 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 
 ```svg
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,0 120,0 120,120" fill="#F7C520"/>
-  <polygon points="0,0 0,120 120,120" fill="#F7C520" opacity="0.5"/>
+  <polygon points="0,0 120,0 120,120" fill="#F2B705"/>
+  <polygon points="0,0 0,120 120,120" fill="#F2B705" opacity="0.5"/>
 </svg>
 ```
 
@@ -1210,7 +1210,7 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 
 ```svg
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,100 100,100 100,0" fill="#F7C520"/>
+  <polygon points="0,100 100,100 100,0" fill="#F2B705"/>
 </svg>
 ```
 
@@ -1218,7 +1218,7 @@ Flat files mirror **GLC — SVG Motif System · Approval Preview** (e.g. `GLC-SV
 
 ```svg
 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="0,0 120,0 0,120" fill="#F7C520"/>
+  <polygon points="0,0 120,0 0,120" fill="#F2B705"/>
 </svg>
 ```
 
@@ -1259,8 +1259,8 @@ Standalone master design document for Ground Level fresh-build use.
   --charcoal-deep: #1E1C1A;
   --charcoal-mid: #2E2B28;
   --charcoal-light: #585653;
-  --yellow-core: #F7C520;
-  --gold: #D4A017;
+  --yellow-core: #F2B705;
+  --gold: #D9A004;
   --charcoal-tint: rgba(46,43,40,0.06);
   --charcoal-tint-md: rgba(46,43,40,0.12);
   --text-600: rgba(30,28,26,0.90);
@@ -1331,7 +1331,7 @@ Standalone master design document for Ground Level fresh-build use.
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(247,197,32,0.07), transparent 60%);
+  background: linear-gradient(135deg, rgba(242,183,5,0.07), transparent 60%);
   pointer-events: none;
 }
 `
@@ -1385,7 +1385,7 @@ Full stylesheet from the first `<style>` block (`Unified Design System` export).
    GLC UNIFIED DESIGN SYSTEM v2.0
    Light-primary. DSE for contrast. White not off-white.
    Oswald display Â· Plus Jakarta Sans body Â· Barlow industrial (DSE)
-   Source Code Pro mono Â· Single accent: #F7C520
+   Source Code Pro mono Â· Single accent: #F2B705
    Zero border-radius on internals Â· Charcoal tints only
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 :root {
@@ -1400,8 +1400,8 @@ Full stylesheet from the first `<style>` block (`Unified Design System` export).
   --charcoal-light:  #585653;
 
   /* Single accent */
-  --yellow-core:     #F7C520;
-  --gold:            #D4A017;
+  --yellow-core:     #F2B705;
+  --gold:            #D9A004;
 
   /* Tints â€” charcoal ONLY, never yellow tints */
   --charcoal-tint:   rgba(46,43,40,0.06);
@@ -1453,7 +1453,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .c-ring {
   position: fixed; width: 36px; height: 36px;
-  border: 1px solid rgba(247,197,32,0.28); border-radius: 50%;
+  border: 1px solid rgba(242,183,5,0.28); border-radius: 50%;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%,-50%);
   transition: width 0.35s var(--ease-expo), height 0.35s var(--ease-expo), border-color 0.25s;
@@ -1514,7 +1514,7 @@ a   { color: inherit; text-decoration: none; }
   transform: translateX(-100%);
   transition: transform 0.7s var(--ease-expo);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(247,197,32,0.30); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,183,5,0.30); }
 .btn-primary:hover::before { transform: translateX(100%); }
 
 /* Button ghost */
@@ -1559,7 +1559,7 @@ a   { color: inherit; text-decoration: none; }
 .yellow-rail {
   position: absolute; top: 0; left: 0; right: 0;
   height: 3px; z-index: 3;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.14) 60%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.14) 60%, transparent 100%);
 }
 
 /* Grain overlay */
@@ -1665,7 +1665,7 @@ a   { color: inherit; text-decoration: none; }
 /* Yellow top rail */
 .hero__rail {
   position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 4;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 65%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.12) 65%, transparent 100%);
 }
 /* Eyebrow */
 .hero__eyebrow {
@@ -1692,7 +1692,7 @@ a   { color: inherit; text-decoration: none; }
 .hero__hl--3 span { font-weight: 700; color: var(--yellow-core);      animation-delay: 0.78s; }
 /* Growing yellow rule */
 .hero__rule {
-  width: 0; height: 1px; background: rgba(247,197,32,0.30);
+  width: 0; height: 1px; background: rgba(242,183,5,0.30);
   margin-bottom: 44px; position: relative; z-index: 1;
   animation: aGrow 0.9s var(--ease-expo) 1.0s forwards;
 }
@@ -1748,7 +1748,7 @@ a   { color: inherit; text-decoration: none; }
 .hero__seam::before {
   content: ''; position: absolute; top: 0; left: -4px; right: -4px; bottom: 0;
   background: repeating-linear-gradient(180deg,
-    transparent 0, transparent 24px, rgba(247,197,32,0.20) 24px, rgba(247,197,32,0.20) 25px);
+    transparent 0, transparent 24px, rgba(242,183,5,0.20) 24px, rgba(242,183,5,0.20) 25px);
 }
 
 /* RIGHT PANEL â€” image */
@@ -1780,7 +1780,7 @@ a   { color: inherit; text-decoration: none; }
 /* Service chip badge on image */
 .hero__badge {
   position: absolute; bottom: 52px; right: 48px; z-index: 5;
-  background: rgba(30,28,26,0.90); border: 1px solid rgba(247,197,32,0.20);
+  background: rgba(30,28,26,0.90); border: 1px solid rgba(242,183,5,0.20);
   border-top: 3px solid var(--yellow-core); padding: 18px 22px;
   opacity: 0; animation: aFade 0.8s var(--ease-expo) 1.8s forwards;
 }
@@ -1837,20 +1837,20 @@ a   { color: inherit; text-decoration: none; }
 .hero__bar-icon svg { width: 15px; height: 15px; transition: transform 0.4s var(--ease-expo); }
 .hero__bar-main:hover .hero__bar-icon svg { transform: rotate(-45deg); }
 .hero__bar-sec {
-  background: var(--charcoal-mid); border-left: 1px solid rgba(247,197,32,0.15);
+  background: var(--charcoal-mid); border-left: 1px solid rgba(242,183,5,0.15);
   padding: 0 40px; display: flex; align-items: center; gap: 10px;
   text-decoration: none; cursor: none; position: relative; overflow: hidden;
   transition: background 0.3s;
 }
 .hero__bar-sec::before {
   content: ''; position: absolute; inset: 0;
-  background: rgba(247,197,32,0.09); transform: scaleX(0); transform-origin: right;
+  background: rgba(242,183,5,0.09); transform: scaleX(0); transform-origin: right;
   transition: transform 0.42s var(--ease-expo);
 }
 .hero__bar-sec:hover { background: #383330; }
 .hero__bar-sec:hover::before { transform: scaleX(1); }
 .hero__bar-sec svg {
-  width: 14px; height: 14px; fill: none; stroke: rgba(247,197,32,0.40);
+  width: 14px; height: 14px; fill: none; stroke: rgba(242,183,5,0.40);
   stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
   flex-shrink: 0; position: relative; z-index: 1; transition: stroke 0.25s;
 }
@@ -1877,7 +1877,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .st3__top-rail {
   position: relative; z-index: 2; height: 3px; width: 100%;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 45%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.12) 45%, transparent 100%);
 }
 .st3__inner {
   position: relative; z-index: 1; display: flex; align-items: stretch;
@@ -2084,7 +2084,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .stc1__tab:hover { color: rgba(255,255,255,0.70); background: rgba(255,255,255,0.025); }
 .stc1__tab:hover .stc1__tab-num { color: rgba(255,255,255,0.35); }
-.stc1__tab.active { color: var(--white); background: rgba(247,197,32,0.06); }
+.stc1__tab.active { color: var(--white); background: rgba(242,183,5,0.06); }
 .stc1__tab.active .stc1__tab-num { color: var(--yellow-core); }
 .stc1__tab.active::after { transform: scaleX(1); }
 
@@ -2157,7 +2157,7 @@ a   { color: inherit; text-decoration: none; }
 .stc1__card-badge {
   display: inline-block; font-size: 9px; font-weight: 800;
   letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--yellow-core); background: rgba(247,197,32,0.12);
+  color: var(--yellow-core); background: rgba(242,183,5,0.12);
   padding: 5px 10px; align-self: flex-start;
 }
 .stc1__stat { display: flex; flex-direction: column; gap: 4px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.07); }
@@ -2231,7 +2231,7 @@ a   { color: inherit; text-decoration: none; }
   color: var(--gray-200); line-height: 1; align-self: start;
   transition: color 0.3s; position: relative; z-index: 1;
 }
-.why3__row:hover .why3__row-num { color: rgba(247,197,32,0.35); }
+.why3__row:hover .why3__row-num { color: rgba(242,183,5,0.35); }
 .why3__row-line { background: var(--gray-200); width: 1px; position: relative; z-index: 1; }
 .why3__row-content { position: relative; z-index: 1; }
 .why3__row-title {
@@ -2269,7 +2269,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .proc3__left-rail {
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 65%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.12) 65%, transparent 100%);
 }
 .proc3__left-wm {
   position: absolute; bottom: -10px; right: -10px;
@@ -2291,7 +2291,7 @@ a   { color: inherit; text-decoration: none; }
 .proc3__thread { position: relative; padding-top: 8px; }
 .proc3__connector {
   position: absolute; top: 24px; left: 16px; bottom: 24px; width: 1px;
-  background: linear-gradient(180deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 100%);
+  background: linear-gradient(180deg, var(--yellow-core) 0%, rgba(242,183,5,0.10) 100%);
 }
 .proc3__step { display: grid; grid-template-columns: 44px 1fr; gap: 24px; padding-bottom: 44px; position: relative; }
 .proc3__step:last-child { padding-bottom: 0; }
@@ -2422,7 +2422,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .coverage__rail {
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 55%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.10) 55%, transparent 100%);
 }
 .coverage__ghost {
   position: absolute; bottom: -20px; left: -20px;
@@ -2451,7 +2451,7 @@ a   { color: inherit; text-decoration: none; }
   display: flex; align-items: center; gap: 12px;
   transition: background 0.25s; cursor: none;
 }
-.coverage__item:hover { background: rgba(247,197,32,0.06); }
+.coverage__item:hover { background: rgba(242,183,5,0.06); }
 .coverage__item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow-core); flex-shrink: 0; }
 .coverage__item-name {
   font-family: var(--font-body); font-size: 11px; font-weight: 700;
@@ -2648,12 +2648,12 @@ a   { color: inherit; text-decoration: none; }
 .cta-final__bar-icon svg { width: 15px; height: 15px; fill: none; stroke: var(--charcoal-deep); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; transition: transform 0.4s var(--ease-expo); }
 .cta-final__bar-main:hover .cta-final__bar-icon svg { transform: rotate(-45deg); }
 .cta-final__bar-sec {
-  background: var(--charcoal-mid); border-left: 1px solid rgba(247,197,32,0.15);
+  background: var(--charcoal-mid); border-left: 1px solid rgba(242,183,5,0.15);
   padding: 0 40px; display: flex; align-items: center; gap: 10px;
   text-decoration: none; cursor: none; position: relative; overflow: hidden; transition: background 0.3s;
 }
 .cta-final__bar-sec:hover { background: #383330; }
-.cta-final__bar-sec svg { width: 14px; height: 14px; fill: none; stroke: rgba(247,197,32,0.40); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; position: relative; z-index:1; transition: stroke 0.25s; }
+.cta-final__bar-sec svg { width: 14px; height: 14px; fill: none; stroke: rgba(242,183,5,0.40); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; position: relative; z-index:1; transition: stroke 0.25s; }
 .cta-final__bar-sec:hover svg { stroke: var(--yellow-core); }
 .cta-final__bar-sec-txt {
   font-family: var(--font-body); font-size: 10px; font-weight: 700;
@@ -2676,7 +2676,7 @@ a   { color: inherit; text-decoration: none; }
 }
 .footer__rail {
   height: 3px;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.10) 55%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.10) 55%, transparent 100%);
 }
 .footer__main {
   max-width: var(--container-max); margin: 0 auto; padding: 72px 40px 64px;
@@ -2947,8 +2947,8 @@ Supplementary stylesheet from the second `<style>` block (motif preview chrome +
   --charcoal-deep:    #1E1C1A;
   --charcoal-mid:     #2E2B28;
   --charcoal-light:   #585653;
-  --yellow-core:      #F7C520;
-  --gold:             #D4A017;
+  --yellow-core:      #F2B705;
+  --gold:             #D9A004;
   --charcoal-tint:    rgba(46,43,40,0.06);
   --charcoal-tint-md: rgba(46,43,40,0.12);
   --text-600:         rgba(30,28,26,0.90);
@@ -3042,7 +3042,7 @@ body {
 }
 .dse-rail {
   position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 4;
-  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(247,197,32,0.12) 65%, transparent 100%);
+  background: linear-gradient(90deg, var(--yellow-core) 0%, rgba(242,183,5,0.12) 65%, transparent 100%);
 }
 .dse-grain {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -3101,7 +3101,7 @@ body {
 .hcard::after {
   content: ''; position: absolute; top: 0; right: 0;
   width: 70px; height: 70px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpolygon points='120,0 0,120 120,120' fill='%231E1C1A'/%3E%3Cpolygon points='120,0 60,60 120,60' fill='%23F7C520'/%3E%3C/svg%3E") no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpolygon points='120,0 0,120 120,120' fill='%231E1C1A'/%3E%3Cpolygon points='120,0 60,60 120,60' fill='%23F2B705'/%3E%3C/svg%3E") no-repeat;
   background-size: contain;
   transform: translate(35px,-35px);
   transition: transform 0.35s var(--ease-expo);
@@ -3125,7 +3125,7 @@ body {
   transform: translateX(-100%);
   transition: transform 0.7s var(--ease-expo);
 }
-.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(247,197,32,0.30); }
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(242,183,5,0.30); }
 .btn-p:hover::before { transform: translateX(100%); }
 
 .btn-g {
@@ -3187,7 +3187,7 @@ body {
   <div class="dse-grain"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;" viewBox="0 0 1400 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <polygon class="a1" points="0,320 0,155 700,50 1100,110 1400,42 1400,320" fill="#2E2B28" opacity="0.7"/>
-    <polygon class="a1" points="0,158 0,190 850,70 1400,48 1400,42 700,50" fill="#F7C520" opacity="0.80"/>
+    <polygon class="a1" points="0,158 0,190 850,70 1400,48 1400,42 700,50" fill="#F2B705" opacity="0.80"/>
     <polygon class="a2" points="0,320 0,230 480,175 1100,205 1400,165 1400,320" fill="#1E1C1A" opacity="0.65"/>
   </svg>
   <div style="position:absolute;bottom:72px;right:-10px;font-family:var(--font-display);font-size:clamp(80px,10vw,140px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:rgba(255,255,255,0.022);pointer-events:none;user-select:none;z-index:1;">GLC</div>
@@ -3215,7 +3215,7 @@ body {
   <div class="dse-grain"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;" viewBox="0 0 1400 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <polygon class="a2" points="1400,240 1400,110 700,30 300,80 0,20 0,240" fill="#2E2B28" opacity="0.7"/>
-    <polygon class="a2" points="1400,112 1400,145 550,45 0,25 0,20 700,30" fill="#F7C520" opacity="0.80"/>
+    <polygon class="a2" points="1400,112 1400,145 550,45 0,25 0,20 700,30" fill="#F2B705" opacity="0.80"/>
     <polygon class="a1" points="1400,240 1400,175 920,130 300,152 0,115 0,240" fill="#1E1C1A" opacity="0.65"/>
   </svg>
   <div class="dse-c" style="margin-left:auto;text-align:right;">
@@ -3242,7 +3242,7 @@ body {
   <svg viewBox="0 0 1400 70" preserveAspectRatio="none" style="width:100%;height:70px;display:block;" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,70 0,38 1400,0 1400,70" fill="#1E1C1A"/>
     <polygon points="0,70 0,54 700,16 1400,30 1400,70" fill="#1E1C1A" opacity="0.5"/>
-    <polygon points="0,40 1400,2 1400,7 0,46" fill="#F7C520" opacity="0.42"/>
+    <polygon points="0,40 1400,2 1400,7 0,46" fill="#F2B705" opacity="0.42"/>
   </svg>
 </div>
 <div class="dse" style="padding:28px 48px;">
@@ -3265,7 +3265,7 @@ body {
     <div style="background:var(--charcoal-mid);line-height:0;">
       <svg viewBox="0 0 700 55" preserveAspectRatio="none" style="width:100%;height:55px;display:block;" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0,55 0,28 700,0 700,55" fill="#1E1C1A"/>
-        <polygon points="0,55 0,40 210,14 700,0 700,55" fill="#F7C520" opacity="0.15"/>
+        <polygon points="0,55 0,40 210,14 700,0 700,55" fill="#F2B705" opacity="0.15"/>
       </svg>
     </div>
     <div class="dse" style="padding:24px 28px;">
@@ -3277,7 +3277,7 @@ body {
       <span class="anno" style="display:block;margin-bottom:16px;">A5 Â· Angled rule under display heading</span>
       <div style="font-family:var(--font-display);font-size:42px;font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;color:var(--charcoal-deep);margin-bottom:8px;">Our Services</div>
       <svg viewBox="0 0 320 3" preserveAspectRatio="none" style="width:220px;height:3px;display:block;margin-bottom:18px;">
-        <polygon points="0,3 0,1.5 320,0 320,3" fill="#F7C520"/>
+        <polygon points="0,3 0,1.5 320,0 320,3" fill="#F2B705"/>
       </svg>
       <div style="font-family:var(--font-industrial);font-size:14px;font-weight:300;color:var(--text-400);">Angled yellow rule replaces a flat border â€” carries the motif language into typography without a graphic element.</div>
     </div>
@@ -3296,8 +3296,8 @@ body {
   <div class="dse-rail"></div>
   <div class="dse-grain"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;" viewBox="0 0 1400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,200 0,100 1400,0 1400,100" fill="#F7C520" opacity="0.07"/>
-    <polygon points="0,200 0,140 1400,40 1400,200" fill="#F7C520" opacity="0.04"/>
+    <polygon points="0,200 0,100 1400,0 1400,100" fill="#F2B705" opacity="0.07"/>
+    <polygon points="0,200 0,140 1400,40 1400,200" fill="#F2B705" opacity="0.04"/>
   </svg>
   <div class="dse-c">
     <div class="eyebrow eyebrow-d"><span>Why GLC</span></div>
@@ -3323,21 +3323,21 @@ body {
   <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.018) 0px,rgba(255,255,255,0.018) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,rgba(255,255,255,0.018) 0px,rgba(255,255,255,0.018) 1px,transparent 1px,transparent 80px);"></div>
   <!-- B1: .motif-corner â€” bottom right, 200px, 12% -->
   <svg style="position:absolute;bottom:0;right:0;width:200px;height:200px;opacity:0.12;z-index:2;pointer-events:none;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="200,0 0,200 200,200" fill="#F7C520"/>
+    <polygon points="200,0 0,200 200,200" fill="#F2B705"/>
   </svg>
   <!-- B2: .motif-slash â€” top right, 160px, 8% -->
   <svg style="position:absolute;top:20px;right:60px;width:160px;height:160px;opacity:0.08;z-index:2;pointer-events:none;" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="160,0 80,160 160,160" fill="#F7C520"/>
-    <polygon points="120,0 40,160 80,160 160,0" fill="#F7C520"/>
+    <polygon points="160,0 80,160 160,160" fill="#F2B705"/>
+    <polygon points="120,0 40,160 80,160 160,0" fill="#F2B705"/>
   </svg>
   <!-- B3: .motif-cross â€” centred, 120px, 6% -->
   <svg style="position:absolute;top:50%;right:44%;transform:translateY(-50%);width:120px;height:120px;opacity:0.06;z-index:2;pointer-events:none;" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,0 120,0 120,120" fill="#F7C520"/>
-    <polygon points="0,0 0,120 120,120" fill="#F7C520" opacity="0.5"/>
+    <polygon points="0,0 120,0 120,120" fill="#F2B705"/>
+    <polygon points="0,0 0,120 120,120" fill="#F2B705" opacity="0.5"/>
   </svg>
   <!-- B4: .motif-triangle â€” bottom left, 100px, 8% -->
   <svg style="position:absolute;bottom:40px;left:40px;width:100px;height:100px;opacity:0.08;z-index:2;pointer-events:none;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,100 100,100 100,0" fill="#F7C520"/>
+    <polygon points="0,100 100,100 100,0" fill="#F2B705"/>
   </svg>
 
   <div style="position:relative;z-index:3;padding:clamp(48px,7vw,80px) clamp(32px,6vw,100px);display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;min-height:420px;">
@@ -3360,10 +3360,10 @@ body {
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:28px;">
       <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.20em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;">Active motif slots in this panel</div>
       <div style="display:flex;flex-direction:column;gap:9px;">
-        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(247,197,32,0.65);letter-spacing:0.10em;">.motif-corner   â†’ B1 Â· bottom right Â· 200px Â· opacity 0.12</div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(247,197,32,0.65);letter-spacing:0.10em;">.motif-slash    â†’ B2 Â· top right Â· 160px Â· opacity 0.08</div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(247,197,32,0.65);letter-spacing:0.10em;">.motif-cross    â†’ B3 Â· centred Â· 120px Â· opacity 0.06</div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(247,197,32,0.65);letter-spacing:0.10em;">.motif-triangle â†’ B4 Â· bottom left Â· 100px Â· opacity 0.08</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(242,183,5,0.65);letter-spacing:0.10em;">.motif-corner   â†’ B1 Â· bottom right Â· 200px Â· opacity 0.12</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(242,183,5,0.65);letter-spacing:0.10em;">.motif-slash    â†’ B2 Â· top right Â· 160px Â· opacity 0.08</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(242,183,5,0.65);letter-spacing:0.10em;">.motif-cross    â†’ B3 Â· centred Â· 120px Â· opacity 0.06</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:rgba(242,183,5,0.65);letter-spacing:0.10em;">.motif-triangle â†’ B4 Â· bottom left Â· 100px Â· opacity 0.08</div>
       </div>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
         <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.18);">These slots already exist in unified-v2.<br>Drop SVG files into /public/svg/ and reference by class name.</div>
@@ -3384,7 +3384,7 @@ body {
       <span class="anno" style="display:block;margin-bottom:12px;">B5 Â· Inverted â€” ab3__chip / ab3__corner-mark slot</span>
       <div style="background:var(--charcoal-deep);padding:28px 24px 28px 28px;position:relative;overflow:hidden;border-left:3px solid var(--yellow-core);">
         <svg style="position:absolute;top:0;left:0;width:80px;height:80px;opacity:0.10;pointer-events:none;" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="0,0 120,0 0,120" fill="#F7C520"/>
+          <polygon points="0,0 120,0 0,120" fill="#F2B705"/>
         </svg>
         <div style="position:relative;z-index:1;">
           <div style="font-family:var(--font-mono);font-size:8px;font-weight:500;letter-spacing:0.20em;text-transform:uppercase;color:rgba(255,255,255,0.30);margin-bottom:6px;">Established</div>
@@ -3427,9 +3427,9 @@ body {
   <div class="dse" style="min-height:220px;padding:40px 36px;display:flex;flex-direction:column;justify-content:center;">
     <div class="dse-grain"></div>
     <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;" viewBox="0 0 500 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="0,220 0,100 500,30 500,220" fill="#F7C520" opacity="0.04"/>
-      <polygon points="0,220 0,140 260,80 500,110 500,220" fill="#F7C520" opacity="0.03"/>
-      <polygon points="360,220 160,120 500,60 500,220" fill="#F7C520" opacity="0.025"/>
+      <polygon points="0,220 0,100 500,30 500,220" fill="#F2B705" opacity="0.04"/>
+      <polygon points="0,220 0,140 260,80 500,110 500,220" fill="#F2B705" opacity="0.03"/>
+      <polygon points="360,220 160,120 500,60 500,220" fill="#F2B705" opacity="0.025"/>
     </svg>
     <div class="dse-c">
       <div class="eyebrow eyebrow-d"><span>Process</span></div>
@@ -3441,7 +3441,7 @@ body {
   <div class="dse" style="min-height:220px;padding:40px 36px;display:flex;flex-direction:column;justify-content:center;">
     <div class="dse-grain"></div>
     <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;" viewBox="0 0 500 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <polygon class="a1" points="0,220 0,90 500,20 500,220" fill="#F7C520" opacity="0.06"/>
+      <polygon class="a1" points="0,220 0,90 500,20 500,220" fill="#F2B705" opacity="0.06"/>
       <polygon class="a2" points="0,220 130,120 500,50 500,220" fill="#2E2B28" opacity="0.09"/>
     </svg>
     <div class="dse-c">
@@ -3499,7 +3499,7 @@ body {
     <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 700 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="700" height="130" fill="#1E1C1A"/>
       <polygon points="0,130 0,98 700,65 700,130" fill="#2E2B28"/>
-      <polygon points="0,100 700,67 700,72 0,106" fill="#F7C520" opacity="0.55"/>
+      <polygon points="0,100 700,67 700,72 0,106" fill="#F2B705" opacity="0.55"/>
     </svg>
     <div class="dse-c" style="position:relative;z-index:3;padding:24px 32px;"><span class="anno anno-w">D3 Â· Sharp Slice Â· thin aggressive accent Â· max 1 per page Â· above CTA or hero only</span></div>
   </div>
@@ -3522,7 +3522,7 @@ body {
       <span class="anno" style="display:block;margin-bottom:14px;">D5 Â· Minimal line angle â€” section heading underline</span>
       <div style="font-family:var(--font-display);font-size:30px;font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;color:var(--charcoal-deep);margin-bottom:6px;">Why GLC</div>
       <svg viewBox="0 0 280 3" preserveAspectRatio="none" style="width:180px;height:3px;display:block;margin-bottom:12px;">
-        <polygon points="0,3 0,1.5 280,0 280,3" fill="#F7C520"/>
+        <polygon points="0,3 0,1.5 280,0 280,3" fill="#F2B705"/>
       </svg>
       <div style="font-family:var(--font-body);font-size:13px;color:var(--text-400);line-height:1.7;">Angled rule replaces a flat border â€” directional energy without a graphic element.</div>
     </div>
@@ -3547,7 +3547,7 @@ body {
   <div class="dse-rail"></div>
   <div class="dse-grain"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;" viewBox="0 0 1400 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <polygon class="a1" points="0,140 0,60 1400,8 1400,140" fill="#F7C520" opacity="0.06"/>
+    <polygon class="a1" points="0,140 0,60 1400,8 1400,140" fill="#F2B705" opacity="0.06"/>
     <polygon class="a2" points="0,140 190,90 1400,28 1400,140" fill="#2E2B28" opacity="0.09"/>
   </svg>
   <div class="dse-c">
@@ -3571,9 +3571,9 @@ body {
   <div class="dse-grain"></div>
   <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;" viewBox="0 0 1400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <polygon class="a1" points="0,200 0,100 800,28 1400,60 1400,200" fill="#2E2B28" opacity="0.7"/>
-    <polygon class="a1" points="0,103 0,128 900,48 1400,65 1400,60 800,28" fill="#F7C520" opacity="0.80"/>
+    <polygon class="a1" points="0,103 0,128 900,48 1400,65 1400,60 800,28" fill="#F2B705" opacity="0.80"/>
     <polygon class="a2" points="0,200 0,145 500,110 1100,135 1400,105 1400,200" fill="#1E1C1A" opacity="0.6"/>
-    <polygon points="1400,0 1160,200 1400,200" fill="#F7C520" opacity="0.10"/>
+    <polygon points="1400,0 1160,200 1400,200" fill="#F2B705" opacity="0.10"/>
   </svg>
   <div class="dse-c">
     <div style="font-family:var(--font-display);font-size:clamp(28px,4vw,52px);font-weight:700;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;color:var(--white);">
@@ -3584,7 +3584,7 @@ body {
 <div style="line-height:0;margin-bottom:-1px;">
   <svg viewBox="0 0 1400 55" preserveAspectRatio="none" style="width:100%;height:55px;display:block;" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,55 0,25 1400,0 1400,55" fill="#FFFFFF"/>
-    <polygon points="0,27 1400,2 1400,6 0,31" fill="#F7C520" opacity="0.40"/>
+    <polygon points="0,27 1400,2 1400,6 0,31" fill="#F2B705" opacity="0.40"/>
   </svg>
 </div>
 <div class="ls" style="padding:40px 64px;">
@@ -3610,12 +3610,12 @@ body {
 <div style="line-height:0;margin-bottom:-1px;">
   <svg viewBox="0 0 1400 50" preserveAspectRatio="none" style="width:100%;height:50px;display:block;" xmlns="http://www.w3.org/2000/svg">
     <polygon points="0,50 0,22 1400,0 1400,50" fill="#1E1C1A"/>
-    <polygon points="0,24 1400,2 1400,6 0,28" fill="#F7C520" opacity="0.40"/>
+    <polygon points="0,24 1400,2 1400,6 0,28" fill="#F2B705" opacity="0.40"/>
   </svg>
 </div>
 <div class="dse" style="padding:0;overflow:hidden;">
   <div class="dse-grain"></div>
-  <div style="height:3px;background:linear-gradient(90deg,var(--yellow-core) 0%,rgba(247,197,32,0.12) 45%,transparent 100%);position:relative;z-index:1;"></div>
+  <div style="height:3px;background:linear-gradient(90deg,var(--yellow-core) 0%,rgba(242,183,5,0.12) 45%,transparent 100%);position:relative;z-index:1;"></div>
   <div style="display:flex;align-items:stretch;position:relative;z-index:1;">
     <div style="width:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,0.06);">
       <span style="font-family:var(--font-body);font-size:9px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.20);writing-mode:vertical-rl;transform:rotate(180deg);">Performance</span>
@@ -5190,7 +5190,7 @@ Parsed from the second trailing JSON object in the source file.
     "primaryGround": "LIGHT â€” white and off-white are the default page surface",
     "designStyleEnhancements": "Dark sections (charcoal-deep, charcoal-mid, charcoal-light) are Design Style Enhancements (DSEs). Purposeful high-contrast interventions â€” not the default.",
     "dseSpacingRule": "Never place two full-bleed DSE sections consecutively without a light section between. Exception: hero + stats pairing only.",
-    "yellowRole": "Yellow-core (#F7C520) is the single brand accent across both light and dark surfaces. Never substitute.",
+    "yellowRole": "Yellow-core (#F2B705) is the single brand accent across both light and dark surfaces. Never substitute.",
     "charcoalTints": "--charcoal-tint and --charcoal-tint-md replace the former yellow-tint tokens. Industrial charcoal wash â€” feels like concrete and steel, not candy.",
     "logoNote": "GLC logo body gray is warm-neutral #585653 â€” all charcoal tokens are warm-biased to match."
   },
@@ -5209,8 +5209,8 @@ Parsed from the second trailing JSON object in the source file.
         "--charcoal": "#2E2B28 â€” CONFIRM_BEFORE_SHIP: assumed alias of --charcoal-mid; used by CoverageSection.tsx inline style"
       },
       "accent": {
-        "--yellow-core": "#F7C520",
-        "--gold": "#D4A017"
+        "--yellow-core": "#F2B705",
+        "--gold": "#D9A004"
       },
       "tints": {
         "--charcoal-tint": "rgba(46,43,40,0.06) â€” replaces removed --yellow-tint",
@@ -5602,7 +5602,7 @@ Parsed from the second trailing JSON object in the source file.
     "No 'Courier New' as a font â€” use --font-mono (Source Code Pro) for all technical text",
     "No --font-mono below weight 500 at sizes â‰¤12px â€” too thin to read on both light and dark surfaces",
     "No Inter, Roboto, system-ui, Arial â€” Oswald / Plus Jakarta Sans / Source Serif 4 / Source Code Pro only",
-    "No purple, blue, or teal accents â€” single accent: --yellow-core #F7C520",
+    "No purple, blue, or teal accents â€” single accent: --yellow-core #F2B705",
     "No box-shadow on section shells â€” exception: --shadow-card on service-card interaction only",
     "No duplicate #id CSS blocks in glc-base.css",
     "No bare global utility classes inside section internals â€” use scoped prefix",

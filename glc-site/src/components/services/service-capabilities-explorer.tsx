@@ -34,7 +34,7 @@ export function ServiceCapabilitiesExplorer({ sections, explorer }: Props) {
   }, [sections]);
 
   useEffect(() => {
-    syncHash();
+    queueMicrotask(() => syncHash());
     window.addEventListener("hashchange", syncHash);
     return () => window.removeEventListener("hashchange", syncHash);
   }, [syncHash]);

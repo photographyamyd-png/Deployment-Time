@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ProjectsMosaic } from "@/components/pages/projects-mosaic";
 import { MiniPageHero } from "@/components/pages/mini-page-hero";
 import { ParallaxWhiteFrameBand } from "@/components/sections/parallax-white-frame-band";
+import { ContactStripSection } from "@/components/sections/contact-strip-section";
 import { CtaBandSection } from "@/components/sections/cta-band-section";
 import { SmartLink } from "@/components/ui/smart-link";
 import { getHomeSectionProps } from "@/lib/home-sections";
@@ -10,11 +11,17 @@ import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 import site from "@/content/site.json";
 import type { SiteConfig } from "@/content/types";
-import type { CtaBandProps, HomeParallaxBandProps, TestimonialsProps } from "@/content/types";
+import type {
+  CtaBandProps,
+  HomeContactStripProps,
+  HomeParallaxBandProps,
+  TestimonialsProps,
+} from "@/content/types";
 
 const siteData = site as SiteConfig;
 const testimonialsProps = getHomeSectionProps<TestimonialsProps>("testimonials");
 const parallaxProps = getHomeSectionProps<HomeParallaxBandProps>("parallaxBand");
+const contactProps = getHomeSectionProps<HomeContactStripProps>("contactStrip");
 const ctaProps = getHomeSectionProps<CtaBandProps>("ctaBand");
 
 const heroLede = chunkSentences(testimonialsProps.sub, 2)[0] ?? "";
@@ -53,6 +60,7 @@ export default function ProjectsPage() {
           </>
         }
         lede={heroLede}
+        cta={ctaProps.formCta}
       />
 
       <ProjectsMosaic {...testimonialsProps} />
@@ -65,7 +73,10 @@ export default function ProjectsPage() {
         imageSrc={parallaxProps.imageSrc}
         imageAlt={parallaxProps.imageAlt}
         cta={parallaxProps.cta}
+        bandTone="dark"
       />
+
+      <ContactStripSection {...contactProps} sectionId="projects-contact-strip" />
 
       <CtaBandSection {...ctaProps} />
     </main>

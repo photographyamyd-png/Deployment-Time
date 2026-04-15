@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -21,6 +21,7 @@ import {
 } from "@/content/drainage-hardscaping-page";
 import { splitFirstTwoSentences } from "@/lib/copy-density";
 import { ROUTES } from "@/lib/routes";
+import { useIsClient } from "@/lib/use-is-client";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -33,15 +34,11 @@ const READMORE_SUMMARY = "Technical depth & field notes";
  */
 export function DrainageHubOverview() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClient();
   const reduceMotion = useReducedMotion();
   const [firstPara, ...otherParas] = DRAINAGE_HUB_OVERVIEW_PARAS;
   const { lead, remainder } = splitFirstTwoSentences(firstPara);
   const readmoreParas = remainder ? [remainder, ...otherParas] : [...otherParas];
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

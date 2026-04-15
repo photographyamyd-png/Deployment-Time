@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
@@ -17,6 +17,7 @@ import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
 import type { HeroProps } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
+import { useIsClient } from "@/lib/use-is-client";
 
 // ─── Variants ────────────────────────────────────────────────────────────────
 
@@ -113,10 +114,8 @@ export function HeroSection(props: HeroProps) {
   const isTelOrMail = (href: string) =>
     href.startsWith("tel:") || href.startsWith("mailto:");
 
-  const sectionRef  = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
+  const sectionRef = useRef<HTMLElement>(null);
+  const mounted = useIsClient();
 
   // ── Parallax ──────────────────────────────────────────────────────────────
   const { scrollYProgress } = useScroll({

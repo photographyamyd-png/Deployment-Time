@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { useIsClient } from "@/lib/use-is-client";
 
 export type ParallaxWhiteFrameBandProps = {
   id?: string;
@@ -13,6 +14,7 @@ export type ParallaxWhiteFrameBandProps = {
   imageSrc: string;
   imageAlt: string;
   cta?: { label: string; href: string };
+  bandTone?: "light" | "dark";
 };
 
 /**
@@ -26,13 +28,10 @@ export function ParallaxWhiteFrameBand({
   imageSrc,
   imageAlt,
   cta,
+  bandTone = "light",
 }: ParallaxWhiteFrameBandProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -46,7 +45,7 @@ export function ParallaxWhiteFrameBand({
     <section
       ref={sectionRef}
       id={id}
-      className="gl-parallax-wf"
+      className={`gl-parallax-wf gl-parallax-wf--${bandTone}`}
       aria-labelledby={`${id}-heading`}
     >
       <div className="gl-parallax-wf__frame-outer">

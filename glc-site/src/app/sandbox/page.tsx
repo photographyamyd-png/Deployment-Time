@@ -42,7 +42,16 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function SandboxPage() {
+type SandboxPageProps = {
+  searchParams: Promise<{ ds?: string | string[] }>;
+};
+
+export default async function SandboxPage({ searchParams }: SandboxPageProps) {
+  const sp = await searchParams;
+  const dsRaw = sp.ds;
+  const ds = Array.isArray(dsRaw) ? dsRaw[0] : dsRaw;
+  const showVariantMatrix = ds === "variants";
+
   return (
     <main id="main-content" className="sandbox">
       {/* 1 — Hero */}
@@ -62,7 +71,8 @@ export default function SandboxPage() {
             <SmartLink href={ROUTES.sandbox} className="sandbox__s10-link">
               {ROUTES.sandbox}
             </SmartLink>{" "}
-            if you need it.
+            if you need it. For the heavy design-system variant matrix (each pattern × three shells), append{" "}
+            <code className="sandbox__s1-code">?ds=variants</code> to this URL.
           </p>
           <a href="#sandbox-band-2" className="btn-primary">
             Scroll to band two
@@ -348,8 +358,8 @@ export default function SandboxPage() {
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
-      {/* Design system v2 HTML parity — six bands (AB3, ST3, Why3, quote, contact, coverage) */}
-      <SandboxDesignSystemV2Sections site={siteData} />
+      {/* Design system v2 HTML parity — AB3, ST3, Why3, quote, contact, coverage + extended (CERT1, tickers, SECT1, proc3, fleet, project, gallery, TST3, CARE1) */}
+      <SandboxDesignSystemV2Sections site={siteData} showVariantMatrix={showVariantMatrix} />
 
       {/* 10 — Closing strip */}
       <section className="sandbox__s10 ls ls-c" aria-label="Closing">

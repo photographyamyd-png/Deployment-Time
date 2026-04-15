@@ -35,6 +35,7 @@ export function AboutPageView({ about }: Props) {
           </>
         }
         lede={heroLede}
+        cta={about.cta}
       />
 
       <section className="about-pg-split" aria-labelledby="about-pg-split-heading">
@@ -135,6 +136,7 @@ export function AboutPageView({ about }: Props) {
         imageSrc={parallax.imageSrc}
         imageAlt={parallax.imageAlt}
         cta={parallax.cta}
+        bandTone="dark"
       />
 
       <CtaBandSection {...cta} />
