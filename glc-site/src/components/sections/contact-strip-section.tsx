@@ -1,15 +1,20 @@
 import { IconArrow } from "@/components/ui/icon-arrow";
 import type { HomeContactStripProps } from "@/content/types";
 
-export function ContactStripSection(props: HomeContactStripProps) {
+type ContactStripSectionProps = HomeContactStripProps & {
+  sectionId?: string;
+};
+
+export function ContactStripSection({ sectionId = "contact-strip", ...props }: ContactStripSectionProps) {
+  const headingId = `${sectionId}-heading`;
   return (
-    <section id="contact-strip" className="home-contact-strip" aria-labelledby="contact-strip-heading">
+    <section id={sectionId} className="home-contact-strip" aria-labelledby={headingId}>
       <div className="home-contact-strip__rail" aria-hidden />
       <div className="home-contact-strip__motif" aria-hidden />
       <div className="home-contact-strip__inner">
         <div className="home-contact-strip__copy">
           <p className="home-contact-strip__eyebrow">{props.eyebrow}</p>
-          <h2 id="contact-strip-heading" className="home-contact-strip__heading">
+          <h2 id={headingId} className="home-contact-strip__heading">
             {props.heading}
           </h2>
           <p className="home-contact-strip__sub">{props.sub}</p>

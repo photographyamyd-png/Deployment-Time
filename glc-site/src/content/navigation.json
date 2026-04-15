@@ -80,8 +80,11 @@
         "title": "Resources",
         "links": [
           { "label": "All services", "href": "/services/" },
+          { "label": "Company", "href": "/company/" },
+          { "label": "Our process", "href": "/process/" },
+          { "label": "Coverage area", "href": "/coverage/" },
+          { "label": "Client projects", "href": "/projects/" },
           { "label": "Why Ground Level", "href": "/#why" },
-          { "label": "Client Projects", "href": "/#testimonials" },
           { "label": "Site consultation", "href": "/#cta-band" }
         ]
       }

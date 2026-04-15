@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
 import hub from "@/content/pages/services-index.json";
-import navigation from "@/content/navigation.json";
-import type { NavigationConfig } from "@/content/types";
+import { SvcOverviewDigest } from "@/components/pages/svc-overview-digest";
+import { SvcOverviewExpandGallery } from "@/components/pages/svc-overview-expand-gallery";
+import { MarqueeBand } from "@/components/sections/marquee-band";
+import { ParallaxWhiteFrameBand } from "@/components/sections/parallax-white-frame-band";
+import { ServicesGridSection } from "@/components/sections/services-grid-section";
+import { CtaBandSection } from "@/components/sections/cta-band-section";
 import { SmartLink } from "@/components/ui/smart-link";
+import navigation from "@/content/navigation.json";
+import type {
+  CtaBandProps,
+  HomeParallaxBandProps,
+  NavigationConfig,
+  ServicesSectionProps,
+  StatsProps,
+} from "@/content/types";
+import { getHomeSectionProps } from "@/lib/home-sections";
 import { ROUTES } from "@/lib/routes";
 import site from "@/content/site.json";
 import type { SiteConfig } from "@/content/types";
@@ -22,6 +35,14 @@ type Hub = {
 
 const hubData = hub as Hub;
 
+const marqueeProps = getHomeSectionProps<{ items: string[] }>("marquee");
+const servicesProps = getHomeSectionProps<ServicesSectionProps>("services");
+const statsProps = getHomeSectionProps<StatsProps>("stats");
+const parallaxProps = getHomeSectionProps<HomeParallaxBandProps>("parallaxBand");
+const ctaProps = getHomeSectionProps<CtaBandProps>("ctaBand");
+
+const digestTitle = `${hubData.title.trimEnd()} ${hubData.titleEmphasis.trim()}`;
+
 const servicesSeo = pageMetadata({
   title: `Services | ${siteData.name}`,
   description: hubData.lede,
@@ -39,10 +60,7 @@ export const metadata: Metadata = {
 export default function ServicesIndexPage() {
   return (
     <main id="main-content">
-      <section
-        className="service-page-hero"
-        style={{ paddingTop: "calc(var(--gl-header-height) + 32px)" }}
-      >
+      <section className="service-page-hero">
         <div className="service-page-hero__bg" aria-hidden="true" />
         <div className="service-page-hero__inner">
           <p className="service-page-hero__breadcrumb">
@@ -58,53 +76,36 @@ export default function ServicesIndexPage() {
         </div>
       </section>
 
-      <section className="service-detail" style={{ background: "var(--off-white)" }}>
-        <div
-          className="container"
-          style={{
-            maxWidth: "var(--container-max)",
-            margin: "0 auto",
-            padding: "0 40px",
-          }}
-        >
-          <div className="services-hub__grid" style={{ marginTop: 0 }}>
-            {navData.megaMenu.cards.map((card) => (
-              <SmartLink
-                key={card.slug}
-                className="service-card"
-                style={{ minHeight: 200 }}
-                href={ROUTES.service(card.slug)}
-              >
-                <div className="service-card__num">{card.num}</div>
-                <h3 className="service-card__title">
-                  {card.gridTitle.map((line, i) => (
-                    <span key={`${card.slug}-h-${i}`}>
-                      {i > 0 ? <br /> : null}
-                      {line}
-                    </span>
-                  ))}
-                </h3>
-                <p className="service-card__desc">{hubData.cardDesc}</p>
-                <span className="service-card__link">
-                  {hubData.cardCtaLabel}
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    aria-hidden
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </span>
-              </SmartLink>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MarqueeBand items={marqueeProps.items} />
+
+      <ServicesGridSection {...servicesProps} cards={navData.megaMenu.cards} />
+
+      <SvcOverviewDigest
+        kicker={navData.megaMenu.kicker}
+        digestTitle={digestTitle}
+        megaIntro={navData.megaMenu.intro}
+        hubLede={hubData.lede}
+        stats={statsProps}
+      />
+
+      <SvcOverviewExpandGallery
+        cards={navData.megaMenu.cards}
+        cardDesc={hubData.cardDesc}
+        kicker={navData.megaMenu.kicker}
+        heading={navData.megaMenu.viewAllLabel}
+      />
+
+      <ParallaxWhiteFrameBand
+        id="services-parallax"
+        eyebrow={parallaxProps.eyebrow}
+        title={parallaxProps.title}
+        subtitle={parallaxProps.subtitle}
+        imageSrc={parallaxProps.imageSrc}
+        imageAlt={parallaxProps.imageAlt}
+        cta={parallaxProps.cta}
+      />
+
+      <CtaBandSection {...ctaProps} />
     </main>
   );
 }

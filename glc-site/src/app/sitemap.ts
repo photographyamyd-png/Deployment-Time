@@ -31,6 +31,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: canonicalUrl(ROUTES.company),
+      lastModified: last,
+      changeFrequency: "monthly",
+      priority: 0.82,
+    },
+    {
+      url: canonicalUrl(ROUTES.process),
+      lastModified: last,
+      changeFrequency: "monthly",
+      priority: 0.82,
+    },
+    {
+      url: canonicalUrl(ROUTES.coverage),
+      lastModified: last,
+      changeFrequency: "monthly",
+      priority: 0.82,
+    },
+    {
+      url: canonicalUrl(ROUTES.projects),
+      lastModified: last,
+      changeFrequency: "monthly",
+      priority: 0.82,
+    },
+    {
       url: canonicalUrl(ROUTES.privacy),
       lastModified: last,
       changeFrequency: "yearly",

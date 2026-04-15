@@ -5,6 +5,10 @@ export const ROUTES = {
   /** Internal playground — not linked from production nav. */
   sandbox: "/sandbox/",
   about: "/about/",
+  company: "/company/",
+  process: "/process/",
+  coverage: "/coverage/",
+  projects: "/projects/",
   contact: "/contact/",
   services: "/services/",
   service: (slug: string) => `/services/${slug}/`,

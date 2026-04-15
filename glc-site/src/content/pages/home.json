@@ -314,7 +314,7 @@
         },
         "processCta": {
           "label": "Learn About Our Process",
-          "href": "/#process"
+          "href": "/process/"
         },
         "emailCta": {
           "label": "Email Us",
