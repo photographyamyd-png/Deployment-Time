@@ -2,6 +2,9 @@
   "name": "glc-site",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "node -e \"console.log('\\n  GLC Next.js → http://localhost:3040/  (port 3000 is unused; 500/chunk errors → npm run dev:fresh)\\n')\" && next dev --webpack -p 3040",
     "dev:fresh": "npm run clean && node -e \"console.log('\\n  GLC Next.js → http://localhost:3040/\\n')\" && next dev --webpack -p 3040",
@@ -18,14 +21,14 @@
   "dependencies": {
     "framer-motion": "^12.38.0",
     "next": "^16.2.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^22.19.17",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.3",
     "tailwindcss": "^4",

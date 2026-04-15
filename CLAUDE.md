@@ -26,7 +26,7 @@ All commands run from the **repo root** and delegate to `glc-site/`:
 | `npm run build:services` | Regenerate static service pages via `_build-services.mjs` |
 | `npm run build:accordion` | Build the embeddable accordion widget from `web/` |
 
-**First-time setup:** `cd glc-site && npm install && cd .. && npm run dev`
+**First-time setup:** Node **≥ 20.9** (required by Next.js 16). Then `cd glc-site && npm install && cd .. && npm run dev`
 
 **Bundler note:** Next.js 16 defaults to Turbopack for dev and build. This repo passes **`--webpack`** on `dev` / `build` / `build:fresh` so the **`webpack`** hook in `glc-site/next.config.ts` (dev cache disabled on Windows) stays in effect. Use `dev:turbo` or `build:turbo` only if you intentionally want Turbopack.
 
@@ -38,7 +38,7 @@ All commands run from the **repo root** and delegate to `glc-site/`:
 
 ### Two parallel layers
 
-**Production app** — `glc-site/` is the only thing deployed. It is a Next.js **16** App Router app using React 19, TypeScript, and Tailwind v4. Deploy `glc-site/` only.
+**Production app** — `glc-site/` is the only thing deployed. It is a Next.js **16** App Router app using React **19.2**+, TypeScript **5.x**, and Tailwind v4. Deploy `glc-site/` only.
 
 **Static reference layer** — `index.html`, `assets/`, `services/*.html`, and the preview HTML files at repo root are legacy experiments and design references. They are not part of the production build. Use `npm run dev:legacy-static` to preview them.
 
