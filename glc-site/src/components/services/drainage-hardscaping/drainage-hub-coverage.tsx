@@ -8,11 +8,9 @@ import {
   DRAINAGE_HUB_COVERAGE_INTRO,
   DRAINAGE_HUB_COVERAGE_LAKESIDE,
   DRAINAGE_HUB_COVERAGE_MAP_ALT,
+  DRAINAGE_HUB_COVERAGE_MAP_IMAGE,
   DRAINAGE_HUB_COVERAGE_PRIMARY,
 } from "@/content/drainage-hardscaping-page";
-
-const MAP_PLACEHOLDER =
-  "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80&auto=format";
 
 /** Light coverage band — native `<details>` for extended territory (no max-height accordion). */
 export function DrainageHubCoverage() {
@@ -75,7 +73,7 @@ export function DrainageHubCoverage() {
                 <div className="service-cap-split__media-slab" aria-hidden />
                 <div className="about__media-shell glc-drain-hub__media-shell--fill glc-drain-hub__coverage-map-shell">
                   <Image
-                    src={MAP_PLACEHOLDER}
+                    src={DRAINAGE_HUB_COVERAGE_MAP_IMAGE}
                     alt={DRAINAGE_HUB_COVERAGE_MAP_ALT}
                     fill
                     className="glc-drain-hub__media-fill"

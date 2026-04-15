@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -31,12 +32,31 @@ const READMORE_SUMMARY = "Technical depth & field notes";
  * primary CTA + arrow, media badge / photo / chip / corner mark, Reveal + chip motion.
  */
 export function DrainageHubOverview() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const reduceMotion = useReducedMotion();
   const [firstPara, ...otherParas] = DRAINAGE_HUB_OVERVIEW_PARAS;
   const { lead, remainder } = splitFirstTwoSentences(firstPara);
   const readmoreParas = remainder ? [remainder, ...otherParas] : [...otherParas];
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const rawImgY = useTransform(scrollYProgress, [0, 1], ["-5%", "8%"]);
+  const imgY = useSpring(rawImgY, { stiffness: 75, damping: 28 });
+
   return (
-    <section id="overview" className="glc-drain-hub__overview" aria-labelledby="overview-heading">
+    <section
+      ref={sectionRef}
+      id="overview"
+      className="glc-drain-hub__overview"
+      aria-labelledby="overview-heading"
+    >
       <span className="ab3__wm" aria-hidden>
         GLC
       </span>
@@ -110,13 +130,19 @@ export function DrainageHubOverview() {
             role="img"
             aria-label={DRAINAGE_HUB_OVERVIEW_IMAGE_ALT}
           >
-            <Image
-              src={DRAINAGE_HUB_OVERVIEW_IMAGE}
-              alt=""
-              fill
-              className="ab3__photo-img"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-            />
+            <motion.div
+              className="glc-drain-hub__ab3-photo-parallax"
+              style={mounted && !reduceMotion ? { y: imgY } : undefined}
+            >
+              <Image
+                src={DRAINAGE_HUB_OVERVIEW_IMAGE}
+                alt=""
+                fill
+                className="ab3__photo-img glc-drain-hub__ab3-photo-img--parallax"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+              <span className="glc-drain-hub__ab3-photo-scrim" aria-hidden />
+            </motion.div>
           </div>
 
           <motion.div

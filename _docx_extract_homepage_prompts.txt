@@ -1,0 +1,487 @@
+GROUND LEVEL CONTRACTING
+Homepage
+CURSOR PROMPT GUIDE — STEP-BY-STEP BUILD
+The GLC anchor page — all services, all audiences, full local SEO
+Barrie · Orillia · Wasaga Beach · Innisfil · Simcoe County, ON
+Run one step at a time. Each prompt tells Cursor what to write and exactly where to put it.
+How to Use This Guide
+1.  Open this page in Cursor.
+2.  Copy each yellow prompt box exactly as written.
+3.  Paste into Cursor's chat panel and run it.
+4.  Review output before accepting — never auto-accept.
+5.  Replace [YOUR PHONE NUMBER] and [CONTACT PAGE URL] before running each prompt.
+⚠️  SCOPE LOCK — If Cursor loses focus paste this first: "IMPORTANT: You are working on the Homepage only. Do not modify any other page. Add to and enhance existing content — do not delete what is already there."
+
+PHASE 1
+Meta Data & Technical SEO
+
+The homepage meta title and description are the single most important text elements for your Google ranking and click-through rate. Apply to the homepage only.
+
+STEP
+1
+Set Page Scope & Context Lock
+Target: Homepage (/)
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+You are helping me build the homepage of my contractor website.
+
+The company is: Ground Level Contracting — a full-service civil contractor based in Barrie, Ontario.
+
+STRICT RULES for every response in this session:
+- Only make changes to the homepage.
+- Do NOT touch, modify, or reference any other page.
+- Do NOT delete or overwrite content already on this page.
+- ADD to and ENHANCE what already exists.
+- All content must target: Barrie, Orillia, Wasaga Beach, Innisfil, and Simcoe County, Ontario, Canada.
+- Tone: confident, professional, direct — speaking to builders, developers, engineers, and property owners.
+- Write at a Grade 8 reading level. Short sentences. Active voice. No unnecessary jargon.
+
+Confirm you understand these rules before we begin.
+
+✅  Cursor confirms scope and rules. If not, paste the prompt again before proceeding.
+
+STEP
+2
+Apply Meta Title, Meta Description & OG Tags
+Target: Homepage (/)
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the Ground Level Contracting homepage:
+
+Apply the following meta data. Do not change meta data on any other page.
+
+META TITLE (60 characters):
+"Ground Level Contracting | Barrie & Simcoe County Contractor"
+
+META DESCRIPTION (158 characters):
+"Full-service civil contractor in Barrie & Simcoe County. Excavation, foundations, drainage, hardscaping & commercial snow removal. Licensed, insured. Free estimates."
+
+OPEN GRAPH TAGS (add to <head>):
+og:title — "Ground Level Contracting | Barrie's Civil & Site Services Contractor"
+og:description — "Excavation, foundations, civil infrastructure, drainage, hardscaping & commercial snow removal — serving Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County."
+og:type — "website"
+og:locale — "en_CA"
+
+Confirm all applied to homepage only.
+
+✅  Meta title 60 chars. Meta description 158 chars. OG tags in <head>. Homepage only.
+
+PHASE 2
+Hero Section — H1, Subheadline, Paragraph & CTAs
+
+STEP
+3
+Add H1, H2 & Hero Body Paragraph
+Target: Homepage — top of page
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the Ground Level Contracting homepage:
+
+Place the following H1, H2, and hero body paragraph at the very top of the page content area:
+
+H1 (one per page — largest text on the page):
+"Ground Level Contracting — Excavation, Foundations & Civil Infrastructure for Barrie & Simcoe County"
+
+H2 (directly below H1):
+"Site Prep, Foundation Work, Drainage, Hardscaping & Commercial Snow Removal — One Contractor, Every Phase, Built Right"
+
+Hero body paragraph:
+"Builders, developers, engineers, municipalities, and property owners across Barrie, Orillia, Innisfil, Wasaga Beach, and Simcoe County choose Ground Level Contracting when the ground has to be right. We're a full-service civil contractor with the equipment, the crew depth, and the project management experience to handle every phase — from the first excavator bucket to the final grade. We don't cut corners. We don't walk away from difficult sites. And we don't stop until the work is done correctly."
+
+Show me the layout before applying.
+
+✅  Exactly 1 H1. H2 directly below. Hero paragraph follows. Service types and all key locations named in first 150 words.
+
+STEP
+4
+Add Hero CTA Buttons
+Target: Homepage — hero section
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Directly below the hero paragraph, add two CTA buttons:
+
+Button 1: Text = "Get a Free Project Estimate" | Link = [CONTACT PAGE URL]
+Button 2: Text = "Call Us: [YOUR PHONE NUMBER]" | Link = tel:[YOUR PHONE NUMBER]
+
+Microcopy below the buttons:
+"No obligation. Free site visit. Fully licensed & insured. We respond within 24 hours."
+
+Button 2 must use a tel: link for mobile click-to-call. Show me the layout before applying.
+
+✅  Two buttons visible. tel: link on button 2. Microcopy below.
+
+PHASE 3
+Trust Bar
+
+STEP
+5
+Add Trust Bar
+Target: Homepage — directly below hero
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Directly below the hero section, add a horizontal trust bar. Display as a single row of 6 items with icons:
+
+Item 1: Fully Licensed & Insured in Ontario
+Item 2: WSIB Registered & In Good Standing
+Item 3: OBC Compliant — All Work to Code
+Item 4: Commercial, Residential & Municipal Projects
+Item 5: GPS-Tracked Equipment Fleet
+Item 6: Free On-Site Estimates — Simcoe County
+
+Visually separate from the hero above it. Show me the placement before applying.
+
+✅  Six items displayed horizontally. Visually distinct from hero.
+
+PHASE 4
+Services Overview Grid
+
+STEP
+6
+Add Services Overview Section
+Target: Homepage — below trust bar
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Below the trust bar, add a services overview section:
+
+H2: "What We Do — Full-Service Civil Contracting Across Simcoe County"
+
+Intro paragraph:
+"Ground Level Contracting is built to handle every phase of civil and site work — from raw land to finished project. Whatever the ground demands, we have the equipment, the crew, and the experience to execute it."
+
+Display the following 4 service cards as a grid. Each card is a clickable link. Include a one-sentence description under each card title:
+
+Card 1 — Title: "Excavation & Site Preparation"
+Description: "Foundation digs, subdivision grading, pool excavation, land clearing, trenching, hydrovac, backfill & compaction."
+Link: /excavation-site-preparation/
+
+Card 2 — Title: "Foundations & Civil Infrastructure"
+Description: "Foundation excavation, concrete forming, grade beams, multi-storey foundations, subdivision site servicing & underpinning."
+Link: /foundations-civil-infrastructure/
+
+Card 3 — Title: "Drainage & Hardscaping"
+Description: "Drain tile installation, custom site drainage, retaining walls (armour stone & block), patios, driveways & steps."
+Link: /drainage-hardscaping/
+
+Card 4 — Title: "Commercial Snow Removal"
+Description: "24/7 commercial snow removal, ice management, SLA contracts & emergency response for businesses across Simcoe County."
+Link: /commercial-snow-removal/
+
+Show me the grid layout before applying.
+
+✅  H2 and intro paragraph above grid. Four cards each link to correct sub-page. One-line description per card.
+
+PHASE 5
+Why Ground Level Contracting
+
+STEP
+7
+Add Why GLC Section
+Target: Homepage — below services grid
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Below the services grid, add a 'Why GLC' section:
+
+H2: "Why Builders and Property Owners Choose Ground Level Contracting"
+
+Display 5 feature blocks — bold heading + short paragraph each:
+
+Block 1 — Heading: "One Crew, Every Phase"
+Copy: "Most civil jobs require multiple contractors — excavators, concrete crews, drainage specialists, hardscapers. Ground Level can handle every one of those phases in-house. That means fewer scheduling conflicts, no blame gaps between contractors, and one point of contact who owns the whole job."
+
+Block 2 — Heading: "Built for Commercial Scale"
+Copy: "We're not a residential crew moonlighting on larger jobs. Our equipment fleet, crew depth, and project management systems are built for commercial and industrial scale — multi-storey foundation packages, subdivision site servicing, mass excavation, and municipal contracts. When the job gets bigger, we don't have to bring in someone new."
+
+Block 3 — Heading: "Engineering-Grade Precision"
+Copy: "We work from structural drawings, civil plans, and engineering specifications. Every excavation is dug to spec. Every grade is hit to tolerance. Every compaction is documented. We coordinate with your engineers, architects, and inspectors — because getting it wrong isn't an option when the entire build sits on top of our work."
+
+Block 4 — Heading: "Fully Licensed, Insured & WSIB Registered"
+Copy: "We carry full commercial general liability insurance, WSIB registration in good standing, and complete Ontario Building Code compliance. Certificates of insurance are provided as standard. For commercial and municipal contracts, we meet prequalification requirements and can provide bonding documentation where required."
+
+Block 5 — Heading: "Local to Simcoe County — Not Just Visiting"
+Copy: "We're based in Simcoe County. We know the soil conditions, the frost depths, the municipal permit requirements, and the development landscape in Barrie, Innisfil, Orillia, and Wasaga Beach. That local knowledge isn't something a company from out of region can replicate — and it shows up in the quality and efficiency of our work."
+
+Show me the section before applying.
+
+✅  H2 heading. Five feature blocks with bold headings and paragraphs. Each block makes a specific, credible claim.
+
+PHASE 6
+Mid-Page CTA Banner
+
+STEP
+8
+Add Mid-Page CTA Banner
+Target: Homepage — between Why GLC and Who We Serve
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the 'Why GLC' section, add a CTA banner with a dark background:
+
+Headline: "Whatever the Ground Demands — We Can Handle It."
+
+Subtext: "Excavation, foundations, drainage, hardscaping & commercial snow removal across Barrie, Orillia, Innisfil, Wasaga Beach & Simcoe County."
+
+Button 1: Text = "Get a Free Estimate" | Link = [CONTACT PAGE URL]
+Button 2: Text = "Call Us: [YOUR PHONE NUMBER]" | Link = tel:[YOUR PHONE NUMBER]
+
+Microcopy: "No obligation. Free site visit. We respond within 24 hours."
+
+Show me placement before applying.
+
+✅  Dark background banner between Why GLC and next section. Both buttons visible. tel: link on call button.
+
+PHASE 7
+Who We Serve
+
+STEP
+9
+Add Who We Serve Section
+Target: Homepage — below mid-page CTA
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the mid-page CTA banner, add a 'Who We Serve' section:
+
+H2: "Who We Work With — Builders, Developers, Engineers & Property Owners"
+
+Intro sentence: "Ground Level Contracting serves clients at every level of the construction and development industry across Simcoe County."
+
+Display these as 6 audience blocks — each with a bold title and 2-sentence description:
+
+Block 1 — Title: "General Contractors & Builders"
+Copy: "We function as a reliable civil sub-contractor for GCs managing residential, commercial, and institutional builds. Schedules, specs, and communications — all handled professionally."
+
+Block 2 — Title: "Residential Developers"
+Copy: "From single-lot custom home site prep to full subdivision development — we handle the excavation, grading, servicing, and civil work your development requires from start to finish."
+
+Block 3 — Title: "Engineers & Architects"
+Copy: "We work from your drawings. We hit your tolerances. We coordinate inspections and flag issues before they become problems. We're the contractor your design intent deserves on the ground."
+
+Block 4 — Title: "Commercial Property Owners & Managers"
+Copy: "Year-round civil services from site prep and drainage to commercial snow removal and hardscaping. One contractor, one relationship, across your entire property's needs."
+
+Block 5 — Title: "Municipalities & Public Sector"
+Copy: "We hold the insurance, bonding, and WSIB documentation required for municipal and public sector contracts. We understand the reporting, compliance, and coordination expectations of institutional projects."
+
+Block 6 — Title: "Homeowners & Custom Home Builders"
+Copy: "Building a custom home in Barrie, Innisfil, Oro-Medonte, or anywhere in Simcoe County? We handle the excavation, foundation work, grading, drainage, and hardscaping — so your builder can focus on the build."
+
+Show me the section before applying.
+
+✅  H2 and intro. Six audience blocks with bold titles and 2-sentence descriptions. Covers B2B and residential audiences.
+
+PHASE 8
+Service Area Section
+
+STEP
+10
+Add Service Area Section
+Target: Homepage
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the 'Who We Serve' section, add a service area section:
+
+H2: "Serving Builders and Property Owners Across Barrie & Simcoe County"
+
+Intro paragraph:
+"Ground Level Contracting is based in Simcoe County. Our equipment and crews operate throughout the region — from Barrie's fast-growing south end and the Highway 400 corridor to lakeside properties on Lake Simcoe, rural lots in Oro-Medonte and Springwater, and the expanding residential developments in Innisfil, Angus, and New Tecumseth."
+
+City grid (crawlable text — not inside an image):
+Barrie | Orillia | Innisfil | Wasaga Beach | Angus | Springwater | Oro-Medonte | New Tecumseth | Collingwood | Midland | Penetanguishene | Bradford | Cookstown | Alcona | Stroud | Thornton | Minesing | Churchill | Gilford | Essa
+
+Closing line: "Working on a project outside these areas? Call us — if we can get a machine there, we will."
+
+Show me the section before applying.
+
+✅  H2. Intro paragraph. City grid as crawlable text. Closing line. All cities are readable text.
+
+PHASE 9
+Testimonials / Reviews Section
+
+STEP
+11
+Add Testimonials Section
+Target: Homepage — below service area
+
+Testimonials are one of the most powerful trust signals on a contractor homepage. Add real ones when available. The placeholder copy below sets up the section structure — replace bracketed fields with actual client testimonials before publishing.
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the service area section, add a testimonials section:
+
+H2: "What Our Clients Say"
+
+Display three testimonial blocks. Replace bracketed fields with real client quotes before publishing:
+
+Testimonial 1:
+Quote: "[REAL CLIENT QUOTE — e.g. 'Ground Level managed our entire subdivision site prep from clearing to final grade. Showed up when they said they would, hit every deadline, and the grading was spot on. We'll be using them on our next three projects.']"
+Name: [CLIENT NAME]
+Company/Project type: [e.g. Residential Developer, Innisfil ON]
+
+Testimonial 2:
+Quote: "[REAL CLIENT QUOTE — e.g. 'Our commercial property needed a retaining wall and proper drainage — two things most contractors handle separately. GLC handled both in one scope, on time, and the drainage has worked perfectly through two full winters.']"
+Name: [CLIENT NAME]
+Company/Project type: [e.g. Property Manager, Barrie ON]
+
+Testimonial 3:
+Quote: "[REAL CLIENT QUOTE — e.g. 'They dug our custom home foundation in Oro-Medonte on a sloped lot that two other contractors passed on. Clean work, proper compaction documentation, and they left the site better than they found it.']"
+Name: [CLIENT NAME]
+Company/Project type: [e.g. Custom Home Builder, Oro-Medonte ON]
+
+Below the three testimonials, add a Google Reviews CTA line:
+"Read more reviews on Google →" — link this to your Google Business Profile review page.
+
+Show me the section before applying.
+
+✅  H2 heading. Three testimonial blocks with quote, name, and project type. Google Reviews link at bottom. Replace all bracketed fields with real quotes before publishing.
+
+PHASE 10
+FAQ Section
+
+STEP
+12
+Add FAQ Section
+Target: Homepage
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the testimonials section, add a FAQ section. All Q&As must be visible as readable text:
+
+H2: "Frequently Asked Questions — Ground Level Contracting"
+
+Q1: What services does Ground Level Contracting offer?
+A1: We provide four core service areas: excavation and site preparation, foundations and civil infrastructure, drainage and hardscaping, and commercial snow removal. Within those areas, we handle everything from residential foundation digs and custom pool excavation to subdivision site servicing, mass earthworks, armour stone retaining walls, interlock patios, drain tile installation, and 24/7 commercial snow removal with SLA contracts. If it involves the ground in Barrie or Simcoe County, we do it.
+
+Q2: What areas do you serve?
+A2: We serve Barrie, Orillia, Innisfil, Wasaga Beach, Angus, Springwater, Oro-Medonte, New Tecumseth, Collingwood, Midland, Bradford, and throughout Simcoe County and Central Ontario. We're based in Simcoe County — we're not a company dispatching from far away.
+
+Q3: Do you work on both residential and commercial projects?
+A3: Yes. We serve homeowners, custom home builders, residential developers, general contractors, commercial property owners, property managers, and municipalities. The right equipment, proper insurance, and professional project management are standard on every project — regardless of size.
+
+Q4: Are you licensed and insured?
+A4: Yes. Ground Level Contracting carries full commercial general liability insurance, WSIB registration in good standing, and completes all work to Ontario Building Code standards. Certificates of insurance are provided as standard on commercial projects. We also carry commercial vehicle insurance and hold all required contractor licences for our scope of work in Ontario.
+
+Q5: How do I get a quote?
+A5: The best way to get an accurate quote is a free on-site assessment. We visit your property, assess the scope, and provide a detailed written quote — no vague estimates, no surprise charges. Call us directly, use the contact form on this site, or send us a message and we'll book a site visit within 24–48 hours.
+
+Q6: Do you offer free estimates?
+A6: Yes. All estimates start with a free on-site visit. We don't quote major civil, excavation, or hardscaping projects over the phone because the site conditions determine the actual scope. For commercial snow removal, we conduct a free property assessment and provide a written quote with SLA terms before any contract is signed.
+
+Use accordion format if your builder supports it. Show me the section before applying.
+
+✅  H2. All 6 Q&As visible as text. Accordion applied if supported. Keywords naturally present in answers.
+
+PHASE 11
+Final CTA, Schema & Pre-Publish Audit
+
+STEP
+13
+Add Final CTA Section
+Target: Homepage — very bottom, above footer
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+After the FAQ section, add the final CTA at the very bottom of the page content:
+
+H2: "Ready to Start Your Project? Let's Talk."
+
+Body copy:
+"Whether you're a developer breaking ground on a new subdivision in Innisfil, a GC needing a reliable civil sub for a commercial build in Barrie, an engineer looking for a contractor who will actually execute to your drawings, or a homeowner ready to solve a drainage problem or build the outdoor space you've been planning — we want to hear about your project.
+
+Call us, send a message, or request a site visit online. We provide free estimates, detailed written quotes, and honest answers. Ground Level Contracting — built on the ground, built to last."
+
+CTA buttons:
+Button 1: Text = "Get a Free Estimate" | Link = [CONTACT PAGE URL]
+Button 2: Text = "Call [YOUR PHONE NUMBER]" | Link = tel:[YOUR PHONE NUMBER]
+Button 3: Text = "Learn About Our Process" | Link = /our-process/
+
+Service area tagline: "Proudly serving Barrie, Orillia, Innisfil, Wasaga Beach & Simcoe County, Ontario"
+
+Show me the layout before applying.
+
+✅  Three CTAs now on homepage: hero (Step 4), mid-page (Step 8), bottom (this step). All phone numbers are tel: links.
+
+STEP
+14
+Add LocalBusiness Schema to Homepage Head
+Target: Homepage <head>
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Add the following JSON-LD schema to the <head> of the homepage only. Replace placeholder values before applying:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Ground Level Contracting",
+  "description": "Full-service civil contractor serving Barrie, Orillia, Innisfil, Wasaga Beach and Simcoe County Ontario. Excavation, site preparation, foundations, civil infrastructure, drainage, hardscaping and commercial snow removal.",
+  "telephone": "[YOUR PHONE NUMBER]",
+  "url": "[YOUR WEBSITE URL]",
+  "address": { "@type": "PostalAddress", "addressLocality": "Barrie", "addressRegion": "ON", "addressCountry": "CA" },
+  "areaServed": ["Barrie","Orillia","Wasaga Beach","Innisfil","Simcoe County","Angus","Springwater","Oro-Medonte","New Tecumseth","Collingwood","Midland","Bradford"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Civil Contracting Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Excavation & Site Preparation"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Foundations & Civil Infrastructure"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Drainage & Hardscaping"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Snow Removal"}}
+    ]
+  }
+}
+</script>
+
+Confirm added to homepage <head> only. Show the code block.
+
+✅  Schema in homepage <head> only. Validate at https://search.google.com/test/rich-results
+
+STEP
+15
+Homepage Final Pre-Publish Checklist
+Target: Homepage
+
+📋  CURSOR PROMPT — Copy and paste this exactly:
+Working only on the homepage:
+
+Run a final pre-publish audit. Report YES or NO for each:
+
+[ ] Exactly 1 H1 — contains 'Ground Level Contracting' and 'Barrie'
+[ ] Meta title set — 60 characters, contains company name and location
+[ ] Meta description — under 160 chars, mentions all 4 services
+[ ] Hero has 2 CTA buttons — button 2 is a tel: link
+[ ] Trust bar is present — 6 items
+[ ] Services grid links to all 4 service pages
+[ ] Why GLC section — 5 feature blocks
+[ ] Mid-page CTA banner is present
+[ ] Who We Serve — 6 audience blocks
+[ ] Service area with crawlable city text
+[ ] Testimonials section with 3 blocks
+[ ] FAQ section — 6 visible Q&As
+[ ] Final CTA at bottom with 3 buttons
+[ ] LocalBusiness schema in <head>
+[ ] Phone number as clickable tel: link
+[ ] All images have descriptive alt text
+[ ] WSIB, licensed, and insured mentioned
+
+Flag every NO item.
+
+✅  All YES — homepage ready to publish. After publishing: Google Search Console → Request Indexing.
+
+Ground Level Contracting — Homepage  |  Cursor Prompt Guide

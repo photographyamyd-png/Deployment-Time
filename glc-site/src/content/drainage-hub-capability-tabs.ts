@@ -11,10 +11,9 @@ export const DRAINAGE_HUB_CAPABILITY_TABS: HubCapabilityTab[] = [
     credentialTitle: "Foundation drain tile",
     credentialSub:
       "Your foundation's first line of defence is a properly functioning drain tile system.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format",
+    imageSrc: "/images/services/drainage-hardscaping/work-cap-foundation-trench.jpg",
     imageAlt:
-      "Excavator digging a trench along a foundation for drain tile and drainage work",
+      "Exterior foundation excavation along brick veneer showing trenching for drain tile and groundwater management",
     blocks: [
       {
         kind: "h2",
@@ -123,10 +122,9 @@ export const DRAINAGE_HUB_CAPABILITY_TABS: HubCapabilityTab[] = [
     eyebrow: "Hydrology & grading",
     credentialTitle: "Custom site drainage",
     credentialSub: "Water always finds its way — the goal is to control where it goes.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480ca5?w=1200&q=80&auto=format",
+    imageSrc: "/images/services/drainage-hardscaping/work-cap-french-drain-fabric.jpg",
     imageAlt:
-      "Heavy equipment grading and shaping earth for site drainage and stormwater management",
+      "French drain trench lined with filter fabric, clear stone, and perforated pipe along a residential fence line",
     blocks: [
       {
         kind: "h2",
@@ -204,9 +202,9 @@ export const DRAINAGE_HUB_CAPABILITY_TABS: HubCapabilityTab[] = [
     credentialTitle: "Retaining walls",
     credentialSub:
       "A retaining wall does two jobs simultaneously: it holds back earth and it makes a statement.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1599809275671-b0932a0f3d30?w=1200&q=80&auto=format",
-    imageAlt: "Natural stone and boulder retaining wall on a residential slope",
+    imageSrc: "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg",
+    imageAlt:
+      "Timber sleeper retaining wall beside a home with graded clear stone base and string-line precision for drainage prep",
     blocks: [
       {
         kind: "h2",
@@ -306,9 +304,9 @@ export const DRAINAGE_HUB_CAPABILITY_TABS: HubCapabilityTab[] = [
     credentialTitle: "Patios, walkways & driveways",
     credentialSub:
       "The hardscape surfaces on your property are where function meets lifestyle.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1200&q=80&auto=format",
-    imageAlt: "Interlocking paver patio and walkway with clean edge detailing",
+    imageSrc: "/images/services/drainage-hardscaping/work-cap-concrete-stairs-rock-channel.jpg",
+    imageAlt:
+      "Parallel concrete stair flights with a central river-rock drainage channel between brick homes",
     blocks: [
       {
         kind: "h2",
@@ -424,10 +422,9 @@ export const DRAINAGE_HUB_CAPABILITY_TABS: HubCapabilityTab[] = [
     eyebrow: "Whole-site sequencing",
     credentialTitle: "Integrated delivery",
     credentialSub: "Not every property is a flat, easy build.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80&auto=format",
+    imageSrc: "/images/services/drainage-hardscaping/work-cap-sideyard-pavers-rock-drain.jpg",
     imageAlt:
-      "Waterfront and lakeside property with terraced landscape and integrated outdoor structures",
+      "Side yard showing interlock paver walk, timber retention, and wide river-rock drainage swale beside the foundation",
     blocks: [
       {
         kind: "h2",

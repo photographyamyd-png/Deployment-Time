@@ -1,13 +1,14 @@
 {
   "name": "ground-level-contracting",
   "private": true,
-  "description": "Single production app: Next.js in glc-site. Run npm run dev (webpack, port 3040) or npm run dev:alt (3041). After chunk errors (__webpack_modules__ / missing *.js), run npm run dev:fresh (cleans .next and node_modules/.cache). Use npm run dev:turbo in glc-site for Turbopack. npm run build && npm run start for production locally.",
+  "description": "Single production app: Next.js in glc-site. Run npm run dev (webpack, port 3040). Missing chunk errors (e.g. ./611.js): npm run build:fresh or npm run dev:fresh (cleans .next + node_modules/.cache). npm run build:fresh && npm run start for a clean production serve.",
   "scripts": {
     "dev": "npm run dev --prefix glc-site",
     "dev:fresh": "npm run dev:fresh --prefix glc-site",
     "dev:turbo": "npm run dev:turbo --prefix glc-site",
     "dev:alt": "npm run dev:alt --prefix glc-site",
     "build": "npm run build --prefix glc-site",
+    "build:fresh": "npm run build:fresh --prefix glc-site",
     "start": "npm run start --prefix glc-site",
     "lint": "npm run lint --prefix glc-site",
     "clean": "npm run clean --prefix glc-site",

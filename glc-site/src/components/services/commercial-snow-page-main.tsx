@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SnowAccordion } from "@/components/services/commercial-snow-accordion";
 import { SmartLink } from "@/components/ui/smart-link";
 import { commercialSnowFaqs } from "@/content/commercial-snow-faqs";
 import {
@@ -31,28 +32,6 @@ function SnowBand({
     <section className={`glc-snow-band glc-snow-band--${tone}`} id={id}>
       <div className="glc-snow-band__inner">{children}</div>
     </section>
-  );
-}
-
-function SnowAccordion({
-  heading,
-  children,
-  id,
-  defaultOpen = false,
-}: {
-  heading: ReactNode;
-  children: ReactNode;
-  id?: string;
-  defaultOpen?: boolean;
-}) {
-  return (
-    <details className="glc-snow-details" id={id} open={defaultOpen}>
-      <summary className="glc-snow-details__summary">
-        <span className="glc-snow-details__chev" aria-hidden />
-        {heading}
-      </summary>
-      <div className="glc-snow-details__body">{children}</div>
-    </details>
   );
 }
 

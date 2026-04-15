@@ -47,8 +47,8 @@ function FaqAnswerDense({ answer }: { answer: string }) {
 
 /**
  * Drainage & hardscaping hub — L/D rhythm per HOMEPAGE_SECTION_CLONE_SPEC + `.cursor/rules/service-hub-section-rhythm.mdc`.
- * Tone boundaries use `.glc-drain-page__mist-seam` (A3-class); outer `--section-v` on band sections is in `glc-base.css`
- * under `.service-page--drainage-v2` / `glc-drain-hub__*`.
+ * Tone boundaries use `.glc-drain-page__mist-seam` (A3-class), including **hero → #stats.st3** so two DSE charcoal bands never touch.
+ * Outer `--section-v` on band sections is in `glc-base.css` under `.service-page--drainage-v2` / `glc-drain-hub__*`.
  */
 export function DrainageHubView({ site }: Props) {
   const telHref = site.telephone.startsWith("tel:")
@@ -60,6 +60,10 @@ export function DrainageHubView({ site }: Props) {
   return (
     <main id="main-content" className="service-page--drainage-v2 glc-drain-hub">
       <DrainageHubHeroV2 site={site} megaCards={navData.megaMenu.cards} />
+      <div
+        className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__hero-to-stats-seam"
+        aria-hidden
+      />
       <DrainageHubTrustSt3 />
 
       <DrainageHubOverview />

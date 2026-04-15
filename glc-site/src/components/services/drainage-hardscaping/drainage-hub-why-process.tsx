@@ -1,16 +1,16 @@
 "use client";
 
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
-import {
-  DrainageDenseText,
-  DrainageFragmentedH2,
-} from "@/components/services/drainage-hardscaping/drainage-typography";
+import { DrainageFragmentedH2 } from "@/components/services/drainage-hardscaping/drainage-typography";
 import {
   DRAINAGE_HUB_PROCESS_EYEBROW,
   DRAINAGE_HUB_PROCESS_STEPS,
   DRAINAGE_HUB_WHY_EYEBROW,
   DRAINAGE_HUB_WHY_H2,
+  DRAINAGE_HUB_WHY_FIG_CAPTION,
   DRAINAGE_HUB_WHY_IMAGE,
   DRAINAGE_HUB_WHY_IMAGE_ALT,
   DRAINAGE_HUB_WHY_POINTS,
@@ -24,18 +24,39 @@ function parseProcessStep(title: string, index: number): { num: string; title: s
   return { num: String(index + 1), title };
 }
 
-/** Step 5 — proc3__layout: Why (left) + process timeline (right) + framed media. */
+/**
+ * Compact proc3-style band: left = headline + native disclosure stack (why);
+ * right = capped hero image + process steps as disclosures (HOMEPAGE_SECTION_CLONE_SPEC §10 density).
+ */
 export function DrainageHubWhyProcess() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const [whyOpen, setWhyOpen] = useState<number | null>(0);
+  const [procOpen, setProcOpen] = useState<number | null>(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const rawHeroY = useTransform(scrollYProgress, [0, 1], ["-4%", "6%"]);
+  const heroY = useSpring(rawHeroY, { stiffness: 80, damping: 30 });
+
   return (
     <section
+      ref={sectionRef}
       id="why-process"
       className="glc-drain-hub__jk dse"
       aria-label="Why choose us and our process"
     >
       <span className="glc-drain-hub__b-slot" aria-hidden />
       <div className="cta3__diag glc-drain-hub__proc3-diag" aria-hidden />
-      <div className="proc3__layout glc-drain-hub__proc3">
-        <div className="proc3__left-panel">
+      <div className="proc3__layout glc-drain-hub__proc3 glc-drain-hub__proc3--compact">
+        <div className="proc3__left-panel glc-drain-hub__proc3-left--compact">
           <div className="proc3__left-accent" aria-hidden />
 
           <Reveal delayClass="reveal--delay-1">
@@ -48,65 +69,93 @@ export function DrainageHubWhyProcess() {
 
           <div className="about__divider glc-drain-hub__proc3-rule" />
 
-          <div className="glc-drain-hub__why-points">
-            {DRAINAGE_HUB_WHY_POINTS.map((pt) => (
-              <Reveal key={pt.title} className="glc-drain-hub__why-point" delayClass="reveal--delay-2">
-                <p className="glc-drain-hub__why-point-title">
-                  <strong>{pt.title}</strong>
-                </p>
-                <DrainageDenseText
-                  text={pt.body}
-                  ledeClassName="glc-drain-hub__why-point-body"
-                  innerClassName="glc-drain-hub__why-point-body glc-drain-hub__why-point-body--inner"
-                />
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="about__media service-cap-split__media glc-drain-hub__jk-media">
-            <div className="service-cap-split__media-slab" aria-hidden />
-            <div className="about__media-shell glc-drain-hub__media-shell--fill">
-              <Image
-                src={DRAINAGE_HUB_WHY_IMAGE}
-                alt={DRAINAGE_HUB_WHY_IMAGE_ALT}
-                fill
-                className="glc-drain-hub__media-fill"
-                sizes="(max-width: 1024px) 100vw, 38vw"
-              />
-            </div>
-          </div>
-
-          <div className="proc3__count-mark" aria-hidden>
-            0{DRAINAGE_HUB_PROCESS_STEPS.length}
+          <div className="glc-drain-hub__why-acc-stack">
+            {DRAINAGE_HUB_WHY_POINTS.map((pt, i) => {
+              const num = String(i + 1).padStart(2, "0");
+              return (
+                <details
+                  key={pt.title}
+                  className="glc-drain-hub__why-acc"
+                  open={whyOpen === i}
+                  onToggle={(e) => {
+                    const next = e.currentTarget.open;
+                    setWhyOpen(next ? i : null);
+                  }}
+                >
+                  <summary className="glc-drain-hub__why-acc-summary">
+                    <span className="glc-drain-hub__why-acc-idx" aria-hidden>
+                      {num}
+                    </span>
+                    <span className="glc-drain-hub__why-acc-title">{pt.title}</span>
+                  </summary>
+                  <div className="glc-drain-hub__why-acc-panel">
+                    <p className="glc-drain-hub__why-acc-body">{pt.body}</p>
+                  </div>
+                </details>
+              );
+            })}
           </div>
         </div>
 
-        <div className="proc3__steps-panel">
-          <div className="proc3__thread" aria-hidden />
+        <div className="proc3__steps-panel glc-drain-hub__proc3-steps--compact">
+          <figure className="glc-drain-hub__proc3-hero-fig">
+            <div className="glc-drain-hub__proc3-hero-frame">
+              <motion.div
+                className="glc-drain-hub__proc3-hero-parallax"
+                style={mounted && !reduceMotion ? { y: heroY } : undefined}
+              >
+                <Image
+                  src={DRAINAGE_HUB_WHY_IMAGE}
+                  alt={DRAINAGE_HUB_WHY_IMAGE_ALT}
+                  fill
+                  className="glc-drain-hub__proc3-hero-img glc-drain-hub__proc3-hero-img--parallax"
+                  sizes="(max-width: 1024px) 100vw, 62vw"
+                />
+                <span className="glc-drain-hub__proc3-hero-scrim" aria-hidden />
+              </motion.div>
+            </div>
+            <figcaption className="glc-drain-hub__proc3-hero-cap">{DRAINAGE_HUB_WHY_FIG_CAPTION}</figcaption>
+          </figure>
+
           <Reveal delayClass="reveal--delay-1">
             <div className="glc-drain-hub__process-band-eyebrow eyebrow eyebrow--dark">
               {DRAINAGE_HUB_PROCESS_EYEBROW}
             </div>
           </Reveal>
-          {DRAINAGE_HUB_PROCESS_STEPS.map((step, i) => {
-            const { num, title } = parseProcessStep(step.title, i);
-            return (
-              <div key={step.title} className="proc3__step">
-                <div className="proc3__node" aria-hidden>
-                  <span>{num}</span>
-                </div>
-                <div className="proc3__step-content">
-                  <div className="proc3__step-label">Step {num}</div>
-                  <h3 className="proc3__step-title">{title}</h3>
-                  <DrainageDenseText
-                    text={step.body}
-                    ledeClassName="proc3__step-desc"
-                    innerClassName="proc3__step-desc glc-drain-hub__proc-step-desc--more"
-                  />
-                </div>
-              </div>
-            );
-          })}
+
+          <p className="glc-drain-hub__proc3-steps-kicker">
+            <span className="glc-drain-hub__proc3-steps-count">0{DRAINAGE_HUB_PROCESS_STEPS.length}</span> steps — expand each for scope detail
+          </p>
+
+          <div className="glc-drain-hub__proc-acc-stack">
+            {DRAINAGE_HUB_PROCESS_STEPS.map((step, i) => {
+              const { num, title } = parseProcessStep(step.title, i);
+              return (
+                <details
+                  key={step.title}
+                  className="glc-drain-hub__proc-step-acc"
+                  open={procOpen === i}
+                  onToggle={(e) => {
+                    const next = e.currentTarget.open;
+                    setProcOpen(next ? i : null);
+                  }}
+                >
+                  <summary className="glc-drain-hub__proc-step-acc-summary">
+                    <span className="glc-drain-hub__proc-step-acc-node" aria-hidden>
+                      {num}
+                    </span>
+                    <span className="glc-drain-hub__proc-step-acc-titles">
+                      <span className="glc-drain-hub__proc-step-acc-label">Step {num}</span>
+                      <span className="glc-drain-hub__proc-step-acc-title">{title}</span>
+                    </span>
+                  </summary>
+                  <div className="glc-drain-hub__proc-step-acc-panel">
+                    <p className="glc-drain-hub__proc-step-acc-body">{step.body}</p>
+                  </div>
+                </details>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3040",
-    "dev:fresh": "npm run clean && next dev -p 3040",
+    "dev": "node -e \"console.log('\\n  GLC Next.js → http://localhost:3040/  (port 3000 is unused; 500/chunk errors → npm run dev:fresh)\\n')\" && next dev -p 3040",
+    "dev:fresh": "npm run clean && node -e \"console.log('\\n  GLC Next.js → http://localhost:3040/\\n')\" && next dev -p 3040",
     "dev:turbo": "next dev --turbopack -p 3040",
     "dev:alt": "next dev -p 3041",
     "dev:webpack": "next dev -p 3040",
     "build": "next build",
+    "build:fresh": "npm run clean && next build",
     "build:turbo": "next build --turbopack",
     "start": "next start -p 3040",
     "lint": "eslint . --max-warnings 0",
@@ -16,7 +17,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
-    "next": "15.5.14",
+    "next": "15.5.15",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -26,7 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "8.57.1",
-    "eslint-config-next": "15.5.14",
+    "eslint-config-next": "15.5.15",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

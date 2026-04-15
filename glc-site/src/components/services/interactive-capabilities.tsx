@@ -487,6 +487,10 @@ export function InteractiveCapabilities({ tabs, site }: Props) {
                 className="ab3__photo-img glc-drain-hub__cap-detail-photo-img"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
+              <span
+                className="glc-drain-hub__ab3-photo-scrim glc-drain-hub__ab3-photo-scrim--cap-detail"
+                aria-hidden
+              />
             </div>
 
             <motion.div

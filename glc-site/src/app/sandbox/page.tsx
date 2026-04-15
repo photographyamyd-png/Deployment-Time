@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FeaturedAccordion } from "@/components/sections/featured-accordion";
+import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
 import { SmartLink } from "@/components/ui/smart-link";
 import home from "@/content/pages/home.json";
 import site from "@/content/site.json";
@@ -346,6 +347,9 @@ export default function SandboxPage() {
       </section>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
+
+      {/* Design system v2 HTML parity — six bands (AB3, ST3, Why3, quote, contact, coverage) */}
+      <SandboxDesignSystemV2Sections site={siteData} />
 
       {/* 10 — Closing strip */}
       <section className="sandbox__s10 ls ls-c" aria-label="Closing">

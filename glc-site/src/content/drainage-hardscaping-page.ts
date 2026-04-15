@@ -30,7 +30,7 @@ export const DRAINAGE_HUB_HERO = {
   vertLabel: "Drainage & hardscape",
   breadcrumbCurrent: "Drainage & Hardscaping",
   imageAlt:
-    "Drainage and hardscaping contractor Barrie Ontario armour stone retaining wall and interlock patio",
+    "Waterfront hardscaping with natural boulder retaining wall and wide stone beach-access steps for shoreline stability",
 } as const;
 
 /** Trust rail (st3) chrome — was hardcoded in the section component. */
@@ -88,11 +88,11 @@ export const DRAINAGE_HUB_OVERVIEW_PARAS: string[] = [
   "Whether your project starts with a drainage problem or a design vision, it ends with a permanent solution.",
 ];
 
-/** Overview column image (placeholder until client assets). */
+/** Overview column — field photo: dry creek drainage, stone steps, pergola patio */
 export const DRAINAGE_HUB_OVERVIEW_IMAGE =
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80&auto=format";
+  "/images/services/drainage-hardscaping/work-overview-dry-creek-steps.jpg";
 export const DRAINAGE_HUB_OVERVIEW_IMAGE_ALT =
-  "Outdoor living and hardscape installation showing integrated patio and landscape on a graded property";
+  "Completed backyard showing river-rock dry creek drainage, wide stone steps, and wood pergola over a patio tied to grade work";
 
 export const DRAINAGE_HUB_SCOPE_EYEBROW = "Scope";
 
@@ -183,10 +183,14 @@ export const DRAINAGE_HUB_WHY_POINTS: { title: string; body: string }[] = [
 ];
 
 export const DRAINAGE_HUB_WHY_IMAGE_ALT =
-  "Drainage and retaining wall integration luxury property Innisfil Ontario";
+  "Boulder rockwork, river-stone border, and pergola patio showing integrated hardscape and surface drainage detail";
+
+/** Short line under the compact why/process hero frame */
+export const DRAINAGE_HUB_WHY_FIG_CAPTION =
+  "Field-built drainage and hardscape integration — Simcoe County";
 
 export const DRAINAGE_HUB_WHY_IMAGE =
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80&auto=format";
+  "/images/services/drainage-hardscaping/work-why-boulder-pergola-patio.jpg";
 
 export const DRAINAGE_HUB_PROCESS_EYEBROW = "Process";
 
@@ -342,7 +346,11 @@ export const DRAINAGE_HUB_COVERAGE_LAKESIDE =
   "We regularly work on waterfront properties around Lake Simcoe, Kempenfelt Bay, and throughout the Simcoe County cottage belt. Armour stone shoreline walls, drainage integration for seasonal properties, and hardscaping on challenging lakefront grades are all within our scope.";
 
 export const DRAINAGE_HUB_COVERAGE_MAP_ALT =
-  "Site drainage design sloped property Simcoe County Ontario map";
+  "Lakeside flagstone walk and patio with natural stone — waterfront hardscape work across Simcoe County";
+
+/** Coverage figure — lakeside / cottage-country hardscape (territory band visual) */
+export const DRAINAGE_HUB_COVERAGE_MAP_IMAGE =
+  "/images/services/drainage-hardscaping/work-coverage-lakeside-flagstone.jpg";
 
 export const DRAINAGE_HUB_RELATED_SECTION = {
   eyebrow: "Related",
@@ -383,6 +391,6 @@ export const DRAINAGE_HUB_FINAL = {
   footTemplate: "Licensed & insured. WSIB compliant. Serving Simcoe County since [YEAR].",
 } as const;
 
-/** Default hero background until /public hero asset exists */
+/** Hero — served from `glc-site/public/images/services/drainage-hardscaping/hero-wide.png` */
 export const DRAINAGE_HUB_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format";
+  "/images/services/drainage-hardscaping/hero-wide.png";

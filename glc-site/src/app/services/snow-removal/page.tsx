@@ -31,7 +31,7 @@ export default function SnowRemovalPage() {
         faqItems={commercialSnowFaqs.map((f) => ({ question: f.question, answer: f.answer }))}
         offers={commercialSnowSchemaOfferEntries()}
       />
-      <main id="main-content">
+      <main id="main-content" className="glc-snow-hub">
         <CommercialSnowHero />
         <CommercialSnowPageMain />
       </main>
