@@ -27,7 +27,8 @@ const heroLede =
 
 const coverageSeo = pageMetadata({
   title: `Coverage Area | ${siteData.name}`,
-  description: `${coverageProps.headingBefore}${coverageProps.headingEmphasis}${coverageProps.headingAfter}. ${heroLede}`,
+  description:
+    "Commercial excavation & civil dispatch from Barrie across Simcoe County — Orillia, Midland, Innisfil & Wasaga Beach. County-wide mobilization.",
   path: ROUTES.coverage,
 });
 
@@ -60,6 +61,8 @@ export default function CoveragePage() {
         }
         lede={heroLede}
       />
+
+      <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
       <CoveragePageFigureBand
         areas={coverageProps.areas}

@@ -23,9 +23,10 @@ import {
 import navigation from "@/content/navigation.json";
 import { splitFirstTwoSentences } from "@/lib/copy-density";
 import { ROUTES } from "@/lib/routes";
-import type { NavigationConfig, SiteConfig } from "@/content/types";
+import type { NavigationConfig, ServiceDetailContent, SiteConfig } from "@/content/types";
+import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
 
-type Props = { site: SiteConfig };
+type Props = { site: SiteConfig; service: ServiceDetailContent };
 
 function FaqAnswerDense({ answer }: { answer: string }) {
   const { lead, remainder } = splitFirstTwoSentences(answer);
@@ -50,7 +51,7 @@ function FaqAnswerDense({ answer }: { answer: string }) {
  * Tone boundaries use `.glc-drain-page__mist-seam` (A3-class), including **hero → #stats.st3** so two DSE charcoal bands never touch.
  * Outer `--section-v` on band sections is in `glc-base.css` under `.service-page--drainage-v2` / `glc-drain-hub__*`.
  */
-export function DrainageHubView({ site }: Props) {
+export function DrainageHubView({ site, service }: Props) {
   const telHref = site.telephone.startsWith("tel:")
     ? site.telephone
     : `tel:${site.telephone}`;
@@ -82,7 +83,11 @@ export function DrainageHubView({ site }: Props) {
 
       <DrainageHubWhyProcess />
 
-      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__why-to-faq-seam" aria-hidden />
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__why-to-quote-seam" aria-hidden />
+
+      <ServiceInlineQuote service={service} />
+
+      <div className="glc-drain-page__mist-seam glc-drain-hub__tone-seam glc-drain-hub__quote-to-faq-seam" aria-hidden />
 
       <section id="faq" className="glc-drain-hub__faq ls" aria-labelledby="drainage-hub-faq-h2">
         <span className="glc-drain-hub__b-slot" aria-hidden />

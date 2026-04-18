@@ -1,4 +1,4 @@
-import type { HomePageContent } from "@/content/types";
+import type { HomePageContent, HomeSectionBlock } from "@/content/types";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
 import type { NavigationConfig } from "@/content/types";
@@ -15,7 +15,7 @@ const siteData = site as SiteConfig;
 const homeSeo = pageMetadata({
   title: "Ground Level Contracting | Barrie & Simcoe County Contractor",
   description:
-    "Full-service civil contractor in Barrie & Simcoe County. Excavation, foundations, drainage, hardscaping & commercial snow removal. Licensed, insured. Free estimates.",
+    "Civil contractor in Barrie & Simcoe County: excavation, foundations, drainage, hardscaping & commercial snow. Licensed, insured. Free estimates.",
   path: ROUTES.home,
   ogTitle: "Ground Level Contracting | Barrie's Civil & Site Services Contractor",
   ogDescription:
@@ -34,12 +34,30 @@ export const metadata: Metadata = {
   },
 };
 
-/** Kept in `home.json` for service hub reuse; omitted on the homepage for a shorter scroll. */
-const HOME_SECTION_SKIP = new Set<string>(["stats", "marquee", "parallaxBand"]);
+/** Breaks hero → stats → marquee triple-dark: hero → about → stats → marquee → … */
+const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
+  "hero",
+  "about",
+  "stats",
+  "marquee",
+  "services",
+  "why",
+  "process",
+  "parallaxBand",
+  "testimonials",
+  "coverage",
+  "contactStrip",
+  "ctaBand",
+];
+
+function orderHomeSections(sections: HomePageContent["sections"]): HomePageContent["sections"] {
+  const byType = new Map(sections.map((s) => [s.type, s]));
+  return HOME_SECTION_ORDER.map((t) => byType.get(t)).filter(Boolean) as HomePageContent["sections"];
+}
 
 export default async function HomePage() {
   const { SectionRenderer } = await import("@/components/sections/section-renderer");
-  const sections = homeContent.sections.filter((s) => !HOME_SECTION_SKIP.has(s.type));
+  const sections = orderHomeSections(homeContent.sections);
 
   return (
     <main id="main-content">

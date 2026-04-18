@@ -12,10 +12,11 @@ const siteData = site as SiteConfig;
 
 export const metadata = pageMetadata({
   title: `About | ${siteData.name}`,
-  description: about.body,
+  description:
+    "How Ground Level runs commercial excavation, foundations & civil work across Barrie, Midland, Orillia & Simcoe County — crews, process & accountability.",
   path: ROUTES.about,
 });
 
 export default function AboutPage() {
-  return <AboutPageView about={about} />;
+  return <AboutPageView about={about} site={siteData} />;
 }

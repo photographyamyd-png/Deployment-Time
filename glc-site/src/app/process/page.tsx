@@ -24,7 +24,8 @@ const heroLede =
 
 const processSeo = pageMetadata({
   title: `Our Process | ${siteData.name}`,
-  description: `${processProps.heading}${processProps.headingAccent} — ${heroLede}`,
+  description:
+    "From first call to final grade: consult, itemized quote, mobilization & signoff for Barrie, Midland, Orillia & Simcoe County commercial sites.",
   path: ROUTES.process,
 });
 
@@ -56,6 +57,8 @@ export default function ProcessPage() {
         }
         lede={heroLede}
       />
+
+      <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
       <ProcessSection {...processProps} />
 

@@ -4,7 +4,7 @@ import { canonicalUrl } from "@/lib/seo";
 export const commercialSnowMeta = {
   title: "Commercial Snow Removal Contractors | Barrie, Simcoe County",
   description:
-    "24/7 commercial snow removal and ice management for businesses in Barrie, Orillia, Simcoe County. Industrial parking lots, warehouses, plazas. Licensed, insured, guaranteed response.",
+    "24/7 commercial snow & ice management for Barrie, Orillia & Simcoe County — lots, warehouses & plazas. Licensed, insured, contract response.",
 };
 
 export const commercialSnowH1 =

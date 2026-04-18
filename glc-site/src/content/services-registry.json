@@ -5,11 +5,17 @@
       "schemaOfferName": "Excavation & Site Preparation",
       "meta": {
         "title": "Excavation & Site Preparation Barrie | Simcoe County Contractor",
-        "description": "Expert excavation & site preparation across Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County. Grading, clearing, trenching, pool digging, hydrovac & more. Free estimates.",
+        "description": "Excavation & site prep in Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County — grading, clearing, trenching, pool digs, hydrovac & more. Free estimates.",
         "canonicalPath": "/services/excavation-site-preparation/",
         "ogTitle": "Expert Excavation & Site Prep — Serving All of Simcoe County",
         "ogDescription": "From single-lot grading to full commercial site prep — we dig deep across Barrie, Orillia, Wasaga Beach & beyond. Call for a free estimate.",
         "ogImageAlt": "Excavator performing site preparation in Barrie Ontario Simcoe County"
+      },
+      "inlineQuote": {
+        "quote": "Need excavation or site prep quoted for Barrie or Simcoe County? Dispatch reviews plans and returns a written scope.",
+        "byline": "Ground Level dispatch",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "/contact/"
       },
       "hero": {
         "breadcrumbParent": "Services",
@@ -333,6 +339,12 @@
       "meta": {
         "title": "Drainage & Hardscaping | Ground Level Contracting",
         "description": "Drainage & Hardscaping — commercial excavation and civil services for Barrie, Midland, Orillia, and Simcoe County."
+      },
+      "inlineQuote": {
+        "quote": "Need drainage, drain tile, retaining walls or interlock prep quoted? Dispatch aligns scope with your civil drawings.",
+        "byline": "Ground Level dispatch",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "/contact/"
       },
       "heroImage": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format",
       "overviewImage": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format",
@@ -778,8 +790,14 @@
       "schemaOfferName": "Snow Removal Services",
       "meta": {
         "title": "Commercial Snow Removal Contractors | Barrie, Simcoe County",
-        "description": "24/7 commercial snow removal and ice management for businesses in Barrie, Orillia, Simcoe County. Industrial parking lots, warehouses, plazas. Licensed, insured, guaranteed response.",
+        "description": "24/7 commercial snow & ice management for Barrie, Orillia & Simcoe County — lots, warehouses & plazas. Licensed, insured, contract response.",
         "canonicalPath": "/services/snow-removal/"
+      },
+      "inlineQuote": {
+        "quote": "Need a commercial snow and ice program quoted for next season? Dispatch builds route-ready scopes and SLAs.",
+        "byline": "Ground Level dispatch",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "/contact/"
       },
       "heroImage": "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=1600&q=80&auto=format",
       "hubStats": [

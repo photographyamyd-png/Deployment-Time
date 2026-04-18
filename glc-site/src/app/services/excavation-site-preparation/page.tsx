@@ -4,6 +4,7 @@ import { ExcavationParallaxCta } from "@/components/services/excavation-parallax
 import { ExcavationSeoResearch } from "@/components/services/excavation-seo-research";
 import { ExcavationServiceCanon } from "@/components/services/excavation-service-canon";
 import { ExcavationTrustStrip } from "@/components/services/excavation-trust-strip";
+import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
 import { JsonLdExcavationHub } from "@/components/seo/json-ld-excavation-hub";
 import { ParallaxTypeBand } from "@/components/sections/parallax-type-band";
 import { SectionRenderer } from "@/components/sections/section-renderer";
@@ -116,10 +117,15 @@ if (stats) {
   }
 }
 
-const sectionOrder = ["hero", "marquee", "about", "stats"] as const;
-const orderedSections = sectionOrder
-  .map((type) => homeContent.sections.find((section) => section.type === type))
-  .filter(Boolean) as HomePageContent["sections"];
+function pickSections(types: readonly HomeSectionBlock["type"][]): HomePageContent["sections"] {
+  return types
+    .map((type) => homeContent.sections.find((section) => section.type === type))
+    .filter(Boolean) as HomePageContent["sections"];
+}
+
+/** Hero → about (light) → marquee → capabilities; stats rendered after canon. */
+const excavationTopSections = pickSections(["hero", "about", "marquee"] as const);
+const excavationStatsSections = pickSections(["stats"] as const);
 
 const schemaSite: SiteConfig = { ...siteData, url: getSiteUrl() };
 
@@ -136,7 +142,10 @@ export default function ExcavationSitePreparationPage() {
     <>
       <JsonLdExcavationHub site={schemaSite} />
       <main id="main-content">
-        <SectionRenderer sections={orderedSections} megaCards={navData.megaMenu.cards} />
+        <SectionRenderer sections={excavationTopSections} megaCards={navData.megaMenu.cards} />
+        <ExcavationServiceCanon />
+        <SectionRenderer sections={excavationStatsSections} megaCards={navData.megaMenu.cards} />
+        <ExcavationTrustStrip />
         {band ? (
           <ParallaxTypeBand
             id="excavation-type-band"
@@ -148,15 +157,14 @@ export default function ExcavationSitePreparationPage() {
             imageAlt={band.imageAlt}
           />
         ) : null}
-        <ExcavationServiceCanon />
+        <ExcavationGeoHub />
         <ExcavationSeoResearch />
-        <ExcavationTrustStrip />
+        <ExcavationFaqEditorial />
         <ExcavationParallaxCta
           phoneDisplay={siteData.telephoneDisplay}
           phoneHref={`tel:${siteData.telephone.replace(/\s/g, "")}`}
         />
-        <ExcavationGeoHub />
-        <ExcavationFaqEditorial />
+        <ServiceInlineQuote service={service} />
       </main>
     </>
   );

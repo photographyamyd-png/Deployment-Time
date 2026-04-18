@@ -6,6 +6,7 @@ import type { SiteConfig } from "@/content/types";
 import { buildDrainageHardscapingJsonLd } from "@/lib/drainage-hardscaping-jsonld";
 import { ROUTES } from "@/lib/routes";
 import { canonicalUrl, pageMetadata } from "@/lib/seo";
+import { getServiceBySlug } from "@/lib/service-pages";
 import { getSiteOrigin } from "@/lib/site-url";
 
 const path = ROUTES.service("drainage-hardscaping");
@@ -48,6 +49,7 @@ export const metadata: Metadata = {
 
 export default function DrainageHardscapingPage() {
   const siteCfg = site as SiteConfig;
+  const drainageService = getServiceBySlug("drainage-hardscaping")!;
   return (
     <>
       <Script
@@ -58,7 +60,7 @@ export default function DrainageHardscapingPage() {
           __html: JSON.stringify(buildDrainageHardscapingJsonLd(siteCfg)),
         }}
       />
-      <DrainageHubView site={siteCfg} />
+      <DrainageHubView site={siteCfg} service={drainageService} />
     </>
   );
 }

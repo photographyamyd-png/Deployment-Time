@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { SnowAccordion } from "@/components/services/commercial-snow-accordion";
+import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
 import { SmartLink } from "@/components/ui/smart-link";
+import { getServiceBySlug } from "@/lib/service-pages";
 import { commercialSnowFaqs } from "@/content/commercial-snow-faqs";
 import {
   commercialSnowClosingCta,
@@ -34,6 +36,8 @@ function SnowBand({
     </section>
   );
 }
+
+const snowRemovalService = getServiceBySlug("snow-removal")!;
 
 export function CommercialSnowPageMain() {
   return (
@@ -151,18 +155,24 @@ export function CommercialSnowPageMain() {
 
       <SnowBand tone="white" id="contracts">
         <h2 className="glc-snow-h2">{commercialSnowContracts.heading}</h2>
-        <figure className="glc-snow-inline-fig">
-          <div
-            className="glc-snow-inline-fig__ph"
-            role="img"
-            aria-label={commercialSnowContracts.imageAlt}
-          />
-        </figure>
-        {commercialSnowContracts.paragraphs.map((p, i) => (
+        <div className="glc-snow-contracts3" aria-label="Contract options">
+          {commercialSnowContracts.paragraphs.slice(0, 3).map((p, i) => (
+            <article key={i} className="glc-snow-contracts3__card">
+              <span className="glc-snow-contracts3__num">{String(i + 1).padStart(2, "0")}</span>
+              <p className="glc-snow-prose">{p}</p>
+            </article>
+          ))}
+        </div>
+        {commercialSnowContracts.paragraphs.slice(3).map((p, i) => (
           <p key={i} className="glc-snow-prose">
             {p}
           </p>
         ))}
+        <p className="glc-snow-contracts3__cta-wrap">
+          <SmartLink href="/contact/" className="btn-primary">
+            Request contract review
+          </SmartLink>
+        </p>
       </SnowBand>
 
       <SnowBand tone="light" id="service-area">
@@ -246,6 +256,15 @@ export function CommercialSnowPageMain() {
           ))}
         </ol>
       </SnowBand>
+
+      <div className="glc-snow-inline-quote-wrap">
+        <aside className="glc-snow-quote-urgency" aria-label="Seasonal contract availability">
+          <p className="glc-snow-quote-urgency__text">
+            <strong>Now accepting winter season contracts</strong> — spots are limited.
+          </p>
+        </aside>
+        <ServiceInlineQuote service={snowRemovalService} />
+      </div>
 
       <SnowBand tone="white" id="faq">
         <h2 className="glc-snow-h2">Commercial Snow Removal FAQs - Barrie and Simcoe County</h2>

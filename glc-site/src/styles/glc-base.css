@@ -10956,6 +10956,70 @@ body.gl-mega-open .gl-mega-backdrop {
 .glc-snow-hub {
   position: relative;
 }
+
+/* Seasonal urgency strip — below snow hero */
+.glc-snow-season-banner {
+  background: var(--yellow-core);
+  color: var(--charcoal-deep);
+  padding-block: var(--section-v-sm);
+}
+.glc-snow-season-banner__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+}
+.glc-snow-season-banner__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.45;
+  max-width: 52ch;
+}
+.glc-snow-season-banner__cta {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  padding: 12px 20px;
+  background: var(--charcoal-deep);
+  color: var(--white);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.2s var(--ease-expo);
+}
+.glc-snow-season-banner__cta:hover {
+  opacity: 0.92;
+}
+
+/* Inline quote block on snow hub — urgency line above ServiceInlineQuote */
+.glc-snow-inline-quote-wrap {
+  background: var(--off-white);
+}
+.glc-snow-quote-urgency {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--yellow-core);
+  color: var(--charcoal-deep);
+  padding: 0 24px;
+  text-align: center;
+}
+.glc-snow-quote-urgency__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 52ch;
+}
+
 .glc-snow-hero__breadcrumb {
   font-size: 11px;
   font-weight: 700;
