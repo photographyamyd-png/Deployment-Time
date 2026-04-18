@@ -82,7 +82,16 @@ export type CommercialSnowServiceBlock = {
   body: string;
   moreHref: string;
   moreLabel: string;
+  /** Capability lines for thin `/services/...` snow line pages (SEO). */
+  linkedIncludes: [string, string, string];
+  /** Extra crawlable copy for linked snow line pages (~200+ words total with hub template). */
+  linkedExpand: string;
 };
+
+function slugFromMoreHref(href: string): string {
+  const m = href.match(/^\/services\/([^/]+)\/?$/);
+  return m ? m[1] : href.replace(/^\//, "").replace(/\/$/, "");
+}
 
 export const commercialSnowServices: CommercialSnowServiceBlock[] = [
   {
@@ -95,6 +104,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Commercial parking lot plowing Barrie businesses rely on must keep high-traffic aisles, fire routes, and accessible stalls open through stacked events—not single-pass shortcuts. Ground Level Contracting sequences parking lot snow removal Simcoe County clients need using heavy-duty plows, loaders, and bobcats sized for retail plaza snow clearing and office building parking lot snow removal where customer and employee access directly affects revenue and safety. We prioritize routes that reduce slip-and-fall exposure and support plow operators with GPS-tracked equipment so service verification is available for property teams and insurers. From medical facilities to multi-unit residential commercial pads managed for landlords, programs align to your hours, cart corrals, and liability goals—delivering commercial parking lot operations that stay consistent when storms roll in from Georgian Bay or down the Highway 400 corridor.",
     moreHref: "/services/commercial-parking-lot-snow-plowing-barrie/",
     moreLabel: "Learn more about our commercial parking lot snow removal services",
+    linkedIncludes: [
+      "High-traffic aisle and fire-route sequencing",
+      "Heavy plows, loaders, and bobcats sized for plazas",
+      "GPS-tracked passes for verification and insurers",
+    ],
+    linkedExpand:
+      "Ground Level Contracting runs commercial parking lot snow plowing for retail plazas, medical offices, and landlord-managed commercial pads where customer access, cart corrals, and accessible stalls must stay open through stacked events—not one-pass shortcuts. We align blade patterns with your hours, liability goals, and snow-storage plan, then document service so property teams can answer tenants and carriers with specifics. Crews understand Simcoe County refreeze cycles, Georgian Bay–driven squalls, and Highway 400 corridor timing, keeping lot operations consistent when revenue and slip exposure depend on disciplined routing.",
   },
   {
     id: "svc-industrial",
@@ -106,6 +122,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Industrial snow removal Simcoe County logistics operators require is built around 24/7 industrial snow services: loading dock and bay clearing, wide yard lanes for transport, and shift-change coordination so manufacturing facility snow plowing never becomes the bottleneck. Warehouse snow clearing Barrie distribution centers need must protect just-in-time delivery schedules and forklift traffic patterns Ground Level Contracting documents during preseason walks. Distribution center snow removal scopes cover storm stacking plans, refreeze visits, and emergency commercial snow removal escalations when drift and ice return overnight. With heavy equipment capabilities and operators trained for industrial safety compliance, we keep factories, industrial parks, and logistics centers operational—serving one of the strongest differentiators in commercial winter work versus generalist contractors.",
     moreHref: "/services/industrial-snow-removal-simcoe-county/",
     moreLabel: "Explore our industrial snow removal services",
+    linkedIncludes: [
+      "Loading dock and bay clearing on production schedules",
+      "Wide yard lanes for transport and forklift patterns",
+      "Storm stacking, refreeze revisits, and SLA escalations",
+    ],
+    linkedExpand:
+      "Industrial snow removal for Simcoe County logistics sites is built around docks, yards, and shift changes—manufacturing and distribution cannot wait on residential-style routes. Ground Level Contracting documents forklift lanes and just-in-time constraints during preseason walks, then sequences loaders and heavy plows for overnight production windows. Programs cover emergency escalations when drift returns, refreeze visits after melt, and equipment choices that match industrial safety rules—keeping factories, warehouses, and business parks operational when winter threatens throughput.",
   },
   {
     id: "svc-ice",
@@ -117,6 +140,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Commercial ice management Barrie sites demand blends anti-icing and de-icing strategies with freeze–thaw cycle management so walkways, approaches, and loading zones stay defendable after sun melt and overnight refreeze. Commercial de-icing services Simcoe County portfolios specify rock salt and sand programs, liquid de-icer applications where appropriate, and environmentally responsible products when owners require reduced chloride strategies. Parking lot salting service visits can be scheduled around peak pedestrian exposure, with ongoing monitoring and re-application tied to your SLA. Commercial ice control is how teams reduce slip and fall liability while keeping retail, office, and industrial sites open—Ground Level Contracting aligns products, rates, and documentation to your property class across Innisfil, Wasaga Beach, Orillia, and Barrie commercial corridors.",
     moreHref: "/services/commercial-ice-management-deicing-simcoe-county/",
     moreLabel: "View our ice management and de-icing solutions",
+    linkedIncludes: [
+      "Rock salt and calibrated sand programs",
+      "Liquid de-icer applications where specifications allow",
+      "Anti-icing and refreeze revisit rules tied to your SLA",
+    ],
+    linkedExpand:
+      "Commercial ice management blends anti-icing, de-icing, and refreeze discipline so approaches, walks, and loading zones stay defendable after sun melt and overnight freeze. Ground Level Contracting matches products and application rates to your property class—retail peaks, industrial traffic, or institutional standards—and schedules revisits around pedestrian exposure. Portfolios across Barrie, Orillia, Innisfil, and Wasaga Beach benefit from documentation and SLA language that supports liability control, not guesswork when lawyers ask what was treated and when.",
   },
   {
     id: "svc-emergency",
@@ -128,6 +158,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "24/7 emergency snow removal Barrie contracts expect after-hours snow removal service when municipalities declare events, refreeze hits plazas, or drift closes secondary aisles. Emergency commercial snow plowing must be storm-response commercial in mindset: priority dispatch, rapid callbacks, and crews who understand night shift clearing for logistics and healthcare. Storm response commercial programs include weekend and holiday service, business continuity focus, and realistic rapid response guarantees tied to SLA tiers—not generic promises. Ground Level Contracting supports commercial properties requiring emergency response 24/7 operations with documented passes and escalation contacts so property managers can answer tenants and insurers with specifics.",
     moreHref: "/services/247-emergency-snow-removal-barrie/",
     moreLabel: "Learn about our 24/7 emergency response capabilities",
+    linkedIncludes: [
+      "Priority dispatch during municipal storm declarations",
+      "Night and weekend clearing for logistics and healthcare",
+      "Documented passes and escalation contacts for PMs",
+    ],
+    linkedExpand:
+      "24/7 emergency commercial snow removal is for sites where drift, refreeze, or secondary aisles failing can shut down freight, patients, or tenants before dawn. Ground Level Contracting treats storm response as a business-continuity contract: realistic SLA tiers, rapid callbacks, and crews trained for commercial plazas and yards—not driveway thinking. When events stack across Simcoe County, escalation paths and GPS-verified documentation help property managers prove service to insurers and operations leads without chasing texts.",
   },
   {
     id: "svc-hauling",
@@ -139,6 +176,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Commercial snow hauling Simcoe County urban sites need solves limited stacking space: snow pile removal services relocate accumulations that block sight triangles, stall counts, and drainage paths. Snow removal and relocation uses loaders and dump trucks with municipal disposal compliance so off-site snow disposal stays permitted and traceable. Parking space reclamation after major events protects revenue and safety—especially for downtown businesses and space-limited plazas. Ground Level Contracting pairs hauling with commercial parking lot snow plowing programs when on-site storage is constrained, keeping retail and institutional properties visually clear for customers and first responders throughout Orillia, Barrie, and Innisfil commercial cores.",
     moreHref: "/services/commercial-snow-hauling-removal-simcoe-county/",
     moreLabel: "Discover our snow hauling and relocation services",
+    linkedIncludes: [
+      "Loader and dump-truck relocation when piles block sight lines",
+      "Municipally compliant tipping and traceable disposal",
+      "Stacking plans paired with plowing so stalls reclaim fast",
+    ],
+    linkedExpand:
+      "Commercial snow hauling solves limited on-site stacking: piles that steal stalls, block drainage, or break sight triangles have to move before the next event. Ground Level Contracting uses loaders and trucks with compliant disposal so urban plazas and tight Barrie, Orillia, and Innisfil cores stay inspection-ready. Haul-off pairs naturally with parking lot programs—when storage is constrained, we stage relocation before refreeze turns berms into liability magnets for customers and first responders.",
   },
   {
     id: "svc-retail",
@@ -150,6 +194,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Retail snow removal Barrie tenants expect focuses customer accessibility priority: opening travel aisles, cart corrals, and storefront approaches before peak shopping hours—often with holiday season readiness plans and peak shopping hour coordination baked into contracts. Shopping plaza snow clearing must manage high-traffic area management without pushing piles into pedestrian sight lines or drainage inlets. Mall snow removal services Simcoe County landlords procure should include aesthetic appearance maintenance expectations suitable for brand-sensitive retailers. Ground Level Contracting aligns blade patterns, ice revisits, and haul-off triggers for strip malls, big-box pads, and outlet centers where retail center parking lot clearing directly supports sales and liability control.",
     moreHref: "/services/retail-plaza-snow-removal-barrie/",
     moreLabel: "See our retail and plaza snow removal expertise",
+    linkedIncludes: [
+      "Opening travel aisles and cart corrals before peak hours",
+      "Holiday and weekend coordination for high-traffic centers",
+      "Blade, ice revisit, and haul-off triggers for brand-sensitive sites",
+    ],
+    linkedExpand:
+      "Retail and shopping plaza snow removal is paced around customer access: storefront approaches, corrals, and high-traffic lanes must read clean for peak shopping—not just pushed to the perimeter. Ground Level Contracting aligns patterns with landlord standards and tenant mix across Simcoe County strip malls, big-box pads, and outlet centers. Ice revisits and haul-off decisions are spelled out so slip exposure and aesthetic expectations stay predictable when lake-effect cycles stack on top of weekend traffic.",
   },
   {
     id: "svc-property-management",
@@ -161,6 +212,13 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Property management snow removal Barrie portfolios need multi-site snow removal contracts with standardized service across properties, centralized reporting, and budget certainty with seasonal contracts that survive board scrutiny. Condo snow removal services Simcoe County communities require common area maintenance discipline—garage ramps, visitor routes, and refuse lanes—while apartment complex snow clearing must protect tenant safety and insurer documentation standards. Ground Level Contracting provides portfolio-level contacts, escalation tiers, and documentation packages property managers can drop into owner reports—supporting multi-residential properties across Innisfil, Wasaga Beach, Orillia, and Barrie with consistent commercial snow removal contractor performance.",
     moreHref: "/services/property-management-snow-removal-contracts/",
     moreLabel: "Explore our property management snow services",
+    linkedIncludes: [
+      "Portfolio-level dispatch and standardized scopes",
+      "Condo CAM routes: ramps, visitor lanes, refuse courts",
+      "Board-ready reporting packages and escalation tiers",
+    ],
+    linkedExpand:
+      "Property management snow removal contracts need one accountable vendor across multiple addresses—standardized scopes, centralized reporting, and budget certainty that survives board review. Ground Level Contracting supports condo and multi-residential programs with garage ramps, visitor routes, and refuse lanes sequenced for tenant safety. Documentation packages drop into owner reports so asset managers across Innisfil, Wasaga Beach, Orillia, and Barrie can show insurers and residents what was serviced, when, and under which SLA tier.",
   },
   {
     id: "svc-office-campus",
@@ -172,8 +230,19 @@ export const commercialSnowServices: CommercialSnowServiceBlock[] = [
       "Office building snow removal Barrie professional campuses require employee safety and access alongside corporate image considerations: clean approaches, predictable garage and deck clearing where scoped, and walkway prioritization for badge access points. Corporate campus snow clearing coordinates business hour coordination so executive suite access and visitor routes match tenant expectations. Business park snow services Simcoe County engineering and facilities teams specify should address parking garage and structure clearing rules, phased opening plans, and ice control at stairs and terraces. Ground Level Contracting delivers professional property snow removal aligned to institutional standards—supporting medical office buildings, headquarters, and multi-tenant towers where commercial ice management services and documentation matter as much as blades.",
     moreHref: "/services/office-building-corporate-campus-snow-removal-barrie/",
     moreLabel: "Learn about our office and corporate snow services",
+    linkedIncludes: [
+      "Badge-access walks and visitor routes prioritized first",
+      "Garage, deck, and terrace rules where scoped in contract",
+      "Corporate-hour coordination with facilities and security",
+    ],
+    linkedExpand:
+      "Office building and corporate campus snow removal balances employee safety, visitor experience, and institutional image—approaches and walks must look intentional, not scraped as an afterthought. Ground Level Contracting coordinates with facilities teams for phased openings, garage rules, and ice control at stairs and terraces where contracts scope those surfaces. Medical office buildings, headquarters, and multi-tenant towers across Barrie and Simcoe County get the same documentation discipline as industrial clients when SLAs and liability reviews ask for proof, not promises.",
   },
 ];
+
+export function getCommercialSnowServiceBySlug(slug: string): CommercialSnowServiceBlock | undefined {
+  return commercialSnowServices.find((s) => slugFromMoreHref(s.moreHref) === slug);
+}
 
 export const commercialSnowEquipment = {
   heading: "Commercial-Grade Equipment for Reliable Snow Removal",
