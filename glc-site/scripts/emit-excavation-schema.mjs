@@ -59,8 +59,7 @@ const data = {
       "@type": "GeneralContractor",
       "@id": `${page}#excavationOfferCatalog`,
       name: site.name,
-      description:
-        "Excavation & site preparation contractor serving Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County.",
+      description: hub.meta.description,
       url: `${origin}/`,
       telephone: site.telephone,
       address,

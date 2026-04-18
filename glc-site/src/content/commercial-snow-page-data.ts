@@ -15,7 +15,7 @@ export const commercialSnowHeroImageAlt =
 
 /** Opening paragraph — strategy Section 2 (commercial-only, geo, keywords). */
 export const commercialSnowOpeningParagraphs = [
-  "Ground Level Contracting is Simcoe County's dedicated commercial snow removal and ice management contractor, serving businesses in Barrie, Orillia, Innisfil, Wasaga Beach, and throughout the region. Unlike residential-focused competitors, we specialize exclusively in commercial, industrial, and institutional snow removal—from retail plazas and office complexes to warehouses, distribution centers, and manufacturing facilities. Our 24/7 emergency response team ensures your parking lots, loading docks, and access roads remain clear and safe for employees, customers, and operations. With comprehensive liability insurance, GPS-tracked equipment, and guaranteed response times, we deliver the reliability your business demands throughout Ontario's demanding winter season.",
+  "Ground Level Contracting is Simcoe County's dedicated commercial snow removal and ice management contractor, serving businesses in Barrie, Orillia, Innisfil, Wasaga Beach, and throughout the region. We focus on commercial, industrial, and institutional lots—not residential—with 24/7 response, insured crews, and GPS-tracked equipment your operations can rely on.",
 ];
 
 export const commercialSnowHeroCtas = {

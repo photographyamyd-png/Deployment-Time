@@ -18,6 +18,7 @@ export function JsonLdExcavationHub({ site: siteProp }: Props) {
     pageUrl,
     faq,
     services.map((s) => ({ name: s.title, idFragment: s.id })),
+    hub.meta.description,
   );
 
   return (

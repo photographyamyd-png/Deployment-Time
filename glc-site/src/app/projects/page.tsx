@@ -18,10 +18,13 @@ const parallaxProps = getHomeSectionProps<HomeParallaxBandProps>("parallaxBand")
 const ctaProps = getHomeSectionProps<CtaBandProps>("ctaBand");
 
 const heroLede = chunkSentences(testimonialsProps.sub, 2)[0] ?? "";
+const projectsMetaDescription =
+  `${testimonialsProps.headingBefore}${testimonialsProps.headingAccent}${testimonialsProps.headingAfter}. ` +
+  "See excavation, drainage, and foundation work delivered with accountable field execution across Simcoe County.";
 
 const projectsSeo = pageMetadata({
   title: `Client Projects & Feedback | ${siteData.name}`,
-  description: `${testimonialsProps.headingBefore}${testimonialsProps.headingAccent}${testimonialsProps.headingAfter}. ${heroLede}`,
+  description: projectsMetaDescription,
   path: ROUTES.projects,
 });
 
@@ -54,6 +57,8 @@ export default function ProjectsPage() {
         }
         lede={heroLede}
       />
+
+      <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
       <ProjectsMosaic {...testimonialsProps} />
 

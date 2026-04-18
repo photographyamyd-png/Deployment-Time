@@ -99,6 +99,7 @@ export function buildExcavationHubGraphSchema(
   pageUrl: string,
   faqItems: Array<{ question: string; answer: string }>,
   offers: ExcavationOfferForSchema[],
+  businessDescription: string,
 ): Record<string, unknown> {
   const origin = site.url.replace(/\/$/, "");
   const page = pageUrl.replace(/\/$/, "");
@@ -127,8 +128,7 @@ export function buildExcavationHubGraphSchema(
         "@type": "GeneralContractor",
         "@id": `${page}#excavationOfferCatalog`,
         name: site.name,
-        description:
-          "Excavation & site preparation contractor serving Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County.",
+        description: businessDescription,
         url: `${origin}/`,
         telephone: site.telephone,
         address,
@@ -276,5 +276,21 @@ export function buildCommercialSnowGraphSchema(
         about: { "@id": `${page}#commercialSnowService` },
       },
     ],
+  };
+}
+
+/** BreadcrumbList for interior routes (e.g. commercial snow location landings). */
+export function buildBreadcrumbListSchema(
+  items: Array<{ name: string; item: string }>,
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((entry, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: entry.name,
+      item: entry.item,
+    })),
   };
 }
