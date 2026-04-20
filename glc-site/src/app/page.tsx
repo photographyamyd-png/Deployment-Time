@@ -7,6 +7,7 @@ import site from "@/content/site.json";
 import type { SiteConfig } from "@/content/types";
 import { canonicalUrl, pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
+import { SectionRenderer } from "@/components/sections/section-renderer";
 
 const homeContent = home as HomePageContent;
 const navData = navigation as NavigationConfig;
@@ -55,8 +56,7 @@ function orderHomeSections(sections: HomePageContent["sections"]): HomePageConte
   return HOME_SECTION_ORDER.map((t) => byType.get(t)).filter(Boolean) as HomePageContent["sections"];
 }
 
-export default async function HomePage() {
-  const { SectionRenderer } = await import("@/components/sections/section-renderer");
+export default function HomePage() {
   const sections = orderHomeSections(homeContent.sections);
 
   return (
