@@ -1210,6 +1210,33 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 
+/* Right cluster: hours + phone + rotator (hours is not wrapped in .gl-util-item) */
+.gl-header__utility-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  min-width: 0;
+}
+
+.gl-header__utility-contact {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  min-width: 0;
+}
+
+.gl-header__utility .gl-util-hours {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
 /* Gold Strip */
 .gl-header__gold-strip {
   height: 3px;
