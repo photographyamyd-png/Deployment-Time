@@ -7,11 +7,11 @@ alwaysApply: true
 
 This error is **not** a bug in page source. Webpack emits numbered chunks (`331.js`, etc.). If `.next` is cleared, overwritten, or out of sync while an old runtime still expects old chunk IDs, Node throws `Cannot find module './NNN.js'`.
 
-The browser/runtime error **`TypeError: __webpack_modules__[moduleId] is not a function`** is the same family: **stale or mismatched Webpack client chunks** after HMR, a crashed dev server, or two `next dev` processes. **Recovery:** `npm run dev:fresh` (or `clean` then dev). **Prevention:** default **`npm run dev` / `dev:fresh` use Turbopack** (`--turbopack`); use **`npm run dev:webpack`** only when you need Webpack-specific debugging.
+The browser/runtime error **`TypeError: __webpack_modules__[moduleId] is not a function`** is the same family: **stale or mismatched Webpack client chunks** after HMR, a crashed dev server, or two `next dev` processes. **Recovery:** `npm run dev:fresh` (or `clean` then dev). If it **still** happens, try **`npm run dev:turbo`** (Turbopack — different bundler, avoids Webpack chunk graph). Default **`npm run dev`** uses **Webpack** for predictable CSS/tooling parity with `next build`.
 
 ## Mandatory agent behavior
 
-1. **Starting or restarting dev** after you changed `glc-site` code: prefer **`npm run dev:fresh`** from the **repo root** (`htnl-attempts`), which runs `clean` then **`next dev --turbopack`** inside `glc-site`. Plain **`npm run dev`** also uses Turbopack. Use **`dev:webpack`** only when debugging Webpack-only behavior.
+1. **Starting or restarting dev** after you changed `glc-site` code: use **`npm run dev`** (Webpack) or, after errors, **`npm run dev:fresh`** from **repo root** — `clean` then **`next dev`** inside `glc-site`. Use **`npm run dev:turbo`** only when Webpack HMR/chunk errors persist after a clean.
 
 2. **Before starting dev**, if a server might already be on port **3040**: stop that process (or use the user’s one-server habit). **Never** run two `next dev` instances on the same app.
 
@@ -21,7 +21,7 @@ The browser/runtime error **`TypeError: __webpack_modules__[moduleId] is not a f
 
 5. If switching between **`dev:turbo`** (Turbopack) and **webpack** `next dev`: run **`npm run clean --prefix glc-site`** when switching toolchains.
 
-6. **Config already in repo:** `glc-site/next.config.ts` sets `config.cache = false` for **Webpack dev** (`dev:webpack`) to reduce Windows PackFileCache corruption; **`dev:fresh`** remains the reliable recovery when previews still break.
+6. **Config already in repo:** `glc-site/next.config.ts` sets `config.cache = false` in **Webpack dev** to reduce Windows PackFileCache corruption; **`dev:fresh`** remains the reliable recovery when previews still break.
 
 ## Browser: “This page isn’t working” / “localhost is currently unable to handle this request”
 

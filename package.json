@@ -1,13 +1,12 @@
 {
   "name": "ground-level-contracting",
   "private": true,
-  "description": "Single production app: Next.js in glc-site. Dev: npm run dev (Turbopack, port 3040). Webpack-only: npm run dev:webpack --prefix glc-site. Prefer http://127.0.0.1:3040/ on Windows if localhost fails. Chunk/HMR errors: npm run dev:fresh. Production: npm run build && npm run start.",
+  "description": "Single production app: Next.js in glc-site. Dev: npm run dev (Webpack, port 3040). Alternate bundler: npm run dev:turbo. Chunk/HMR errors: npm run dev:fresh then retry; if still broken use dev:turbo. Prefer http://127.0.0.1:3040/ on Windows if localhost fails.",
   "scripts": {
     "dev": "npm run dev --prefix glc-site",
     "dev:fresh": "npm run dev:fresh --prefix glc-site",
     "dev:turbo": "npm run dev:turbo --prefix glc-site",
     "dev:alt": "npm run dev:alt --prefix glc-site",
-    "dev:webpack": "npm run dev:webpack --prefix glc-site",
     "build": "npm run build --prefix glc-site",
     "build:fresh": "npm run build:fresh --prefix glc-site",
     "start": "npm run start --prefix glc-site",
