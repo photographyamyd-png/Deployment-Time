@@ -1,0 +1,26 @@
+---
+description: Prevent Next.js webpack stale chunk errors (Cannot find module ./NNN.js) when developing glc-site on Windows
+alwaysApply: true
+---
+
+# GLC Next.js dev server — webpack chunks and `.next` hygiene
+
+This error is **not** a bug in page source. Webpack emits numbered chunks (`331.js`, etc.). If `.next` is cleared, overwritten, or out of sync while an old runtime still expects old chunk IDs, Node throws `Cannot find module './NNN.js'`.
+
+## Mandatory agent behavior
+
+1. **Starting or restarting dev** after you changed `glc-site` code: prefer **`npm run dev:fresh`** from the **repo root** (`htnl-attempts`), which runs `clean` then `next dev` inside `glc-site`. Do **not** default to plain `npm run dev` for this project unless the user explicitly wants a faster incremental start **and** no chunk errors have appeared.
+
+2. **Before starting dev**, if a server might already be on port **3040**: stop that process (or use the user’s one-server habit). **Never** run two `next dev` instances on the same app.
+
+3. **If the user (or logs) report** `Cannot find module './NNN.js'` or similar: run **`npm run clean --prefix glc-site`** then **`npm run dev --prefix glc-site`** (or `dev:fresh`). **Do not** revert or rewrite page source to “fix” this.
+
+4. After **git pull**, **branch switch**, or **dependency / lockfile** changes: use **`dev:fresh` once** for a clean incremental state.
+
+5. If switching between **`dev:turbo`** (Turbopack) and **webpack** `next dev`: run **`npm run clean --prefix glc-site`** when switching toolchains.
+
+6. **Config already in repo:** `glc-site/next.config.ts` sets `config.cache = false` in **dev** to reduce Windows PackFileCache corruption; **`dev:fresh`** remains the reliable recovery when previews still break.
+
+## User environment
+
+- Antivirus or cloud sync touching `.next` can worsen this; agents cannot fix that—mention it if errors persist after `dev:fresh`.
