@@ -32,10 +32,10 @@ After staging the specific files, automatically run `git commit -m 'AI: [brief d
 
 Stale `.next` output causes **`Cannot find module './NNN.js'`** or **`__webpack_modules__[moduleId] is not a function`** in **Webpack** dev — treat as **cache/HMR corruption**, not broken page code.
 
-- **Default dev** uses **Webpack** (`next dev`, port 3040), matching **`next build`**. **`npm run dev:fresh`** cleans `.next` then starts Webpack.
+- **Default dev** uses **Webpack** (`next dev`, port 3040), matching **`next build`**. Scripts run **`kill-port 3040`** first so a dead Node process cannot keep the port. **`npm run dev:fresh`** cleans `.next` then starts dev.
 - If chunk errors **continue after** `dev:fresh`, try **`npm run dev:turbo --prefix glc-site`** (Turbopack). `next.config.ts` sets `config.cache = false` in Webpack dev on Windows.
-- **Preview URL:** **`http://127.0.0.1:3040/`** or **`http://localhost:3040/`** — not `:3000`. If Chrome says **“unable to handle this request”** on **3040**, try **127.0.0.1**, then **`npm run dev:fresh`**; read the terminal when loading the page before blaming page code.
-- **One dev server** for `glc-site`; stop the old one before starting another.
+- **Preview URL:** **`http://127.0.0.1:3040/`** (not `https://`, not `:3000`). After **Ready**, the **first** page compile can take **10–30s**—wait or watch the terminal; premature refresh can look like a broken page.
+- **One dev server** for `glc-site`; `kill-port` in scripts replaces the old listener when you run `dev` again.
 - On chunk errors: **`npm run clean --prefix glc-site`** then dev — **do not** revert source to “fix” it.
 - After **branch switch / pull / big dependency change**, use **`dev:fresh`** once.
 - Full detail: **`.cursor/rules/glc-next-dev-chunks.mdc`** (always applied).

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"console.log('\\n  GLC Next.js (Webpack) → http://127.0.0.1:3040/\\n  Chunk/HMR errors → npm run dev:fresh | Try Turbopack → npm run dev:turbo\\n')\" && next dev -H 0.0.0.0 -p 3040",
-    "dev:fresh": "npm run clean && node -e \"console.log('\\n  GLC Next.js → http://127.0.0.1:3040/\\n')\" && next dev -H 0.0.0.0 -p 3040",
-    "dev:turbo": "node -e \"console.log('\\n  Turbopack dev (alternate bundler if Webpack HMR breaks)\\n')\" && next dev --turbopack -H 0.0.0.0 -p 3040",
+    "dev": "kill-port 3040 && node -e \"console.log('\\n  GLC Next.js → http://127.0.0.1:3040/\\n  First open can take ~10–30s while Webpack compiles; wait for HTML, then refresh if needed.\\n  Still broken? npm run dev:fresh\\n')\" && next dev -H 0.0.0.0 -p 3040",
+    "dev:fresh": "kill-port 3040 && npm run clean && node -e \"console.log('\\n  GLC Next.js → http://127.0.0.1:3040/ (clean .next)\\n')\" && next dev -H 0.0.0.0 -p 3040",
+    "dev:turbo": "kill-port 3040 && node -e \"console.log('\\n  Turbopack → http://127.0.0.1:3040/\\n')\" && next dev --turbopack -H 0.0.0.0 -p 3040",
     "dev:alt": "next dev -H 0.0.0.0 -p 3041",
     "build": "next build",
     "build:fresh": "npm run clean && next build",
@@ -28,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "8.57.1",
     "eslint-config-next": "15.5.15",
+    "kill-port": "^2.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -13,7 +13,7 @@ The browser/runtime error **`TypeError: __webpack_modules__[moduleId] is not a f
 
 1. **Starting or restarting dev** after you changed `glc-site` code: use **`npm run dev`** (Webpack) or, after errors, **`npm run dev:fresh`** from **repo root** — `clean` then **`next dev`** inside `glc-site`. Use **`npm run dev:turbo`** only when Webpack HMR/chunk errors persist after a clean.
 
-2. **Before starting dev**, if a server might already be on port **3040**: stop that process (or use the user’s one-server habit). **Never** run two `next dev` instances on the same app.
+2. **Before starting dev**, `npm run dev` / `dev:fresh` / `dev:turbo` run **`kill-port 3040`** first so a **zombie `node`** cannot keep serving **500** / empty responses. **Never** run two `next dev` instances on the same app without stopping the first.
 
 3. **If the user (or logs) report** `Cannot find module './NNN.js'`, **`__webpack_modules__[moduleId] is not a function`**, or similar: run **`npm run clean --prefix glc-site`** then **`npm run dev --prefix glc-site`** (or `dev:fresh`). **Do not** revert or rewrite page source to “fix” this.
 
