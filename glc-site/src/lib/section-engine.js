@@ -54,6 +54,7 @@ const LAYOUT_VARIANTS = [
 const SERVICE_VARIANT_MAP = {
   "excavation-site-prep": "HEAVY_CONTENT",
   "excavation-site-preparation": "HEAVY_CONTENT",
+  "site-preparation-grading": "HEAVY_CONTENT",
   "foundations-civil": "TRUST_FIRST",
   "foundations-civil-infrastructure": "TRUST_FIRST",
   "drainage-hardscaping": "HEAVY_CONTENT",
@@ -75,6 +76,17 @@ const SERVICE_LAYOUT_TRACKS = {
     "grid-2-col",
     "timeline-flow",
     "sticky-split",
+    "media-bleed",
+  ],
+  "site-preparation-grading": [
+    "split-default",
+    "split-reverse",
+    "split-asym-left",
+    "split-offset",
+    "stacked-feature",
+    "contrast-inset",
+    "grid-2-col",
+    "timeline-flow",
     "media-bleed",
   ],
   "foundations-civil-infrastructure": [

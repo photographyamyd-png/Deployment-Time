@@ -1,8 +1,4 @@
-import hub from "@/content/pages/excavation-hub-seo.json";
-import { SmartLink } from "@/components/ui/smart-link";
-import { ROUTES } from "@/lib/routes";
-
-const BRIDGE_ID = "exc-svc-precision-finishing-bridge";
+import hub from "@/content/pages/site-prep-grading-seo.json";
 
 const canon = hub.canonSection as {
   eyebrow: string;
@@ -15,17 +11,17 @@ const services = hub.services as Array<{
   paragraphs: string[];
 }>;
 
-export function ExcavationServiceCanon() {
+export function SitePrepGradingServiceCanon() {
   return (
     <section
-      id="excavation-capabilities"
+      id="site-prep-capabilities"
       className="exc-canon gl-reveal"
-      aria-labelledby="exc-canon-heading"
+      aria-labelledby="site-prep-canon-heading"
     >
       <div className="exc-canon__inner">
         <header className="exc-canon__header">
           <p className="gl-eyebrow gl-eyebrow--dark">{canon.eyebrow}</p>
-          <h2 id="exc-canon-heading" className="gl-h2 exc-canon__heading">
+          <h2 id="site-prep-canon-heading" className="gl-h2 exc-canon__heading">
             {canon.heading}
           </h2>
           <p className="gl-prose exc-canon__intro">{canon.intro}</p>
@@ -36,7 +32,7 @@ export function ExcavationServiceCanon() {
             <details
               key={svc.id}
               id={svc.id}
-              name="glc-exc-canon"
+              name="glc-site-prep-canon"
               className="exc-canon__disclosure gl-reveal"
             >
               <summary className="exc-canon__summary">
@@ -57,16 +53,6 @@ export function ExcavationServiceCanon() {
                       {p}
                     </p>
                   ))}
-                  {svc.id === BRIDGE_ID ? (
-                    <p className="exc-canon__cta-wrap">
-                      <SmartLink
-                        href={ROUTES.service("site-preparation-grading")}
-                        className="gl-btn gl-btn--primary"
-                      >
-                        View grading compliance
-                      </SmartLink>
-                    </p>
-                  ) : null}
                 </div>
               </div>
             </details>

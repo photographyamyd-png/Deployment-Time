@@ -125,6 +125,27 @@ export function buildExcavationHubGraphSchema(
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "ExcavationService",
+        "@id": `${page}#excavationService`,
+        name: "Excavation & Site Preparation",
+        description: businessDescription,
+        url: `${page}/`,
+        provider: {
+          "@type": "LocalBusiness",
+          name: site.name,
+          url: `${origin}/`,
+          telephone: site.telephone,
+          address,
+        },
+        areaServed: [
+          "Barrie",
+          "Orillia",
+          "Wasaga Beach",
+          "Innisfil",
+          "Simcoe County",
+        ],
+      },
+      {
         "@type": "GeneralContractor",
         "@id": `${page}#excavationOfferCatalog`,
         name: site.name,
@@ -168,7 +189,77 @@ export function buildExcavationHubGraphSchema(
         url: `${page}/`,
         name: "Excavation & Site Preparation",
         isPartOf: { "@type": "WebSite", url: `${origin}/` },
-        about: { "@id": `${page}#excavationOfferCatalog` },
+        about: { "@id": `${page}#excavationService` },
+      },
+    ],
+  };
+}
+
+/** Site prep & grading hub: Land grading (Product Ontology) + FAQPage + WebPage. */
+export function buildSitePrepGradingHubGraphSchema(
+  site: SiteConfig,
+  pageUrl: string,
+  faqItems: Array<{ question: string; answer: string }>,
+  businessDescription: string,
+): Record<string, unknown> {
+  const origin = site.url.replace(/\/$/, "");
+  const page = pageUrl.replace(/\/$/, "");
+  const address = {
+    "@type": "PostalAddress",
+    streetAddress: site.address.streetAddress,
+    addressLocality: site.address.addressLocality,
+    addressRegion: site.address.addressRegion,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.addressCountry,
+  };
+
+  const faqMainEntity = faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  }));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        additionalType: "http://www.productontology.org/id/Land_grading",
+        "@id": `${page}#landGradingService`,
+        name: "Site Preparation & Grading",
+        description: businessDescription,
+        url: `${page}/`,
+        provider: {
+          "@type": "LocalBusiness",
+          name: site.name,
+          url: `${origin}/`,
+          telephone: site.telephone,
+          address,
+        },
+        areaServed: [
+          "Barrie",
+          "Orillia",
+          "Wasaga Beach",
+          "Innisfil",
+          "Simcoe County",
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${page}#faq`,
+        url: `${page}/`,
+        mainEntity: faqMainEntity,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${page}#webpage`,
+        url: `${page}/`,
+        name: "Site Preparation & Grading",
+        isPartOf: { "@type": "WebSite", url: `${origin}/` },
+        about: { "@id": `${page}#landGradingService` },
       },
     ],
   };

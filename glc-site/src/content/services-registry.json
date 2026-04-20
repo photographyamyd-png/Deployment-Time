@@ -5,10 +5,10 @@
       "schemaOfferName": "Excavation & Site Preparation",
       "meta": {
         "title": "Excavation & Site Preparation Barrie | Simcoe County Contractor",
-        "description": "Excavation & site prep in Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County — grading, clearing, trenching, pool digs, hydrovac & more. Free estimates.",
+        "description": "Bulk excavation, pool digs, utility trenching, hydrovac & clearing in Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County. Free estimates.",
         "canonicalPath": "/services/excavation-site-preparation/",
         "ogTitle": "Expert Excavation & Site Prep — Serving All of Simcoe County",
-        "ogDescription": "From single-lot grading to full commercial site prep — we dig deep across Barrie, Orillia, Wasaga Beach & beyond. Call for a free estimate.",
+        "ogDescription": "Structural digs, pools, trenching, and hydrovac across Simcoe County. Call for a free estimate.",
         "ogImageAlt": "Excavator performing site preparation in Barrie Ontario Simcoe County"
       },
       "inlineQuote": {
@@ -21,15 +21,15 @@
         "breadcrumbParent": "Services",
         "titleBefore": "Professional Excavation & Site Preparation — Barrie, Orillia, Wasaga Beach & ",
         "titleEmphasis": "Simcoe County",
-        "lede": "From single-lot custom home builds to full subdivision development — we move the earth that moves your project forward.",
+        "lede": "Bulk excavation, pool shells, utility trenches, hydrovac, and clearing — we move material on schedule so your grading and foundation trades start clean.",
         "taglineLines": [
-          "Serving contractors, developers & homeowners across all of Simcoe County with precision excavation and site preparation.",
-          "Licensed, insured and locally trusted — delivering exceptional results on residential, commercial and industrial projects of all scales."
+          "Licensed crews and inspection-aware sequencing for residential, commercial, and industrial digs across Simcoe County.",
+          "Finish grading, certificates, and laser-controlled surfaces route through our Site Preparation & Grading hub."
         ],
         "body": [
-          "When your project demands precision, experience and reliable equipment, you need an excavation partner who knows the soils, topography and permit requirements of Simcoe County inside and out. We provide professional excavation and site preparation services across Barrie, Orillia, Wasaga Beach, Innisfil, Midland, Collingwood, Bradford and surrounding communities — handling everything from residential lot clearing and pool digs to large-scale commercial site prep and heavy civil grading.",
-          "Whether you're a homeowner planning a new build, a custom home builder working a complex sloped lot, or a developer breaking ground on a multi-lot subdivision, our experienced operators and modern equipment fleet deliver the grading accuracy, compaction quality and project timelines your job demands.",
-          "We operate under a strict standard of workmanship, safety and communication — because in this industry, the groundwork you lay at the start determines everything that gets built on top of it."
+          "When your project needs reliable excavation, you need a partner who knows Simcoe County soils, access constraints, and permit holds. We mobilize excavators and support gear for structural digs, pool excavations, utility trenching, hydrovac around live utilities, lot clearing, and bulk civil cuts across Barrie, Orillia, Wasaga Beach, Innisfil, and surrounding townships.",
+          "We coordinate with your surveyor, GC, and inspectors so trenches hit design depth, spoils stay managed, and the next trade is not re-working a bad bench. Precision finishing, final grades, and municipal certification are handled on the Site Preparation & Grading route — linked directly from this hub.",
+          "We operate under a strict standard of workmanship, safety, and communication — because the dig either matches the drawing or it becomes everyone else's problem."
         ]
       },
       "heroImage": "https://images.unsplash.com/photo-1617098474202-0d0d7f60f2d3?w=1600&q=80&auto=format",
@@ -53,7 +53,7 @@
       "processSection": {
         "eyebrow": "Field process",
         "heading": "From mobilization to ",
-        "headingAccent": "final grade",
+        "headingAccent": "clean handoff",
         "steps": [
           {
             "num": "01",
@@ -62,8 +62,8 @@
           },
           {
             "num": "02",
-            "title": "Cut & shape",
-            "desc": "Rough grading, trenching, and structural digs to engineered tolerances."
+            "title": "Cut & dig",
+            "desc": "Structural excavations, pool digs, and utility trenches to engineered depths."
           },
           {
             "num": "03",
@@ -73,7 +73,7 @@
           {
             "num": "04",
             "title": "Handoff",
-            "desc": "Fine grading, inspection-ready documentation, and clean turnover to trades."
+            "desc": "Documented turnover to grading, foundations, or utilities — clean and inspection-aware."
           }
         ]
       },
@@ -108,24 +108,24 @@
         }
       ],
       "intro": [
-        "We mobilize excavators, dozers, and hauling assets to prepare raw land for commercial construction — from initial tree and stump removal through precision rough grading.",
-        "Our crews coordinate with your surveyor and GC to maintain pad elevations, manage spoils, and keep haul routes efficient so your foundation contractor can start on time."
+        "We mobilize excavators, dozers, and hauling assets for bulk cuts, pool excavations, utility trenches, hydrovac, and clearing — the work that happens before finish grade and hardscape.",
+        "Our crews coordinate with your surveyor and GC to maintain trench lines, manage spoils, and keep haul routes efficient so grading and foundation trades start on schedule."
       ],
       "deliverablesHeading": "What we deliver",
       "deliverables": [
-        "Commercial mass grading and fine grading",
-        "Topsoil stripping and stockpiling",
-        "Rock breaking and trench work",
-        "Erosion control and silt management",
-        "Cut-and-fill balanced to geotech specs"
+        "Structural and pool excavation",
+        "Utility trenching and hydrovac",
+        "Lot clearing and topsoil strip",
+        "Bulk cut-and-fill for civil packages",
+        "Backfill and compaction to spec"
       ],
       "closingHeading": "Ready to scope your site?",
       "trustBlock": {
         "id": "trust-authority",
         "heading": "Trust & Authority",
         "paragraphs": [
-          "Our work spans the full spectrum of excavation and earthworks — from hydrovac precision digs around buried utilities to multi-acre commercial site clearing. We understand the drainage challenges unique to Simcoe County's terrain, the seasonal window pressures contractors face, and the quality standards demanded by engineers, municipalities and building inspectors across Barrie, Orillia and beyond.",
-          "We work directly with homeowners, GCs, land developers, site engineers and municipal contractors — becoming the excavation partner that keeps your project moving without surprises."
+          "Our excavation scope spans hydrovac daylighting, deep utility runs, pool excavations, and multi-acre clearing — executed with WSIB clearance, liability coverage, and documentation your PM can file.",
+          "We work directly with homeowners, GCs, developers, and site engineers — mobilizing equipment that matches access, soil, and inspection checkpoints without guesswork on depth or spoils."
         ]
       },
       "subServiceSections": [
@@ -139,31 +139,7 @@
             "Whether it's a full basement dig on a residential lot or the structural foundation for a commercial building, our excavation crews bring the precision and power to handle jobs at any depth and scale. We operate across Barrie, Orillia, Innisfil, Wasaga Beach and all of Simcoe County, working in all soil conditions including heavy clay, rock, sand and mixed terrain common throughout this region.",
             "Our fleet includes machines ranging from compact excavators for tight residential access to full-size equipment for deep commercial foundation work. Every dig follows engineered specifications, safety protocols and local grading bylaws — ensuring your project meets permit requirements the first time."
           ],
-          "closing": "Key Work: Basement excavation, commercial footings, foundation digs, cut-and-fill grading, rock breaking, soil removal and haulage. Serving Barrie, Orillia, Innisfil, Wasaga Beach and all of Simcoe County."
-        },
-        {
-          "id": "subdivision-grading",
-          "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format",
-          "layoutVariant": "reverse",
-          "intent": "education",
-          "heading": "Grading for New Subdivisions",
-          "paragraphs": [
-            "Subdivision development demands a level of precision and coordination that only experienced grading contractors can deliver. We specialize in multi-lot grading projects across Simcoe County — from initial rough grading and road bed preparation to storm drainage system installation and engineered lot grading to survey stakes.",
-            "We coordinate directly with engineers, developers and municipal inspectors to ensure every phase meets subdivision control requirements. Our work covers road sub-base compaction, catch basin grading, swale formation, ditch lines and storm sewer tie-ins — all executed with GPS-assisted grading equipment for consistent accuracy across large sites."
-          ],
-          "closing": "Serving subdivision developers in Barrie, Innisfil, Bradford, Angus, Midland, Penetanguishene, Wasaga Beach and throughout Simcoe County."
-        },
-        {
-          "id": "custom-home-grading",
-          "image": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1400&q=80&auto=format",
-          "layoutVariant": "offset",
-          "intent": "visual",
-          "heading": "Grading for Custom Homes & High-End Builds",
-          "paragraphs": [
-            "Custom home builds — especially on sloped, ravine or lakefront lots — require a grading specialist who understands the relationship between drainage, landscaping and structural integrity. We provide precision lot grading for high-end residential builds throughout Simcoe County, working closely with architects, engineers and premium home builders to achieve exact grades for both aesthetics and drainage compliance.",
-            "We handle complex topography including steep slopes, rock outcroppings, tight setbacks and finished grade coordination with retaining walls, pool decks, driveways and landscaping elements. Our work leaves your site permit-ready and precisely graded to architectural and engineering specifications."
-          ],
-          "closing": "Serving custom home builders and owners in Barrie, Collingwood, Wasaga Beach, Oro-Medonte, Springwater, Innisfil and throughout Simcoe County."
+          "closing": "Key work: basement and commercial footing excavations, rock breaking, soil removal, and haulage. Serving Barrie, Orillia, Innisfil, Wasaga Beach and all of Simcoe County."
         },
         {
           "id": "pool-excavation",
@@ -186,16 +162,6 @@
             "Whether you're connecting a new residential build to municipal services, upgrading utilities on a commercial property, or running services through a subdivision, our operators work precisely and efficiently to meet municipal specifications and inspection requirements."
           ],
           "closing": "Trenching for residential, commercial and municipal projects in Barrie, Orillia, Collingwood, Midland, Wasaga Beach, Innisfil, Bradford and across Simcoe County."
-        },
-        {
-          "id": "site-preparation",
-          "image": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1400&q=80&auto=format",
-          "heading": "Site Preparation for Residential, Commercial & Multi-Unit Construction",
-          "paragraphs": [
-            "Proper site preparation sets the foundation for everything that follows — cutting corners here costs significantly more later. Our site prep services cover the full pre-construction scope: clearing, topsoil stripping, rough grading, subgrade preparation, compaction and drainage establishment. We prepare sites for single-family homes, custom builds, multi-unit residential, commercial buildings and mixed-use projects.",
-            "We coordinate with engineers, surveyors and general contractors to ensure the site is ready for forming, framing or paving on schedule. Our team understands the specific soil and drainage conditions in Simcoe County — preventing costly settlement, drainage failures and inspection delays."
-          ],
-          "closing": "Full site preparation for developers, builders and GCs across Barrie, Orillia, Wasaga Beach, Innisfil, Angus, Midland, Penetanguishene and all of Simcoe County."
         },
         {
           "id": "lot-land-clearing",
@@ -238,14 +204,16 @@
           "closing": "Backfill and compaction for residential, commercial, municipal and industrial projects across Barrie, Orillia, Innisfil, Wasaga Beach and all of Simcoe County."
         },
         {
-          "id": "final-subgrade-lot-grading",
+          "id": "grading-bridge",
           "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80&auto=format",
-          "heading": "Lot Grading — Final & Subgrade",
+          "layoutVariant": "reverse",
+          "intent": "education",
+          "heading": "Precision grading & certificates",
           "paragraphs": [
-            "Final lot grading is the last earthwork step before landscaping, sod, driveway and exterior finish work begins — and it must meet the drainage grades specified by the municipality and your grading plan. We provide both subgrade preparation (below driveways, patios and structures) and final grade to ensure water moves away from the foundation and complies with your grading permit.",
-            "Final grading failures are one of the most common reasons new homes fail municipal inspections. Our team reads grading plans, works to survey benchmarks, and delivers precise finished grades that pass the first time — keeping your closing dates and landscaping schedules on track."
+            "Once bulk excavation is complete, finish surfaces, swales, and municipal certificates belong on the Site Preparation & Grading hub — laser-controlled benches, sub-base compaction, and inspector-ready documentation.",
+            "We keep excavation and grading scopes distinct so your PM knows who owns depth cuts versus who owns final drainage geometry and sign-off."
           ],
-          "closing": "Final lot grading and subgrade preparation across Barrie, Orillia, Innisfil, Wasaga Beach, Angus, Midland, Bradford, Springwater, Oro-Medonte and all of Simcoe County."
+          "closing": "Open the Site Preparation & Grading route for subdivision, custom, certificate, and correction work across Simcoe County."
         }
       ],
       "faq": [
@@ -267,7 +235,7 @@
         },
         {
           "question": "What is the difference between rough grading and final grading?",
-          "answer": "Rough grading establishes the general elevations of your lot after clearing and excavation — shaping the land for drainage and construction. Final grading is the precise finished grading completed after construction, bringing the lot to the exact grades shown on your grading plan for drainage compliance and landscaping. Both phases are critical, and we provide either or both."
+          "answer": "Rough grading sets bulk elevations after clearing and structural excavation. Final grading is the precise surface tied to your municipal grading plan and survey stakes — the scope we deliver on the Site Preparation & Grading hub with certificate coordination."
         },
         {
           "question": "What is hydrovac excavation and when should I use it?",
@@ -275,11 +243,11 @@
         },
         {
           "question": "Can you handle both residential and commercial jobs?",
-          "answer": "Yes — we work across the full project spectrum, from small residential pool excavations and basement digs to large commercial foundations, industrial site prep and multi-lot subdivision grading. Our equipment fleet and crew scale to the project."
+          "answer": "Yes — from residential pool and basement digs to commercial foundations, industrial bulk cuts, and subdivision utility corridors. Finish grading and subdivision lot certification route through our Site Preparation & Grading team when those scopes dominate the schedule."
         },
         {
           "question": "Do you provide free estimates?",
-          "answer": "Yes. We offer free, no-obligation on-site estimates for all excavation, grading and site preparation projects across Simcoe County. Contact us to schedule a site visit and we will provide a clear, detailed quote."
+          "answer": "Yes. We offer free, no-obligation on-site estimates for excavation, trenching, pool digs, hydrovac, and clearing across Simcoe County. Contact us to schedule a site visit and we will provide a clear, detailed quote."
         }
       ],
       "ctaOverride": {
@@ -289,11 +257,125 @@
         "trustSignals": [
           "Licensed & Fully Insured — Ontario Compliant",
           "Residential, Commercial & Industrial — All Project Scales",
-          "GPS-Assisted Grading Equipment for Precision Results",
+          "Hydrovac & Utility-Safe Excavation When Specified",
           "Free On-Site Estimates — No Obligation",
           "Locally Owned & Operated — Serving Simcoe County Since [Year]",
           "All Soil Types & Conditions — Including Rock & High Water Table",
           "Competitive Rates — Reliable Scheduling — Transparent Communication"
+        ]
+      }
+    },
+    {
+      "slug": "site-preparation-grading",
+      "schemaOfferName": "Site Preparation & Grading",
+      "meta": {
+        "title": "Site Preparation & Grading Barrie | Precision Earthworks",
+        "description": "Professional land grading and site preparation in Barrie, Innisfil, and Simcoe County. Final grade certificates, subdivision grading, and sub-base prep.",
+        "canonicalPath": "/services/site-preparation-grading/",
+        "ogTitle": "Site Preparation & Grading — Simcoe County",
+        "ogDescription": "Laser-level grading, final certificates, and sub-base prep for Barrie, Innisfil, and Simcoe County.",
+        "ogImageAlt": "Grading and sub-base preparation on a Simcoe County site"
+      },
+      "inlineQuote": {
+        "quote": "Need grading, final certificates, or a correction after a failed inspection? Dispatch aligns crews to survey and the approved grading plan.",
+        "byline": "Ground Level dispatch",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "/contact/"
+      },
+      "hero": {
+        "breadcrumbParent": "Services",
+        "titleBefore": "Site Preparation & Grading — ",
+        "titleEmphasis": "Barrie & Simcoe County",
+        "lede": "Precision surfaces, swale flow, and sub-base compaction that match the engineer’s sheet — not guesswork on inspection day.",
+        "taglineLines": [
+          "Subdivision road beds, custom lots, site prep packages, and certificate-ready finishes.",
+          "CAT skid steers and laser-guided workflows for tight corridors and municipal checkpoints."
+        ],
+        "body": [
+          "A bad grade is a permanent problem. We run digital stakes and compact equipment to hold drainage geometry through Barrie, Innisfil, Springwater, and Essa inspections.",
+          "When bulk excavation wraps, we own the surface: road sub-bases, building pads, swales, and final tie-ins before hardscape and drainage trades finish the cap.",
+          "If you have been flagged on a grade inspection, we re-cut to the plan and coordinate sign-off — fast enough to protect your critical path."
+        ]
+      },
+      "heroImage": "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg",
+      "hubStats": [
+        { "value": "500+", "label": "Projects", "sub": "Field-proven" },
+        { "value": "15+", "label": "Years", "sub": "Grading leadership" },
+        { "value": "4+", "label": "Regions", "sub": "Simcoe focus" }
+      ],
+      "processSection": {
+        "eyebrow": "Field process",
+        "heading": "From stakes to ",
+        "headingAccent": "signed certificate",
+        "steps": [
+          {
+            "num": "01",
+            "title": "Plan & survey",
+            "desc": "Benchmarks, grading plan, and inspection checklist aligned before blades drop."
+          },
+          {
+            "num": "02",
+            "title": "Rough & shape",
+            "desc": "Bulk shaping, road beds, and building pads to engineered tolerances."
+          },
+          {
+            "num": "03",
+            "title": "Finish & compact",
+            "desc": "Final surfaces, sub-base lifts, and moisture-controlled compaction."
+          },
+          {
+            "num": "04",
+            "title": "Certificate",
+            "desc": "Documentation and inspector coordination for occupancy-ready sign-off."
+          }
+        ]
+      },
+      "scopeStrip": [
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#site-prep-capabilities" },
+        { "label": "FAQ", "href": "#site-prep-faq" },
+        { "label": "Contact", "href": "/contact/" }
+      ],
+      "intro": [
+        "We deliver subdivision, custom residential, and commercial grading packages with laser and GPS control — tied to municipal plans and survey stakes.",
+        "Certificates and corrections are part of the same discipline: if the inspector flags swales or foundation slope, we re-grade to the engineer’s lines and get you back on schedule."
+      ],
+      "deliverablesHeading": "What we deliver",
+      "deliverables": [
+        "Subdivision and road-bed grading",
+        "Custom lot and infill finish work",
+        "Site prep packages for multi-unit and commercial pads",
+        "Final grade and subgrade before hardscape",
+        "Failed-inspection corrections with documentation"
+      ],
+      "closingHeading": "Ready to hold grade to the plan?",
+      "trustBlock": {
+        "id": "site-prep-trust",
+        "heading": "Compliance-first grading",
+        "paragraphs": [
+          "We work the way supers expect: stakes, plans, and inspection comments drive the cut — not eyeballing swales from the cab.",
+          "When drainage and hardscape follow our surface, French drains and catch basins are not compensating for a bad bench."
+        ]
+      },
+      "faq": [
+        {
+          "question": "Do you handle final grade certificates?",
+          "answer": "Yes. We grade to the approved municipal plan, coordinate licensed inspectors when required, and document compaction or lifts when the spec calls for it."
+        },
+        {
+          "question": "Can you fix a failed inspection?",
+          "answer": "Yes. Bring the inspector’s notes and the approved grading plan — we re-cut swales, foundation slopes, and basin ties to engineer tolerances and remobilize for re-inspection."
+        }
+      ],
+      "ctaOverride": {
+        "heading": "Book a grading review",
+        "buttonLabel": "Request a Site Visit",
+        "supportingCopy": "Send drawings, grading plans, and survey — we will confirm scope and inspection milestones before mobilizing.",
+        "trustSignals": [
+          "Laser & GPS-guided equipment",
+          "Municipal plan conformance",
+          "Certificate coordination",
+          "Rapid correction mobilization when flagged"
         ]
       }
     },
@@ -309,6 +391,12 @@
         "titleBefore": "Foundations & Civil Infrastructure — ",
         "titleEmphasis": "Barrie & Simcoe County",
         "lede": "Full hub copy, eight dedicated scopes, FAQs, and CTAs live on the Foundations & Civil Infrastructure route."
+      },
+      "lifecycleCallout": {
+        "heading": "Protect your foundation",
+        "body": "Protect your foundation with expert site grading to prevent water pooling at the footings before backfill is finalized.",
+        "ctaLabel": "See site prep & grading",
+        "ctaHref": "/services/site-preparation-grading/"
       },
       "scopeStrip": [
         {

@@ -411,6 +411,13 @@ export type ServiceDetailContent = {
     heading?: string;
     points?: string[];
   };
+  /** Cross-link band (e.g. foundations → grading hub). */
+  lifecycleCallout?: {
+    heading: string;
+    body: string;
+    ctaLabel: string;
+    ctaHref: string;
+  };
 };
 
 export type ServicesRegistry = {

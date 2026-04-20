@@ -23,6 +23,7 @@ export const ROUTES = {
 
 export const SERVICE_SLUGS = [
   "excavation-site-preparation",
+  "site-preparation-grading",
   "foundations-civil-infrastructure",
   "drainage-hardscaping",
   "hauling-site-clearing-logistics",

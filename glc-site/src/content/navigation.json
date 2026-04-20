@@ -18,7 +18,7 @@
   ],
   "megaMenu": {
     "kicker": "What we do",
-    "intro": "Five core service lines for commercial excavation, civil infrastructure, and site logistics across Barrie, Midland, Orillia, and Simcoe County.",
+    "intro": "Six core service lines for commercial excavation, civil infrastructure, precision grading, and site logistics across Barrie, Midland, Orillia, and Simcoe County.",
     "viewAllHref": "/services/",
     "viewAllLabel": "View all services",
     "quickContact": {
@@ -34,15 +34,25 @@
         "slug": "excavation-site-preparation",
         "num": "01",
         "title": "Excavation & Site Prep",
-        "description": "Mass grading, cut-and-fill, clearing",
+        "description": "Bulk digs, pools, trenching, hydrovac",
         "gridTitle": ["Excavation &", "Site Preparation"],
-        "gridDescription": "Mass grading, cut-and-fill operations, topsoil stripping, and site clearing for commercial development projects of all scales.",
+        "gridDescription": "Structural excavation, pool digs, utility trenching, hydrovac, and clearing — bulk earthworks before finish grade.",
         "photoSrc": "/images/services/drainage-hardscaping/work-cap-foundation-trench.jpg",
-        "subTags": ["Mass grading", "Cut-and-fill", "Site clearing"]
+        "subTags": ["Pool digs", "Trenching", "Hydrovac"]
+      },
+      {
+        "slug": "site-preparation-grading",
+        "num": "02",
+        "title": "Site Prep & Grading",
+        "description": "Certificates, laser grade, subdivisions",
+        "gridTitle": ["Site Prep &", "Grading"],
+        "gridDescription": "Subdivision and custom lot grading, site prep packages, final grade certificates, and inspection corrections across Simcoe County.",
+        "photoSrc": "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg",
+        "subTags": ["Final grade", "Laser grade", "Certificates"]
       },
       {
         "slug": "foundations-civil-infrastructure",
-        "num": "02",
+        "num": "03",
         "title": "Foundations & Civil",
         "description": "Footings, shoring, infrastructure",
         "gridTitle": ["Foundations &", "Civil Infrastructure"],
@@ -52,17 +62,17 @@
       },
       {
         "slug": "drainage-hardscaping",
-        "num": "03",
+        "num": "04",
         "title": "Drainage, Hardscaping & Landscaping",
-        "description": "Storm systems, grading, pavers",
+        "description": "Storm systems, hardscape, pavers",
         "gridTitle": ["Drainage, Hardscaping", "& Landscaping"],
-        "gridDescription": "Grading for surface drainage, storm pipe installation, catch basins, armor stone, interlock pavers, and retaining structures.",
+        "gridDescription": "Storm pipe, catch basins, foundation drainage, armor stone, interlock, and retaining structures after surface grade is correct.",
         "photoSrc": "/images/services/drainage-hardscaping/hero-wide.png",
-        "subTags": ["Storm systems", "Grading", "Hardscape"]
+        "subTags": ["Storm systems", "Drain tile", "Hardscape"]
       },
       {
         "slug": "hauling-site-clearing-logistics",
-        "num": "04",
+        "num": "05",
         "title": "Hauling & Clearing",
         "description": "Haulage, demo, site logistics",
         "gridTitle": ["Hauling, Site Clearing", "& Logistics"],
@@ -72,7 +82,7 @@
       },
       {
         "slug": "snow-removal",
-        "num": "05",
+        "num": "06",
         "title": "Snow Removal",
         "description": "Commercial plowing & salting",
         "gridTitle": ["Snow Removal", "Services"],
@@ -143,6 +153,10 @@
           {
             "label": "Excavation & Site Preparation",
             "href": "/services/excavation-site-preparation/"
+          },
+          {
+            "label": "Site Prep & Grading",
+            "href": "/services/site-preparation-grading/"
           },
           {
             "label": "Foundations & Civil Infrastructure",

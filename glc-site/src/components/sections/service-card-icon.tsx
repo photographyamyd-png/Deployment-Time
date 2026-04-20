@@ -20,6 +20,14 @@ export function ServiceCardIcon({ slug, className = "service-card__icon" }: Prop
           <rect x="14" y="20" width="12" height="10" />
         </svg>
       );
+    case "site-preparation-grading":
+      return (
+        <svg {...common}>
+          <path d="M6 28 L16 22 L32 22 L36 28 L36 32 L6 32 Z" strokeLinejoin="miter" />
+          <rect x="10" y="16" width="16" height="8" />
+          <line x1="8" y1="34" x2="34" y2="34" strokeLinecap="square" />
+        </svg>
+      );
     case "foundations-civil":
     case "foundations-civil-infrastructure":
       return (
@@ -83,6 +91,20 @@ export function HeroServiceIcon({ slug }: { slug: string }) {
         <svg className={c} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden>
           <path d="M5 30L20 8l15 22H5z" />
           <rect x="14" y="20" width="12" height="10" />
+        </svg>
+      );
+    case "site-preparation-grading":
+      return (
+        <svg className={c} viewBox="0 0 40 40" aria-hidden>
+          <path
+            d="M6 28 L16 22 L32 22 L36 28 L36 32 L6 32 Z"
+            stroke="currentColor"
+            fill="none"
+            strokeWidth="2.2"
+            strokeLinejoin="miter"
+          />
+          <rect x="10" y="16" width="16" height="8" stroke="currentColor" fill="none" strokeWidth="2" />
+          <line x1="8" y1="34" x2="34" y2="34" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
         </svg>
       );
     case "foundations-civil":

@@ -33,6 +33,7 @@
         },
         "serviceBarSlugTitles": [
           { "slug": "excavation-site-preparation", "title": "Excavation & Site Prep" },
+          { "slug": "site-preparation-grading", "title": "Site Prep & Grading" },
           { "slug": "foundations-civil-infrastructure", "title": "Foundations & Civil" },
           { "slug": "drainage-hardscaping", "title": "Drainage, Hardscaping & Landscaping" },
           { "slug": "hauling-site-clearing-logistics", "title": "Hauling & Clearing" },
@@ -59,11 +60,11 @@
             "sub": "Commercial & civil builds"
           },
           {
-            "target": 5,
+            "target": 6,
             "afterNumber": " Lines",
             "format": " Lines",
             "label": "Core Services",
-            "sub": "Excavation, foundations, drainage, hauling & snow — one dispatch standard"
+            "sub": "Excavation, grading, foundations, drainage, hauling & snow — one dispatch standard"
           },
           {
             "target": 100,
@@ -80,6 +81,7 @@
       "props": {
         "items": [
           "Commercial Excavation Barrie",
+          "Site Prep & Grading Simcoe County",
           "Foundation Contractors Simcoe County",
           "Site Preparation Midland & Orillia",
           "Utility & Septic Excavation Barrie",
@@ -129,7 +131,7 @@
         "eyebrow": "What We Do",
         "headingLine1": "Full-Service Civil",
         "headingLine2": "Across Simcoe County",
-        "intro": "Ground Level Contracting is built to handle every phase of civil and site work — from raw land to finished project. Five coordinated service lines cover excavation, foundations, drainage & hardscaping, hauling & clearing, and commercial snow — one dispatch standard for builds across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County."
+        "intro": "Ground Level Contracting is built to handle every phase of civil and site work — from raw land to finished project. Six coordinated service lines cover excavation, site prep & grading, foundations, drainage & hardscaping, hauling & clearing, and commercial snow — one dispatch standard for builds across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County."
       }
     },
     {

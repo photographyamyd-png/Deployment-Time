@@ -7,6 +7,7 @@ import { ParallaxTypeBand } from "@/components/sections/parallax-type-band";
 import { Process } from "@/components/sections/Process";
 import { StatsBar } from "@/components/sections/StatsBar";
 import { ScopeStrip } from "@/components/ui/scope-strip";
+import { SmartLink } from "@/components/ui/smart-link";
 import { ServiceFieldCapabilities } from "@/components/services/service-field-capabilities";
 import { ServiceFaqSection } from "@/components/services/service-faq-section";
 import { ServiceHubOverview } from "@/components/services/service-hub-overview";
@@ -74,6 +75,24 @@ export function ServicePageView({ service, site }: Props) {
         <ScopeStrip links={service.scopeStrip} />
 
         <ServiceHubOverview service={service} hubStats={hubStats} />
+        {service.lifecycleCallout ? (
+          <section
+            className="ls gl-reveal"
+            aria-labelledby="lifecycle-callout-heading"
+          >
+            <div className="container ls-c">
+              <h2 id="lifecycle-callout-heading" className="gl-h3">
+                {service.lifecycleCallout.heading}
+              </h2>
+              <p className="gl-prose">{service.lifecycleCallout.body}</p>
+              <p style={{ marginTop: "1rem" }}>
+                <SmartLink href={service.lifecycleCallout.ctaHref} className="gl-btn gl-btn--primary">
+                  {service.lifecycleCallout.ctaLabel}
+                </SmartLink>
+              </p>
+            </div>
+          </section>
+        ) : null}
         {service.parallaxBand ? (
           <ParallaxTypeBand
             id={`${service.slug}-type-band`}

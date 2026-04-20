@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Site Preparation & Grading Barrie | Precision Earthworks",
+    "description": "Professional land grading and site preparation in Barrie, Innisfil, and Simcoe County. Final grade certificates, subdivision grading, and sub-base prep."
+  },
+  "hero": {
+    "eyebrow": "Site preparation & grading",
+    "title": {
+      "line1": "Geometry with a",
+      "line2": "Skid Steer.",
+      "line3": "Inspection-ready grade.",
+      "emphasizeLine": 2
+    },
+    "subheadline": "Precision grading that actually passes inspection the first time.",
+    "lede": "A bad grade is a permanent problem. Whether you are satisfying a municipal inspector in Barrie or prepping a road bed in Innisfil, we laser-level and compact sub-base so water moves to plan — not into your foundation or swales.",
+    "primaryCtaLabel": "Call dispatch for a site review",
+    "coverageTags": ["Barrie", "Innisfil", "Springwater", "Essa", "Simcoe County"]
+  },
+  "parallaxBackgroundImage": "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg",
+  "parallaxBand": {
+    "eyebrow": "Agile equipment",
+    "title": "Tight tolerances in tight corridors",
+    "subtitle": "CAT skid steers and compact grading packages for side yards, infill, and commercial corridors where every inch of slope ties to the engineer’s sheet.",
+    "image": "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg",
+    "imageAlt": "Rough grading and finish prep with compact equipment on a Simcoe County site"
+  },
+  "canonSection": {
+    "eyebrow": "Capabilities",
+    "heading": "Site preparation & precision grading",
+    "intro": "Subdivision road beds, custom lots, site prep packages, and final grade work — sequenced for municipal plans, survey benchmarks, and inspection-ready documentation."
+  },
+  "services": [
+    {
+      "id": "exc-svc-subdivision-grading",
+      "title": "Subdivision Grading Contractor | Multi-Lot, Road Beds & Storm Systems — Simcoe County",
+      "paragraphs": [
+        "Developing a new subdivision in Barrie, Innisfil, or anywhere across Simcoe County demands precise mass grading executed to engineering drawings — on schedule, with no surprises. We specialize in multi-lot residential subdivision grading, road sub-base preparation, storm water management earthworks, and bulk cut-and-fill operations.",
+        "Our operators work from digital grade plans using GPS-equipped equipment to achieve precise tolerances across large sites. We coordinate with civil engineers, site supervisors, and municipal inspectors to ensure every phase passes grade approval. From initial site stripping and topsoil removal, to sub-base compaction ready for road construction — we are your single source for subdivision earthworks.",
+        "Currently active on residential subdivisions throughout Simcoe County. Contact us for large-project pricing and equipment availability."
+      ]
+    },
+    {
+      "id": "exc-svc-custom-home-grading",
+      "title": "Custom Home Grading | Sloped & Complex Lots in Barrie & Simcoe County",
+      "paragraphs": [
+        "High-end custom homes often sit on the most challenging lots — steep slopes, irregular terrain, rocky outcroppings, or tight urban infill sites. Standard grading contractors can't always handle it. We specialize in complex lot grading for custom home builders and luxury residential developers across Barrie, Oro-Medonte, Springwater, and the broader Simcoe County region.",
+        "We work directly from architectural and geotechnical plans to shape your lot for proper drainage, foundation suitability, and curb appeal. Precision matters: a poorly graded luxury lot creates drainage problems, foundation risks, and costly re-work. We get it right the first time. Services include rough grading to grade stakes, finish grading after construction, and site reshaping to match landscape design intent."
+      ]
+    },
+    {
+      "id": "exc-svc-site-prep",
+      "title": "Site Preparation Contractor Barrie | Residential, Commercial & Multi-Unit",
+      "paragraphs": [
+        "Before any structure goes up, the site must come down — stripped, graded, compacted, and ready for construction. We provide comprehensive site preparation services for residential builders, commercial developers, and multi-unit housing projects across Barrie, Orillia, Innisfil, Wasaga Beach, and Simcoe County.",
+        "Our site prep packages include topsoil stripping and stockpiling, rough grading to civil drawings, sub-base preparation, temporary drainage, and erosion control installation. We work from permit drawings and coordinate with your GC, civil engineer, and municipality to ensure every phase of prep meets approval standards before framing begins. No project is too large or too complex."
+      ]
+    },
+    {
+      "id": "exc-svc-lot-grading-final",
+      "title": "Lot Grading Barrie | Final Grade Certificates & Subgrade Prep — Simcoe County",
+      "paragraphs": [
+        "In Ontario, most municipalities including the City of Barrie, the Town of Innisfil, Orillia, and Wasaga Beach require a final lot grading certificate before you receive occupancy. We provide final lot grading services that meet all municipal grading plans — directing surface drainage away from structures, toward catch basins, and along approved swales.",
+        "We also provide subgrade preparation before concrete flatwork, interlock, or asphalt installation. Proper subgrade depth, compaction, and granular base application determine how long your surfaces last. Cutting corners at the subgrade stage means cracked driveways, heaving interlock, and costly repairs. Our team grades to spec, compacts to standard, and documents the work. Lot grading certificates available through licensed grading inspectors.",
+        "The municipal compliance specialist: Most Simcoe County townships (Barrie, Springwater, Innisfil, Essa) require a Final Grade Certificate for occupancy. We specialize in correcting failed inspections. If your lot was flagged for poor swale placement or improper foundation sloping, we re-grade to the engineer’s plan to secure first-pass approval."
+      ]
+    }
+  ],
+  "research": {
+    "eyebrow": "Planning reference",
+    "heading": "Keyword & intent map — grading",
+    "triggerLabel": "Open the full planning reference",
+    "triggerHint": "Optional depth for estimators and SEO — grading and certification intent.",
+    "primaryHeading": "Primary keywords",
+    "primaryKeywords": [
+      "site preparation contractor Barrie",
+      "land grading Simcoe County",
+      "final grade certificate Barrie",
+      "subdivision grading contractor Ontario",
+      "lot grading Innisfil",
+      "rough grading contractor Barrie",
+      "skid steer grading Simcoe County"
+    ],
+    "secondaryHeading": "Secondary keywords",
+    "secondaryKeywords": [
+      "custom home grading Barrie",
+      "road sub-base preparation",
+      "municipal grading plan compliance",
+      "swale grading Simcoe County",
+      "sub-base compaction residential",
+      "grade inspection correction Barrie"
+    ],
+    "longTailHeading": "Long-tail keywords",
+    "longTailKeywords": [
+      "failed lot grading inspection Barrie Ontario",
+      "final grade certificate Springwater",
+      "re-grade lot after municipal flag Simcoe County",
+      "laser grading contractor Innisfil",
+      "CAT skid steer finish grading tight lot"
+    ],
+    "geoHeading": "Geo modifiers",
+    "geoLines": [
+      "grading Barrie · Innisfil · Springwater · Essa",
+      "site prep Simcoe County · Lake Simcoe corridor",
+      "final grade certificates Central Ontario"
+    ]
+  },
+  "trust": {
+    "eyebrow": "Field proof",
+    "heading": "The inspector is coming. Is your grade shot correctly?",
+    "pullquote": "Most of our grading work starts because someone else guessed. Flags for foundation sloping, ponding, or swales that do not flow to the catch basin cost money every day you wait. We use digital stakes and lasers, CAT skid steers where access is tight, and we build to Barrie, Innisfil, and Springwater drainage expectations — not hope.",
+    "stats": [
+      { "value": "15+", "label": "Years in Business" },
+      { "value": "500+", "label": "Projects Completed Across Simcoe County" }
+    ],
+    "licensedLine": "Licensed & insured — WSIB clearance and liability coverage on every mobilization.",
+    "reviewsPlaceholder": "Google Reviews widget — embed live rating when available.",
+    "galleryNote": "Before & after grading — caption with municipality and scope.",
+    "mapNote": "Service-area map — mark grading-intensive corridors when available."
+  },
+  "parallaxCta": {
+    "heading": "Mobilize for grade-critical work",
+    "responsePromise": "We return written scopes when drawings and survey are available.",
+    "nextStepLabel": "Next: surface drainage & hardscape",
+    "nextStepHref": "/services/drainage-hardscaping/"
+  },
+  "geoHub": {
+    "eyebrow": "Local dispatch",
+    "heading": "Simcoe County grading coverage",
+    "intro": "Final step before hardscape and drainage trades: we hold surface elevations, swale flow, and sub-base compaction to the civil package. When pipes and pavers go in, the dirt underneath already matches the model.",
+    "territories": [
+      {
+        "name": "Barrie",
+        "sentence": "Municipal grading plans, tight infill, and production builders — we align benches to inspection checklists."
+      },
+      {
+        "name": "Innisfil",
+        "sentence": "Growth-corridor lots and estate roads — road bed and lot grading tied to Town standards."
+      },
+      {
+        "name": "Springwater & Essa",
+        "sentence": "Rural and estate parcels — long swale runs, driveway tie-ins, and certificate-ready finishes."
+      },
+      {
+        "name": "Simcoe County",
+        "sentence": "County-wide mobilization for subdivision, custom, and correction work after failed inspections."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is a final grade certificate and when do I need one?",
+      "answer": "A final grade certificate confirms surface drainage matches the approved municipal grading plan. Most Simcoe County municipalities require it before occupancy. We grade to plan, document lifts and compaction when specified, and coordinate with licensed inspectors for sign-off."
+    },
+    {
+      "question": "Already failed your grade inspection?",
+      "answer": "We can mobilize quickly to correct swales, foundation sloping, and catch basin ties so your certificate can be signed off. Bring the inspector’s notes and the approved grading plan — we re-cut to the engineer’s sheet, not guesses."
+    },
+    {
+      "question": "Rough grading vs final grading — what is the difference?",
+      "answer": "Rough grading sets bulk elevations and drainage after clearing and structural work. Final grading is the precise surface tied to stakes and the grading plan, ready for sod, asphalt, or hardscape — and for municipal certification."
+    },
+    {
+      "question": "Do you use laser or GPS for finish work?",
+      "answer": "Yes. We run laser and GPS-guided equipment to hold tolerances on road beds, building pads, and tight residential side yards where hand finish follows machine work."
+    },
+    {
+      "question": "What areas do you serve for grading?",
+      "answer": "Barrie, Innisfil, Springwater, Essa, Orillia, Wasaga Beach, and the broader Simcoe County region. Call dispatch to confirm crew availability for your township."
+    }
+  ]
+}

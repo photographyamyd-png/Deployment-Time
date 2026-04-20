@@ -9,6 +9,11 @@ export function resolveHubStats(service: ServiceDetailContent): ServiceHubStat[]
       { value: "15+", label: "Years", sub: "Field leadership" },
       { value: "4", label: "Regions", sub: "Central Ontario" },
     ],
+    "site-preparation-grading": [
+      { value: "500+", label: "Projects", sub: "Field-proven" },
+      { value: "15+", label: "Years", sub: "Grading leadership" },
+      { value: "4+", label: "Regions", sub: "Simcoe focus" },
+    ],
     "foundations-civil-infrastructure": [
       { value: "200+", label: "Foundations", sub: "Delivered" },
       { value: "100%", label: "Civil certified", sub: "QC documentation" },

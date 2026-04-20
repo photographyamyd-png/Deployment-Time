@@ -1,14 +1,14 @@
-import { ExcavationFaqEditorial } from "@/components/services/excavation-faq-editorial";
-import { ExcavationGeoHub } from "@/components/services/excavation-geo-hub";
-import { ExcavationParallaxCta } from "@/components/services/excavation-parallax-cta";
-import { ExcavationSeoResearch } from "@/components/services/excavation-seo-research";
-import { ExcavationServiceCanon } from "@/components/services/excavation-service-canon";
-import { ExcavationTrustStrip } from "@/components/services/excavation-trust-strip";
+import { SitePrepGradingFaqEditorial } from "@/components/services/site-prep-grading-faq-editorial";
+import { SitePrepGradingGeoHub } from "@/components/services/site-prep-grading-geo-hub";
+import { SitePrepGradingParallaxCta } from "@/components/services/site-prep-grading-parallax-cta";
+import { SitePrepGradingSeoResearch } from "@/components/services/site-prep-grading-seo-research";
+import { SitePrepGradingServiceCanon } from "@/components/services/site-prep-grading-service-canon";
+import { SitePrepGradingTrustStrip } from "@/components/services/site-prep-grading-trust-strip";
 import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
-import { JsonLdExcavationHub } from "@/components/seo/json-ld-excavation-hub";
+import { JsonLdSitePrepGradingHub } from "@/components/seo/json-ld-site-prep-grading-hub";
 import { ParallaxTypeBand } from "@/components/sections/parallax-type-band";
 import { SectionRenderer } from "@/components/sections/section-renderer";
-import hub from "@/content/pages/excavation-hub-seo.json";
+import hub from "@/content/pages/site-prep-grading-seo.json";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
 import type {
@@ -25,7 +25,7 @@ import { getSiteUrl } from "@/lib/site-url";
 import { getServiceBySlug } from "@/lib/service-pages";
 
 const siteData = site as SiteConfig;
-const service = getServiceBySlug("excavation-site-preparation")!;
+const service = getServiceBySlug("site-preparation-grading")!;
 const homeContent = structuredClone(home) as HomePageContent;
 const navData = navigation as NavigationConfig;
 const seo = hub.meta as { title: string; description: string };
@@ -79,13 +79,13 @@ if (hero) {
 const marquee = getHomeSection("marquee");
 if (marquee) {
   marquee.props.items = [
-    "Excavation & bulk earthworks",
-    "Barrie · Orillia · Wasaga Beach · Innisfil",
-    "Pool digs · Trenching · Hydrovac · Clearing",
-    "Simcoe County contractor",
+    "Site preparation & grading",
+    "Laser-level & sub-base compaction",
+    "Barrie · Innisfil · Springwater · Simcoe County",
+    "Final grade certificates",
     "Licensed & insured crews",
     "Free estimates",
-    "Next: site prep & grading for certificates",
+    "Inspection-ready surfaces",
     "From concept to creation",
   ];
 }
@@ -93,9 +93,9 @@ if (marquee) {
 const about = getHomeSection("about");
 if (about) {
   about.props.eyebrow = "Service overview";
-  about.props.headingBefore = "Bulk ";
-  about.props.headingAccent = "excavation";
-  about.props.headingAfter = " — digs, trenches & hydrovac";
+  about.props.headingBefore = "Agile equipment. ";
+  about.props.headingAccent = "Tight tolerances.";
+  about.props.headingAfter = "";
   about.props.body =
     (service.hero.body && service.hero.body[0]) ||
     hubHero.lede;
@@ -113,7 +113,7 @@ const stats = getHomeSection("stats");
 if (stats) {
   const third = stats.props.cells[2];
   if (third) {
-    third.sub = "Barrie, Orillia, Wasaga Beach, Innisfil & Simcoe County";
+    third.sub = "Barrie, Innisfil, Springwater, Essa & Simcoe County";
   }
 }
 
@@ -123,32 +123,31 @@ function pickSections(types: readonly HomeSectionBlock["type"][]): HomePageConte
     .filter(Boolean) as HomePageContent["sections"];
 }
 
-/** Hero → about (light) → marquee → capabilities; stats rendered after canon. */
-const excavationTopSections = pickSections(["hero", "about", "marquee"] as const);
-const excavationStatsSections = pickSections(["stats"] as const);
+const sitePrepTopSections = pickSections(["hero", "about", "marquee"] as const);
+const sitePrepStatsSections = pickSections(["stats"] as const);
 
 const schemaSite: SiteConfig = { ...siteData, url: getSiteUrl() };
 
 export const metadata: Metadata = pageMetadata({
   title: seo.title,
   description: seo.description,
-  path: ROUTES.service("excavation-site-preparation"),
+  path: ROUTES.service("site-preparation-grading"),
 });
 
-export default function ExcavationSitePreparationPage() {
+export default function SitePreparationGradingPage() {
   const band = hubParallax.parallaxBand;
 
   return (
     <>
-      <JsonLdExcavationHub site={schemaSite} />
+      <JsonLdSitePrepGradingHub site={schemaSite} />
       <main id="main-content">
-        <SectionRenderer sections={excavationTopSections} megaCards={navData.megaMenu.cards} />
-        <ExcavationServiceCanon />
-        <SectionRenderer sections={excavationStatsSections} megaCards={navData.megaMenu.cards} />
-        <ExcavationTrustStrip />
+        <SectionRenderer sections={sitePrepTopSections} megaCards={navData.megaMenu.cards} />
+        <SitePrepGradingServiceCanon />
+        <SectionRenderer sections={sitePrepStatsSections} megaCards={navData.megaMenu.cards} />
+        <SitePrepGradingTrustStrip />
         {band ? (
           <ParallaxTypeBand
-            id="excavation-type-band"
+            id="site-prep-type-band"
             tone="dark"
             eyebrow={band.eyebrow}
             title={band.title}
@@ -157,10 +156,10 @@ export default function ExcavationSitePreparationPage() {
             imageAlt={band.imageAlt}
           />
         ) : null}
-        <ExcavationGeoHub />
-        <ExcavationSeoResearch />
-        <ExcavationFaqEditorial />
-        <ExcavationParallaxCta
+        <SitePrepGradingGeoHub />
+        <SitePrepGradingSeoResearch />
+        <SitePrepGradingFaqEditorial />
+        <SitePrepGradingParallaxCta
           phoneDisplay={siteData.telephoneDisplay}
           phoneHref={`tel:${siteData.telephone.replace(/\s/g, "")}`}
         />

@@ -87,8 +87,17 @@ export function DrainageHubOverview() {
             <p className="ab3__body">{lead}</p>
           </Reveal>
 
+          <Reveal delayClass="reveal--delay-3">
+            <p className="ab3__body">
+              Pipes are only half the battle — if the surface is not pitched correctly, French drains work double-time. We fix the surface first.{" "}
+              <SmartLink href={ROUTES.service("site-preparation-grading")} className="gl-btn gl-btn--link">
+                Explore grading
+              </SmartLink>
+            </p>
+          </Reveal>
+
           {readmoreParas.length > 0 ? (
-            <Reveal delayClass="reveal--delay-3">
+            <Reveal delayClass="reveal--delay-4">
               <details className="service-cap-readmore glc-drain-hub__readmore">
                 <summary>{READMORE_SUMMARY}</summary>
                 <div className="service-cap-readmore__inner glc-drain-hub__readmore-inner">
@@ -100,7 +109,7 @@ export function DrainageHubOverview() {
             </Reveal>
           ) : null}
 
-          <Reveal delayClass="reveal--delay-4" className="ab3__creds">
+          <Reveal delayClass="reveal--delay-5" className="ab3__creds">
             {DRAINAGE_HUB_OVERVIEW_CREDENTIALS.map((c, i) => (
               <div key={c.title} className="ab3__cred">
                 <div className="ab3__cred-idx" aria-hidden>0{i + 1}</div>
@@ -112,7 +121,7 @@ export function DrainageHubOverview() {
             ))}
           </Reveal>
 
-          <Reveal delayClass="reveal--delay-5">
+          <Reveal className="ab3__cta-row">
             <SmartLink href={ROUTES.contact} className="btn-primary">
               {DRAINAGE_HUB_HERO.primaryCta}
               <IconArrow />

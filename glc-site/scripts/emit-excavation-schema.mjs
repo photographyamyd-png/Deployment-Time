@@ -56,6 +56,27 @@ const data = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "ExcavationService",
+      "@id": `${page}#excavationService`,
+      name: "Excavation & Site Preparation",
+      description: hub.meta.description,
+      url: `${page}/`,
+      provider: {
+        "@type": "LocalBusiness",
+        name: site.name,
+        url: `${origin}/`,
+        telephone: site.telephone,
+        address,
+      },
+      areaServed: [
+        "Barrie",
+        "Orillia",
+        "Wasaga Beach",
+        "Innisfil",
+        "Simcoe County",
+      ],
+    },
+    {
       "@type": "GeneralContractor",
       "@id": `${page}#excavationOfferCatalog`,
       name: site.name,
@@ -88,7 +109,7 @@ const data = {
       url: `${page}/`,
       name: "Excavation & Site Preparation",
       isPartOf: { "@type": "WebSite", url: `${origin}/` },
-      about: { "@id": `${page}#excavationOfferCatalog` },
+      about: { "@id": `${page}#excavationService` },
     },
   ],
 };
