@@ -101,14 +101,17 @@ export function HeroSection(props: HeroProps) {
     subheadline,
     lede,
     primaryCta,
-    secondaryCta,
+    secondaryCta: secondaryCtaProp,
     stats,
     coverage,
     serviceBarSlugTitles,
     parallaxBackgroundImage,
     ctaMicrocopy,
     trustItems,
+    trustBadges,
   } = props;
+
+  const secondaryCta = secondaryCtaProp;
 
   const isTelOrMail = (href: string) =>
     href.startsWith("tel:") || href.startsWith("mailto:");
@@ -249,6 +252,23 @@ export function HeroSection(props: HeroProps) {
           className="hero-v2__content"
           style={mounted ? { y: textY } : {}}
         >
+          {trustBadges?.length ? (
+            <motion.div
+              className="hero-v2__trust-badges"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
+              role="list"
+              aria-label="Credentials"
+            >
+              {trustBadges.map((label) => (
+                <span key={label} className="hero-v2__trust-badge" role="listitem">
+                  {label}
+                </span>
+              ))}
+            </motion.div>
+          ) : null}
+
           {/* Vertical rotated eyebrow — left rail */}
           <motion.div
             className="hero-v2__vert-label"
@@ -378,27 +398,29 @@ export function HeroSection(props: HeroProps) {
                 </MotionSmartLink>
               )}
 
-              {isTelOrMail(secondaryCta.href) ? (
-                <motion.a
-                  href={secondaryCta.href}
-                  className="btn-hero-glass"
-                  whileHover={{ scale: 1.025, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
-                >
-                  {secondaryCta.label}
-                </motion.a>
-              ) : (
-                <MotionSmartLink
-                  href={secondaryCta.href}
-                  className="btn-hero-glass"
-                  whileHover={{ scale: 1.025, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
-                >
-                  {secondaryCta.label}
-                </MotionSmartLink>
-              )}
+              {secondaryCta ? (
+                isTelOrMail(secondaryCta.href) ? (
+                  <motion.a
+                    href={secondaryCta.href}
+                    className="btn-hero-glass"
+                    whileHover={{ scale: 1.025, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                  >
+                    {secondaryCta.label}
+                  </motion.a>
+                ) : (
+                  <MotionSmartLink
+                    href={secondaryCta.href}
+                    className="btn-hero-glass"
+                    whileHover={{ scale: 1.025, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                  >
+                    {secondaryCta.label}
+                  </MotionSmartLink>
+                )
+              ) : null}
             </div>
             {ctaMicrocopy ? (
               <p className="hero-v2__cta-microcopy">{ctaMicrocopy}</p>
@@ -427,6 +449,7 @@ export function HeroSection(props: HeroProps) {
           {serviceBarSlugTitles.map((s, i) => (
             <motion.div
               key={s.slug}
+              className="hero-v2__service-tile-wrap"
               variants={TILE_VARIANT}
               custom={i}
               initial="hidden"

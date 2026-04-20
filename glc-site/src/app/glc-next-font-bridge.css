@@ -1,0 +1,6 @@
+/* Loaded after glc-base.css so Next.js `next/font` variables win over :root font tokens. */
+html {
+  --font-display: var(--font-oswald), "Oswald", sans-serif;
+  --font-body: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+  --font-accent: var(--font-source-serif), "Source Serif 4", serif;
+}

@@ -400,6 +400,7 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
           {serviceBarSlugTitles.map((s, i) => (
             <motion.div
               key={s.slug}
+              className="hero-v2__service-tile-wrap"
               variants={TILE_VARIANT}
               custom={i}
               initial="hidden"

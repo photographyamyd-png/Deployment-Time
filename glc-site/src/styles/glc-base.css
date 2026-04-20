@@ -24,6 +24,8 @@
   --text-400: #9C9690;
   --gray-200: #E0DEDA;
   --gray-100: #F7F6F4;
+  /* DSE / dark-section body copy — readable cool neutral */
+  --gray-light: #F0EFED;
 
   --font-display: 'Oswald', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -834,6 +836,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .dse-c { position: relative; z-index: 3; }
 
+/* Dark shells: body prose must not use default --text-500 ink */
+.dse .gl-prose:not(.gl-prose--light),
+.dse-c .gl-prose:not(.gl-prose--light) {
+  color: var(--gray-light);
+}
+
 .ls {
   background: var(--white);
   position: relative;
@@ -1301,14 +1309,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 
-/* Right cluster: hours + phone + rotator (hours is not wrapped in .gl-util-item) */
+/* Right cluster: hours + phone + rotator — grid so rotator gets real width (flex+absolute lines used to collapse and overlap contact) */
 .gl-header__utility-right {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 16px 20px;
+  gap: 16px 24px;
   min-width: 0;
+  justify-items: end;
 }
 
 .gl-header__utility-contact {
@@ -3629,7 +3637,7 @@ a.hero__service-item {
 }
 a.service-card {
   text-decoration: none;
-  color: inherit;
+  color: var(--gray-light);
   -webkit-tap-highlight-color: transparent;
 }
 .service-card {
@@ -5870,12 +5878,15 @@ section#coverage,
 .gl-util-rotator {
   position: relative;
   min-height: 1.35em;
-  flex: 1;
-  max-width: min(440px, 42vw);
-  margin-left: auto;
+  width: 100%;
+  max-width: min(520px, 56vw);
+  min-width: 0;
+  overflow: hidden;
+  justify-self: end;
 }
 .gl-util-rotator__line {
   position: absolute;
+  left: 0;
   right: 0;
   top: 0;
   font-size: 11px;
@@ -5889,6 +5900,8 @@ section#coverage,
   transition: opacity 0.65s var(--ease-expo), transform 0.65s var(--ease-expo);
   pointer-events: none;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .gl-util-rotator__line.is-visible {
   opacity: 1;
@@ -6140,7 +6153,7 @@ section#coverage,
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: rgba(30,28,26,0.08);
+  color: color-mix(in srgb, var(--charcoal-deep) 8%, transparent);
   margin-bottom: 16px;              /* 2×8 */
   transition: color 0.24s var(--ease-expo);
 }
@@ -7908,7 +7921,7 @@ body.gl-mega-open .gl-mega-backdrop {
   max-width: 900px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px 32px;
   list-style: none;
   padding: 0;
@@ -7916,6 +7929,11 @@ body.gl-mega-open .gl-mega-backdrop {
 .service-scope-band__list li {
   padding-left: 22px;
   margin-bottom: 0;
+}
+@media (max-width: 1024px) {
+  .service-scope-band__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 768px) {
   .service-scope-band__list {
@@ -10779,7 +10797,7 @@ body.gl-mega-open .gl-mega-backdrop {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 700;
-  color: rgba(30, 28, 26, 0.12);
+  color: color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
   line-height: 1;
   flex-shrink: 0;
 }
@@ -11004,7 +11022,7 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-geo .gl-prose.exc-geo__intro,
 .exc-geo__intro {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--gray-light);
   max-width: 52ch;
 }
 .exc-geo__territories {
@@ -11035,10 +11053,15 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-geo .gl-prose.exc-geo__card-text,
 .exc-geo__card-text {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--gray-light);
   margin: 0;
   font-size: 14px;
   line-height: 1.6;
+}
+@media (max-width: 1024px) and (min-width: 641px) {
+  .exc-geo__territories {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 900px) {
   .exc-geo__mast {
@@ -11048,6 +11071,8 @@ body.gl-mega-open .gl-mega-backdrop {
     max-width: 280px;
     margin: 0 auto;
   }
+}
+@media (max-width: 640px) {
   .exc-geo__territories {
     grid-template-columns: 1fr;
   }
@@ -32506,7 +32531,7 @@ body.gl-mega-open .gl-mega-backdrop {
   height: 100%;
   padding: 18px 16px;
   text-decoration: none;
-  color: inherit;
+  color: var(--gray-light);
   transition: background 0.2s var(--ease-expo);
 }
 .proc-pg-ledger__link:hover {
@@ -32524,6 +32549,7 @@ body.gl-mega-open .gl-mega-backdrop {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--white);
 }
 .proc-pg-ledger__cta { margin-top: 8px; }
 @media (max-width: 1024px) {
