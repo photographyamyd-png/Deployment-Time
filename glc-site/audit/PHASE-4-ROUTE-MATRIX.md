@@ -1,6 +1,6 @@
 # Phase 4 — Responsive route matrix
 
-**Method:** Automated — `npm run audit:responsive` (Playwright). Last run: 2026-04-20T19:38:08.371Z.
+**Method:** Automated — `npm run audit:responsive` (Playwright). Last run: 2026-04-20T19:46:08.273Z.
 
 **Widths:** 1200 · 1024 · 768 · 640 · 390 (px).
 
@@ -20,16 +20,16 @@
 | `/services` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 | `/privacy` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 | `/terms` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
-| `/sandbox` | ✓ | ✗ | ✗ | ✓ | ✗ |  |
+| `/sandbox` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 
 ## Service detail (fixed)
 
 | Route | 1200 | 1024 | 768 | 640 | 390 | Notes |
 |-------|------|------|------|------|------|--------|
-| `/services/drainage-hardscaping` | ✗ | ✗ | ✗ | ✗ | ✗ | Long hub |
-| `/services/excavation-site-preparation` | ✓ | ✓ | ✗ | ✗ | ✗ |  |
-| `/services/foundations-civil-infrastructure` | ✗ | ✗ | ✗ | ✗ | ✗ |  |
-| `/services/hauling-site-clearing-logistics` | ✗ | ✗ | ✗ | ✗ | ✗ |  |
+| `/services/drainage-hardscaping` | ✓ | ✓ | ✓ | ✓ | ✓ | Long hub |
+| `/services/excavation-site-preparation` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/services/foundations-civil-infrastructure` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/services/hauling-site-clearing-logistics` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 | `/services/snow-removal` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 
 ## Dynamic (sample one URL each)
