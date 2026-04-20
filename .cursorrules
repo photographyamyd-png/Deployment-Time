@@ -28,16 +28,17 @@ After staging the specific files, automatically run `git commit -m 'AI: [brief d
 
 ---
 
-## CURSOR AGENT — `glc-site` NEXT.JS DEV (WEBPACK CHUNKS)
+## CURSOR AGENT — `glc-site` NEXT.JS DEV (CHUNKS / HMR)
 
-Stale `.next` output causes **`Cannot find module './NNN.js'`** — treat as **cache corruption**, not broken page code.
+Stale `.next` output causes **`Cannot find module './NNN.js'`** or **`__webpack_modules__[moduleId] is not a function`** in **Webpack** dev — treat as **cache/HMR corruption**, not broken page code.
 
-- **Default** to **`npm run dev:fresh`** from repo root after edits when you start/restart the dev server (cleans `.next` + `node_modules/.cache`, then `next dev` on port 3040).
-- **Preview URL:** **`http://127.0.0.1:3040/`** or **`http://localhost:3040/`** — not `:3000`. If Chrome says **“unable to handle this request”** on **3040**, it is often **Windows IPv6 `localhost` vs IPv4 listen** or a **dead/crashed dev server**—try **127.0.0.1**, then **`npm run dev:fresh`**; read the terminal when loading the page before blaming page code.
+- **Default dev** uses **Turbopack** (`next dev --turbopack`, port 3040). **`npm run dev:fresh`** cleans `.next` then starts Turbopack.
+- Use **`npm run dev:webpack --prefix glc-site`** only for Webpack-specific debugging; `next.config.ts` still sets `config.cache = false` for that mode on Windows.
+- **Preview URL:** **`http://127.0.0.1:3040/`** or **`http://localhost:3040/`** — not `:3000`. If Chrome says **“unable to handle this request”** on **3040**, try **127.0.0.1**, then **`npm run dev:fresh`**; read the terminal when loading the page before blaming page code.
 - **One dev server** for `glc-site`; stop the old one before starting another.
 - On chunk errors: **`npm run clean --prefix glc-site`** then dev — **do not** revert source to “fix” it.
 - After **branch switch / pull / big dependency change**, use **`dev:fresh`** once.
-- Full detail: **`.cursor/rules/glc-next-dev-chunks.mdc`** (always applied). `glc-site/next.config.ts` disables webpack persistent cache in dev to reduce Windows flakiness.
+- Full detail: **`.cursor/rules/glc-next-dev-chunks.mdc`** (always applied).
 
 ---
 
