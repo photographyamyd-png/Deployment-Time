@@ -6,6 +6,10 @@ import { ExcavationServiceCanon } from "@/components/services/excavation-service
 import { ExcavationTrustStrip } from "@/components/services/excavation-trust-strip";
 import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
 import { JsonLdExcavationHub } from "@/components/seo/json-ld-excavation-hub";
+import {
+  ExcavationHubHero,
+  type ExcavationHubHeroProps,
+} from "@/components/services/excavation-site-preparation/excavation-hub-hero";
 import { ParallaxTypeBand } from "@/components/sections/parallax-type-band";
 import { SectionRenderer } from "@/components/sections/section-renderer";
 import hub from "@/content/pages/excavation-hub-seo.json";
@@ -40,6 +44,8 @@ const hubHero = hub.hero as {
 
 const hubParallax = hub as {
   parallaxBackgroundImage?: string;
+  heroPanelImage?: string;
+  heroGhostWatermarkWord?: string;
   parallaxBand?: {
     eyebrow: string;
     title: string;
@@ -75,6 +81,14 @@ if (hero) {
     hero.props.parallaxBackgroundImage = hubParallax.parallaxBackgroundImage;
   }
 }
+
+const excavationHeroProps: ExcavationHubHeroProps | null = hero
+  ? {
+      ...hero.props,
+      panelImage: hubParallax.heroPanelImage,
+      ghostWatermarkWord: hubParallax.heroGhostWatermarkWord,
+    }
+  : null;
 
 const marquee = getHomeSection("marquee");
 if (marquee) {
@@ -123,8 +137,8 @@ function pickSections(types: readonly HomeSectionBlock["type"][]): HomePageConte
     .filter(Boolean) as HomePageContent["sections"];
 }
 
-/** Hero → about (light) → marquee → capabilities; stats rendered after canon. */
-const excavationTopSections = pickSections(["hero", "about", "marquee"] as const);
+/** ExcavationHubHero (non-shared) → about (light) → marquee; stats rendered after canon. */
+const excavationTopSections = pickSections(["about", "marquee"] as const);
 const excavationStatsSections = pickSections(["stats"] as const);
 
 const schemaSite: SiteConfig = { ...siteData, url: getSiteUrl() };
@@ -142,6 +156,7 @@ export default function ExcavationSitePreparationPage() {
     <>
       <JsonLdExcavationHub site={schemaSite} />
       <main id="main-content">
+        {excavationHeroProps ? <ExcavationHubHero {...excavationHeroProps} /> : null}
         <SectionRenderer sections={excavationTopSections} megaCards={navData.megaMenu.cards} />
         <ExcavationServiceCanon />
         <SectionRenderer sections={excavationStatsSections} megaCards={navData.megaMenu.cards} />

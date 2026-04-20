@@ -1,0 +1,1220 @@
+/* Excavation hub hero — forked from glc-base .hero-v2; scoped .exc-hub / #excavation-hub-hero only. */
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO V2 — Asymmetric flagship hero
+   Prefix: .exc-hub__*
+   Architecture: fixed-height section with layered planes (z 0–4)
+   Layer 0 → deep bg photo (parallax)
+   Layer 1 → blueprint SVG + engineering grid
+   Layer 2 → yellow diagonal accent stripe
+   Layer 3 → canvas: text content + absolute photo panel + glass chips
+   Layer 4 → service bar (bottom rail)
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Section root ────────────────────────────────────────────────────── */
+.exc-hub {
+  position: relative;
+  /* Slightly shorter than full viewport so the marquee and following sections
+     peek earlier; content is top-aligned in the canvas (not vertically centred). */
+  min-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--charcoal-deep);
+  /* Header clearance handled by padding-top on canvas */
+}
+
+/*
+ * Homepage `#hero` previously applied this shell; drainage hub uses `#drainage-hub-hero`.
+ * Keep metrics identical so typography, canvas, and service bar align.
+ */
+#excavation-hub-hero.exc-hub {
+  min-height: 100vh;
+  /* Header clearance: only on `.exc-hub__canvas` — avoid double padding/overlap */
+}
+
+/* ── Grain texture overlay — sits above everything, blends multiply ─── */
+.exc-hub::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  /* SVG noise rendered inline as data URI — no external file needed */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+
+/* ── LAYER 0 — Deep background photo plane ──────────────────────────── */
+.exc-hub__bg-plane {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.exc-hub__bg-photo {
+  position: absolute;
+  inset: -8%;  /* Overshoot so parallax never shows edge */
+  /* Dark concrete texture via CSS — no external image dependency */
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.008) 2px,
+      rgba(255,255,255,0.008) 4px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 3px,
+      rgba(255,255,255,0.005) 3px,
+      rgba(255,255,255,0.005) 6px
+    ),
+    var(--charcoal-deep);
+  opacity: 1;
+}
+
+/* Rolling drift on optional photo layer (excavation hub) */
+.exc-hub__bg-roll {
+  position: absolute;
+  inset: -14%;
+  animation: exc-hub-bg-roll 26s ease-in-out infinite alternate;
+}
+@keyframes exc-hub-bg-roll {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.exc-hub__bg-photo--image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Radial vignette: darkens edges, keeps centre readable */
+.exc-hub__scrim-radial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 70% at 30% 45%,
+    transparent 0%,
+    rgba(20, 18, 16, 0.55) 60%,
+    rgba(20, 18, 16, 0.85) 100%
+  );
+}
+
+/* Left-side vertical scrim: ensures left text column always readable */
+.exc-hub__scrim-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(20, 18, 16, 0.92) 0%,
+    rgba(20, 18, 16, 0.70) 38%,
+    transparent 62%
+  );
+}
+
+/* ── LAYER 1 — Blueprint geometry plane ─────────────────────────────── */
+.exc-hub__structure-plane {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.exc-hub__blueprint {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(600px, 55vw);
+  height: auto;
+  opacity: 0.04;
+  mix-blend-mode: screen;
+}
+
+/* Engineering micro-grid — subtle repeating crosshatch */
+.exc-hub__eng-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(rgba(242,183,5,0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,183,5,0.6) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mix-blend-mode: screen;
+}
+
+/* ── LAYER 2 — Yellow diagonal accent stripe ─────────────────────────── */
+.exc-hub__diag-stripe {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  /* Decorative slash — not content-aligned, purely atmospheric */
+  right: 56%;        /* Sits at the rough photo/content boundary */
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--yellow-core) 18%,
+    var(--yellow-core) 82%,
+    transparent 100%
+  );
+  opacity: 0.40;
+  /* Slight skew to suggest the parallelogram shape of the photo panel */
+  transform: skewX(-2deg);
+}
+
+/* ── LAYER 3 — Main canvas ──────────────────────────────────────────── */
+.exc-hub__canvas {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: grid;
+  /* Vert rail is position:absolute inside .exc-hub__content — single column + left inset for the rail */
+  grid-template-columns: 1fr;
+  align-items: start;
+  padding: calc(var(--gl-header-height) + 32px) 40px 72px 20px;
+  gap: 0;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Photo panel — absolute, right half, parallelogram clip ─────────── */
+.exc-hub__photo-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  /* Stop above service bar */
+  bottom: 80px;
+  z-index: 0; /* Behind canvas text but above bg layers — canvas is z:3, photo is inside canvas at z:0 */
+  clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* Photo scrim — makes overlapping headline text readable on photo */
+.exc-hub__photo-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(20,18,16,0.72) 0%,
+    rgba(20,18,16,0.25) 40%,
+    rgba(20,18,16,0.08) 100%
+  );
+  z-index: 1;
+}
+
+/* ── Glass stat chips floating over photo (pre-audit typography) ───────── */
+.exc-hub__chips {
+  position: absolute;
+  bottom: 40px;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.exc-hub__chip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  background: rgba(20, 18, 16, 0.52);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  /* Chamfered top-right to echo button language */
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  /* Border via inset box-shadow since clip-path clips real borders */
+  box-shadow:
+    inset 1px 0 0 rgba(255,255,255,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    inset -1px 0 0 rgba(242,183,5,0.18),
+    inset 0 -1px 0 rgba(242,183,5,0.12),
+    0 6px 28px rgba(0,0,0,0.40);
+  min-width: 124px;
+  transition:
+    background 0.22s var(--ease-expo),
+    box-shadow 0.22s var(--ease-expo),
+    transform 0.22s var(--ease-expo);
+}
+
+.exc-hub__chip:hover {
+  background: rgba(20, 18, 16, 0.80);
+  box-shadow:
+    inset 1px 0 0 rgba(255,255,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.20),
+    inset -1px 0 0 rgba(242,183,5,0.50),
+    inset 0 -1px 0 rgba(242,183,5,0.35),
+    0 10px 40px rgba(0,0,0,0.55);
+  transform: translateY(-2px);
+}
+
+.exc-hub__chip-num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--yellow-core);
+  letter-spacing: -0.02em;
+}
+
+.exc-hub__chip-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.52);
+}
+
+/* Coverage chip — wider tag-cloud style */
+.exc-hub__chip--coverage {
+  gap: 8px;
+  min-width: 180px;
+}
+
+.exc-hub__chip-eyebrow {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--yellow-core);
+}
+
+.exc-hub__chip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.exc-hub__chip-tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* ── Vertical rotated eyebrow label (left rail) ─────────────────────── */
+.exc-hub__vert-label {
+  position: absolute;
+  z-index: 5;
+  /* Sit in the canvas gutter, parallel to the headline column */
+  left: -76px;
+  top: 1in;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(255,255,255,0.20);
+  user-select: none;
+  white-space: nowrap;
+  width: max-content;
+  height: max-content;
+  pointer-events: none;
+}
+
+/* ── Main text content ───────────────────────────────────────────────── */
+.exc-hub__content {
+  grid-column: 1;
+  position: relative;
+  z-index: 4; /* Above photo panel */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 680px;
+  margin-left: 72px;
+}
+
+/* Ghost logo watermark sitting behind headline */
+.exc-hub__ghost-mark {
+  position: absolute;
+  top: 0;
+  left: -8%;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  /* Width matches the scale of the old text ghost — fills the heading zone */
+  width: clamp(240px, 38vw, 480px);
+  height: auto;
+}
+
+.exc-hub__ghost-mark-img {
+  width: 100%;
+  height: auto;
+  /* White-out then opacity-fade: same principle as the old text-stroke ghost */
+  filter: brightness(0) invert(1);
+  opacity: 0.055;
+  /* Slow drift in parallax — textY already moves the parent content block.
+     Adding a secondary scale+drift here gives the logo extra depth vs the text. */
+  transform: scale(1.05);
+  transform-origin: top left;
+  /* Prevent crisp pixel edges at low opacity */
+  image-rendering: auto;
+}
+
+/* ── H1 Headline ────────────────────────────────────────────────────── */
+.exc-hub__headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9vw, 118px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0;
+  /* ~1in below the ghost watermark; matches .exc-hub__vert-label top */
+  margin-top: 1in;
+}
+
+/* Editorial multi-scale treatment:
+   "FROM" — connector word, smaller + lighter
+   "CONCEPT" — hero word, inherits full base size + accent colour
+   "TO CREATION" — resolution, mid-scale */
+.exc-hub__headline .exc-hub__line-overflow:nth-child(1) .exc-hub__line {
+  font-size: 0.62em;
+  font-weight: 500;
+  opacity: 0.68;
+  letter-spacing: 0.06em;
+}
+
+.exc-hub__headline .exc-hub__line-overflow:nth-child(3) .exc-hub__line {
+  font-size: 0.74em;
+  letter-spacing: -0.01em;
+}
+
+/* Drainage hub (and any hero-v2): H1 split may yield 1–2 lines — avoid wrong nth-child scales */
+.exc-hub__headline[data-glc-hub-h1-lines="1"] .exc-hub__line-overflow:nth-child(1) .exc-hub__line {
+  font-size: 1em;
+  font-weight: 700;
+  opacity: 1;
+  letter-spacing: -0.025em;
+}
+
+.exc-hub__headline[data-glc-hub-h1-lines="2"] .exc-hub__line-overflow:nth-child(2) .exc-hub__line:not(.exc-hub__line--accent) {
+  font-size: 0.74em;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+/* Overflow wrapper clips each line for the reveal animation */
+.exc-hub__line-overflow {
+  display: block;
+  overflow: hidden;
+  /* Extra vertical breathing room so descenders aren't clipped */
+  padding-bottom: 0.06em;
+}
+
+.exc-hub__line {
+  display: block;
+}
+
+/* Accent line — solid yellow, no glow */
+.exc-hub__line--accent {
+  color: var(--yellow-core);
+  letter-spacing: -0.018em; /* Slightly opener than tight base to breathe at max size */
+  text-shadow: none;
+}
+
+/* ── Horizontal rule ────────────────────────────────────────────────── */
+.exc-hub__rule {
+  width: 48px;
+  height: 2px;
+  /* Fades to transparent at right edge — more refined than hard stop */
+  background: linear-gradient(to right, var(--yellow-core) 0%, var(--yellow-core) 75%, transparent 100%);
+  transform-origin: left center;
+  margin: 20px 0 16px;
+  flex-shrink: 0;
+}
+
+.exc-hub__subheadline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 520px;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+/* ── Lede — two-tier editorial block ─────────────────────────────────── */
+/* Outer container: yellow left-rail ties to button chamfer + diagonal stripe */
+.exc-hub__lede-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 460px;
+  margin-bottom: 26px;
+  padding-left: 16px;
+  border-left: 1.5px solid rgba(242,183,5,0.28);
+  position: relative;
+}
+
+/* Tier 1 — core proposition. Bright, readable, larger. */
+.exc-hub__lede-lead {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.65vw, 19px);
+  font-weight: 400;
+  line-height: 1.64;
+  letter-spacing: 0.005em;
+  color: rgba(255,255,255,0.80);
+}
+
+/* Brand name within lead — elevated weight + contrast */
+.exc-hub__lede-brand {
+  font-weight: 700;
+  color: rgba(255,255,255,0.96);
+  letter-spacing: 0.02em;
+}
+
+/* Tier 2 — service + audience detail. Muted, smaller — reads as caption. */
+.exc-hub__lede-body {
+  font-family: var(--font-body);
+  font-size: clamp(11.5px, 1.05vw, 13px);
+  font-weight: 400;
+  line-height: 1.86;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.38);
+}
+
+/* ── CTA row ────────────────────────────────────────────────────────── */
+.exc-hub__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.exc-hub__cta-microcopy {
+  margin: 14px 0 0;
+  max-width: 36rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.exc-hub__cta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Credential chips — above vertical eyebrow (HeroSection trustBadges) */
+.exc-hub__trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 20px;
+  padding: 0;
+  max-width: min(100%, 42rem);
+}
+
+.exc-hub__trust-badge {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 0.24s var(--ease-expo),
+    background 0.24s var(--ease-expo),
+    color 0.24s var(--ease-expo);
+}
+
+.exc-hub__trust-badge:hover {
+  border-color: rgba(242, 183, 5, 0.55);
+  background: rgba(242, 183, 5, 0.1);
+  color: var(--white);
+}
+
+/* Trust row — inside .exc-hub__service-bar (spec §4.2 layer 4: one frosted footer, gold rail only on bar top) */
+.exc-hub__trust-row {
+  padding: 16px 0 14px;
+}
+
+.exc-hub__trust-inner {
+  box-sizing: content-box;
+  width: min(var(--exc-hub-svc-content-max), calc(100% - 2 * var(--exc-hub-svc-pad-x)));
+  margin: 0 auto;
+  padding: 0 var(--exc-hub-svc-pad-x);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 10px 18px;
+  justify-items: start;
+}
+
+.exc-hub__trust-item {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  border-left: 2px solid rgba(242, 183, 5, 0.42);
+  padding-left: 10px;
+}
+
+.exc-hub__trust-seam {
+  height: 0;
+  margin: 0 auto;
+  width: min(var(--exc-hub-svc-content-max), calc(100% - 2 * var(--exc-hub-svc-pad-x)));
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 600px) {
+  .exc-hub__trust-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Hero primary CTA — chamfered top-right, shimmer sweep ──────────── */
+/* Overrides global .btn-primary with an architectural industrial shape   */
+.exc-hub__cta-row .btn-primary {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  padding: 17px 42px 17px 26px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  overflow: visible; /* clip-path handles containment */
+  box-shadow: none;
+}
+
+/* Shimmer that sweeps across on hover — constrained by clip-path */
+.exc-hub__cta-row .btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    108deg,
+    transparent 25%,
+    rgba(255,255,255,0.30) 50%,
+    transparent 75%
+  );
+  transform: translateX(-180%);
+  transition: transform 0.70s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.exc-hub__cta-row .btn-primary:hover::before {
+  transform: translateX(180%);
+}
+
+/* Keep arrow inside clip region */
+.exc-hub__cta-row .btn-primary .arrow {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glassmorphism ghost CTA — chamfered top-left (mirror of primary) */
+.exc-hub .btn-hero-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.88);
+  background: rgba(255,255,255,0.055);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  /* Chamfer top-left to mirror the primary's top-right chamfer */
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+  /* Border rendered via box-shadow — clip-path clips real borders */
+  box-shadow:
+    inset 1px 0 0 rgba(255,255,255,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.30),
+    inset -1px 0 0 rgba(255,255,255,0.14),
+    inset 0 -1px 0 rgba(255,255,255,0.14),
+    0 2px 20px rgba(0,0,0,0.22);
+  transition:
+    background 0.28s var(--ease-expo),
+    box-shadow 0.28s var(--ease-expo),
+    color 0.28s var(--ease-expo);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: visible;
+}
+
+.exc-hub .btn-hero-glass:hover {
+  background: rgba(242,183,5,0.07);
+  color: var(--white);
+  box-shadow:
+    inset 1px 0 0 rgba(242,183,5,0.55),
+    inset 0 1px 0 rgba(242,183,5,0.65),
+    inset -1px 0 0 rgba(242,183,5,0.40),
+    inset 0 -1px 0 rgba(242,183,5,0.40),
+    0 0 28px rgba(242,183,5,0.10),
+    0 6px 32px rgba(0,0,0,0.32);
+}
+
+/* ── SERVICE BAR ────────────────────────────────────────────────────── */
+.exc-hub__service-bar {
+  --exc-hub-svc-pad-x: clamp(16px, 3vw, 40px);
+  --exc-hub-svc-content-max: 1360px;
+  position: relative;
+  z-index: 4;
+  background: rgba(14, 13, 12, 0.88);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-top: 1px solid rgba(242,183,5,0.22);
+  /* Pinned to bottom of the flex-column section */
+  margin-top: auto;
+}
+
+.exc-hub__service-inner {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  width: min(var(--exc-hub-svc-content-max), 100%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--exc-hub-svc-pad-x);
+  gap: 0;
+}
+
+.exc-hub__service-tile-wrap {
+  flex: 1 1 0;
+  display: flex;
+  min-width: 0;
+}
+
+.exc-hub__service-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  width: 100%;
+  padding: 17px 20px;
+  text-align: center;
+  color: rgba(255,255,255,0.55);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  box-shadow: inset 0 -2px 0 transparent;
+  transition:
+    color 0.22s var(--ease-expo),
+    background 0.22s var(--ease-expo),
+    box-shadow 0.22s var(--ease-expo),
+    transform 0.15s var(--ease-expo);
+  cursor: pointer;
+}
+
+.exc-hub__service-tile:first-child {
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+.exc-hub__service-tile:hover {
+  color: var(--yellow-core);
+  background: rgba(242,183,5,0.06);
+  box-shadow: inset 0 -2px 0 var(--yellow-core);
+}
+
+.exc-hub__service-tile:active {
+  background: rgba(242,183,5,0.10);
+  transform: scaleY(0.97);
+}
+
+/* Service tile icon sizing — HeroServiceIcon renders an svg */
+.exc-hub__service-tile svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  transition: transform 0.22s var(--ease-expo);
+}
+
+.exc-hub__service-tile:hover svg {
+  transform: translateY(-2px);
+}
+
+.exc-hub__service-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO V2 — RESPONSIVE
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet: collapse photo panel, reduce headline */
+@media (max-width: 1024px) {
+  .exc-hub__photo-panel {
+    width: 50%;
+    clip-path: polygon(14% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .exc-hub__canvas {
+    padding-bottom: 72px;
+    padding-left: 16px;
+  }
+
+  .exc-hub__content {
+    margin-left: 56px;
+  }
+
+  .exc-hub__vert-label {
+    left: -58px;
+    top: clamp(28px, 5vw, 1in);
+  }
+
+  .exc-hub__headline {
+    margin-top: clamp(28px, 5vw, 1in);
+  }
+
+  .exc-hub__chips {
+    display: none;
+  }
+}
+
+/* Mobile: photo becomes a background layer, no parallelogram */
+@media (max-width: 768px) {
+  .exc-hub__canvas {
+    grid-template-columns: 1fr;
+    padding: calc(var(--gl-header-height) + 28px) 24px 80px;
+    gap: 0;
+  }
+
+  .exc-hub__vert-label {
+    display: none;
+  }
+
+  .exc-hub__content {
+    grid-column: 1;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .exc-hub__photo-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    bottom: 0;
+    clip-path: none;
+    opacity: 0.35;
+    z-index: 0;
+  }
+
+  /* Strengthen left scrim on mobile so text is always readable */
+  .exc-hub__scrim-left {
+    background: linear-gradient(
+      to right,
+      rgba(20,18,16,0.97) 0%,
+      rgba(20,18,16,0.92) 60%,
+      rgba(20,18,16,0.80) 100%
+    );
+  }
+
+  /* Ghost mark re-enabled on mobile: centered watermark behind headline */
+  .exc-hub__ghost-mark {
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(270px, 86vw, 480px);
+  }
+
+  .exc-hub__ghost-mark-img {
+    opacity: 0.07;
+  }
+
+  .exc-hub__diag-stripe {
+    display: none;
+  }
+
+  .exc-hub__headline {
+    margin-top: clamp(20px, 5vw, 36px);
+    font-size: clamp(46px, 13.5vw, 80px);
+  }
+
+  .exc-hub__chips {
+    display: none;
+  }
+
+  .exc-hub__service-inner {
+    --exc-hub-svc-pad-x: 8px;
+    width: min(var(--exc-hub-svc-content-max), 100%);
+    max-width: 100%;
+    padding: 0 var(--exc-hub-svc-pad-x);
+    overflow-x: auto;
+    gap: 0;
+    scrollbar-width: none;
+  }
+
+  .exc-hub__service-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .exc-hub__service-tile-wrap {
+    flex: 0 0 auto;
+  }
+
+  .exc-hub__service-tile {
+    min-width: 88px;
+    padding: 14px 12px;
+  }
+
+  .exc-hub__service-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .exc-hub__service-label {
+    white-space: normal;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .exc-hub__cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .exc-hub__cta-row .btn-primary,
+  .exc-hub__cta-row .btn-hero-glass {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Retain chamfer on full-width mobile buttons */
+  .exc-hub__cta-row .btn-primary {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  }
+
+  .exc-hub__cta-row .btn-hero-glass {
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Excavation hub — VCC + segment font scope (exc-hub-font-root from layout.tsx)
+═══════════════════════════════════════════════════════════════════════════ */
+
+.exc-hub-font-root {
+  --exc-hub-display: var(--font-exc-hub-oswald), var(--font-oswald), "Oswald", sans-serif;
+  --exc-hub-body-dark: var(--font-exc-hub-barlow), "Barlow", sans-serif;
+  --exc-hub-label: var(--font-exc-hub-scp), "Source Code Pro", monospace;
+}
+
+.exc-hub__corner {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  width: min(120px, 22vw);
+  height: min(120px, 22vw);
+}
+
+.exc-hub__corner--tl {
+  top: 0;
+  left: 0;
+}
+
+.exc-hub__corner--br {
+  bottom: 0;
+  right: 0;
+}
+
+.exc-hub__corner-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Three-act Oswald + VCC hero clamp */
+.exc-hub__headline--vcc {
+  font-family: var(--exc-hub-display), var(--font-display), "Oswald", sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+}
+
+.exc-hub__line--act1 {
+  font-weight: 200;
+  font-size: 0.56em;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.exc-hub__line--act2 {
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--white);
+}
+
+.exc-hub__line--act3 {
+  font-weight: 700;
+  font-size: 0.78em;
+  color: var(--white);
+}
+
+.exc-hub__line--accent {
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--yellow-core);
+}
+
+/* Ghost Oswald word (VCC) */
+.exc-hub__ghost-mark--word .exc-hub__ghost-word-inner {
+  display: block;
+  font-family: var(--exc-hub-display), var(--font-display), "Oswald", sans-serif;
+  font-weight: 200;
+  font-size: clamp(72px, 14vw, 160px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  opacity: 0.1;
+}
+
+.exc-hub__ghost-mark--word .exc-hub__ghost-mark-img {
+  display: none;
+}
+
+/* Dark body copy ≤ 0.70 */
+.exc-hub__subheadline--vcc {
+  color: rgba(255, 255, 255, 0.68);
+  font-family: var(--exc-hub-display), var(--font-display), "Oswald", sans-serif;
+}
+
+.exc-hub__lede-lead--vcc {
+  font-family: var(--exc-hub-body-dark), var(--font-body), sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.exc-hub__lede-body--vcc {
+  font-family: var(--exc-hub-body-dark), var(--font-body), sans-serif;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.exc-hub__lede-brand {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.exc-hub__cta-microcopy--vcc {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.exc-hub__trust-badge {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.exc-hub__trust-item--vcc {
+  font-family: var(--exc-hub-label), monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Stat chips: VCC — no outer drop-shadow; complexity layers */
+.exc-hub__chip {
+  position: relative;
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset -1px 0 0 rgba(242, 183, 5, 0.18),
+    inset 0 -1px 0 rgba(242, 183, 5, 0.12);
+}
+
+.exc-hub__chip:hover {
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px 0 0 rgba(242, 183, 5, 0.5),
+    inset 0 -1px 0 rgba(242, 183, 5, 0.35);
+}
+
+.exc-hub__chip-ghost-num {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-family: var(--exc-hub-display), var(--font-display), "Oswald", sans-serif;
+  font-weight: 200;
+  font-size: 42px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.12);
+  transition: opacity 0.35s cubic-bezier(0, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.exc-hub__chip:hover .exc-hub__chip-ghost-num {
+  opacity: 0.35;
+}
+
+.exc-hub__chip-bracket {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: rgba(242, 183, 5, 0.45);
+  transition: color 0.35s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.exc-hub__chip:hover .exc-hub__chip-bracket {
+  color: var(--yellow-core);
+}
+
+.exc-hub__chip-spec {
+  font-family: var(--exc-hub-label), monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+  margin-bottom: 4px;
+}
+
+.exc-hub__chip--stat {
+  padding-top: 36px;
+}
+
+.exc-hub__chip--stat .exc-hub__chip-num {
+  position: relative;
+  z-index: 1;
+}
+
+.exc-hub__chip--coverage .exc-hub__chip-spec {
+  margin-bottom: 6px;
+}
+
+.exc-hub__chip::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: 12px;
+  width: 40px;
+  height: 1px;
+  background: var(--yellow-core);
+  opacity: 0.45;
+  transition: width 0.35s cubic-bezier(0, 0, 0.2, 1), opacity 0.35s cubic-bezier(0, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.exc-hub__chip:hover::after {
+  width: 80px;
+  opacity: 1;
+}
+
+/* Ghost CTA: remove outer drop shadow (VCC) */
+.exc-hub .btn-hero-glass {
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+  transition:
+    background 0.25s cubic-bezier(0, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.exc-hub .btn-hero-glass:hover {
+  background: rgba(242, 183, 5, 0.08);
+  color: var(--yellow-core);
+  box-shadow:
+    inset 1px 0 0 rgba(242, 183, 5, 0.55),
+    inset 0 1px 0 rgba(242, 183, 5, 0.45),
+    inset -1px 0 0 rgba(242, 183, 5, 0.35),
+    inset 0 -1px 0 rgba(242, 183, 5, 0.35);
+}
+
+/* Asymmetric service rail: first tile wider (desktop) */
+@media (min-width: 900px) {
+  .exc-hub__service-inner--asymmetric {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) repeat(5, minmax(0, 1fr));
+    width: min(var(--exc-hub-svc-content-max), 100%);
+  }
+
+  .exc-hub__service-tile-wrap {
+    min-width: 0;
+  }
+
+  .exc-hub__service-tile-wrap--feature .exc-hub__service-tile {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 24px;
+    padding-right: 20px;
+  }
+
+  .exc-hub__service-kicker {
+    display: block;
+    font-family: var(--exc-hub-label), monospace;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--yellow-core);
+    margin-bottom: 6px;
+  }
+
+  .exc-hub__service-tile-wrap--feature .exc-hub__service-label {
+    white-space: normal;
+    align-items: flex-start;
+  }
+}
+
+.exc-hub__service-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.exc-hub__service-tile-wrap--feature .exc-hub__service-label {
+  align-items: flex-start;
+}
+
+.exc-hub__vert-label {
+  font-family: var(--exc-hub-label), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.exc-hub__blueprint {
+  opacity: 0.09;
+}
+
+.exc-hub__eng-grid {
+  opacity: 0.055;
+}

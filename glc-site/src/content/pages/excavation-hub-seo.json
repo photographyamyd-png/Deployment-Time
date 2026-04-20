@@ -16,7 +16,9 @@
     "primaryCtaLabel": "Get Your Free Estimate Today",
     "coverageTags": ["Barrie", "Orillia", "Wasaga Beach", "Innisfil", "Simcoe County"]
   },
-  "parallaxBackgroundImage": "/images/hero-armour-stone-retaining-walls.png",
+  "parallaxBackgroundImage": "/images/services/site-preparation-grading/cat-skid-steer-grading-simcoe-county.jpg",
+  "heroPanelImage": "/images/hero-armour-stone-retaining-walls.png",
+  "heroGhostWatermarkWord": "SITE",
   "parallaxBand": {
     "eyebrow": "Field operations",
     "title": "Earthworks keyed to your schedule",
