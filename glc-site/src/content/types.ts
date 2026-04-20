@@ -32,6 +32,8 @@ export type HeroProps = {
   parallaxBackgroundImage?: string;
   /** Short reassurance line under the hero CTAs. */
   ctaMicrocopy?: string;
+  /** Compact credential chips above the vertical eyebrow; falls back to first 3 `trustItems` when omitted. */
+  trustBadges?: string[];
   /** Compact trust bullets (e.g. licensed, WSIB) — rendered above the service bar. */
   trustItems?: string[];
 };
@@ -395,6 +397,19 @@ export type ServiceDetailContent = {
     ctaLabel: string;
     /** Hash path or app route; defaults to `#request-site-visit` in UI if omitted. */
     ctaHref?: string;
+  };
+  /** Pull-quote strip with CTA (`ServiceInlineQuote`). */
+  inlineQuote?: {
+    quote: string;
+    byline?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  /** Bulleted project-context band (`ServiceProjectContext`). */
+  projectContext?: {
+    eyebrow?: string;
+    heading?: string;
+    points?: string[];
   };
 };
 

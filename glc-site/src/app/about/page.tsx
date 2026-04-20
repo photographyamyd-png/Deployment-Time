@@ -18,5 +18,5 @@ export const metadata = pageMetadata({
 });
 
 export default function AboutPage() {
-  return <AboutPageView about={about} site={siteData} />;
+  return <AboutPageView about={about} />;
 }

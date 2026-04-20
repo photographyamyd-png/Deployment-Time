@@ -1,6 +1,6 @@
 # Rules snapshot (Phase 5 — heuristic)
 
-Generated: 2026-04-20T18:48:02.859Z
+Generated: 2026-04-20T19:52:08.047Z
 
 These checks approximate [.cursorrules](.cursorrules) Part 8. **Every hit needs human review** (context may justify the exception).
 
@@ -18,9 +18,9 @@ These checks approximate [.cursorrules](.cursorrules) Part 8. **Every hit needs 
 
 ## font-family samples (first 25)
 
-- L19877: `font-family: ui-monospace, "Cascadia Code", monospace;`
-- L20555: `font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;`
-- L20800: `font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;`
+- L19900: `font-family: ui-monospace, "Cascadia Code", monospace;`
+- L20578: `font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;`
+- L20823: `font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;`
 
 ## TSX hex samples (first 35)
 

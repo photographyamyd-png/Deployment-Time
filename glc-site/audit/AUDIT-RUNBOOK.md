@@ -12,6 +12,7 @@ Run from **`glc-site/`**:
 |-------|---------|---------|
 | 2 — TSX classes missing CSS | `npm run audit:classes` | `audit/class-css-gaps.json`, `class-css-gaps.md` |
 | 3 — CSS classes missing from source | `npm run audit:dom-css` | `audit/dom-css-contracts.json`, `DOM-CSS-CONTRACTS.md` |
+| 4 — Responsive sweep | `npm run audit:responsive` | `audit/responsive-failures.json`, `RESPONSIVE-SWEEP.md`, `audit/screenshots/*` |
 | 5 — Rules heuristics | `npm run audit:rules` | `audit/rules-snapshot.json`, `RULES-SNAPSHOT.md` |
 | Build gate | `npm run build` | — |
 
@@ -65,11 +66,9 @@ You need **both**: one catches **missing styles**, the other catches **unused st
 
 ## Phase 4 — Responsive matrix
 
-- **Template:** [`PHASE-4-ROUTE-MATRIX.md`](PHASE-4-ROUTE-MATRIX.md) — fill `☐` → `✓` / `✗`.
-- **Checklist bullets:** [`RESPONSIVE-SWEEP.md`](RESPONSIVE-SWEEP.md).
-- **Failures:** new rows in `ISSUE-MATRIX.md` (suggested ID prefix **RESP-**).
-
-Phase 4 is **mostly manual**; automation (e.g. Playwright screenshots) is optional later.
+- **Automated sweep:** `npm run audit:responsive` (Playwright) — [`RESPONSIVE-SWEEP.md`](RESPONSIVE-SWEEP.md), [`responsive-failures.json`](responsive-failures.json), screenshots under `audit/screenshots/` (optional to commit).
+- **Route list:** [`PHASE-4-ROUTE-MATRIX.md`](PHASE-4-ROUTE-MATRIX.md).
+- **Failures / RESP rows:** [`ISSUE-MATRIX.md`](ISSUE-MATRIX.md) (script can rewrite **RESP-*** when failures exist).
 
 ---
 

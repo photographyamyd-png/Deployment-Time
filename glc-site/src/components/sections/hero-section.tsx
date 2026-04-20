@@ -111,6 +111,11 @@ export function HeroSection(props: HeroProps) {
     trustBadges,
   } = props;
 
+  const topCredentialChips =
+    trustBadges && trustBadges.length > 0
+      ? trustBadges
+      : (trustItems?.slice(0, 3) ?? []);
+
   const secondaryCta = secondaryCtaProp;
 
   const isTelOrMail = (href: string) =>
@@ -252,7 +257,7 @@ export function HeroSection(props: HeroProps) {
           className="hero-v2__content"
           style={mounted ? { y: textY } : {}}
         >
-          {trustBadges?.length ? (
+          {topCredentialChips.length > 0 ? (
             <motion.div
               className="hero-v2__trust-badges"
               initial={{ opacity: 0, y: 8 }}
@@ -261,7 +266,7 @@ export function HeroSection(props: HeroProps) {
               role="list"
               aria-label="Credentials"
             >
-              {trustBadges.map((label) => (
+              {topCredentialChips.map((label) => (
                 <span key={label} className="hero-v2__trust-badge" role="listitem">
                   {label}
                 </span>
