@@ -1,0 +1,951 @@
+{
+  "generated": "2026-04-20T16:51:24.666Z",
+  "gapCount": 135,
+  "gaps": [
+    {
+      "class": "cov-pg-split__copy",
+      "files": [
+        "src/components/pages/coverage-page-extra.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "coverage__label-col",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-coverage.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "cta-band__heading",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "cta-band__inner",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "cta-band__sub",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__cap-closing",
+      "files": [
+        "src/components/services/interactive-capabilities.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__cap-dense-wrap",
+      "files": [
+        "src/components/services/interactive-capabilities.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__cap-readmore-lede",
+      "files": [
+        "src/components/services/interactive-capabilities.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__coverage-acc-wrap",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-coverage.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__coverage-figure-wrap",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-coverage.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__coverage-fx-topbar",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-coverage.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__coverage-to-related-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__coverage-ul--acc",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-coverage.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__faq-to-trust-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__hero-to-stats-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__interactive-to-why-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__overview-to-scope-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__quote-to-faq-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__tone-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__trust-to-coverage-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-drain-hub__why-to-quote-seam",
+      "files": [
+        "src/components/services/drainage-hardscaping/drainage-hub-view.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-feat-acc__reveal-head",
+      "files": [
+        "src/components/sections/featured-accordion.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-contracts3",
+      "files": [
+        "src/components/services/commercial-snow-page-main.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-contracts3__card",
+      "files": [
+        "src/components/services/commercial-snow-page-main.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-contracts3__cta-wrap",
+      "files": [
+        "src/components/services/commercial-snow-page-main.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-contracts3__num",
+      "files": [
+        "src/components/services/commercial-snow-page-main.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-inline-fig--dark",
+      "files": [
+        "src/components/services/commercial-snow-page-main.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__area",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__back",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__cap",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__cell",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__closing",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__detail",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__grid",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__icon",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "glc-snow-linked-expand__subhead",
+      "files": [
+        "src/components/services/commercial-snow-linked-page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__header",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__heading",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__inner",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__step-circle",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__step-desc",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__step-num",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__step-well",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "process__steps",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox__s3-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-ds-contact__copy",
+      "files": [
+        "src/components/sandbox/sandbox-design-system-v2-sections.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1__legacy-services",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1__legacy-services-inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase1-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase2-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase3-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase4-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase5-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6__lede",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy__inner",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy__item",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy__list",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy__note",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "sandbox-phase6-copy__title",
+      "files": [
+        "src/app/sandbox/page.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-block__inner--bleed",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-block__media--bleed",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-readmore--key",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__actions",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__copy",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__grid",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__key",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__lede",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-cap-split__rule",
+      "files": [
+        "src/components/services/service-layout-variants.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-inline-quote__inner",
+      "files": [
+        "src/components/services/service-inline-quote.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-inline-quote__quote",
+      "files": [
+        "src/components/services/service-inline-quote.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-page-hero__actions",
+      "files": [
+        "src/components/services/service-page-hero.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-page-hero__trust",
+      "files": [
+        "src/components/services/service-page-hero.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-page-hero__trust-pill",
+      "files": [
+        "src/components/services/service-page-hero.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-project-context__heading",
+      "files": [
+        "src/components/services/service-project-context.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-project-context__inner",
+      "files": [
+        "src/components/services/service-project-context.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-project-context__points",
+      "files": [
+        "src/components/services/service-project-context.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-yellow-close__actions",
+      "files": [
+        "src/components/services/service-yellow-close-strip.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-yellow-close__heading",
+      "files": [
+        "src/components/services/service-yellow-close-strip.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-yellow-close__inner",
+      "files": [
+        "src/components/services/service-yellow-close-strip.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-yellow-close__phone",
+      "files": [
+        "src/components/services/service-yellow-close-strip.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "service-yellow-close__sub",
+      "files": [
+        "src/components/services/service-yellow-close-strip.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "svc-cap-explorer__aside-eyebrow",
+      "files": [
+        "src/components/services/service-capabilities-explorer.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "svc-hub-digest__copy",
+      "files": [
+        "src/components/pages/svc-overview-digest.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "svc-hub-gallery__cap-lines",
+      "files": [
+        "src/components/pages/svc-overview-expand-gallery.tsx"
+      ],
+      "count": 1
+    },
+    {
+      "class": "why__copy",
+      "files": [
+        "src/components/services/excavation-sticky-tabs.tsx"
+      ],
+      "count": 1
+    }
+  ]
+}

@@ -114,6 +114,96 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .eyebrow--dark { color: var(--charcoal); }
 .eyebrow--dark::before { background: var(--charcoal); }
 
+/* ── GLC master typography aliases (.cursorrules Part 5) — used by hubs + excavation blocks ── */
+.gl-eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+.gl-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: var(--yellow-core);
+  flex-shrink: 0;
+}
+.gl-eyebrow--dark {
+  color: var(--charcoal-deep);
+}
+.gl-eyebrow--dark::before {
+  background: var(--yellow-core);
+}
+.gl-eyebrow--light {
+  color: rgba(255, 255, 255, 0.92);
+}
+.gl-eyebrow--light::before {
+  background: var(--yellow-core);
+}
+
+.gl-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 88px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  color: var(--charcoal-deep);
+  margin: 0;
+}
+.gl-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 54px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--charcoal-deep);
+  margin: 0;
+}
+.gl-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--charcoal-deep);
+  margin: 0;
+}
+
+.gl-prose {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-500);
+  margin: 0;
+}
+.gl-prose--sm {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.gl-prose--light {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.gl-pullquote {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.45;
+  color: var(--text-700);
+  margin: 0;
+}
+
 /* ── BUTTONS ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
@@ -1477,6 +1567,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .gl-drawer-phone svg { opacity: 0.7; flex-shrink: 0; }
 .gl-drawer-phone:hover { opacity: 0.82; }
+.gl-drawer-phone--header {
+  margin-bottom: 8px;
+  font-size: clamp(17px, 4.2vw, 20px);
+}
+.gl-drawer-section-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  margin: 24px 0 10px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 .gl-mobile-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.6);
@@ -5207,6 +5312,34 @@ section#coverage,
   flex-direction: column;
   gap: 4px;
 }
+.home-contact-strip__block--address {
+  max-width: 28ch;
+}
+.home-contact-strip__copy .home-contact-strip__locations {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-600);
+}
+.home-contact-strip__copy .home-contact-strip__locations li {
+  padding: 4px 0;
+}
+.home-contact-strip__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: 4px;
+}
+.home-contact-strip__cta-secondary {
+  font-size: 12px;
+}
 
 .home-contact-strip__label {
   font-size: 10px;
@@ -6115,6 +6248,63 @@ section#coverage,
 .gl-mega-card:hover .gl-mega-card__tags li {
   border-color: rgba(242, 183, 5, 0.5);
   color: var(--text-700);
+}
+
+/* Mega panel — quick contact column (triple layout) */
+.gl-mega-quick-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--charcoal-deep);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.72);
+  align-self: start;
+}
+.gl-mega-quick-contact__kicker {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+}
+.gl-mega-quick-contact__sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+}
+.gl-mega-quick-contact__phone {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 8px;
+  transition: color 0.2s var(--ease-expo);
+}
+.gl-mega-quick-contact__phone:hover {
+  color: var(--yellow-core);
+}
+.gl-mega-quick-contact__email {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--yellow-core);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 4px;
+}
+.gl-mega-quick-contact__email:hover {
+  color: var(--gold);
+}
+
+/* Embedded React sections (accordion / sandbox) */
+.gl-react-embed-section {
+  position: relative;
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+  background: var(--white);
 }
 
 /* ── Backdrop — dark scrim separates panel from page ── */
@@ -10533,6 +10723,335 @@ body.gl-mega-open .gl-mega-backdrop {
   }
 }
 
+/* ═══ Excavation hub — capabilities accordion (exc-canon) ═══ */
+.exc-canon {
+  background: var(--off-white);
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+  position: relative;
+}
+.exc-canon__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.exc-canon__header {
+  margin-bottom: clamp(32px, 5vw, 48px);
+  max-width: 48rem;
+}
+.exc-canon__heading {
+  margin: 8px 0 16px;
+}
+.exc-canon__intro {
+  max-width: 52ch;
+}
+.exc-canon__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-grid);
+}
+.exc-canon__disclosure {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  transition:
+    border-color 0.3s var(--ease-expo),
+    box-shadow 0.3s var(--ease-expo);
+}
+.exc-canon__disclosure[open] {
+  border-color: rgba(242, 183, 5, 0.35);
+  box-shadow: var(--shadow-card);
+}
+.exc-canon__summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.3s var(--ease-expo);
+}
+.exc-canon__summary::-webkit-details-marker {
+  display: none;
+}
+.exc-canon__summary:hover {
+  background: var(--yellow-tint);
+}
+.exc-canon__summary-index {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: rgba(30, 28, 26, 0.12);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.exc-canon__summary-main {
+  flex: 1;
+  min-width: 0;
+}
+.exc-canon__summary-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+  margin-bottom: 6px;
+}
+.exc-canon__title {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--charcoal-deep);
+  margin: 0;
+}
+.exc-canon__chevron {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--charcoal-mid);
+  border-bottom: 2px solid var(--charcoal-mid);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: transform 0.4s var(--ease-expo);
+}
+.exc-canon__disclosure[open] .exc-canon__chevron {
+  transform: rotate(-135deg);
+}
+.exc-canon__panel {
+  display: grid;
+  grid-template-columns: 4px 1fr;
+  gap: 0 24px;
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--gray-200);
+}
+.exc-canon__rail {
+  background: var(--yellow-core);
+  margin-top: 4px;
+  min-height: 48px;
+}
+.exc-canon__body {
+  padding-top: 16px;
+}
+.exc-canon__para {
+  margin: 0 0 14px;
+}
+.exc-canon__para:last-child {
+  margin-bottom: 0;
+}
+
+/* ═══ Excavation hub — editorial FAQ rail ═══ */
+.exc-faq {
+  background: var(--white);
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+}
+.exc-faq__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.exc-faq__header {
+  margin-bottom: clamp(36px, 5vw, 56px);
+  max-width: 40rem;
+}
+.exc-faq__heading {
+  margin-top: 8px;
+}
+.exc-faq__rail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 32px);
+}
+.exc-faq__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px 28px;
+  align-items: start;
+}
+.exc-faq__marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 6px;
+}
+.exc-faq__num {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 700;
+  color: var(--yellow-core);
+  line-height: 1;
+}
+.exc-faq__rail-line {
+  width: 2px;
+  flex: 1;
+  min-height: 48px;
+  background: linear-gradient(180deg, var(--yellow-core), rgba(242, 183, 5, 0.15));
+}
+.exc-faq__card {
+  border: 1px solid var(--gray-200);
+  padding: 24px 28px;
+  background: var(--off-white);
+}
+.exc-faq__q {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--charcoal-deep);
+  margin: 0 0 14px;
+  line-height: 1.25;
+}
+.exc-faq__a {
+  margin: 0;
+}
+.exc-faq__a-text {
+  margin: 0;
+}
+.exc-faq__link {
+  color: var(--yellow-core);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease-expo);
+}
+.exc-faq__link:hover {
+  color: var(--gold);
+}
+@media (max-width: 640px) {
+  .exc-faq__item {
+    grid-template-columns: 1fr;
+  }
+  .exc-faq__marker {
+    flex-direction: row;
+    padding-top: 0;
+  }
+  .exc-faq__rail-line {
+    width: 100%;
+    min-height: 2px;
+    flex: 1;
+  }
+}
+
+/* ═══ Excavation hub — geo / coverage mast ═══ */
+.exc-geo {
+  background: var(--charcoal);
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+  position: relative;
+  overflow: hidden;
+}
+.exc-geo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.02) 0,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 72px
+  );
+}
+.exc-geo__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.exc-geo__mast {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  gap: clamp(28px, 5vw, 48px);
+  align-items: center;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.exc-geo__map-block {
+  position: relative;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+.exc-geo__map-grid {
+  position: absolute;
+  inset: 12%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+.exc-geo__map-pin {
+  position: absolute;
+  top: 42%;
+  left: 48%;
+  width: 14px;
+  height: 14px;
+  background: var(--yellow-core);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  box-shadow: 0 0 0 4px rgba(242, 183, 5, 0.2);
+}
+.exc-geo__mast-copy {
+  min-width: 0;
+}
+.exc-geo .gl-h2.exc-geo__heading,
+.exc-geo__heading {
+  color: var(--white);
+  margin: 8px 0 16px;
+}
+.exc-geo .gl-prose.exc-geo__intro,
+.exc-geo__intro {
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 52ch;
+}
+.exc-geo__territories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-grid);
+}
+.exc-geo__card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px 22px;
+  transition:
+    border-color 0.3s var(--ease-expo),
+    background 0.3s var(--ease-expo);
+}
+.exc-geo__card:hover {
+  border-color: rgba(242, 183, 5, 0.35);
+  background: rgba(242, 183, 5, 0.06);
+}
+.exc-geo__card-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin: 0 0 10px;
+}
+.exc-geo .gl-prose.exc-geo__card-text,
+.exc-geo__card-text {
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .exc-geo__mast {
+    grid-template-columns: 1fr;
+  }
+  .exc-geo__map-block {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .exc-geo__territories {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ═══ Excavation — SEO research disclosure ═══ */
 .exc-research {
   background: var(--charcoal);
@@ -10552,6 +11071,10 @@ body.gl-mega-open .gl-mega-backdrop {
   position: relative;
   z-index: 1;
 }
+.exc-research__intro-block {
+  max-width: 48rem;
+}
+.exc-research .gl-h2.exc-research__heading,
 .exc-research__heading {
   color: var(--white);
   margin: 12px 0 16px;
@@ -10639,6 +11162,10 @@ body.gl-mega-open .gl-mega-backdrop {
 .exc-research__block {
   margin-top: 24px;
 }
+.exc-research__block--geo {
+  padding-left: 18px;
+  border-left: 2px solid var(--yellow-core);
+}
 .exc-research__geo-lines {
   margin: 0;
   padding: 0;
@@ -10674,6 +11201,14 @@ body.gl-mega-open .gl-mega-backdrop {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
+}
+.exc-trust__copy {
+  min-width: 0;
+}
+.exc-trust__slot--reviews,
+.exc-trust__slot--gallery,
+.exc-trust__slot--map {
+  border-top: 2px solid rgba(242, 183, 5, 0.25);
 }
 .exc-trust__media {
   position: relative;
@@ -31214,6 +31749,10 @@ body.gl-mega-open .gl-mega-backdrop {
   color: var(--charcoal-deep);
 }
 .proc4__jump-num { color: var(--yellow-core); }
+.proc4__jump-txt {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
 .proc4__cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -31248,6 +31787,9 @@ body.gl-mega-open .gl-mega-backdrop {
   color: var(--charcoal-deep);
   margin: 0;
 }
+.proc4__card-body {
+  min-width: 0;
+}
 .proc4__card-p {
   font-family: var(--font-body);
   font-size: 15px;
@@ -31263,6 +31805,9 @@ body.gl-mega-open .gl-mega-backdrop {
   gap: 16px 28px;
   padding-top: 8px;
   border-top: 1px solid var(--gray-200);
+}
+.proc4__floor-cta {
+  flex-shrink: 0;
 }
 @media (max-width: 900px) {
   .proc4__cards { grid-template-columns: 1fr; }
@@ -31296,6 +31841,15 @@ body.gl-mega-open .gl-mega-backdrop {
   grid-template-columns: 7fr 3fr;
   gap: 48px;
   align-items: start;
+}
+.cov4__main {
+  min-width: 0;
+}
+.cov4__narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
 }
 .cov4__eyebrow {
   display: flex;
@@ -31525,6 +32079,11 @@ body.gl-mega-open .gl-mega-backdrop {
   opacity: 0.55;
 }
 .proj4__panel { position: relative; }
+.proj4__quote-body {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
 .proj4__stars {
   display: flex;
   gap: 4px;
@@ -31722,6 +32281,174 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .mini-page-hero--dark .mini-page-hero__lede { color: rgba(255, 255, 255, 0.65); }
 .mini-page-hero--light .mini-page-hero__lede { color: var(--text-500); }
+
+/* —— Legal (privacy / terms) —— */
+.legal-pg {
+  background: var(--off-white);
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+}
+.legal-pg__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.legal-pg__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--charcoal-deep);
+  margin: 0 0 20px;
+  line-height: 1.08;
+}
+.legal-pg__title span {
+  color: var(--yellow-core);
+}
+.legal-pg__lede {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-500);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* —— Contact page —— */
+.contact-pg {
+  background: var(--white);
+  padding: var(--section-v) clamp(20px, 4vw, 40px);
+}
+.contact-pg__split {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+.contact-pg__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contact-pg__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-700);
+  margin-bottom: 8px;
+}
+.contact-pg__input,
+.contact-pg__textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 14px 16px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--text-900);
+  border-radius: var(--r);
+  transition: border-color 0.2s var(--ease-expo), box-shadow 0.2s var(--ease-expo);
+}
+.contact-pg__textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.contact-pg__input:focus,
+.contact-pg__textarea:focus {
+  outline: none;
+  border-color: var(--yellow-core);
+  box-shadow: var(--yellow-glow);
+}
+.contact-pg__submit {
+  align-self: flex-start;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal-deep);
+  background: var(--yellow-core);
+  border: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: background 0.25s var(--ease-expo), transform 0.25s var(--ease-expo);
+}
+.contact-pg__submit:hover {
+  background: var(--gold);
+}
+.contact-pg__aside {
+  padding: 28px 24px;
+  background: var(--off-white);
+  border: 1px solid var(--gray-200);
+}
+.contact-pg__phone {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 700;
+  color: var(--yellow-core);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.contact-pg__phone:hover {
+  color: var(--gold);
+}
+.contact-pg__meta {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-500);
+  margin: 0 0 14px;
+}
+.contact-pg__meta a {
+  color: var(--charcoal-deep);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.contact-pg__meta a:hover {
+  color: var(--yellow-core);
+}
+.contact-pg__tags {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-500);
+  margin: 0 0 14px;
+}
+.contact-pg__tags strong {
+  color: var(--text-700);
+}
+.contact-pg__foot {
+  max-width: var(--container-max);
+  margin: clamp(32px, 5vw, 48px) auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--gray-200);
+}
+.contact-pg__localities {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-500);
+  margin: 0;
+}
+.contact-pg__localities strong {
+  color: var(--text-700);
+}
+@media (max-width: 900px) {
+  .contact-pg__split {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* —— Process page ledger —— */
 .proc-pg-ledger {
@@ -32238,6 +32965,9 @@ body.gl-mega-open .gl-mega-backdrop {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 40px;
 }
+.about-pg-split__copy {
+  min-width: 0;
+}
 .about-pg-split__eyebrow {
   display: flex;
   align-items: center;
@@ -32301,6 +33031,9 @@ body.gl-mega-open .gl-mega-backdrop {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: center;
+}
+.about-pg-media__copy {
+  min-width: 0;
 }
 .about-pg-media__figure {
   position: relative;
@@ -32379,6 +33112,9 @@ body.gl-mega-open .gl-mega-backdrop {
   gap: 32px;
   align-items: start;
 }
+.about-pg-audience__intro {
+  min-width: 0;
+}
 .about-pg-audience__eyebrow {
   display: flex;
   align-items: center;
@@ -32442,6 +33178,9 @@ body.gl-mega-open .gl-mega-backdrop {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
+}
+.company-pg-trio__col {
+  min-width: 0;
 }
 .company-pg-trio__h {
   font-family: var(--font-display);
