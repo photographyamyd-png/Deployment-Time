@@ -14,6 +14,7 @@
     "lint": "eslint . --max-warnings 0",
     "audit:classes": "node scripts/audit-class-css-gaps.mjs",
     "audit:dom-css": "node scripts/audit-dom-css-contracts.mjs",
+    "audit:rules": "node scripts/audit-rules-snapshot.mjs",
     "clean": "node -e \"const fs=require('fs');const rm=(p)=>{try{fs.rmSync(p,{recursive:true,force:true});console.log('Removed '+p)}catch(e){}};rm('.next');rm('node_modules/.cache')\""
   },
   "dependencies": {

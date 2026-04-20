@@ -1,0 +1,27 @@
+{
+  "generated": "2026-04-20T18:48:02.859Z",
+  "borderRadiusNonZeroCount": 1,
+  "borderRadiusSamples": [
+    {
+      "line": 2962,
+      "text": "border-radius: 2px;"
+    }
+  ],
+  "fontFamilyNonVarCount": 3,
+  "fontFamilySamples": [
+    {
+      "line": 19877,
+      "text": "font-family: ui-monospace, \"Cascadia Code\", monospace;"
+    },
+    {
+      "line": 20555,
+      "text": "font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;"
+    },
+    {
+      "line": 20800,
+      "text": "font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;"
+    }
+  ],
+  "tsxHexHitCount": 0,
+  "tsxHexSamples": []
+}
