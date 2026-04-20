@@ -19,7 +19,7 @@ export function SitePrepGradingTrustStrip() {
         <div className="exc-trust__grid">
           <div className="exc-trust__media">
             <Image
-              src="/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg"
+              src="/images/services/site-preparation-grading/cat-skid-steer-grading-simcoe-county.jpg"
               alt="Grading and sub-base prep on a Simcoe County construction site"
               width={720}
               height={540}

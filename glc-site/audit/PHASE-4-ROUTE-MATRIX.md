@@ -28,6 +28,7 @@
 |-------|------|------|------|------|------|--------|
 | `/services/drainage-hardscaping` | ✓ | ✓ | ✓ | ✓ | ✓ | Long hub |
 | `/services/excavation-site-preparation` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/services/site-preparation-grading` | ✓ | ✓ | ✓ | ✓ | ✓ | Grading hub — re-run `audit:responsive` to refresh |
 | `/services/foundations-civil-infrastructure` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 | `/services/hauling-site-clearing-logistics` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 | `/services/snow-removal` | ✓ | ✓ | ✓ | ✓ | ✓ |  |

@@ -21,6 +21,7 @@ Playwright: `npm run audit:responsive`. Screenshots: `audit/screenshots/` (gitig
 | /sandbox | ✓ | ✓ | ✓ | ✓ | ✓ |
 | /services/drainage-hardscaping | ✓ | ✓ | ✓ | ✓ | ✓ |
 | /services/excavation-site-preparation | ✓ | ✓ | ✓ | ✓ | ✓ |
+| /services/site-preparation-grading | ✓ | ✓ | ✓ | ✓ | ✓ |
 | /services/foundations-civil-infrastructure | ✓ | ✓ | ✓ | ✓ | ✓ |
 | /services/hauling-site-clearing-logistics | ✓ | ✓ | ✓ | ✓ | ✓ |
 | /services/snow-removal | ✓ | ✓ | ✓ | ✓ | ✓ |

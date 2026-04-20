@@ -11,6 +11,7 @@
 | `/projects/` | page view | Uses shared primitives; no new gaps in top report. | Spot OK |
 | `/privacy/`, `/terms/` | legal pages | Full `legal-pg*` block added. | Done |
 | `/services/excavation-site-preparation/` | excavation hub components | Added `exc-canon`, `exc-faq`, `exc-geo`; `exc-research__intro-block`, `exc-research__block--geo`; `exc-trust__copy`, slot modifiers; GL typography `.gl-h2`, `.gl-eyebrow*`, `.gl-prose*`, `.gl-pullquote`. | Done |
+| `/services/site-preparation-grading/` | site prep & grading hub (`site-prep-grading-*`) | Mirrors excavation hub assembly; hero asset `cat-skid-steer-grading-simcoe-county.jpg` (replace pixels when final photo lands). | Done |
 | `/services/drainage-hardscaping/` | drainage hub | Seam classes share `.glc-drain-page__mist-seam` (no extra rules required). Remaining `glc-drain-hub__*` wrappers: Tier 2 if layout issues reported. | Partial / inherited |
 | `/services/snow-removal/` + snow slugs | snow components | `glc-snow-*` gaps remain in automated report; address in follow-up if visual bugs. | Backlog |
 | `/sandbox/` | sandbox | Tier 2 per plan; many `sandbox*` gaps intentional playground. | Backlog |

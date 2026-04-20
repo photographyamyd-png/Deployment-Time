@@ -44,6 +44,7 @@ const ROUTES = [
   { path: "/sandbox", slug: "sandbox", section: "static" },
   { path: "/services/drainage-hardscaping", slug: "services-drainage-hardscaping", section: "service-fixed" },
   { path: "/services/excavation-site-preparation", slug: "services-excavation-site-preparation", section: "service-fixed" },
+  { path: "/services/site-preparation-grading", slug: "services-site-preparation-grading", section: "service-fixed" },
   { path: "/services/foundations-civil-infrastructure", slug: "services-foundations-civil-infrastructure", section: "service-fixed" },
   { path: "/services/hauling-site-clearing-logistics", slug: "services-hauling-site-clearing-logistics", section: "service-fixed" },
   { path: "/services/snow-removal", slug: "services-snow-removal", section: "service-fixed" },

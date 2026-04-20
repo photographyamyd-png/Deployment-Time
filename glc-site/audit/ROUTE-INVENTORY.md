@@ -24,6 +24,7 @@ Baseline: generated during site-wide audit execution. Update when adding `page.t
 |-------|------|
 | `/services/drainage-hardscaping` | `src/app/services/drainage-hardscaping/page.tsx` |
 | `/services/excavation-site-preparation` | `src/app/services/excavation-site-preparation/page.tsx` |
+| `/services/site-preparation-grading` | `src/app/services/site-preparation-grading/page.tsx` |
 | `/services/foundations-civil-infrastructure` | `src/app/services/foundations-civil-infrastructure/page.tsx` |
 | `/services/hauling-site-clearing-logistics` | `src/app/services/hauling-site-clearing-logistics/page.tsx` |
 | `/services/snow-removal` | `src/app/services/snow-removal/page.tsx` |
