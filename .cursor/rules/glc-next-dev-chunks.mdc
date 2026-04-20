@@ -1,9 +1,9 @@
 ---
-description: Prevent Next.js webpack stale chunk errors (Cannot find module ./NNN.js) when developing glc-site on Windows
+description: GLC glc-site dev stability — webpack chunks, dead localhost, correct port 3040
 alwaysApply: true
 ---
 
-# GLC Next.js dev server — webpack chunks and `.next` hygiene
+# GLC Next.js dev server — chunks, `.next` hygiene, and “localhost can’t handle this”
 
 This error is **not** a bug in page source. Webpack emits numbered chunks (`331.js`, etc.). If `.next` is cleared, overwritten, or out of sync while an old runtime still expects old chunk IDs, Node throws `Cannot find module './NNN.js'`.
 
@@ -21,6 +21,20 @@ This error is **not** a bug in page source. Webpack emits numbered chunks (`331.
 
 6. **Config already in repo:** `glc-site/next.config.ts` sets `config.cache = false` in **dev** to reduce Windows PackFileCache corruption; **`dev:fresh`** remains the reliable recovery when previews still break.
 
+## Browser: “This page isn’t working” / “localhost is currently unable to handle this request”
+
+This is usually **not** application routing bug. Treat as **connectivity to the dev server**.
+
+1. **Correct URL:** This app’s dev server listens on **`http://localhost:3040/`** (see `glc-site/package.json`). Opening **`http://localhost:3000/`** or bare **`http://localhost/`** often shows this error because **nothing is bound** to that port.
+
+2. **Server not running:** Start (or restart) with **`npm run dev:fresh`** from repo root. Wait until the terminal shows **Ready**.
+
+3. **Crashed mid-compile:** If the terminal shows Node/Next stack traces or exited, fix the reported error if any, then **`dev:fresh`** again.
+
+4. **Port in use / zombie:** Another process may hold 3040 or a dead `node` may need killing. On Windows, agents may check `Get-NetTCPConnection -LocalPort 3040` and stop the owning PID, then start **`dev:fresh`** once.
+
+5. **After `clean` or failed start:** Always confirm **one** `next dev` is running and the user loads **`localhost:3040`**.
+
 ## User environment
 
-- Antivirus or cloud sync touching `.next` can worsen this; agents cannot fix that—mention it if errors persist after `dev:fresh`.
+- Antivirus or cloud sync touching `.next` can worsen chunk issues; agents cannot fix that—mention it if errors persist after `dev:fresh`.

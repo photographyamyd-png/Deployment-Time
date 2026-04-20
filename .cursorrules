@@ -33,6 +33,7 @@ After staging the specific files, automatically run `git commit -m 'AI: [brief d
 Stale `.next` output causes **`Cannot find module './NNN.js'`** — treat as **cache corruption**, not broken page code.
 
 - **Default** to **`npm run dev:fresh`** from repo root after edits when you start/restart the dev server (cleans `.next` + `node_modules/.cache`, then `next dev` on port 3040).
+- **Correct preview URL:** **`http://localhost:3040/`** — not `:3000`. “Localhost unable to handle this request” is usually **wrong port**, **dev not running**, or **crashed server**; recover with **`dev:fresh`** and confirm **Ready** in the terminal before blaming page code.
 - **One dev server** for `glc-site`; stop the old one before starting another.
 - On chunk errors: **`npm run clean --prefix glc-site`** then dev — **do not** revert source to “fix” it.
 - After **branch switch / pull / big dependency change**, use **`dev:fresh`** once.
