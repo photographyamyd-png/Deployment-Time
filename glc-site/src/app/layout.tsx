@@ -6,11 +6,14 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import "@/styles/glc-base.css";
+import "./glc-next-font-bridge.css";
 import site from "@/content/site.json";
 import navigation from "@/content/navigation.json";
 import type { NavigationConfig, SiteConfig } from "@/content/types";
 import { JsonLdLocalBusiness } from "@/components/seo/json-ld-local-business";
+import { JsonLdWebSite } from "@/components/seo/json-ld-website";
 import { HashScrollHandler } from "@/components/layout/hash-scroll-handler";
+import { GlRevealObserver } from "@/components/layout/gl-reveal-observer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { defaultMetadata } from "@/lib/metadata-site";
@@ -58,7 +61,9 @@ export default function RootLayout({
     >
       <body>
         <JsonLdLocalBusiness site={schemaSite} />
+        <JsonLdWebSite site={schemaSite} />
         <HashScrollHandler />
+        <GlRevealObserver />
         <Header navigation={navData} />
         {children}
         <Footer site={siteData} navigation={navData} />

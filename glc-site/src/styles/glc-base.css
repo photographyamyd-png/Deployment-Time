@@ -46,7 +46,8 @@
   --gl-header-z: 900;
   --gl-mega-z: 850;
   --gl-backdrop-z: 800;
-  --gl-header-height: 100px;
+  /* Utility 36px + gold strip 3px + nav row 68px (.cursorrules --header-total-h) */
+  --gl-header-height: 107px;
 
   /* Motif system (DESIGN-SYSTEM §5 — A1–D7): charcoal tints + layer color */
   --charcoal-tint: rgba(58, 54, 50, 0.06);
@@ -5798,7 +5799,7 @@ section#coverage,
   color: var(--yellow-core);
 }
 
-/* `.gl-reveal` — same IO + `.visible` contract as `.reveal` (see GlRevealObserver in layout). */
+/* `.gl-reveal` — same IO + `.visible` contract as `.reveal` (`GlRevealObserver` in `layout.tsx`). */
 .gl-reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -9636,7 +9637,7 @@ body.gl-mega-open .gl-mega-backdrop {
 #hero.hero-v2,
 #drainage-hub-hero.hero-v2 {
   min-height: 100vh;
-  padding-top: calc(var(--gl-header-height) + 36px);
+  /* Header clearance: only on `.hero-v2__canvas` — avoid double padding/overlap */
 }
 
 /* ── Grain texture overlay — sits above everything, blends multiply ─── */

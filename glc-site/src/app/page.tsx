@@ -35,12 +35,12 @@ export const metadata: Metadata = {
   },
 };
 
-/** Breaks hero → stats → marquee triple-dark: hero → about → stats → marquee → … */
+/** GLC homepage sequence: hero → yellow marquee → alternating sections (.cursorrules Part 6). */
 const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
   "hero",
+  "marquee",
   "about",
   "stats",
-  "marquee",
   "services",
   "why",
   "process",
