@@ -90,8 +90,8 @@ export function AboutSection(props: AboutProps) {
           {/* Floating stat chip */}
           <motion.div
             className="ab3__chip"
-            initial={{ opacity: 0, x: 28, y: 8 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
             aria-hidden

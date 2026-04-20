@@ -495,8 +495,8 @@ export function InteractiveCapabilities({ tabs, site }: Props) {
 
             <motion.div
               className="ab3__chip"
-              initial={{ opacity: 0, x: -24, y: 8 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.75, delay: 0.35, ease: EASE }}
               aria-hidden

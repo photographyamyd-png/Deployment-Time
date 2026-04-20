@@ -15,6 +15,7 @@
     "audit:classes": "node scripts/audit-class-css-gaps.mjs",
     "audit:dom-css": "node scripts/audit-dom-css-contracts.mjs",
     "audit:rules": "node scripts/audit-rules-snapshot.mjs",
+    "audit:responsive": "node scripts/audit-responsive.mjs",
     "clean": "node -e \"const fs=require('fs');const rm=(p)=>{try{fs.rmSync(p,{recursive:true,force:true});console.log('Removed '+p)}catch(e){}};rm('.next');rm('node_modules/.cache')\""
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "eslint": "8.57.1",
     "eslint-config-next": "15.5.15",
     "kill-port": "^2.0.1",
+    "playwright": "^1.51.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

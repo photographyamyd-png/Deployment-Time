@@ -1876,7 +1876,7 @@ a.hero__service-item {
 /* Full-bleed 2-column grid: copy 55% / media 45% */
 .ab3__layout {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
   min-height: 680px;
   position: relative;
   z-index: 0;
@@ -2269,7 +2269,7 @@ a.hero__service-item {
   }
   .ab3__chip {
     bottom: max(20px, env(safe-area-inset-bottom, 0px));
-    right: max(16px, env(safe-area-inset-right, 0px));
+    right: max(28px, env(safe-area-inset-right, 0px));
     padding: 14px 18px;
   }
   .ab3__chip-num {
@@ -3064,8 +3064,8 @@ a.hero__service-item {
 .glc-feat-acc__motif {
   position: absolute;
   top: -34px;
-  left: -120px;
-  width: 560px;
+  left: max(-120px, calc(-1 * min(25vw, 120px)));
+  width: min(560px, calc(100vw - 24px));
   height: 220px;
   background-image: url("/images/motifs/watermarks/glc-wm-03-horizontal-stack.svg");
   background-repeat: no-repeat;
@@ -3076,6 +3076,15 @@ a.hero__service-item {
   transition: transform 0.22s var(--ease-expo);
   pointer-events: none;
   z-index: 1;
+}
+@media (max-width: 640px) {
+  .glc-feat-acc__motif {
+    transform: none;
+    opacity: 0.11;
+    width: min(280px, calc(100vw - 40px));
+    left: -32px;
+    height: 160px;
+  }
 }
 .glc-feat-acc__layout {
   position: relative;
@@ -3350,28 +3359,28 @@ a.hero__service-item {
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps))
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps))
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   min-width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps))
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   max-width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps))
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   box-shadow: 0 20px 44px rgba(30, 28, 26, 0.12);
@@ -3405,7 +3414,7 @@ a.hero__service-item {
 .glc-feat-acc__panel:hover .glc-feat-acc__panel-img,
 .glc-feat-acc__panel.is-active .glc-feat-acc__panel-img {
   filter: saturate(1) contrast(1.05);
-  transform: scale(1.02);
+  transform: none;
 }
 .glc-feat-acc__panel-scrim {
   position: absolute;
@@ -3457,6 +3466,8 @@ a.hero__service-item {
   transform: translateX(-50%) rotate(0deg);
   color: var(--yellow-core);
   max-width: 90%;
+  white-space: normal;
+  line-height: 1.25;
   text-shadow:
     0 1px 3px rgba(0, 0, 0, 0.6),
     0 0 20px rgba(0, 0, 0, 0.35);
@@ -5416,6 +5427,7 @@ section#coverage,
 ═══════════════════════════════════════════ */
 #cta-band,
 #request-service-hub,
+section.cta3,
 .glc-snow-close__dispatch {
   background: var(--charcoal-deep);
   position: relative;
@@ -5424,7 +5436,8 @@ section#coverage,
 
 /* Blueprint grid texture — dispatch zone also styled via v2 block below + .glc-snow-close__dispatch */
 #cta-band::before,
-#request-service-hub::before {
+#request-service-hub::before,
+section.cta3::before {
   content: '';
   position: absolute; inset: 0;
   background:
@@ -5447,7 +5460,7 @@ section#coverage,
   width: 42%;
   height: 140%;
   background: var(--charcoal-mid);
-  transform: skewX(-12deg);
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
   pointer-events: none;
 }
 
@@ -8414,7 +8427,8 @@ body.gl-mega-open .gl-mega-backdrop {
 :is(.service-field-capabilities--stc1, .testimonials-section--stc1, .glc-drain-site-stc1) .stc1__tabs {
   display: flex;
   align-items: stretch;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -8516,7 +8530,7 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 
 :is(.service-field-capabilities--stc1, .testimonials-section--stc1, .glc-drain-site-stc1) .stc1__panel.active .stc1__panel-bg {
-  transform: scale(1.04);
+  transform: none;
 }
 
 :is(.service-field-capabilities--stc1, .testimonials-section--stc1, .glc-drain-site-stc1) .stc1__panel-overlay {
@@ -10326,10 +10340,11 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 
 .hero-v2__service-inner {
-  box-sizing: content-box;
+  box-sizing: border-box;
   display: flex;
   align-items: stretch;
-  width: min(var(--hero-svc-content-max), calc(100% - 2 * var(--hero-svc-pad-x)));
+  width: min(var(--hero-svc-content-max), 100%);
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 var(--hero-svc-pad-x);
   gap: 0;
@@ -10500,7 +10515,8 @@ body.gl-mega-open .gl-mega-backdrop {
 
   .hero-v2__service-inner {
     --hero-svc-pad-x: 8px;
-    width: min(var(--hero-svc-content-max), calc(100% - 2 * var(--hero-svc-pad-x)));
+    width: min(var(--hero-svc-content-max), 100%);
+    max-width: 100%;
     padding: 0 var(--hero-svc-pad-x);
     overflow-x: auto;
     gap: 0;
@@ -10526,6 +10542,13 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 
 @media (max-width: 480px) {
+  .hero-v2__service-label {
+    white-space: normal;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
   .hero-v2__cta-row {
     flex-direction: column;
     align-items: stretch;
@@ -29883,14 +29906,14 @@ body.gl-mega-open .gl-mega-backdrop {
 /* Overview media — slight parallax + scrim (scroll motion respects prefers-reduced-motion in TSX) */
 #overview .glc-drain-hub__ab3-photo-parallax {
   position: absolute;
-  inset: -8% -6% -8% -6%;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
   will-change: transform;
 }
 #overview .glc-drain-hub__ab3-photo-img--parallax {
   object-fit: cover;
-  transform: scale(1.07);
+  transform: none;
   transform-origin: center center;
 }
 #overview .glc-drain-hub__ab3-photo-scrim {
@@ -30448,6 +30471,36 @@ body.gl-mega-open .gl-mega-backdrop {
   #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__chip {
     left: 24px;
     bottom: 44px;
+  }
+}
+@media (max-width: 640px) {
+  #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__media {
+    min-width: 0;
+  }
+  #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__badge {
+    width: auto;
+    max-width: min(100%, calc(100vw - 32px));
+  }
+  #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__badge span {
+    letter-spacing: 0.06em;
+    font-size: clamp(7px, 2.8vw, 10px);
+    white-space: normal;
+    overflow: visible;
+  }
+}
+@media (max-width: 480px) {
+  #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__badge {
+    position: absolute;
+    top: 14px;
+    left: max(12px, env(safe-area-inset-left, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    width: auto;
+    max-width: none;
+    transform: none;
+    box-sizing: border-box;
+  }
+  #field-capability-detail.glc-drain-hub__cap-detail-mirror .ab3__badge span {
+    word-break: break-word;
   }
 }
 

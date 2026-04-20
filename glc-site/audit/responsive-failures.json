@@ -1,0 +1,342 @@
+{
+  "generated": "2026-04-20T19:38:08.371Z",
+  "baseUrl": "http://127.0.0.1:3040",
+  "failures": [
+    {
+      "route": "/sandbox",
+      "width": 1024,
+      "type": "text-clipped",
+      "selector": "section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active > span.glc-feat-acc__panel-label",
+      "details": "scrollWidth 149 > clientWidth 112"
+    },
+    {
+      "route": "/sandbox",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active > img.glc-feat-acc__panel-img",
+      "details": "right 772.8px > vw 768px (width 81.6px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "div.glc-feat-acc.glc-feat-acc--tone-medium > section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active",
+      "details": "right 772px > vw 768px (width 80px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active > div.glc-feat-acc__panel-scrim",
+      "details": "right 772px > vw 768px (width 80px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 768,
+      "type": "text-clipped",
+      "selector": "section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active > span.glc-feat-acc__panel-label",
+      "details": "scrollWidth 149 > clientWidth 72"
+    },
+    {
+      "route": "/sandbox",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body > main.sandbox > section.sandbox-feat-acc-scope.sandbox-feat-acc-scope--dark.gl-react-embed-section > div.glc-feat-acc.glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror > section.glc-feat-acc__section.container > div.glc-feat-acc__motif",
+      "details": "right 500.6px > vw 390px (width 600.6px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body > main.sandbox > section.sandbox-feat-acc-scope.sandbox-feat-acc-scope--light.gl-react-embed-section > div.glc-feat-acc.glc-feat-acc--tone-light.glc-feat-acc--layout-stack-top > section.glc-feat-acc__section.container > div.glc-feat-acc__motif",
+      "details": "right 500.6px > vw 390px (width 600.6px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body > main.sandbox > section.sandbox-feat-acc-scope.sandbox-feat-acc-scope--medium.gl-react-embed-section > div.glc-feat-acc.glc-feat-acc--tone-medium > section.glc-feat-acc__section.container > div.glc-feat-acc__motif",
+      "details": "right 500.6px > vw 390px (width 600.6px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body > main.sandbox > section.sandbox-feat-acc-scope.sandbox-feat-acc-scope--default.gl-react-embed-section > div.glc-feat-acc.glc-feat-acc--layout-mirror > section.glc-feat-acc__section.container > div.glc-feat-acc__motif",
+      "details": "right 500.6px > vw 390px (width 600.6px)"
+    },
+    {
+      "route": "/sandbox",
+      "width": 390,
+      "type": "text-clipped",
+      "selector": "section.glc-feat-acc__section.container > div.glc-feat-acc__layout > div.reveal.reveal--delay-2.glc-feat-acc__panels-wrap > div.glc-feat-acc__panels-dse > div.glc-feat-acc__panels-stage > div.glc-feat-acc__panels-row > a.glc-feat-acc__panel.is-active > span.glc-feat-acc__panel-label",
+      "details": "scrollWidth 149 > clientWidth 77"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > img.ab3__photo-img.glc-drain-hub__ab3-photo-img--parallax",
+      "details": "right 1253.6px > vw 1200px (width 647.1px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax",
+      "details": "right 1232.4px > vw 1200px (width 604.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > span.glc-drain-hub__ab3-photo-scrim",
+      "details": "right 1232.4px > vw 1200px (width 604.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > div.glc-drain-site-stc1.glc-drain-hub__stc1 > section.stc1 > div.stc1__panels > div.stc1__panel.active > div.stc1__panel-bg",
+      "details": "right 1224px > vw 1200px (width 1248px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > img.ab3__photo-img.glc-drain-hub__ab3-photo-img--parallax",
+      "details": "right 1125.6px > vw 1024px (width 1227.2px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax",
+      "details": "right 1085.4px > vw 1024px (width 1146.9px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > span.glc-drain-hub__ab3-photo-scrim",
+      "details": "right 1085.4px > vw 1024px (width 1146.9px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > div.glc-drain-site-stc1.glc-drain-hub__stc1 > section.stc1 > div.stc1__panels > div.stc1__panel.active > div.stc1__panel-bg",
+      "details": "right 1044.5px > vw 1024px (width 1065px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > img.ab3__photo-img.glc-drain-hub__ab3-photo-img--parallax",
+      "details": "right 844.2px > vw 768px (width 920.4px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax",
+      "details": "right 814.1px > vw 768px (width 860.2px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > span.glc-drain-hub__ab3-photo-scrim",
+      "details": "right 814.1px > vw 768px (width 860.2px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > div.glc-drain-site-stc1.glc-drain-hub__stc1 > section.stc1 > div.stc1__panels > div.stc1__panel.active > div.stc1__panel-bg",
+      "details": "right 783.4px > vw 768px (width 798.7px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 780px > vw 768px (width 183px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > img.ab3__photo-img.glc-drain-hub__ab3-photo-img--parallax",
+      "details": "right 703.5px > vw 640px (width 767px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax",
+      "details": "right 678.4px > vw 640px (width 716.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > span.glc-drain-hub__ab3-photo-scrim",
+      "details": "right 678.4px > vw 640px (width 716.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > div.glc-drain-site-stc1.glc-drain-hub__stc1 > section.stc1 > div.stc1__panels > div.stc1__panel.active > div.stc1__panel-bg",
+      "details": "right 652.8px > vw 640px (width 665.6px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 652px > vw 640px (width 183px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__jk.dse > div.cta3__diag.glc-drain-hub__proc3-diag",
+      "details": "right 459.6px > vw 390px (width 794.4px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > img.ab3__photo-img.glc-drain-hub__ab3-photo-img--parallax",
+      "details": "right 428.7px > vw 390px (width 467.4px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax",
+      "details": "right 413.4px > vw 390px (width 436.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__photo.ab3__photo--has-img > div.glc-drain-hub__ab3-photo-parallax > span.glc-drain-hub__ab3-photo-scrim",
+      "details": "right 413.4px > vw 390px (width 436.8px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main.service-page--drainage-v2.glc-drain-hub > section.glc-drain-hub__overview > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 402px > vw 390px (width 183px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > div.glc-drain-site-stc1.glc-drain-hub__stc1 > section.stc1 > div.stc1__panels > div.stc1__panel.active > div.stc1__panel-bg",
+      "details": "right 397.8px > vw 390px (width 405.6px)"
+    },
+    {
+      "route": "/services/drainage-hardscaping",
+      "width": 390,
+      "type": "text-clipped",
+      "selector": "body.page-service > main.service-page--drainage-v2.glc-drain-hub > div.glc-drain-hub__interactive > section.glc-drain-hub__cap-detail-mirror > div.ab3__layout.glc-drain-hub__ab3-mirror > div.ab3__media > div.ab3__badge > span",
+      "details": "scrollWidth 62 > clientWidth 22"
+    },
+    {
+      "route": "/services/excavation-site-preparation",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 780px > vw 768px (width 190.2px)"
+    },
+    {
+      "route": "/services/excavation-site-preparation",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 652px > vw 640px (width 190.2px)"
+    },
+    {
+      "route": "/services/excavation-site-preparation",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.ab3__layout > div.ab3__media > div.ab3__chip",
+      "details": "right 402px > vw 390px (width 190.2px)"
+    },
+    {
+      "route": "/services/foundations-civil-infrastructure",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1285.4px > vw 1200px (width 2186.9px)"
+    },
+    {
+      "route": "/services/foundations-civil-infrastructure",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1439.8px > vw 1024px (width 2551.8px)"
+    },
+    {
+      "route": "/services/foundations-civil-infrastructure",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1425.6px > vw 768px (width 2605.5px)"
+    },
+    {
+      "route": "/services/foundations-civil-infrastructure",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1385.9px > vw 640px (width 2567.1px)"
+    },
+    {
+      "route": "/services/foundations-civil-infrastructure",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1380.3px > vw 390px (width 2635.8px)"
+    },
+    {
+      "route": "/services/hauling-site-clearing-logistics",
+      "width": 1200,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 1978.3px > vw 1200px (width 3572.5px)"
+    },
+    {
+      "route": "/services/hauling-site-clearing-logistics",
+      "width": 1024,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 2093.5px > vw 1024px (width 3859.4px)"
+    },
+    {
+      "route": "/services/hauling-site-clearing-logistics",
+      "width": 768,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 2160.4px > vw 768px (width 4075.1px)"
+    },
+    {
+      "route": "/services/hauling-site-clearing-logistics",
+      "width": 640,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 2141px > vw 640px (width 4077.1px)"
+    },
+    {
+      "route": "/services/hauling-site-clearing-logistics",
+      "width": 390,
+      "type": "element-right-overflow",
+      "selector": "html.__variable_4b3a9b.__variable_a11773.__variable_40cec9 > body.page-service > main > section > div.cta3__diag",
+      "details": "right 2356.8px > vw 390px (width 4588.7px)"
+    }
+  ]
+}

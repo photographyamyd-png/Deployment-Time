@@ -1,43 +1,43 @@
 # Phase 4 — Responsive route matrix
 
-**Method:** With `npm run dev`, open each URL at **http://127.0.0.1:3040** (see [`package.json`](../package.json)). For each **viewport width**, mark pass/fail against [`RESPONSIVE-SWEEP.md`](RESPONSIVE-SWEEP.md) bullets.
+**Method:** Automated — `npm run audit:responsive` (Playwright). Last run: 2026-04-20T19:38:08.371Z.
 
 **Widths:** 1200 · 1024 · 768 · 640 · 390 (px).
 
-**Legend:** `☐` not yet checked · `✓` pass · `✗` fail (add row in [`ISSUE-MATRIX.md`](ISSUE-MATRIX.md) with DOM path + width).
+**Legend:** `✓` pass · `✗` fail — see [`RESPONSIVE-SWEEP.md`](RESPONSIVE-SWEEP.md) and [`responsive-failures.json`](responsive-failures.json).
 
 ## Static routes
 
 | Route | 1200 | 1024 | 768 | 640 | 390 | Notes |
-|-------|------|------|-----|-----|-----|-------|
-| `/` | ☐ | ☐ | ☐ | ☐ | ☐ | Homepage — hero rail, marquee, grids |
-| `/about` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/company` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/contact` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/coverage` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/process` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/projects` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/services` | ☐ | ☐ | ☐ | ☐ | ☐ | Hub + mega |
-| `/privacy` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/terms` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/sandbox` | ☐ | ☐ | ☐ | ☐ | ☐ | Dev-only patterns |
+|-------|------|------|------|------|------|--------|
+| `/` | ✓ | ✓ | ✓ | ✓ | ✓ | Homepage — hero rail, marquee, grids |
+| `/about` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/company` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/contact` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/coverage` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/process` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/projects` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/services` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/privacy` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/terms` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| `/sandbox` | ✓ | ✗ | ✗ | ✓ | ✗ |  |
 
 ## Service detail (fixed)
 
 | Route | 1200 | 1024 | 768 | 640 | 390 | Notes |
-|-------|------|------|-----|-----|-----|-------|
-| `/services/drainage-hardscaping` | ☐ | ☐ | ☐ | ☐ | ☐ | Long hub |
-| `/services/excavation-site-preparation` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/services/foundations-civil-infrastructure` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/services/hauling-site-clearing-logistics` | ☐ | ☐ | ☐ | ☐ | ☐ | |
-| `/services/snow-removal` | ☐ | ☐ | ☐ | ☐ | ☐ | |
+|-------|------|------|------|------|------|--------|
+| `/services/drainage-hardscaping` | ✗ | ✗ | ✗ | ✗ | ✗ | Long hub |
+| `/services/excavation-site-preparation` | ✓ | ✓ | ✗ | ✗ | ✗ |  |
+| `/services/foundations-civil-infrastructure` | ✗ | ✗ | ✗ | ✗ | ✗ |  |
+| `/services/hauling-site-clearing-logistics` | ✗ | ✗ | ✗ | ✗ | ✗ |  |
+| `/services/snow-removal` | ✓ | ✓ | ✓ | ✓ | ✓ |  |
 
 ## Dynamic (sample one URL each)
 
-| Example URL | 1200 | 1024 | 768 | 640 | 390 | Notes |
-|-------------|------|------|-----|-----|-----|-------|
-| `/services/commercial-parking-lot-snow-plowing-barrie` | ☐ | ☐ | ☐ | ☐ | ☐ | From `[slug]` SSG list |
-| `/locations/commercial-snow-removal-barrie-ontario` | ☐ | ☐ | ☐ | ☐ | ☐ | From `locations/[slug]` |
+| Route | 1200 | 1024 | 768 | 640 | 390 | Notes |
+|-------|------|------|------|------|------|--------|
+| `/services/commercial-parking-lot-snow-plowing-barrie` | ✓ | ✓ | ✓ | ✓ | ✓ | From `[slug]` SSG list |
+| `/locations/commercial-snow-removal-barrie-ontario` | ✓ | ✓ | ✓ | ✓ | ✓ | From `locations/[slug]` |
 
 ## Phase 4 completion criteria
 

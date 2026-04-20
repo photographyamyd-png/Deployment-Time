@@ -8,7 +8,7 @@ type CtaBandSectionProps = CtaBandProps & {
 
 export function CtaBandSection({ sectionId = "cta-band", ...props }: CtaBandSectionProps) {
   return (
-    <section id={sectionId} aria-labelledby="cta-heading">
+    <section id={sectionId} className="cta3" aria-labelledby="cta-heading">
       {/* Structural diagonal accent */}
       <div className="cta3__diag" aria-hidden />
 
