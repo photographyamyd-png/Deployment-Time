@@ -1,5 +1,20 @@
 "use client";
 
+/**
+ * VCC 3-pass audit (excavation hub hero — `.exc-hub` / `#excavation-hub-hero` only)
+ *
+ * 1) Layers: L1 base (--charcoal-deep), L2 blueprint SVG + eng grid, L3 diag stripe motif,
+ *    L4 ghost watermark (Oswald keyword or logo), L5 photo + scrims, L6 copy/CTAs,
+ *    L7 edge brackets + yellow rules + Source Code Pro spec labels on chips.
+ * 2) Typography: three-act Oswald 200 / 600 / 700 on `.exc-hub__line--act*`;
+ *    Barlow on dark body (`.exc-hub__*--vcc`); SCP on `.exc-hub__vert-label`, `.exc-hub__chip-spec`;
+ *    body rgba caps ≤ 0.70 on dark.
+ * 3) Differentiation: asymmetric service rail (featured first column); ghost index + bracket + rule
+ *    on stat chips; vertical spec rail; chamfered glass chips — not a flat 50/50 template.
+ *
+ * Parallax rates (scroll): bg 0.3, blueprint 0.5, motif 0.7, ghost 0.6, photo 0.38; copy column not scroll-translated.
+ */
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -13,7 +28,6 @@ import {
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
-import type { HeroProps } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
 
 import "./excavation-hub-hero.css";
@@ -22,7 +36,29 @@ const EASE_OUT = [0, 0, 0.2, 1] as const;
 
 const DEFAULT_PANEL_IMAGE = "/images/hero-armour-stone-retaining-walls.png";
 
-export type ExcavationHubHeroProps = HeroProps & {
+/**
+ * Local shape only — mirrors the homepage hero payload without importing `HeroProps`
+ * from `@/content/types` (isolation merge gate in excavation_hero_vcc_isolated.plan.md).
+ */
+export type ExcavationHubHeroProps = {
+  eyebrow: string;
+  title: {
+    line1: string;
+    line2: string;
+    line3: string;
+    emphasizeLine: 1 | 2 | 3;
+  };
+  subheadline?: string;
+  lede: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  stats: Array<{ value: string; label: string }>;
+  coverage: { label: string; tags: string[] };
+  serviceBarSlugTitles: Array<{ slug: string; title: string }>;
+  parallaxBackgroundImage?: string;
+  ctaMicrocopy?: string;
+  trustBadges?: string[];
+  trustItems?: string[];
   panelImage?: string;
   ghostWatermarkWord?: string;
 };
@@ -81,10 +117,9 @@ const CHIP_VARIANT: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring" as const,
-      stiffness: 260,
-      damping: 22,
+      duration: 0.55,
       delay: 0.85 + i * 0.1,
+      ease: EASE_OUT,
     },
   }),
 };
