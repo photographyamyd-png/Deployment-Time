@@ -110,6 +110,9 @@ export type ServicesSectionProps = {
   intro: string;
   /** When set, preferred over `intro` for the compact services showcase lede. */
   tagline?: string;
+  /** Full-bleed band image above the copy grid (falls back to first mega card photo). */
+  featureImageSrc?: string;
+  featureImageAlt?: string;
 };
 
 export type StatCellProps = {
@@ -268,6 +271,9 @@ export type MegaMenuCard = {
   gridTitle: string[];
   /** Long description under the service grid card title. */
   gridDescription: string;
+  /** Photo tile media on homepage / mega menu (optional). */
+  photoSrc?: string;
+  subTags?: string[];
 };
 
 export type CompanyMegaColumn = {

@@ -1,13 +1,17 @@
+import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
-import { ServicesGridCard } from "@/components/sections/services-grid-card";
+import { IconArrow } from "@/components/ui/icon-arrow";
+import { HomeServicesPhotoTile } from "@/components/sections/home-services-photo-tile";
 import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
 import type { RevealDelayClass } from "@/components/ui/reveal";
 import styles from "@/components/sections/services-grid-section.module.css";
 
+const FALLBACK_FEATURE = "/images/excavation-and-foundations-orillia-barrie.png";
+
 type Props = ServicesSectionProps & {
   cards: MegaMenuCard[];
-  /** When set (homepage), renders quote + view-all CTAs under the grid. */
+  /** When set (homepage), renders quote + view-all CTAs in the split bar. */
   servicesBandCta?: ServicesBandCta;
 };
 
@@ -19,28 +23,38 @@ const delayFor = (i: number): RevealDelayClass | undefined => {
 
 export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props) {
   const lede = props.tagline?.trim() || props.intro;
+  const featureSrc =
+    props.featureImageSrc?.trim() || cards[0]?.photoSrc?.trim() || FALLBACK_FEATURE;
+  const featureAlt =
+    props.featureImageAlt?.trim() ||
+    "Commercial excavation and civil equipment on a Simcoe County work site";
 
   return (
-    <section
-      id="services"
-      className={`svlayer svlayer--dse ${styles.showcase}`}
-      aria-labelledby="services-heading"
-    >
-      <div className="cta3__diag" aria-hidden />
-      <div className="services-band__top-accent" aria-hidden />
-      <div className="svlayer__layers" aria-hidden>
-        <span className="svlayer__sheet svlayer__sheet--back" />
-        <span className="svlayer__sheet svlayer__sheet--mid" />
-        <span className="svlayer__sheet svlayer__sheet--front" />
+    <section id="services" className={`home-services-photo ${styles.showcase}`} aria-labelledby="services-heading">
+      <div className="home-services-photo__seam" aria-hidden />
+
+      <div className={styles.featureBleed}>
+        <Image
+          src={featureSrc}
+          alt={featureAlt}
+          fill
+          className={styles.featureImg}
+          sizes="100vw"
+          priority={false}
+        />
+        <div className={styles.featureScrim} aria-hidden />
       </div>
 
-      <div className={`svlayer__inner ${styles.inner}`}>
-        <header className={styles.head}>
+      <div className="home-services-photo__inner">
+        <header className="home-services-photo__header">
           <Reveal>
-            <div className="eyebrow eyebrow--on-dark">{props.eyebrow}</div>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowDash} aria-hidden />
+              <span className={styles.eyebrowText}>{props.eyebrow}</span>
+            </div>
           </Reveal>
           <Reveal delayClass="reveal--delay-1">
-            <h2 id="services-heading" className="services__heading svlayer__headline">
+            <h2 id="services-heading" className="home-services-photo__heading">
               {props.headingLine1}
               <br />
               <span>{props.headingLine2}</span>
@@ -48,32 +62,37 @@ export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props)
           </Reveal>
           {lede ? (
             <Reveal delayClass="reveal--delay-2">
-              <p className={styles.intro}>{lede}</p>
+              <p className={styles.caption}>{lede}</p>
             </Reveal>
           ) : null}
         </header>
 
-        <div className={`${styles.grid} services__grid`} role="list">
+        <div className={`home-services-photo__grid ${styles.grid}`} role="list">
           {cards.map((card, i) => (
-            <ServicesGridCard key={card.slug} card={card} delayClass={delayFor(i)} />
+            <HomeServicesPhotoTile key={card.slug} card={card} delayClass={delayFor(i)} />
           ))}
         </div>
 
         {servicesBandCta ? (
           <Reveal delayClass="reveal--delay-3">
-            <div className={styles.ctas}>
-              <SmartLink href={servicesBandCta.quoteCta.href} className="btn-primary">
-                {servicesBandCta.quoteCta.label}
+            <div className={styles.ctaBar}>
+              <SmartLink href={servicesBandCta.quoteCta.href} className={styles.ctaMain}>
+                <span className={styles.ctaMainText}>{servicesBandCta.quoteCta.label}</span>
+                <span className={styles.ctaMainAction}>
+                  <span className={styles.ctaMainRule} aria-hidden />
+                  <span className={styles.ctaMainIcon}>
+                    <IconArrow />
+                  </span>
+                </span>
               </SmartLink>
-              <SmartLink href={servicesBandCta.servicesViewAll.href} className="btn-ghost">
-                {servicesBandCta.servicesViewAll.label}
+              <SmartLink href={servicesBandCta.servicesViewAll.href} className={styles.ctaSec}>
+                <IconArrow />
+                <span className={styles.ctaSecTxt}>{servicesBandCta.servicesViewAll.label}</span>
               </SmartLink>
             </div>
           </Reveal>
         ) : null}
       </div>
-
-      <div className="cta3__bottom-bar" aria-hidden />
     </section>
   );
 }

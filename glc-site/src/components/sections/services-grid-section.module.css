@@ -1,71 +1,285 @@
-/* Overrides #services.svlayer--dse .svlayer__inner grid from glc-base (higher specificity). */
+/* Light services showcase — inspired by glc-cta-final (eyebrow dash, imagery, split CTA bar). Tokens only. */
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(28px, 4vw, 44px);
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: clamp(20px, 4vw, 40px);
-  grid-template-columns: unset;
-  grid-template-rows: unset;
-  grid-template-areas: unset;
-  width: 100%;
+.showcase {
+  position: relative;
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .head {
-  max-width: min(48rem, 100%);
-}
-
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .head :global(.services__heading) {
-  margin-bottom: clamp(12px, 2vw, 18px);
-}
-
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .intro {
-  margin: 0;
-  max-width: 42rem;
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.62);
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+.featureBleed {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: clamp(220px, 32vw, 460px);
   overflow: hidden;
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid {
-  width: 100%;
+.featureImg {
+  object-fit: cover;
+  object-position: center 55%;
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(a.service-card) {
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  min-height: 240px;
-  transition:
-    background 0.3s var(--ease-expo),
-    border-color 0.3s var(--ease-expo),
-    box-shadow 0.3s var(--ease-expo);
+.featureScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      105deg,
+      color-mix(in srgb, var(--charcoal-deep) 52%, transparent) 0%,
+      color-mix(in srgb, var(--charcoal-deep) 18%, transparent) 42%,
+      transparent 62%
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--charcoal-deep) 35%, transparent) 0%,
+      transparent 45%,
+      color-mix(in srgb, var(--off-white) 94%, transparent) 100%
+    );
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(.service-card:hover),
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(a.service-card:focus-visible) {
-  border-color: rgba(255, 255, 255, 0.22);
-}
-
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas {
+.eyebrow {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px 20px;
-  padding-top: clamp(4px, 1vw, 12px);
+  gap: 14px;
+  margin-bottom: clamp(20px, 3vw, 28px);
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas :global(.btn-primary) {
-  text-decoration: none;
+.eyebrowDash {
+  width: 24px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--yellow-core);
 }
 
-:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas :global(.btn-ghost) {
+.eyebrowText {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-400);
+}
+
+.caption {
+  margin: clamp(8px, 1.5vw, 16px) 0 0;
+  max-width: 52ch;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(15px, 1.65vw, 17px);
+  line-height: 1.75;
+  color: var(--text-500);
+}
+
+.caption strong {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 700;
+  color: var(--text-700);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ctaBar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  min-height: 76px;
+  margin-top: clamp(28px, 4vw, 40px);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.ctaMain {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 32px);
+  padding: 0 clamp(20px, 4vw, 52px);
+  background: var(--yellow-core);
   text-decoration: none;
-  cursor: pointer;
+  color: var(--charcoal-deep);
+  overflow: hidden;
+  transition: color 0.3s var(--ease-expo);
+}
+
+.ctaMain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.ctaMain:hover::before,
+.ctaMain:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.ctaMain:hover,
+.ctaMain:focus-visible {
+  color: var(--charcoal-deep);
+}
+
+.ctaMain:focus-visible {
+  outline: 2px solid var(--charcoal-deep);
+  outline-offset: 2px;
+}
+
+.ctaMainText {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: letter-spacing 0.35s var(--ease-expo);
+}
+
+.ctaMain:hover .ctaMainText,
+.ctaMain:focus-visible .ctaMainText {
+  letter-spacing: 0.22em;
+}
+
+.ctaMainAction {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.ctaMainRule {
+  width: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--charcoal-deep) 30%, transparent);
+  transition: width 0.4s var(--ease-expo);
+}
+
+.ctaMain:hover .ctaMainRule,
+.ctaMain:focus-visible .ctaMainRule {
+  width: 40px;
+}
+
+.ctaMainIcon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid color-mix(in srgb, var(--charcoal-deep) 28%, transparent);
+  transition:
+    background 0.25s var(--ease-expo),
+    border-color 0.25s var(--ease-expo);
+}
+
+.ctaMainIcon svg {
+  transition: transform 0.4s var(--ease-expo);
+}
+
+.ctaMain:hover .ctaMainIcon,
+.ctaMain:focus-visible .ctaMainIcon {
+  background: color-mix(in srgb, var(--charcoal-deep) 8%, transparent);
+  border-color: color-mix(in srgb, var(--charcoal-deep) 42%, transparent);
+}
+
+.ctaMain:hover .ctaMainIcon svg,
+.ctaMain:focus-visible .ctaMainIcon svg {
+  transform: rotate(-45deg);
+}
+
+.ctaSec {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 clamp(18px, 3vw, 40px);
+  background: var(--charcoal-mid);
+  border-left: 1px solid color-mix(in srgb, var(--white) 8%, transparent);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.3s var(--ease-expo);
+}
+
+.ctaSec::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--yellow-tint-md);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.42s var(--ease-expo);
+}
+
+.ctaSec:hover,
+.ctaSec:focus-visible {
+  background: var(--charcoal-deep);
+}
+
+.ctaSec:hover::before,
+.ctaSec:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.ctaSec:focus-visible {
+  outline: 2px solid var(--yellow-core);
+  outline-offset: 2px;
+}
+
+.ctaSec svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  color: color-mix(in srgb, var(--yellow-core) 45%, transparent);
+  transition: color 0.25s var(--ease-expo);
+}
+
+.ctaSec:hover svg,
+.ctaSec:focus-visible svg {
+  color: var(--yellow-core);
+}
+
+.ctaSecTxt {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  white-space: nowrap;
+  transition: color 0.25s var(--ease-expo);
+}
+
+.ctaSec:hover .ctaSecTxt,
+.ctaSec:focus-visible .ctaSecTxt {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 720px) {
+  .ctaBar {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaSec {
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--white) 8%, transparent);
+    justify-content: center;
+    min-height: 56px;
+  }
+
+  .ctaSecTxt {
+    white-space: normal;
+    text-align: center;
+  }
 }
