@@ -2985,6 +2985,164 @@ a.hero__service-item {
   }
 }
 
+/* Home-only refinement: modern, sleeker services composition.
+   Scoped via .svlayer--home-services so no other section/page is affected. */
+#services.svlayer.svlayer--home-services {
+  padding-top: calc(var(--section-v) + 8px);
+  padding-bottom: calc(var(--section-v) + 14px);
+}
+
+#services.svlayer.svlayer--home-services .services-band__top-accent {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--yellow-core) 0%,
+    rgba(242, 183, 5, 0.2) 42%,
+    transparent 100%
+  );
+}
+
+#services.svlayer.svlayer--home-services .svlayer__layers .svlayer__sheet--back {
+  transform: none;
+  opacity: 0.7;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__layers .svlayer__sheet--front {
+  transform: rotate(1.25deg);
+  opacity: 0.85;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__inner {
+  column-gap: clamp(32px, 5vw, 64px);
+  row-gap: clamp(22px, 3vw, 34px);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__copy {
+  padding-top: 2px;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__headline {
+  max-width: 17ch;
+  margin-bottom: clamp(14px, 2vw, 20px);
+  letter-spacing: 0.005em;
+}
+
+#services.svlayer.svlayer--home-services .services__intro {
+  max-width: 58ch;
+  line-height: 1.72;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__scope {
+  margin-top: 16px;
+  gap: 10px;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__scope li {
+  padding: 8px 12px;
+  letter-spacing: 0.08em;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+#services.svlayer.svlayer--home-services .services__kicker {
+  margin-top: 14px;
+  letter-spacing: 0.01em;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__figure-frame {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__figure-bite {
+  width: 3px;
+  background: var(--yellow-core);
+  box-shadow: 0 0 0 1px rgba(242, 183, 5, 0.12);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__deck {
+  gap: 10px;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    border-color 0.28s var(--ease-expo),
+    box-shadow 0.28s var(--ease-expo),
+    background-color 0.28s var(--ease-expo);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-summary {
+  padding: 18px 18px;
+  gap: 12px 16px;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-title-line {
+  font-size: clamp(13px, 1.15vw, 14px);
+  letter-spacing: 0.045em;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-num {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card:hover,
+#services.svlayer.svlayer--home-services .svlayer__card:focus-within {
+  border-color: rgba(242, 183, 5, 0.42);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card[open] {
+  border-color: rgba(242, 183, 5, 0.64);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card[open] .svlayer__card-num {
+  color: var(--yellow-core);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-panel {
+  padding-top: 12px;
+  border-top-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-desc {
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-cta {
+  letter-spacing: 0.1em;
+}
+
+#services.svlayer.svlayer--home-services .svlayer__card-cta:focus-visible {
+  outline: 2px solid var(--yellow-core);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  #services.svlayer.svlayer--home-services .svlayer__inner {
+    row-gap: 18px;
+  }
+
+  #services.svlayer.svlayer--home-services .svlayer__figure {
+    min-height: 300px;
+  }
+
+  #services.svlayer.svlayer--home-services .svlayer__deck {
+    gap: 8px;
+  }
+}
+
+/* Home #services.services-rebuild styles live in glc-services-rebuild.css (imported from services-grid-section). */
+
 /* ═══════════════════════════════════════════
    FEATURED ACCORDION — copy left / expandable photo rail right
    Right column: light card matching section (not a dark “console” skin)
@@ -4521,6 +4679,12 @@ section#coverage,
   padding: var(--section-v) 0;
   position: relative;
   overflow: hidden;
+}
+
+/* Compliance (Rule 1): flat light seam when dark #coverage is immediately followed by another dark close or stats — not a gradient fill */
+section#coverage + section#cta-band,
+section#coverage + section#stats {
+  border-top: 52px solid var(--off-white);
 }
 
 /* Commercial snow — one close landmark: territory → light book strip → dispatch
@@ -9842,7 +10006,7 @@ body.gl-mega-open .gl-mega-backdrop {
   overflow: hidden;
 }
 
-/* Homepage / lean hero: no service rail — photo was still inset 80px, leaving a dead band + scroll parallax looked broken */
+/* When trust row + service rail are omitted, extend photo to section bottom */
 .hero-v2--no-service-rail .hero-v2__photo-panel {
   bottom: 0;
 }
@@ -10164,7 +10328,6 @@ body.gl-mega-open .gl-mega-backdrop {
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* Phone as text link — single primary button; tel is not a second CTA control */
 .hero-v2__phone-inline {
   margin: 10px 0 0;
   font-family: var(--font-body);
@@ -11131,7 +11294,7 @@ body.gl-mega-open .gl-mega-backdrop {
 
 /* ═══ Excavation — SEO research disclosure ═══ */
 .exc-research {
-  background: var(--charcoal);
+  background: var(--off-white);
   padding: var(--section-v) 24px;
   position: relative;
 }
@@ -11139,7 +11302,7 @@ body.gl-mega-open .gl-mega-backdrop {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 10% 0%, rgba(242, 183, 5, 0.06) 0%, transparent 55%);
+  background: radial-gradient(ellipse 60% 50% at 10% 0%, rgba(247, 197, 32, 0.08) 0%, transparent 55%);
   pointer-events: none;
 }
 .exc-research__inner {
@@ -11153,17 +11316,18 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-research .gl-h2.exc-research__heading,
 .exc-research__heading {
-  color: var(--white);
+  color: var(--charcoal-deep);
   margin: 12px 0 16px;
 }
 .exc-research__hint {
   margin: 0;
   max-width: 560px;
+  color: rgba(30, 28, 26, 0.72);
 }
 .exc-research__details {
   margin-top: 36px;
-  border: 1px solid var(--charcoal-mid);
-  background: var(--charcoal-deep);
+  border: 1px solid rgba(46, 43, 40, 0.22);
+  background: var(--white);
 }
 .exc-research__summary {
   display: flex;
@@ -11179,7 +11343,7 @@ body.gl-mega-open .gl-mega-backdrop {
   display: none;
 }
 .exc-research__summary:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(46, 43, 40, 0.05);
 }
 .exc-research__summary-label {
   font-family: var(--font-display);
@@ -11192,8 +11356,8 @@ body.gl-mega-open .gl-mega-backdrop {
 .exc-research__summary-icon {
   width: 10px;
   height: 10px;
-  border-right: 2px solid var(--white);
-  border-bottom: 2px solid var(--white);
+  border-right: 2px solid var(--charcoal-deep);
+  border-bottom: 2px solid var(--charcoal-deep);
   transform: rotate(45deg);
   opacity: 0.7;
   transition: transform 0.45s var(--ease-expo);
@@ -11203,7 +11367,7 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-research__panel {
   padding: 8px 24px 32px;
-  border-top: 1px solid var(--charcoal-mid);
+  border-top: 1px solid rgba(46, 43, 40, 0.18);
 }
 .exc-research__columns {
   display: grid;
@@ -11217,7 +11381,7 @@ body.gl-mega-open .gl-mega-backdrop {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--white);
+  color: var(--charcoal-deep);
   margin: 0 0 14px;
 }
 .exc-research__list {
@@ -11227,11 +11391,11 @@ body.gl-mega-open .gl-mega-backdrop {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(30, 28, 26, 0.72);
 }
 .exc-research__list li {
   padding: 6px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(46, 43, 40, 0.12);
 }
 .exc-research__list--dense li {
   padding: 5px 0;
@@ -11250,7 +11414,7 @@ body.gl-mega-open .gl-mega-backdrop {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(30, 28, 26, 0.78);
 }
 .exc-research__geo-lines li {
   padding: 10px 0;
