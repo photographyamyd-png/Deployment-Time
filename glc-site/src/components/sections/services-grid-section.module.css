@@ -116,21 +116,23 @@
   background-size: 180px;
 }
 
-/*
-  Feature stack (inside .featureClip / parallax):
-  z1 photo · z2 blueprint grid · z3 frame · z4 yellow floor + fore-corner
-  Fore index sits above clipped media, below floating read card.
-*/
-.featureShell {
+/* Split column — feature media (parallax layers unchanged) */
+.splitMedia {
   position: relative;
   z-index: 3;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-bottom: clamp(-48px, -6vw, -24px);
+  min-width: 0;
 }
 
-/* Fore-layer (inside .featureClip, above parallax floor): yellow survey corner */
+.splitMediaInner {
+  position: relative;
+  height: clamp(260px, 36vw, 520px);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-card);
+  isolation: isolate;
+}
+
+/* Fore-layer (above parallax floor): yellow survey corner */
 .featureForeCorner {
   position: absolute;
   left: 0;
@@ -149,13 +151,13 @@
   );
 }
 
-.featureForeIndex {
+.splitMediaIndex {
   position: absolute;
-  left: clamp(12px, 3vw, 36px);
-  bottom: clamp(10px, 2vw, 28px);
+  left: clamp(12px, 3vw, 28px);
+  bottom: clamp(10px, 2vw, 24px);
   z-index: 6;
   font-family: var(--font-display);
-  font-size: clamp(52px, 12vw, 120px);
+  font-size: clamp(40px, 8vw, 96px);
   font-weight: 700;
   line-height: 0.85;
   letter-spacing: -0.04em;
@@ -163,16 +165,6 @@
   text-shadow: 0 0 1px color-mix(in srgb, var(--charcoal-deep) 55%, transparent);
   pointer-events: none;
   user-select: none;
-}
-
-.featureClip {
-  position: relative;
-  height: clamp(300px, 40vw, 600px);
-  overflow: hidden;
-  clip-path: polygon(0 15%, 100% 0%, 100% 85%, 0% 100%);
-  border-bottom: 3px solid var(--charcoal-deep);
-  box-shadow: var(--shadow-heavy);
-  isolation: isolate;
 }
 
 .parallaxRoot {
@@ -277,155 +269,83 @@
   );
 }
 
-/* READ — asymmetric split: left rail + tiles | right floating card overlapping feature */
+/* READ — top band (eyebrow → H2 → body) + split (numbered specs | media) + accordion grid */
 .body {
   position: relative;
   z-index: 8;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 88px) clamp(20px, 4vw, 48px) var(--section-v);
+  padding: var(--section-v) clamp(20px, 4vw, 48px) var(--section-v);
 }
 
-.overhaulMain {
+.topBand {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: var(--container-max);
+  margin: 0 auto clamp(28px, 4vw, 44px);
+}
+
+.topBandHeader {
+  margin: 0 auto;
+  max-width: 52rem;
+}
+
+.splitMain {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: 0;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
+  margin-bottom: clamp(36px, 5vw, 56px);
 }
 
-.overhaulRight {
-  grid-column: 2;
-  grid-row: 1;
-  min-width: 0;
-}
-
-.overhaulLeft {
-  grid-column: 1;
-  grid-row: 1;
+.splitCopy {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 2.5vw, 28px);
-  padding-right: clamp(12px, 2vw, 28px);
+  justify-content: center;
 }
 
-.floatingReadCard {
-  position: relative;
-  z-index: 12;
-  overflow: visible;
-  margin-top: clamp(-120px, -16vw, -56px);
-  margin-left: clamp(-8px, -1.5vw, 0px);
-  margin-bottom: clamp(8px, 1.5vw, 16px);
-}
-
-@media (min-width: 961px) {
-  .floatingReadCard {
-    margin-top: clamp(-160px, -20vw, -100px);
-    margin-left: -18%;
-  }
-}
-
-.asideTech {
-  position: relative;
-  min-height: 180px;
-  padding: clamp(12px, 2vw, 20px) 0;
+.specNumberedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   border: 1px solid var(--gray-200);
-  background: color-mix(in srgb, var(--white) 92%, transparent);
+  background: var(--white);
   box-shadow: var(--shadow-sm);
 }
 
-.asideTech::before,
-.asideTech::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--yellow-core);
-  border-style: solid;
-  pointer-events: none;
+.specNumberedItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(14px, 2.5vw, 22px);
+  align-items: start;
+  padding: clamp(16px, 2.4vw, 22px) clamp(18px, 2.5vw, 26px);
+  border-top: 1px solid var(--gray-200);
 }
 
-.asideTech::before {
-  top: 10px;
-  left: 10px;
-  border-width: 2px 0 0 2px;
+.specNumberedItem:first-child {
+  border-top: none;
 }
 
-.asideTech::after {
-  bottom: 10px;
-  right: 10px;
-  border-width: 0 2px 2px 0;
-}
-
-.asideVert {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  text-align: center;
+.specOrdinal {
   font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--text-400);
-  margin: 0 auto;
-  padding: 8px 0;
-}
-
-.asideNum {
-  display: block;
-  margin-top: 14px;
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(22px, 2.5vw, 32px);
   font-weight: 700;
   line-height: 1;
-  color: color-mix(in srgb, var(--charcoal-deep) 22%, transparent);
+  letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--yellow-core) 88%, var(--charcoal-deep));
+  padding-top: 2px;
 }
 
-.headerGhostBp {
-  position: absolute;
-  left: -22%;
-  top: -4%;
-  right: auto;
-  width: min(280px, 75%);
-  height: auto;
-  z-index: 0;
-  color: var(--charcoal-mid);
-  opacity: 0.38;
-  pointer-events: none;
-  transform: rotate(-11deg);
-}
-
-/* Floating read plate — glass + bold hard yellow step (spec: ~50px offset at large widths) */
-.header {
-  position: relative;
-  z-index: 1;
-  overflow: visible;
-  background: color-mix(in srgb, var(--white) 88%, transparent);
-  backdrop-filter: blur(14px) brightness(1.02);
-  -webkit-backdrop-filter: blur(14px) brightness(1.02);
-  padding: clamp(28px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
-  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
-  border-left: 3px solid var(--yellow-core);
-  box-shadow:
-    clamp(18px, 3.2vw, 50px) clamp(18px, 3.2vw, 50px) 0 0 var(--yellow-core),
-    var(--shadow-elevate);
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(52%, 240px);
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in srgb, var(--yellow-core) 65%, transparent) 100%
-  );
-  pointer-events: none;
-  z-index: 2;
+.specNumberedBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
 }
 
 .heading {
@@ -455,20 +375,6 @@
   color: var(--text-400);
 }
 
-.technicalSpecs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 2vw, 18px) clamp(16px, 3vw, 28px);
-  margin: clamp(18px, 2.5vw, 26px) 0 0;
-  padding: 0;
-}
-
-.specItem {
-  margin: 0;
-  padding: clamp(10px, 1.5vw, 14px) 0 0;
-  border-top: 1px solid var(--gray-200);
-}
-
 .specLabel {
   font-family: var(--font-body);
   font-size: 10px;
@@ -476,7 +382,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-400);
-  margin: 0 0 6px;
+  margin: 0;
 }
 
 .specValue {
@@ -491,7 +397,7 @@
 }
 
 .microLede {
-  margin: clamp(16px, 2vw, 22px) 0 0;
+  margin: clamp(16px, 2vw, 22px) auto 0;
   max-width: 48ch;
   font-family: var(--font-body);
   font-size: clamp(13px, 1.25vw, 15px);
@@ -500,50 +406,20 @@
   color: var(--text-500);
 }
 
-.gridRail {
-  display: grid;
-  grid-template-columns: 5px 1fr;
-  gap: clamp(16px, 2.5vw, 28px);
-  align-items: start;
-  position: relative;
-  z-index: 10;
-  flex: 1;
+.microLedeSecondary {
+  margin: clamp(12px, 1.8vw, 18px) auto 0;
+  max-width: 48ch;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.25vw, 15px);
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-500);
 }
 
-.rail {
-  min-height: 140px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    var(--yellow-core) 0%,
-    color-mix(in srgb, var(--yellow-core) 14%, transparent) 52%,
-    color-mix(in srgb, var(--charcoal-deep) 10%, transparent) 100%
-  );
-  box-shadow: inset -1px 0 0 color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
-}
-
-/* Expandable service rows — compact hero strip left, accordion right */
-.expandListShell {
+.accordionRegion {
   position: relative;
+  z-index: 4;
   min-width: 0;
-  z-index: 1;
-}
-
-.glWatermark {
-  position: absolute;
-  left: clamp(-48px, -6vw, -12px);
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-display);
-  font-size: clamp(100px, 24vw, 200px);
-  font-weight: 700;
-  letter-spacing: -0.07em;
-  line-height: 1;
-  color: var(--charcoal-deep);
-  opacity: 0.035;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
 }
 
 .expandList {
@@ -775,12 +651,6 @@
     max-height: 120px;
     aspect-ratio: 16 / 10;
   }
-
-  .glWatermark {
-    font-size: clamp(64px, 36vw, 110px);
-    left: -20px;
-    opacity: 0.028;
-  }
 }
 
 /* CTA — hard-offset depth + glass secondary */
@@ -969,64 +839,31 @@
 }
 
 @media (max-width: 960px) {
-  .overhaulMain {
+  .splitMain {
     grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
   }
 
-  .overhaulRight,
-  .overhaulLeft {
-    grid-column: 1;
-    grid-row: auto;
+  /* Specs → media: stacked reading order */
+  .splitCopy {
+    order: 1;
   }
 
-  .floatingReadCard {
-    margin-top: clamp(-64px, -10vw, -28px);
-    margin-left: 0;
-  }
-
-  .overhaulMain {
-    gap: clamp(12px, 3vw, 24px);
-  }
-
-  .asideTech {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 16px;
-    align-items: center;
-    min-height: 0;
-    padding: 16px 20px;
-  }
-
-  .asideVert {
-    writing-mode: horizontal-tb;
-    transform: none;
-    margin: 0;
-    text-align: left;
-  }
-
-  .asideNum {
-    margin-top: 0;
-    text-align: right;
+  .splitMedia {
+    order: 2;
   }
 }
 
 @media (max-width: 768px) {
-  .gridRail {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  .topBand {
+    text-align: left;
   }
 
-  .rail {
-    min-height: 4px;
-    height: 4px;
-    width: 100%;
-    background: linear-gradient(
-      90deg,
-      var(--yellow-core) 0%,
-      color-mix(in srgb, var(--yellow-core) 22%, transparent) 55%,
-      transparent 100%
-    );
-    box-shadow: none;
+  .microLede,
+  .microLedeSecondary {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
   }
 
   .ctaMain {

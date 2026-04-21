@@ -8,12 +8,14 @@ import styles from "@/components/sections/services-grid-section.module.css";
 type Props = {
   src: string;
   alt: string;
+  /** Passed to next/image `sizes` when the hero sits in a split column. */
+  imageSizes?: string;
 };
 
 /**
  * Pointer-driven layer drift (slow bg / faster overlay) — respects reduced motion via CSS.
  */
-export function ServicesFeatureParallax({ src, alt }: Props) {
+export function ServicesFeatureParallax({ src, alt, imageSizes = "100vw" }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const onPointerMove = useCallback((e: ReactPointerEvent<HTMLDivElement>) => {
@@ -42,7 +44,7 @@ export function ServicesFeatureParallax({ src, alt }: Props) {
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
     >
-      <Image src={src} alt={alt} fill className={styles.parallaxImg} sizes="100vw" priority={false} />
+      <Image src={src} alt={alt} fill className={styles.parallaxImg} sizes={imageSizes} priority={false} />
       <div className={styles.parallaxScrim} aria-hidden />
       <div className={styles.parallaxBlueprint} aria-hidden />
       <div className={styles.parallaxFrame} aria-hidden />
