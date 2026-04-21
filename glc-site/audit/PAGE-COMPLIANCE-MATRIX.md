@@ -22,6 +22,8 @@
 - Do **not** reorder sections and rewrite copy in the **same** change.
 - Never alter **`--yellow-core`** away from `#F2B705`.
 
+**Dev preview (canonical):** `http://127.0.0.1:3040/` — prefer over `localhost` on Windows; recovery scripts in [`package.json`](../package.json). Frozen copy + links also on **`/sandbox/`** → [`#sandbox-compliance-reference`](../src/app/sandbox/page.tsx).
+
 **Deliverable:** Route-by-route table (this file): each major `<section>` / band in **DOM order** with **D/L** and violations; CTA inventory (primary vs secondary).
 
 **Suggested batch:** audit-only → fix **one** unit → browser → commit → optional **CSS-only** commit; then next route / `service-page-view.tsx` alone for template fixes.
@@ -32,9 +34,9 @@
 
 | URL path | App entry | Compliance notes (initial pass) |
 |----------|-----------|----------------------------------|
-| `/` | [`src/app/page.tsx`](../src/app/page.tsx) + [`home-section-order.ts`](../src/lib/home-section-order.ts) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA (aligned 2026-04-21):** **`contactStrip` omitted from live** [`HOME_SECTION_ORDER`](../src/lib/home-section-order.ts) — one closing conversion zone = **`ctaBand`** (`ContactStripSection` data stays in [`home.json`](../src/content/pages/home.json) for `getHomeSectionProps` on company, etc.). **Tone:** see §5 — **OPEN:** `#coverage` (D) → `#cta-band` (D) until `fix-home-alternation` (reorder **or** CSS-only commit, never mixed). Known stacks: hero→marquee D→D; services→why L→L; process→parallax D→D. |
+| `/` | [`src/app/page.tsx`](../src/app/page.tsx) + [`home-section-order.ts`](../src/lib/home-section-order.ts) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA:** `contactStrip` omitted from live order; **`ctaBand`** only at end; strip JSON kept for `getHomeSectionProps`. **Tone (2026-04-21):** marquee `bandTone: light` in [`home.json`](../src/content/pages/home.json) (hero→marquee D→L). **`#coverage`→`#cta-band`:** light seam via `glc-base.css` (`border-top` off-white, not mixed with page commits). **Still OPEN (browser):** services→why L→L; process→parallax D→D. |
 | `/about/` | [`src/app/about/page.tsx`](../src/app/about/page.tsx) → [`AboutPageView`](../src/components/pages/about-page-view.tsx) | **CTA (code audit):** `btn-primary` reuses `about.cta` on **split** + **audience** (2× primary same label/href); **split** + **media** use `about.cta` (primary + `btn-ghost`). **`ParallaxWhiteFrameBand`** `parallax.cta` (home JSON). **`CtaBandSection`** tail. **Dom order:** `MiniPageHero` (D) → `about-pg-split` → `about-pg-media` → optional `about-pg-audience` → parallax → `ctaBand`. **Tone:** each section’s ground — browser pass required. |
-| `/company/` | [`src/app/company/page.tsx`](../src/app/company/page.tsx) | **CTA:** dispatch block + `ContactStripSection` + `CtaBandSection`. |
+| `/company/` | [`src/app/company/page.tsx`](../src/app/company/page.tsx) | **CTA (2026-04-21):** `ContactStripSection` **removed** — dispatch (`btn-primary` phone + `btn-ghost` form) + **`CtaBandSection`** only. **Tone:** browser pass on trio + dispatch bands. |
 | `/contact/` | [`src/app/contact/page.tsx`](../src/app/contact/page.tsx) → `ContactPageView` | Form-first; confirm single primary quote CTA vs header. |
 | `/coverage/` | [`src/app/coverage/page.tsx`](../src/app/coverage/page.tsx) | **CTA:** `ParallaxWhiteFrameBand` CTA + `CtaBandSection`; **tone:** audit figure band + `CoverageSection` + parallax sequence. |
 | `/process/` | [`src/app/process/page.tsx`](../src/app/process/page.tsx) | Ends with `CtaBandSection`; check mid-page CTAs (`ProcessSection` floor CTA, etc.). |
@@ -103,7 +105,7 @@ Sources: [`home-section-order.ts`](../src/lib/home-section-order.ts), [`section-
 | # | Block | Tone (approx.) | Notes |
 |---|--------|----------------|--------|
 | 1 | `hero` | D (`--charcoal-deep`, `glc-base.css` ~9819) | → |
-| 2 | `marquee` | D (near-black band ~1795) | **D→D** vs hero under strict reading |
+| 2 | `marquee` | L (`bandTone: light` → `.marquee-band--light`) | OK vs hero after JSON change |
 | 3 | `about` | L (`#about` ~1851) | OK after marquee |
 | 4 | `stats` | D (`#stats.st3` ~3902) | OK |
 | 5 | `services` | L (off-white / layered; see `glc-services-rebuild.css` if loaded) | OK |
@@ -112,7 +114,7 @@ Sources: [`home-section-order.ts`](../src/lib/home-section-order.ts), [`section-
 | 8 | `parallaxBand` | D (dark scrim ~11656; `tone: dark` in JSON) | **D→D** vs process |
 | 9 | `testimonials` | L (`#testimonials` ~4958) | OK |
 | 10 | `coverage` | D (`#coverage` ~4675) | OK |
-| 11 | `ctaBand` | D (`section.cta3` ~5586) | **D→D** vs `#coverage` — **fix in alternation-only commit** |
+| 11 | `ctaBand` | D (`section.cta3` ~5586) | **Seam:** `section#coverage + section#cta-band` off-white `border-top` in `glc-base.css` (adjacent-dark mitigation) |
 
 `contactStrip` props remain in `home.json` for other pages only.
 
