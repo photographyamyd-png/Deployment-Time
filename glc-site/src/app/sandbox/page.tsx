@@ -44,7 +44,9 @@ export const metadata: Metadata = {
 
 export default function SandboxPage() {
   return (
-    <main id="main-content" className="sandbox">
+    <main id="main-content">
+      {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
+      <div className="sandbox">
       {/* 1 — Hero */}
       <section className="sandbox__s1 dse" aria-labelledby="sandbox-hero-heading">
         <div className="dse-rail" aria-hidden />
@@ -369,6 +371,7 @@ export default function SandboxPage() {
           </p>
         </div>
       </section>
+      </div>
     </main>
   );
 }
