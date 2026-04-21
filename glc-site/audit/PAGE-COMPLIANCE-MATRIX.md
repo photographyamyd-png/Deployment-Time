@@ -10,7 +10,7 @@
 
 | URL path | App entry | Compliance notes (initial pass) |
 |----------|-----------|----------------------------------|
-| `/` | [`src/app/page.tsx`](../src/app/page.tsx) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA:** `contactStrip` + `ctaBand` both present ([`HOME_SECTION_ORDER`](../src/app/page.tsx)). **Tone:** hero dark + marquee dark; services light + why off-white; process dark + parallax dark — see plan Rule 1 table. |
+| `/` | [`src/app/page.tsx`](../src/app/page.tsx) (`orderHomeSections` from [`home-section-order.ts`](../src/lib/home-section-order.ts)) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA (2026-04-21):** `ctaBand` **omitted from live** [`HOME_SECTION_ORDER`](../src/lib/home-section-order.ts) — single terminal band is `contactStrip` (`btn-primary` → `/contact/`). `ctaBand` block **remains in** [`home.json`](../src/content/pages/home.json) for `getHomeSectionProps('ctaBand')` on company, services, etc. **Tradeoff:** homepage no longer renders the dual-panel `#cta` close from master sequence. **Tone:** see §5 — hero→marquee both read dark; `services` + `why` both off-white/light; `process` + `parallaxBand` both dark (`home.json` parallax `tone: dark`). |
 | `/about/` | [`src/app/about/page.tsx`](../src/app/about/page.tsx) → [`AboutPageView`](../src/components/pages/about-page-view.tsx) | **CTA:** multiple `about.cta` + parallax CTA + `CtaBandSection`. **Tone:** verify each band in browser. |
 | `/company/` | [`src/app/company/page.tsx`](../src/app/company/page.tsx) | **CTA:** dispatch block + `ContactStripSection` + `CtaBandSection`. |
 | `/contact/` | [`src/app/contact/page.tsx`](../src/app/contact/page.tsx) → `ContactPageView` | Form-first; confirm single primary quote CTA vs header. |
@@ -72,7 +72,33 @@ Rendered by [`src/app/locations/[slug]/page.tsx`](../src/app/locations/[slug]/pa
 
 ---
 
-## 5. Execution order (from plan; do not batch)
+## 5. Homepage — ordered stack (`HOME_SECTION_ORDER`, code-derived tone)
+
+Sources: [`home-section-order.ts`](../src/lib/home-section-order.ts), [`section-renderer.tsx`](../src/components/sections/section-renderer.tsx), [`glc-base.css`](../src/styles/glc-base.css) (`#hero`, `.marquee-band`, `#about`, `#stats.st3`, `#services.svlayer`, `#why`, `#process`, `#testimonials`, `#coverage`, `#contact-strip`, `#cta-band`). **D** = charcoal family / near-black; **L** = white / off-white / gray-100.
+
+| # | Block | Tone | Adjacent note |
+|---|--------|------|----------------|
+| 1 | `hero` | D (`hero-v2`) | → |
+| 2 | `marquee` | D (`.marquee-band` rgba ~charcoal) | **D→D** vs hero — thin rail; confirm in browser |
+| 3 | `about` | L (`#about` white) | OK |
+| 4 | `stats` | D (`#stats.st3`) | OK |
+| 5 | `services` | L (`--off-white`) | OK |
+| 6 | `why` | L (`--off-white` `.why-v3-shell`) | **L→L** vs services — verify seam reads as distinct |
+| 7 | `process` | D (`#process` `--charcoal-deep`) | OK |
+| 8 | `parallaxBand` | D (`tone: dark` in JSON) | **D→D** vs process |
+| 9 | `testimonials` | L (`#testimonials`) | OK |
+| 10 | `coverage` | D (`#coverage` `--charcoal`) | OK |
+| 11 | `contactStrip` | L (`#contact-strip` white) | Terminal section; **no** second `ctaBand` on `/` |
+
+---
+
+## 6. `ServicePageView` — DOM tail (shared hubs)
+
+From [`service-page-view.tsx`](../src/components/services/service-page-view.tsx): after FAQ + related cards, **`CoverageSection`** → **`StatsBar`** (home `stats` props) → **`ContactBand`** (`ctaBand` / `ContactBand`, `sectionId="request-site-visit"`). **Tone:** `#coverage` dark + stats bar dark (`#stats.st3` pattern on hub) → **D→D risk**; then dark CTA band — **CTA:** hub overview / lifecycle / parallax / FAQ may each carry buttons; tail adds **ContactBand** — count labels in browser per slug.
+
+---
+
+## 7. Execution order (from plan; do not batch)
 
 1. Fill **Tone** and **CTA** columns per row using browser + DevTools (one route per session when fixing).
 2. Before each production edit: append **snapshot** to `/sandbox/` (sections + copy), per plan.
@@ -81,9 +107,9 @@ Rendered by [`src/app/locations/[slug]/page.tsx`](../src/app/locations/[slug]/pa
 
 ---
 
-## 6. Reference docs
+## 8. Reference docs
 
 - Master plan: [`.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md`](../../.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md) (repo-relative from glc-site: `../../.cursor/plans/...`)
-- Prior audit notes: [`glc-site/audit/routes-matrix.md`](routes-matrix.md)
+- Prior audit notes: [`routes-matrix.md`](routes-matrix.md)
 
-_Last updated: audit matrix scaffold; per-route Tone/CTA cells to be filled during walkthrough._
+_Last updated: 2026-04-21 — homepage CTA dedupe executed (`ctaBand` dropped from home order only); §5–6 stack tables added; static-route table still needs per-URL browser confirmation for CTAs beyond `/`. **Next:** `fix-home-alternation` (marquee light variant, process/parallax, services/why); `fix-company-cta`; `fix-service-tail`._

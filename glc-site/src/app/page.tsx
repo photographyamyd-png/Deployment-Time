@@ -1,4 +1,4 @@
-import type { HomePageContent, HomeSectionBlock } from "@/content/types";
+import type { HomePageContent } from "@/content/types";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
 import type { NavigationConfig } from "@/content/types";
@@ -7,6 +7,7 @@ import site from "@/content/site.json";
 import type { SiteConfig } from "@/content/types";
 import { canonicalUrl, pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
+import { orderHomeSections } from "@/lib/home-section-order";
 import { SectionRenderer } from "@/components/sections/section-renderer";
 
 const homeContent = home as HomePageContent;
@@ -35,26 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** GLC homepage sequence: hero → yellow marquee → alternating sections (.cursorrules Part 6). */
-const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
-  "hero",
-  "marquee",
-  "about",
-  "stats",
-  "services",
-  "why",
-  "process",
-  "parallaxBand",
-  "testimonials",
-  "coverage",
-  "contactStrip",
-  "ctaBand",
-];
-
-function orderHomeSections(sections: HomePageContent["sections"]): HomePageContent["sections"] {
-  const byType = new Map(sections.map((s) => [s.type, s]));
-  return HOME_SECTION_ORDER.map((t) => byType.get(t)).filter(Boolean) as HomePageContent["sections"];
-}
+/** Section order: `orderHomeSections` from `@/lib/home-section-order` — homepage omits `ctaBand` (see audit matrix). */
 
 export default function HomePage() {
   const sections = orderHomeSections(homeContent.sections);

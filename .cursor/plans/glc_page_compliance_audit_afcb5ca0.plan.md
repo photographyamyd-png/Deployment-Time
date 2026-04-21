@@ -59,7 +59,7 @@ isProject: false
 | 4 | Why | Off-white | |
 | 5 | Process | Dark | |
 | 6 | Parallax | Dark | **Adjacent dark** with process if both charcoal family |
-| … | CTA bands | | **Duplicate closers:** `contactStrip` + `ctaBand` both in [`HOME_SECTION_ORDER`](../../glc-site/src/lib/home-section-order.ts) / [`page.tsx`](../../glc-site/src/app/page.tsx) — fix in dedicated session |
+| … | CTA bands | | **2026-04-21:** Homepage omits `ctaBand` in [`HOME_SECTION_ORDER`](../../glc-site/src/lib/home-section-order.ts) — terminal band is `contactStrip` only; `ctaBand` props remain in `home.json` for other pages. **Tradeoff:** no dual-panel `#cta` on `/` until alternation strategy allows both. |
 
 Exact DOM and CSS classes must be confirmed in browser; the matrix row for `/` is the source of truth once filled.
 
