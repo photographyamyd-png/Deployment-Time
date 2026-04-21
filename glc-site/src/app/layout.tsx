@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   Oswald,
   Plus_Jakarta_Sans,
@@ -62,9 +63,24 @@ export default function RootLayout({
       <body>
         <JsonLdLocalBusiness site={schemaSite} />
         <JsonLdWebSite site={schemaSite} />
-        <HashScrollHandler />
-        <GlRevealObserver />
-        <Header navigation={navData} />
+        <Suspense fallback={null}>
+          <HashScrollHandler />
+        </Suspense>
+        <Suspense fallback={null}>
+          <GlRevealObserver />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div
+              aria-hidden
+              style={{
+                height: "var(--header-total-h, 104px)",
+              }}
+            />
+          }
+        >
+          <Header navigation={navData} />
+        </Suspense>
         {children}
         <Footer site={siteData} navigation={navData} />
       </body>
