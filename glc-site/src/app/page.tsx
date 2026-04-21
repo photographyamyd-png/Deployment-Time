@@ -60,7 +60,7 @@ export default function HomePage() {
         sections={sections}
         megaCards={navData.megaMenu.cards}
         servicesBandCta={servicesBandCta}
-        servicesEditorialSurface
+        servicesReferenceSplit
       />
     </main>
   );

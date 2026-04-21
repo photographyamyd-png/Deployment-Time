@@ -19,6 +19,8 @@ type Props = {
   servicesBandCta?: ServicesBandCta;
   /** Homepage-only: dark editorial surface for `#services` (see ServicesGridSection). */
   servicesEditorialSurface?: boolean;
+  /** Homepage-only: “Materials” split — copy + 3-up preview strip, remaining lines in accordion. */
+  servicesReferenceSplit?: boolean;
 };
 
 export function SectionRenderer({
@@ -26,6 +28,7 @@ export function SectionRenderer({
   megaCards,
   servicesBandCta,
   servicesEditorialSurface,
+  servicesReferenceSplit,
 }: Props) {
   return (
     <>
@@ -57,6 +60,7 @@ export function SectionRenderer({
                 cards={megaCards}
                 servicesBandCta={servicesBandCta}
                 editorialSurface={servicesEditorialSurface}
+                referenceSplitLayout={servicesReferenceSplit}
               />
             );
           case "stats":

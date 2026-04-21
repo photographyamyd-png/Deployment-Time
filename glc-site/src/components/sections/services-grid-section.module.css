@@ -422,6 +422,212 @@
   min-width: 0;
 }
 
+/* Homepage “Materials” split — narrative + specs left, 3-up preview right */
+.referenceSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+  margin-bottom: clamp(8px, 2vw, 16px);
+}
+
+.referenceNarrative {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.referenceNarrative .eyebrow {
+  justify-content: flex-start;
+}
+
+.referenceNarrative .microLede,
+.referenceNarrative .microLedeSecondary {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 42rem;
+  text-align: left;
+}
+
+.referenceNarrative .specNumberedList {
+  margin-top: clamp(20px, 3vw, 28px);
+}
+
+.referenceShowcase {
+  min-width: 0;
+}
+
+.previewStrip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-grid);
+  align-items: stretch;
+}
+
+.previewStripItem {
+  min-width: 0;
+}
+
+.previewCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 260px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition:
+    border-color 0.35s var(--ease-expo),
+    box-shadow 0.35s var(--ease-expo);
+  position: relative;
+}
+
+.previewCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.5s var(--ease-expo);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.previewCard:hover::before,
+.previewCard:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.previewCard:hover,
+.previewCard:focus-visible {
+  border-color: color-mix(in srgb, var(--yellow-core) 45%, var(--gray-200));
+  box-shadow: var(--shadow-card);
+}
+
+.previewCardMedia {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  max-height: clamp(140px, 18vw, 200px);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--gray-200);
+  overflow: hidden;
+  background: var(--gray-100);
+}
+
+.previewCardImg {
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.previewCardNum {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+  user-select: none;
+}
+
+.previewCardBody {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(14px, 2vw, 20px);
+  gap: 10px;
+}
+
+.previewCardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(11px, 1.05vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--charcoal-deep);
+}
+
+.previewCard:hover .previewCardTitle,
+.previewCard:focus-visible .previewCardTitle {
+  color: var(--charcoal-deep);
+}
+
+.previewCardCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+  transition: gap 0.25s var(--ease-expo);
+}
+
+.previewCard:hover .previewCardCta,
+.previewCard:focus-visible .previewCardCta {
+  gap: 12px;
+}
+
+.previewCard:focus-visible {
+  outline: 2px solid var(--yellow-core);
+  outline-offset: 2px;
+}
+
+.referenceFooterCtas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-top: clamp(20px, 3vw, 32px);
+  border-top: 1px solid var(--gray-200);
+}
+
+@media (max-width: 960px) {
+  .referenceSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .previewStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 520px) and (max-width: 960px) {
+  .previewStrip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .referenceFooterCtas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .referenceFooterCtas :global(.gl-btn) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .expandList {
   list-style: none;
   margin: 0;
