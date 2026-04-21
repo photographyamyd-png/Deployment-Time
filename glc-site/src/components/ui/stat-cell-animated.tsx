@@ -36,8 +36,14 @@ export function StatCellAnimated({
       setDisplay(target);
       el.classList.add("visible");
       el.classList.add("stat-cell--done");
-      return;
+      return () => {
+        el.classList.remove("visible", "stat-cell--done");
+      };
     }
+
+    ranRef.current = false;
+    setDisplay(0);
+    el.classList.remove("visible", "stat-cell--done");
 
     const obs = new IntersectionObserver(
       (entries) => {
@@ -69,6 +75,7 @@ export function StatCellAnimated({
     return () => {
       obs.disconnect();
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     };
   }, [target]);
 

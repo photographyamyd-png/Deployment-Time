@@ -20,6 +20,10 @@ export function HomeServicesPhotoTile({ card, delayClass }: Props) {
   const delay = delayClass ? ` ${delayClass}` : "";
   const src = card.photoSrc?.trim() || FALLBACK_PHOTO;
   const alt = [card.title, card.description].filter(Boolean).join(" — ");
+  const titleLines =
+    Array.isArray(card.gridTitle) && card.gridTitle.length > 0
+      ? card.gridTitle
+      : [card.title];
 
   return (
     <SmartLink
@@ -42,7 +46,7 @@ export function HomeServicesPhotoTile({ card, delayClass }: Props) {
       </div>
       <div className="home-services-photo__card-body">
         <h3 className="home-services-photo__card-title">
-          {card.gridTitle.map((line, i) => (
+          {titleLines.map((line, i) => (
             <span key={`${card.slug}-t-${i}`}>
               {i > 0 ? <br /> : null}
               {line}
@@ -56,7 +60,9 @@ export function HomeServicesPhotoTile({ card, delayClass }: Props) {
             ))}
           </ul>
         ) : null}
-        <p className="home-services-photo__card-desc">{card.gridDescription}</p>
+        <p className="home-services-photo__card-desc">
+          {card.gridDescription ?? ""}
+        </p>
         <span className="home-services-photo__card-cta">
           View service
           <IconArrowSmall />

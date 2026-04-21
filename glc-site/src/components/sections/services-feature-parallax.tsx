@@ -21,8 +21,11 @@ export function ServicesFeatureParallax({ src, alt }: Props) {
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
+    const w = r.width;
+    const h = r.height;
+    if (w <= 0 || h <= 0) return;
+    const x = (e.clientX - r.left) / w - 0.5;
+    const y = (e.clientY - r.top) / h - 0.5;
     el.style.setProperty("--svc-px", x.toFixed(5));
     el.style.setProperty("--svc-py", y.toFixed(5));
   }, []);

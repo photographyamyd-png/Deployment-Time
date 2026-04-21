@@ -16,6 +16,10 @@ type Props = {
 export function ServicesGridCard({ card, delayClass }: Props) {
   const ref = useReveal<HTMLAnchorElement>();
   const delay = delayClass ? ` ${delayClass}` : "";
+  const titleLines =
+    Array.isArray(card.gridTitle) && card.gridTitle.length > 0
+      ? card.gridTitle
+      : [card.title];
   return (
     <SmartLink
       href={ROUTES.service(card.slug)}
@@ -28,14 +32,14 @@ export function ServicesGridCard({ card, delayClass }: Props) {
       </div>
       <ServiceCardIcon slug={card.slug} />
       <h3 className="service-card__title">
-        {card.gridTitle.map((line, i) => (
+        {titleLines.map((line, i) => (
           <span key={`${card.slug}-${i}`}>
             {i > 0 ? <br /> : null}
             {line}
           </span>
         ))}
       </h3>
-      <p className="service-card__desc">{card.gridDescription}</p>
+      <p className="service-card__desc">{card.gridDescription ?? ""}</p>
       <span className="service-card__link">
         Learn More
         <IconArrowSmall />
