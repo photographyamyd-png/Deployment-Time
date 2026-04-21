@@ -97,11 +97,19 @@ export type AboutProps = {
   whoWeServe?: { title: string; intro: string; chips: string[] };
 };
 
+/** Passed from homepage only — quote label matches hero `primaryCta`; hub omits this prop. */
+export type ServicesBandCta = {
+  quoteCta: { label: string; href: string };
+  servicesViewAll: { label: string; href: string };
+};
+
 export type ServicesSectionProps = {
   eyebrow: string;
   headingLine1: string;
   headingLine2: string;
   intro: string;
+  /** When set, preferred over `intro` for the compact services showcase lede. */
+  tagline?: string;
 };
 
 export type StatCellProps = {

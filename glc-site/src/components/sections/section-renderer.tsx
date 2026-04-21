@@ -1,4 +1,4 @@
-import type { HomeSectionBlock, MegaMenuCard } from "@/content/types";
+import type { HomeSectionBlock, MegaMenuCard, ServicesBandCta } from "@/content/types";
 import { HeroSection } from "@/components/sections/hero-section";
 import { MarqueeBand } from "@/components/sections/marquee-band";
 import { FeaturedAccordion } from "@/components/sections/featured-accordion";
@@ -16,9 +16,10 @@ import { ContactStripSection } from "@/components/sections/contact-strip-section
 type Props = {
   sections: HomeSectionBlock[];
   megaCards: MegaMenuCard[];
+  servicesBandCta?: ServicesBandCta;
 };
 
-export function SectionRenderer({ sections, megaCards }: Props) {
+export function SectionRenderer({ sections, megaCards, servicesBandCta }: Props) {
   return (
     <>
       {sections.map((section, index) => {
@@ -47,6 +48,7 @@ export function SectionRenderer({ sections, megaCards }: Props) {
                 key={key}
                 {...section.props}
                 cards={megaCards}
+                servicesBandCta={servicesBandCta}
               />
             );
           case "stats":

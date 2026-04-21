@@ -1,10 +1,13 @@
-import type { HomePageContent } from "@/content/types";
+import type {
+  HomePageContent,
+  NavigationConfig,
+  ServicesBandCta,
+  SiteConfig,
+} from "@/content/types";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
-import type { NavigationConfig } from "@/content/types";
 import type { Metadata } from "next";
 import site from "@/content/site.json";
-import type { SiteConfig } from "@/content/types";
 import { canonicalUrl, pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 import { orderHomeSections } from "@/lib/home-section-order";
@@ -38,12 +41,26 @@ export const metadata: Metadata = {
 
 /** Section order: `orderHomeSections` from `@/lib/home-section-order` (see audit matrix + plan methodology). */
 
+function homeServicesBandCta(content: HomePageContent, nav: NavigationConfig): ServicesBandCta | undefined {
+  const hero = content.sections.find((s) => s.type === "hero");
+  if (!hero) return undefined;
+  return {
+    quoteCta: hero.props.primaryCta,
+    servicesViewAll: { label: nav.megaMenu.viewAllLabel, href: nav.megaMenu.viewAllHref },
+  };
+}
+
 export default function HomePage() {
   const sections = orderHomeSections(homeContent.sections);
+  const servicesBandCta = homeServicesBandCta(homeContent, navData);
 
   return (
     <main id="main-content">
-      <SectionRenderer sections={sections} megaCards={navData.megaMenu.cards} />
+      <SectionRenderer
+        sections={sections}
+        megaCards={navData.megaMenu.cards}
+        servicesBandCta={servicesBandCta}
+      />
     </main>
   );
 }

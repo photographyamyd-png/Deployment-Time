@@ -1,0 +1,71 @@
+/* Overrides #services.svlayer--dse .svlayer__inner grid from glc-base (higher specificity). */
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(28px, 4vw, 44px);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+  grid-template-columns: unset;
+  grid-template-rows: unset;
+  grid-template-areas: unset;
+  width: 100%;
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .head {
+  max-width: min(48rem, 100%);
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .head :global(.services__heading) {
+  margin-bottom: clamp(12px, 2vw, 18px);
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .intro {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.62);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid {
+  width: 100%;
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(a.service-card) {
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 240px;
+  transition:
+    background 0.3s var(--ease-expo),
+    border-color 0.3s var(--ease-expo),
+    box-shadow 0.3s var(--ease-expo);
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(.service-card:hover),
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .grid :global(a.service-card:focus-visible) {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  padding-top: clamp(4px, 1vw, 12px);
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas :global(.btn-primary) {
+  text-decoration: none;
+}
+
+:global(#services.svlayer.svlayer--dse).showcase :global(.svlayer__inner) .ctas :global(.btn-ghost) {
+  text-decoration: none;
+  cursor: pointer;
+}

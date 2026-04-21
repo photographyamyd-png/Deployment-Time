@@ -1,24 +1,31 @@
-import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
-import { IconArrow } from "@/components/ui/icon-arrow";
-import { ServiceCardIcon } from "@/components/sections/service-card-icon";
-import type { MegaMenuCard, ServicesSectionProps } from "@/content/types";
-import { ROUTES } from "@/lib/routes";
+import { SmartLink } from "@/components/ui/smart-link";
+import { ServicesGridCard } from "@/components/sections/services-grid-card";
+import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
+import type { RevealDelayClass } from "@/components/ui/reveal";
+import styles from "@/components/sections/services-grid-section.module.css";
 
-type Props = ServicesSectionProps & { cards: MegaMenuCard[] };
+type Props = ServicesSectionProps & {
+  cards: MegaMenuCard[];
+  /** When set (homepage), renders quote + view-all CTAs under the grid. */
+  servicesBandCta?: ServicesBandCta;
+};
 
-export function ServicesGridSection({ cards, ...props }: Props) {
-  const scopeItems = [
-    "Site clearing & mass excavation",
-    "Foundations & structural earthwork",
-    "Utility & septic trenching",
-    "Drainage design & grading",
-    "Hauling & site logistics",
-    "Commercial snow removal",
-  ];
+const delayFor = (i: number): RevealDelayClass | undefined => {
+  if (i % 3 === 1) return "reveal--delay-1";
+  if (i % 3 === 2) return "reveal--delay-2";
+  return undefined;
+};
+
+export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props) {
+  const lede = props.tagline?.trim() || props.intro;
 
   return (
-    <section id="services" className="svlayer svlayer--dse" aria-labelledby="services-heading">
+    <section
+      id="services"
+      className={`svlayer svlayer--dse ${styles.showcase}`}
+      aria-labelledby="services-heading"
+    >
       <div className="cta3__diag" aria-hidden />
       <div className="services-band__top-accent" aria-hidden />
       <div className="svlayer__layers" aria-hidden>
@@ -27,8 +34,8 @@ export function ServicesGridSection({ cards, ...props }: Props) {
         <span className="svlayer__sheet svlayer__sheet--front" />
       </div>
 
-      <div className="svlayer__inner">
-        <div className="svlayer__copy">
+      <div className={`svlayer__inner ${styles.inner}`}>
+        <header className={styles.head}>
           <Reveal>
             <div className="eyebrow eyebrow--on-dark">{props.eyebrow}</div>
           </Reveal>
@@ -39,58 +46,31 @@ export function ServicesGridSection({ cards, ...props }: Props) {
               <span>{props.headingLine2}</span>
             </h2>
           </Reveal>
-          <Reveal delayClass="reveal--delay-2">
-            <p className="services__intro">{props.intro}</p>
-            <ul className="svlayer__scope" aria-label="What we cover">
-              {scopeItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="services__kicker">One contractor, one point of contact, zero handoff delays.</p>
-          </Reveal>
-        </div>
+          {lede ? (
+            <Reveal delayClass="reveal--delay-2">
+              <p className={styles.intro}>{lede}</p>
+            </Reveal>
+          ) : null}
+        </header>
 
-        <figure className="svlayer__figure">
-          <div className="svlayer__figure-bite" aria-hidden />
-          <div className="svlayer__figure-frame">
-            <div className="svlayer__figure-fill">
-              <Image
-                src="/images/excavation-and-foundations-orillia-barrie.png"
-                alt="Commercial excavation and civil work in progress in Simcoe County"
-                fill
-                className="svlayer__img"
-                sizes="(max-width: 900px) 100vw, 40vw"
-              />
-            </div>
-          </div>
-          <figcaption className="svlayer__caption">
-            Field-led crews across Barrie & Simcoe County
-          </figcaption>
-        </figure>
-
-        <div className="svlayer__deck">
-          {cards.map((card) => (
-            <details key={card.slug} className="svlayer__card" name="home-service-lines">
-              <summary className="svlayer__card-summary">
-                <span className="svlayer__card-num" aria-hidden>{card.num}</span>
-                <span className="svlayer__card-titles">
-                  {card.gridTitle.map((line) => (
-                    <span key={line} className="svlayer__card-title-line">{line}</span>
-                  ))}
-                </span>
-                <span className="svlayer__card-signal" aria-hidden />
-              </summary>
-              <div className="svlayer__card-panel">
-                <ServiceCardIcon slug={card.slug} />
-                <p className="svlayer__card-desc">{card.gridDescription}</p>
-                <a className="svlayer__card-cta" href={ROUTES.service(card.slug)}>
-                  Learn more
-                  <IconArrow />
-                </a>
-              </div>
-            </details>
+        <div className={`${styles.grid} services__grid`} role="list">
+          {cards.map((card, i) => (
+            <ServicesGridCard key={card.slug} card={card} delayClass={delayFor(i)} />
           ))}
         </div>
+
+        {servicesBandCta ? (
+          <Reveal delayClass="reveal--delay-3">
+            <div className={styles.ctas}>
+              <SmartLink href={servicesBandCta.quoteCta.href} className="btn-primary">
+                {servicesBandCta.quoteCta.label}
+              </SmartLink>
+              <SmartLink href={servicesBandCta.servicesViewAll.href} className="btn-ghost">
+                {servicesBandCta.servicesViewAll.label}
+              </SmartLink>
+            </div>
+          </Reveal>
+        ) : null}
       </div>
 
       <div className="cta3__bottom-bar" aria-hidden />
