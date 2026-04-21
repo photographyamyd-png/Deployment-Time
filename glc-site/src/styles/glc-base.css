@@ -9842,6 +9842,11 @@ body.gl-mega-open .gl-mega-backdrop {
   overflow: hidden;
 }
 
+/* Homepage / lean hero: no service rail — photo was still inset 80px, leaving a dead band + scroll parallax looked broken */
+.hero-v2--no-service-rail .hero-v2__photo-panel {
+  bottom: 0;
+}
+
 /* Photo scrim — makes overlapping headline text readable on photo */
 .hero-v2__photo-scrim {
   position: absolute;

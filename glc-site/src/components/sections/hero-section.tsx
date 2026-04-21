@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
-  useSpring,
   type Variants,
 } from "framer-motion";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -126,46 +122,19 @@ export function HeroSection(props: HeroProps) {
   const isTelOrMail = (href: string) =>
     href.startsWith("tel:") || href.startsWith("mailto:");
 
-  const sectionRef  = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
-  // ── Parallax ──────────────────────────────────────────────────────────────
-  const { scrollYProgress } = useScroll({
-    target:  sectionRef,
-    offset:  ["start start", "end start"],
-  });
-
-  const rawBgY   = useTransform(scrollYProgress, [0, 1], ["0%", "38%"]);
-  const rawPhotoY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
-  const rawTextY  = useTransform(scrollYProgress, [0, 1], ["0%", "7%"]);
-
-  const bgY    = useSpring(rawBgY,    { stiffness: 80, damping: 30 });
-  const photoY = useSpring(rawPhotoY, { stiffness: 80, damping: 30 });
-  const textY  = useSpring(rawTextY,  { stiffness: 80, damping: 30 });
-
-  // ── Scroll-mask for lede ──────────────────────────────────────────────────
-  // Reveals the lede copy like ink bleeding through on first scroll
-  const ledeMask = useTransform(
-    scrollYProgress,
-    [0, 0.18],
-    [
-      "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-      "linear-gradient(to bottom, black 0%, black 100%, transparent 100%)",
-    ]
-  );
-
   const lines: { text: string; lineNum: 1 | 2 | 3 }[] = [
     { text: title.line1, lineNum: 1 },
     { text: title.line2, lineNum: 2 },
     { text: title.line3, lineNum: 3 },
   ];
 
+  const sectionClass =
+    "hero-v2" + (!showServiceBar ? " hero-v2--no-service-rail" : "");
+
   return (
-    <section id="hero" ref={sectionRef} aria-label="Hero" className="hero-v2">
-      {/* ════ LAYER 0 — Deep background photo ════════════════════════════════ */}
-      <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
+    <section id="hero" aria-label="Hero" className={sectionClass}>
+      {/* ════ LAYER 0 — Deep background photo (static — scroll parallax removed: it shifted layers and clashed with no service rail) ═══ */}
+      <div className="hero-v2__bg-plane" aria-hidden>
         {parallaxBackgroundImage ? (
           <div className="hero-v2__bg-roll" aria-hidden>
             <div
@@ -180,7 +149,7 @@ export function HeroSection(props: HeroProps) {
         )}
         <div className="hero-v2__scrim-radial" />
         <div className="hero-v2__scrim-left" />
-      </motion.div>
+      </div>
 
       {/* ════ LAYER 1 — Blueprint geometry ══════════════════════════════════ */}
       <div className="hero-v2__structure-plane" aria-hidden>
@@ -207,7 +176,6 @@ export function HeroSection(props: HeroProps) {
         {/* ── Photo panel (right column, absolute, parallelogram clip) ── */}
         <motion.div
           className="hero-v2__photo-panel"
-          style={mounted ? { y: photoY } : {}}
           variants={PHOTO_VARIANT}
           initial="hidden"
           animate="visible"
@@ -262,10 +230,7 @@ export function HeroSection(props: HeroProps) {
         </motion.div>
 
         {/* ── Main content ── */}
-        <motion.div
-          className="hero-v2__content"
-          style={mounted ? { y: textY } : {}}
-        >
+        <div className="hero-v2__content">
           {topCredentialChips.length > 0 ? (
             <motion.div
               className="hero-v2__trust-badges"
@@ -361,7 +326,6 @@ export function HeroSection(props: HeroProps) {
             return (
               <motion.div
                 className="hero-v2__lede-block"
-                style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
                 variants={FADE_UP}
                 custom={0}
                 initial="hidden"
@@ -435,7 +399,7 @@ export function HeroSection(props: HeroProps) {
               <p className="hero-v2__cta-microcopy">{ctaMicrocopy}</p>
             ) : null}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Single frosted footer (spec §4.2 layer 4): optional trust row + service tiles — one gold rail, no extra mid-hero band */}
