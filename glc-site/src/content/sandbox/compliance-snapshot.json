@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "label": "GLC compliance audit — frozen reference (update when home order or closing CTAs change)",
+  "updated": "2026-04-21",
+  "devPreview": {
+    "origin": "http://127.0.0.1:3040",
+    "homeUrl": "http://127.0.0.1:3040/",
+    "sandboxUrl": "http://127.0.0.1:3040/sandbox/",
+    "ifDevCollapses": [
+      "npm run dev:fresh --prefix glc-site",
+      "npm run dev:turbo --prefix glc-site",
+      "npm run clean --prefix glc-site"
+    ]
+  },
+  "home": {
+    "homeSectionOrderLive": [
+      "hero",
+      "marquee",
+      "about",
+      "stats",
+      "services",
+      "why",
+      "process",
+      "parallaxBand",
+      "testimonials",
+      "coverage",
+      "ctaBand"
+    ],
+    "omittedFromLiveHomeRenderer": ["contactStrip"],
+    "contactStripInJsonForGetHomeSectionProps": true,
+    "contactStripPropsSummary": {
+      "heading": "Dispatch & Estimating",
+      "ctaLabel": "Full contact form",
+      "ctaHref": "/contact/"
+    },
+    "ctaBandPropsSummary": {
+      "eyebrow": "Ready to Build?",
+      "formCtaLabel": "Get a Free Estimate",
+      "formCtaHref": "/contact/"
+    }
+  },
+  "companyPage": {
+    "note": "ContactStrip removed from company page — CtaBand + dispatch only (2026-04-21)",
+    "domTail": ["MiniPageHero", "company-pg-trio", "company-pg-dispatch", "CtaBandSection"]
+  }
+}

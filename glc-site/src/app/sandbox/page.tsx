@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { FeaturedAccordion } from "@/components/sections/featured-accordion";
+import { SandboxComplianceBackup } from "@/components/sandbox/sandbox-compliance-backup";
 import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
 import { SmartLink } from "@/components/ui/smart-link";
+import { glcDevPreviewUrl } from "@/lib/glc-dev-preview";
 import home from "@/content/pages/home.json";
 import site from "@/content/site.json";
 import type { AccordionSectionProps, HomePageContent, SiteConfig } from "@/content/types";
@@ -47,6 +49,8 @@ export default function SandboxPage() {
     <main id="main-content">
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
+      <SandboxComplianceBackup />
+
       {/* 1 — Hero */}
       <section className="sandbox__s1 dse" aria-labelledby="sandbox-hero-heading">
         <div className="dse-rail" aria-hidden />
@@ -64,7 +68,11 @@ export default function SandboxPage() {
             <SmartLink href={ROUTES.sandbox} className="sandbox__s10-link">
               {ROUTES.sandbox}
             </SmartLink>{" "}
-            if you need it.
+            or open{" "}
+            <a href={glcDevPreviewUrl("/sandbox/")} className="sandbox__s10-link">
+              {glcDevPreviewUrl("/sandbox/")}
+            </a>{" "}
+            in the browser (127.0.0.1 avoids some localhost failures on Windows).
           </p>
           <a href="#sandbox-band-2" className="btn-primary">
             Scroll to band two

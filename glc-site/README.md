@@ -5,11 +5,13 @@ This folder is the **only** production web app. The repo root `package.json` del
 ## Commands (from repo root)
 
 ```bash
-npm run dev      # http://localhost:3040 (GLC dev port — not 3000)
+npm run dev      # http://127.0.0.1:3040/ — GLC dev port (prefer 127.0.0.1 over localhost on Windows)
 npm run build
 npm run start
 npm run lint
 ```
+
+If dev **stops loading** after edits: `npm run dev:fresh` (from `glc-site/`) or `npm run dev:turbo` — see `.cursorrules` / `PAGE-COMPLIANCE-MATRIX.md` §0.
 
 Or from **`glc-site/`**:
 
