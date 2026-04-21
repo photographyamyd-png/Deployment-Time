@@ -6,11 +6,33 @@
 
 ---
 
+## 0. Scope & methodology (lock with plan)
+
+**Routes (production):** [`src/app/page.tsx`](../src/app/page.tsx) (home), `about/`, `company/`, `contact/`, `coverage/`, `process/`, `projects/`, `services/`, `locations/[slug]/`, `services/[slug]/`, each [`src/app/services/*/page.tsx`](../src/app/services/), `privacy/`, `terms/`. **`/sandbox/`** — test-only unless held to the same bar.
+
+**Dark vs light (Rule 1):** Treat `--charcoal` / `--charcoal-deep` and the default marquee (`.marquee-band` `rgba(20,18,16,0.92)` in `glc-base.css` ~1795) as **dark**; `white` / `off-white` / `gray-100` as **light**. Full-bleed photo + dark scrim (e.g. `.gl-parallax-type-band--dark`) counts **dark**. **`--yellow-core` (#F2B705 only)** is neither — flag strict alternation calls (marquee as accent vs dark).
+
+**CTA counting (Rules 4–5):** Primary conversion = `btn-primary` / `gl-btn--primary` or explicit form CTA in bands. Phone/email as links documented separately. **Header vs per-page limit:** optional `/sandbox` spike (two static variants: header hidden vs header + canonical CTA only) after approval.
+
+**Operational (do not violate):**
+
+- Never combine **`glc-base.css`** or **`glc-services-rebuild.css`** with **`page.tsx` / layout composition** in the **same commit**.
+- Never change **multiple** `page.tsx` files in **one session**.
+- After each file change: **browser check** on affected route(s) (build-only is not a substitute).
+- Do **not** reorder sections and rewrite copy in the **same** change.
+- Never alter **`--yellow-core`** away from `#F2B705`.
+
+**Deliverable:** Route-by-route table (this file): each major `<section>` / band in **DOM order** with **D/L** and violations; CTA inventory (primary vs secondary).
+
+**Suggested batch:** audit-only → fix **one** unit → browser → commit → optional **CSS-only** commit; then next route / `service-page-view.tsx` alone for template fixes.
+
+---
+
 ## 1. Static & hub routes
 
 | URL path | App entry | Compliance notes (initial pass) |
 |----------|-----------|----------------------------------|
-| `/` | [`src/app/page.tsx`](../src/app/page.tsx) (`orderHomeSections` from [`home-section-order.ts`](../src/lib/home-section-order.ts)) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA (2026-04-21):** `ctaBand` **omitted from live** [`HOME_SECTION_ORDER`](../src/lib/home-section-order.ts) — single terminal band is `contactStrip` (`btn-primary` → `/contact/`). `ctaBand` block **remains in** [`home.json`](../src/content/pages/home.json) for `getHomeSectionProps('ctaBand')` on company, services, etc. **Tradeoff:** homepage no longer renders the dual-panel `#cta` close from master sequence. **Tone:** see §5 — hero→marquee both read dark; `services` + `why` both off-white/light; `process` + `parallaxBand` both dark (`home.json` parallax `tone: dark`). |
+| `/` | [`src/app/page.tsx`](../src/app/page.tsx) + [`home-section-order.ts`](../src/lib/home-section-order.ts) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA (aligned 2026-04-21):** **`contactStrip` omitted from live** [`HOME_SECTION_ORDER`](../src/lib/home-section-order.ts) — one closing conversion zone = **`ctaBand`** (`ContactStripSection` data stays in [`home.json`](../src/content/pages/home.json) for `getHomeSectionProps` on company, etc.). **Tone:** see §5 — **OPEN:** `#coverage` (D) → `#cta-band` (D) until `fix-home-alternation` (reorder **or** CSS-only commit, never mixed). Known stacks: hero→marquee D→D; services→why L→L; process→parallax D→D. |
 | `/about/` | [`src/app/about/page.tsx`](../src/app/about/page.tsx) → [`AboutPageView`](../src/components/pages/about-page-view.tsx) | **CTA:** multiple `about.cta` + parallax CTA + `CtaBandSection`. **Tone:** verify each band in browser. |
 | `/company/` | [`src/app/company/page.tsx`](../src/app/company/page.tsx) | **CTA:** dispatch block + `ContactStripSection` + `CtaBandSection`. |
 | `/contact/` | [`src/app/contact/page.tsx`](../src/app/contact/page.tsx) → `ContactPageView` | Form-first; confirm single primary quote CTA vs header. |
@@ -74,21 +96,25 @@ Rendered by [`src/app/locations/[slug]/page.tsx`](../src/app/locations/[slug]/pa
 
 ## 5. Homepage — ordered stack (`HOME_SECTION_ORDER`, code-derived tone)
 
-Sources: [`home-section-order.ts`](../src/lib/home-section-order.ts), [`section-renderer.tsx`](../src/components/sections/section-renderer.tsx), [`glc-base.css`](../src/styles/glc-base.css) (`#hero`, `.marquee-band`, `#about`, `#stats.st3`, `#services.svlayer`, `#why`, `#process`, `#testimonials`, `#coverage`, `#contact-strip`, `#cta-band`). **D** = charcoal family / near-black; **L** = white / off-white / gray-100.
+Sources: [`home-section-order.ts`](../src/lib/home-section-order.ts), [`section-renderer.tsx`](../src/components/sections/section-renderer.tsx), [`glc-base.css`](../src/styles/glc-base.css), [`glc-services-rebuild.css`](../src/styles/glc-services-rebuild.css) (services stack). **D** = charcoal family / near-black + default marquee band + parallax dark scrim; **L** = white / off-white / gray-100.
 
-| # | Block | Tone | Adjacent note |
-|---|--------|------|----------------|
-| 1 | `hero` | D (`hero-v2`) | → |
-| 2 | `marquee` | D (`.marquee-band` rgba ~charcoal) | **D→D** vs hero — thin rail; confirm in browser |
-| 3 | `about` | L (`#about` white) | OK |
-| 4 | `stats` | D (`#stats.st3`) | OK |
-| 5 | `services` | L (`--off-white`) | OK |
-| 6 | `why` | L (`--off-white` `.why-v3-shell`) | **L→L** vs services — verify seam reads as distinct |
-| 7 | `process` | D (`#process` `--charcoal-deep`) | OK |
-| 8 | `parallaxBand` | D (`tone: dark` in JSON) | **D→D** vs process |
-| 9 | `testimonials` | L (`#testimonials`) | OK |
-| 10 | `coverage` | D (`#coverage` `--charcoal`) | OK |
-| 11 | `contactStrip` | L (`#contact-strip` white) | Terminal section; **no** second `ctaBand` on `/` |
+**Live `/` order (no `contactStrip` in renderer):**
+
+| # | Block | Tone (approx.) | Notes |
+|---|--------|----------------|--------|
+| 1 | `hero` | D (`--charcoal-deep`, `glc-base.css` ~9819) | → |
+| 2 | `marquee` | D (near-black band ~1795) | **D→D** vs hero under strict reading |
+| 3 | `about` | L (`#about` ~1851) | OK after marquee |
+| 4 | `stats` | D (`#stats.st3` ~3902) | OK |
+| 5 | `services` | L (off-white / layered; see `glc-services-rebuild.css` if loaded) | OK |
+| 6 | `why` | L (`--off-white` ~16775) | **L→L** vs services |
+| 7 | `process` | D (`#process` ~4409) | OK |
+| 8 | `parallaxBand` | D (dark scrim ~11656; `tone: dark` in JSON) | **D→D** vs process |
+| 9 | `testimonials` | L (`#testimonials` ~4958) | OK |
+| 10 | `coverage` | D (`#coverage` ~4675) | OK |
+| 11 | `ctaBand` | D (`section.cta3` ~5586) | **D→D** vs `#coverage` — **fix in alternation-only commit** |
+
+`contactStrip` props remain in `home.json` for other pages only.
 
 ---
 
@@ -98,12 +124,14 @@ From [`service-page-view.tsx`](../src/components/services/service-page-view.tsx)
 
 ---
 
-## 7. Execution order (from plan; do not batch)
+## 7. Execution order (safe batches)
 
-1. Fill **Tone** and **CTA** columns per row using browser + DevTools (one route per session when fixing).
-2. Before each production edit: append **snapshot** to `/sandbox/` (sections + copy), per plan.
-3. **Priority fixes:** home (duplicate closing CTAs + alternation), company, about, then `ServicePageView` tail, then remainder.
-4. **Canonical CTA label** last: pick “Request a Quote” vs “Request a Site Quote”; migrate JSON/components in small commits.
+1. **Audit only:** complete route D/L + CTA inventory in this file (no code), then prioritize home + company.
+2. **Optional spike:** `/sandbox` two variants for header CTA counting.
+3. **Fix one unit:** single `page.tsx` or single view — browser verify — commit; **never** same commit as `glc-base.css` / `glc-services-rebuild.css` layout/ground changes.
+4. **Alternation:** reorder (`home-section-order` / JSON order only) **or** CSS-only ground — **not both** in one change.
+5. **Service template:** one `service-page-view.tsx` change per session + one slug in browser.
+6. **Label pass:** one consumer file per session → `site.json` / `cta-copy.ts` + JSON; header/drawer last.
 
 ---
 
@@ -112,4 +140,4 @@ From [`service-page-view.tsx`](../src/components/services/service-page-view.tsx)
 - Master plan: [`.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md`](../../.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md) (repo-relative from glc-site: `../../.cursor/plans/...`)
 - Prior audit notes: [`routes-matrix.md`](routes-matrix.md)
 
-_Last updated: 2026-04-21 — homepage CTA dedupe executed (`ctaBand` dropped from home order only); §5–6 stack tables added; static-route table still needs per-URL browser confirmation for CTAs beyond `/`. **Next:** `fix-home-alternation` (marquee light variant, process/parallax, services/why); `fix-company-cta`; `fix-service-tail`._
+_Last updated: 2026-04-21 — methodology §0 locked; homepage **Rules 4–5:** `contactStrip` removed from live order, **`ctaBand` retained**; **Rule 1 OPEN:** `#coverage`→`#cta-band` D→D + hero/marquee, services/why, process/parallax. Prior pass that dropped `ctaBand` was **reverted** in favor of this plan. **Next:** browser `/` + `fix-home-alternation` (isolated); then company (single `page.tsx` session)._

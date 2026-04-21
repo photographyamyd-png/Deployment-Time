@@ -9,8 +9,8 @@ todos:
     content: "Optional: two /sandbox variants—header included vs excluded from per-page CTA count; browser snapshot for stakeholder."
     status: pending
   - id: fix-home-cta-dup
-    content: "Single session: remove duplicate closing CTA on home (contactStrip vs ctaBand) via page order + home-section-order only; browser check."
-    status: pending
+    content: "Home: omit contactStrip from HOME_SECTION_ORDER; keep ctaBand; contactStrip JSON for getHomeSectionProps; browser /; OPEN coverage→cta D→D for alternation commit."
+    status: completed
   - id: fix-home-alternation
     content: "Separate session(s): hero/marquee, services/why, process/parallax adjacency via reorder OR CSS-only ground change (never mixed with page commit)."
     status: pending
@@ -41,27 +41,43 @@ isProject: false
 3. **One primary quote CTA** per page where the product rule applies, with a **single canonical label** sitewide (pick one: e.g. “Request a Quote” vs “Request a Site Quote”; migrate last, in small commits).
 4. **No duplicate closing CTAs:** e.g. do not end with both `ContactStripSection` and `CtaBandSection` without an explicit product decision.
 
-**Operational**
+**Operational (same as matrix §0)**
 
-- **One** `page.tsx` (or one focused surface) per fix session.
-- Do **not** commit `glc-base.css` changes in the same commit as page/layout reordering for compliance.
-- After material UI changes: quick **browser check** on the affected route(s).
+- Never combine **`glc-base.css`** or **`glc-services-rebuild.css`** with **`page.tsx` / layout** in the **same commit**.
+- Never change **multiple** `page.tsx` files in **one session**.
+- After each change: **browser check** on affected route(s) — build-only is not enough.
+- Do **not** reorder sections and rewrite copy in the **same** change.
+- Never alter **`--yellow-core`** away from `#F2B705`.
+
+**Scope (production routes):** `app/page.tsx` (home), `about`, `company`, `contact`, `coverage`, `process`, `projects`, `services`, `locations/[slug]`, `services/[slug]`, each `app/services/*/page.tsx`, `privacy`, `terms`. **`/sandbox/`** test-only unless held to same bar.
+
+**Tone definitions:** Charcoal / charcoal-deep + default marquee (`rgba(20,18,16,0.92)` ~L1795) = **dark**; white / off-white / gray-100 = **light**; full-bleed photo + dark scrim (e.g. `.gl-parallax-type-band--dark`) = **dark**. Yellow is neither — decide marquee strict vs accent.
+
+**CTA:** Primary = `btn-primary` / `gl-btn--primary` or explicit form CTA in bands; phone/email separately. Optional **`/sandbox` spike:** header hidden vs header + canonical CTA only for per-page limit.
+
+**Homepage `HOME_SECTION_ORDER` (live):** ends with **`ctaBand` only** — `contactStrip` omitted from renderer (Rules 4–5: one closing band); `contactStrip` JSON kept for `getHomeSectionProps` on company, etc. **OPEN Rule 1:** `#coverage` (D) → `#cta-band` (D) until alternation-only commit. Other stacks to fix: hero→marquee; services→why; process→parallax.
+
+**ServicePageView tail:** `CoverageSection` → `StatsBar` → `ContactBand` — `#coverage` + `#stats.st3` **D→D**; remediate with light spacer moved, or one band’s ground in **CSS-only** commit (never same commit as view reorder).
 
 ---
 
-## Rule 1 — Homepage tone stack (known issue, initial audit)
+## Rule 1 — Homepage tone stack (reference)
 
-| Order (approx.) | Section / band | Tone (initial read) | Notes |
-|-----------------|------------------|---------------------|--------|
-| 1 | Hero | Dark | OK as opener |
-| 2 | Marquee | Yellow / dark-adjacent risk | Verify vs hero — may read as two dark-adjacent depending on implementation |
-| 3 | Services | Light | |
-| 4 | Why | Off-white | |
-| 5 | Process | Dark | |
-| 6 | Parallax | Dark | **Adjacent dark** with process if both charcoal family |
-| … | CTA bands | | **2026-04-21:** Homepage omits `ctaBand` in [`HOME_SECTION_ORDER`](../../glc-site/src/lib/home-section-order.ts) — terminal band is `contactStrip` only; `ctaBand` props remain in `home.json` for other pages. **Tradeoff:** no dual-panel `#cta` on `/` until alternation strategy allows both. |
+| # | Block | Tone (approx.) | Notes |
+|---|--------|----------------|-------|
+| 1 | hero | D | |
+| 2 | marquee | D | D→D vs hero under strict reading |
+| 3 | about | L | |
+| 4 | stats | D | |
+| 5 | services | L | |
+| 6 | why | L | L→L vs services |
+| 7 | process | D | |
+| 8 | parallaxBand | D | D→D vs process |
+| 9 | testimonials | L | |
+| 10 | coverage | D | |
+| 11 | ctaBand | D | D→D vs coverage until alternation fix |
 
-Exact DOM and CSS classes must be confirmed in browser; the matrix row for `/` is the source of truth once filled.
+Exact DOM must be confirmed in browser; [`PAGE-COMPLIANCE-MATRIX.md`](../../glc-site/audit/PAGE-COMPLIANCE-MATRIX.md) §5 is source of truth for numbering.
 
 ---
 

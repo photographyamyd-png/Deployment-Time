@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** Section order: `orderHomeSections` from `@/lib/home-section-order` — homepage omits `ctaBand` (see audit matrix). */
+/** Section order: `orderHomeSections` from `@/lib/home-section-order` (see audit matrix + plan methodology). */
 
 export default function HomePage() {
   const sections = orderHomeSections(homeContent.sections);
