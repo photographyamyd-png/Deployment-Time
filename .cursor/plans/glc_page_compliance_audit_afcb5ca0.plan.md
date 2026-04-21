@@ -6,14 +6,14 @@ todos:
     content: "1 — Audit only: matrix §1–4 + §9; D/L + primary CTA per route (browser where required)."
     status: in_progress
   - id: fix-home-alternation
-    content: "2 — Home Rule 1: coverage→cta, hero/marquee, services/why, process/parallax — reorder-only OR glc-base-only; never mixed."
-    status: pending
+    content: "2 — Home Rule 1: hero→marquee (light marquee JSON) + coverage seams (glc-base); still OPEN services/why, process/parallax — browser."
+    status: in_progress
   - id: sandbox-cta-spike
     content: "3 — Optional: /sandbox header hidden vs canonical header CTA (visual CTA count)."
     status: pending
   - id: fix-company-cta
-    content: "4 — company/page.tsx only; dedupe closing CTAs; browser /company/."
-    status: pending
+    content: "4 — company/page.tsx: ContactStrip removed; browser /company/."
+    status: completed
   - id: fix-about-cta
     content: "5 — about view only; dedupe btn-primary + CtaBand; browser /about/."
     status: pending

@@ -151,7 +151,7 @@ From [`service-page-view.tsx`](../src/components/services/service-page-view.tsx)
 | 1 | `audit-matrix` | **in progress** | Fill §1–4 route notes + D/L + primary CTAs; browser where required. **No code until this row is done enough to prioritize fixes.** |
 | 2 | `fix-home-alternation` | pending | Home Rule 1 only: reorder **or** `glc-base.css` / `glc-services-rebuild.css` — isolated commits. |
 | 3 | `sandbox-cta-spike` | pending | Optional `/sandbox` header vs CTA variants. |
-| 4 | `fix-company-cta` | pending | `company/page.tsx` only + browser. |
+| 4 | `fix-company-cta` | **done** | `ContactStrip` removed from `company/page.tsx` (2026-04-21). |
 | 5 | `fix-about-cta` | pending | About view only + browser. |
 | 6 | `fix-service-tail` | pending | `service-page-view.tsx` only + one slug browser. |
 | 7 | `canonical-quote-label` | pending | Label migration last. |
