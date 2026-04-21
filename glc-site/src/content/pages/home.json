@@ -3,42 +3,20 @@
     {
       "type": "hero",
       "props": {
-        "eyebrow": "Commercial Excavation & Civil Infrastructure — Barrie & Simcoe County",
+        "eyebrow": "Commercial excavation & civil infrastructure · Barrie & Simcoe County",
         "title": {
           "line1": "From",
           "line2": "Concept",
           "line3": "To Creation",
           "emphasizeLine": 2
         },
-        "subheadline": "Site prep, foundations, drainage, hardscaping & commercial snow — one contractor, every phase.",
-        "lede": "Ground Level Contracting is Barrie and Simcoe County's full-service civil contractor — builders, developers, engineers, municipalities, and property owners choose us when the ground has to be right. Commercial equipment, crew depth, and accountable coordination from first cut to final grade across Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County.",
+        "lede": "Ground Level Contracting delivers commercial excavation, site prep, foundations, and drainage for builders and developers across Barrie and Simcoe County.",
         "primaryCta": { "label": "Get a Free Project Estimate", "href": "/contact/" },
-        "secondaryCta": { "label": "Call Us: 705-619-4902", "href": "tel:+17056194902" },
-        "ctaMicrocopy": "No obligation. Free site visit. Fully licensed & insured. We respond within 24 hours.",
-        "trustItems": [
-          "Fully Licensed & Insured in Ontario",
-          "WSIB Registered & In Good Standing",
-          "OBC Compliant — All Work to Code",
-          "Commercial, Residential & Municipal Projects",
-          "GPS-Tracked Equipment Fleet",
-          "Free On-Site Estimates — Simcoe County"
-        ],
-        "stats": [
-          { "value": "15+", "label": "Years of Commercial Field Experience" },
-          { "value": "500+", "label": "Commercial Projects Completed" }
-        ],
-        "coverage": {
-          "label": "Service Coverage",
-          "tags": ["Barrie", "Midland", "Orillia", "Innisfil", "Wasaga Beach", "Simcoe County"]
-        },
-        "serviceBarSlugTitles": [
-          { "slug": "excavation-site-preparation", "title": "Excavation & Site Prep" },
-          { "slug": "site-preparation-grading", "title": "Site Prep & Grading" },
-          { "slug": "foundations-civil-infrastructure", "title": "Foundations & Civil" },
-          { "slug": "drainage-hardscaping", "title": "Drainage, Hardscaping & Landscaping" },
-          { "slug": "hauling-site-clearing-logistics", "title": "Hauling & Clearing" },
-          { "slug": "snow-removal", "title": "Snow Removal" }
-        ]
+        "secondaryCta": { "label": "705-619-4902", "href": "tel:+17056194902" },
+        "ctaMicrocopy": "Licensed and insured. We respond within 24 hours.",
+        "stats": [],
+        "coverage": { "label": "Service Coverage", "tags": [] },
+        "serviceBarSlugTitles": []
       }
     },
     {
@@ -79,6 +57,7 @@
     {
       "type": "marquee",
       "props": {
+        "bandTone": "light",
         "items": [
           "Commercial Excavation Barrie",
           "Site Prep & Grading Simcoe County",

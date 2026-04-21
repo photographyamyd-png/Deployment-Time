@@ -10159,6 +10159,29 @@ body.gl-mega-open .gl-mega-backdrop {
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* Phone as text link — single primary button; tel is not a second CTA control */
+.hero-v2__phone-inline {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.hero-v2__phone-link {
+  color: var(--yellow-core);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 183, 5, 0.45);
+  transition:
+    color 0.24s var(--ease-expo),
+    border-color 0.24s var(--ease-expo);
+}
+
+.hero-v2__phone-link:hover {
+  color: var(--gold);
+  border-color: rgba(217, 160, 4, 0.75);
+}
+
 .hero-v2__cta-stack {
   display: flex;
   flex-direction: column;

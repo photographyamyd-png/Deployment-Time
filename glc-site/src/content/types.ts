@@ -21,7 +21,8 @@ export type HeroProps = {
   subheadline?: string;
   lede: string;
   primaryCta: { label: string; href: string };
-  secondaryCta: { label: string; href: string };
+  /** Second action; `tel:` / `mailto:` render as a text link under the primary CTA (not a second button). */
+  secondaryCta?: { label: string; href: string };
   stats: Array<{ value: string; label: string }>;
   coverage: { label: string; tags: string[] };
   serviceBarSlugTitles: Array<{ slug: string; title: string }>;
