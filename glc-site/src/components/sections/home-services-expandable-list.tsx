@@ -72,7 +72,9 @@ function ExpandRow({
             className={styles.expandToggle}
             aria-expanded={isOpen}
             aria-controls={panelId}
-            onClick={onToggle}
+            onClick={() => {
+              onToggle();
+            }}
           >
             <span className={styles.expandToggleText} id={`${btnId}-label`}>
               <span className={styles.expandHeadline}>{headline}</span>
@@ -99,7 +101,7 @@ function ExpandRow({
             data-open={isOpen ? "true" : "false"}
             aria-hidden={!isOpen}
           >
-            <div className={styles.expandPanelInner} inert={!isOpen ? true : undefined}>
+            <div className={styles.expandPanelInner}>
               <p className={styles.expandDesc}>{card.gridDescription ?? ""}</p>
               {card.subTags && card.subTags.length > 0 ? (
                 <ul className={styles.expandTags}>
@@ -108,7 +110,12 @@ function ExpandRow({
                   ))}
                 </ul>
               ) : null}
-              <SmartLink href={ROUTES.service(card.slug)} className={styles.expandCta}>
+              <SmartLink
+                href={ROUTES.service(card.slug)}
+                className={styles.expandCta}
+                tabIndex={isOpen ? undefined : -1}
+                aria-hidden={!isOpen}
+              >
                 View service
                 <IconArrowSmall />
               </SmartLink>

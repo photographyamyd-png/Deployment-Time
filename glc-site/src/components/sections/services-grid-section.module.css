@@ -708,11 +708,13 @@
   max-height: 0;
   opacity: 0;
   border-top-color: transparent;
+  pointer-events: none;
 }
 
 .expandPanel[data-open="true"] {
   max-height: min(260px, 55vh);
   opacity: 1;
+  pointer-events: auto;
 }
 
 .expandPanelInner {
