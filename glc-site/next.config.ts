@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  experimental: {
+    // Workaround for Next 15 dev-runtime crashes on some Windows setups:
+    // "segment-explorer-node.js#SegmentViewNode" missing in React Client Manifest.
+    // Disable segment explorer devtool while keeping app behavior unchanged.
+    devtoolSegmentExplorer: false,
+  },
   /**
    * Dev-only: disable webpack persistent cache. On Windows, PackFileCacheStrategy can fail
    * mid-write (rename ENOENT) and leave `.next` referencing missing chunks (`Cannot find module './331.js'`).

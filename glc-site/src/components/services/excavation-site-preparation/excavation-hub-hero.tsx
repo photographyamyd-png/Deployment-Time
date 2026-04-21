@@ -299,47 +299,51 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
           />
           <div className="exc-hub__photo-scrim" />
 
-          <div className="exc-hub__chips">
-            {stats.map((s, i) => (
+          <div className="exc-hub__chips" role="list" aria-label="Hero proof metrics">
+            <div className="exc-hub__chips-stack">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  className="exc-hub__chip exc-hub__chip--stat"
+                  variants={CHIP_VARIANT}
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                  role="listitem"
+                >
+                  <span className="exc-hub__chip-ghost-num" aria-hidden>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <ChipBracket className="exc-hub__chip-bracket" />
+                  <span className="exc-hub__chip-spec">Field metric</span>
+                  <span className="exc-hub__chip-num">{s.value}</span>
+                  <span className="exc-hub__chip-label">{s.label}</span>
+                </motion.div>
+              ))}
+
               <motion.div
-                key={s.label}
-                className="exc-hub__chip exc-hub__chip--stat"
+                className="exc-hub__chip exc-hub__chip--coverage"
                 variants={CHIP_VARIANT}
-                custom={i}
+                custom={stats.length}
                 initial="hidden"
                 animate="visible"
+                role="listitem"
               >
                 <span className="exc-hub__chip-ghost-num" aria-hidden>
-                  {String(i + 1).padStart(2, "0")}
+                  {String(stats.length + 1).padStart(2, "0")}
                 </span>
                 <ChipBracket className="exc-hub__chip-bracket" />
-                <span className="exc-hub__chip-spec">Field metric</span>
-                <span className="exc-hub__chip-num">{s.value}</span>
-                <span className="exc-hub__chip-label">{s.label}</span>
+                <span className="exc-hub__chip-spec">Service territory</span>
+                <span className="exc-hub__chip-eyebrow">{coverage.label}</span>
+                <div className="exc-hub__chip-tags">
+                  {coverage.tags.map((t) => (
+                    <span key={t} className="exc-hub__chip-tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
-            ))}
-
-            <motion.div
-              className="exc-hub__chip exc-hub__chip--coverage"
-              variants={CHIP_VARIANT}
-              custom={stats.length}
-              initial="hidden"
-              animate="visible"
-            >
-              <span className="exc-hub__chip-ghost-num" aria-hidden>
-                {String(stats.length + 1).padStart(2, "0")}
-              </span>
-              <ChipBracket className="exc-hub__chip-bracket" />
-              <span className="exc-hub__chip-spec">Service territory</span>
-              <span className="exc-hub__chip-eyebrow">{coverage.label}</span>
-              <div className="exc-hub__chip-tags">
-                {coverage.tags.map((t) => (
-                  <span key={t} className="exc-hub__chip-tag">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
 
