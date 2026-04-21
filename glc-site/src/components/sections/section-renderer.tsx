@@ -17,9 +17,16 @@ type Props = {
   sections: HomeSectionBlock[];
   megaCards: MegaMenuCard[];
   servicesBandCta?: ServicesBandCta;
+  /** Homepage-only: dark editorial surface for `#services` (see ServicesGridSection). */
+  servicesEditorialSurface?: boolean;
 };
 
-export function SectionRenderer({ sections, megaCards, servicesBandCta }: Props) {
+export function SectionRenderer({
+  sections,
+  megaCards,
+  servicesBandCta,
+  servicesEditorialSurface,
+}: Props) {
   return (
     <>
       {sections.map((section, index) => {
@@ -49,6 +56,7 @@ export function SectionRenderer({ sections, megaCards, servicesBandCta }: Props)
                 {...section.props}
                 cards={megaCards}
                 servicesBandCta={servicesBandCta}
+                editorialSurface={servicesEditorialSurface}
               />
             );
           case "stats":

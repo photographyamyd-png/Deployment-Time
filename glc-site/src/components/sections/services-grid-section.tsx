@@ -13,9 +13,11 @@ type Props = ServicesSectionProps & {
   cards: MegaMenuCard[];
   /** When set (homepage), renders quote + view-all CTAs in the split bar. */
   servicesBandCta?: ServicesBandCta;
+  /** Homepage-only: stats/coverage-style dark editorial surface + contrast. */
+  editorialSurface?: boolean;
 };
 
-export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props) {
+export function ServicesGridSection({ cards, servicesBandCta, editorialSurface = false, ...props }: Props) {
   const tagline = props.tagline?.trim();
   const intro = props.intro?.trim();
   const hasDistinctIntro = Boolean(tagline && intro && tagline !== intro);
@@ -27,8 +29,16 @@ export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props)
   const lineCount = String(cards.length).padStart(2, "0");
   const specs = props.technicalSpecs;
 
+  const sectionSurface = editorialSurface ? "editorial" : undefined;
+
   return (
-    <section id="services" className={`home-services-photo ${styles.showcase}`} aria-labelledby="services-heading">
+    <section
+      id="services"
+      className={`home-services-photo ${styles.showcase}${editorialSurface ? ` ${styles.surfaceEditorial}` : ""}`}
+      data-glc-services-surface={sectionSurface}
+      aria-labelledby="services-heading"
+    >
+      {editorialSurface ? <div className="st3__top-rail" aria-hidden /> : null}
       <ServicesSectionDepthShell>
         <div className={styles.layerGround} aria-hidden />
 

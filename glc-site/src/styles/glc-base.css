@@ -23321,8 +23321,17 @@ body.gl-mega-open .gl-mega-backdrop {
   overflow: hidden;
 }
 
+/* Homepage-only editorial surface — module + data attr; keeps /services index on off-white */
+#services.home-services-photo[data-glc-services-surface="editorial"] {
+  background: var(--charcoal-deep);
+}
+
 #services.home-services-photo.ls {
   background: var(--off-white);
+}
+
+#services.home-services-photo[data-glc-services-surface="editorial"].ls {
+  background: var(--charcoal-deep);
 }
 
 .home-services-photo__seam {
