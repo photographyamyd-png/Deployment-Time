@@ -96,9 +96,7 @@ All **trailing-slash** public paths ([`next.config.ts`](../../glc-site/next.conf
 
 ## Execution order (fixes)
 
-1. Complete matrix walk: **tone + CTA** per URL (one route per session when fixing).
-2. **Priority fixes:** home (duplicate CTAs + alternation), company, about, then `ServicePageView` tail, then remainder per matrix.
-3. **Canonical CTA label** last: JSON, `CtaBand` defaults, header/drawer, registry — **small separate commits**.
+Follow **safe batches** in [`PAGE-COMPLIANCE-MATRIX.md` §7](../../glc-site/audit/PAGE-COMPLIANCE-MATRIX.md): audit-only → one file → browser → commit; CSS vs composition never mixed; one `page.tsx` per session; label migration last.
 
 ---
 
