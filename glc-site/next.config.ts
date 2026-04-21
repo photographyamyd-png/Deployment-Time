@@ -9,14 +9,13 @@ const nextConfig: NextConfig = {
     devtoolSegmentExplorer: false,
   },
   /**
-   * Dev-only: disable webpack persistent cache. On Windows, PackFileCacheStrategy can fail
-   * mid-write (rename ENOENT) and leave `.next` referencing missing chunks (`Cannot find module './331.js'`).
-   * Slightly slower cold compiles; run `npm run clean` if corruption still appears.
+   * Disable webpack persistent cache (dev + prod). On Windows, PackFileCacheStrategy can fail
+   * mid-write (rename ENOENT) and leave `.next` referencing missing chunks
+   * (`Cannot find module './611.js'`, `./331.js`, etc.).
+   * Slower compiles; pair with `npm run build` which clears `.next` before each build.
    */
-  webpack: (config, { dev }) => {
-    if (dev) {
-      config.cache = false;
-    }
+  webpack: (config) => {
+    config.cache = false;
     return config;
   },
   async redirects() {
