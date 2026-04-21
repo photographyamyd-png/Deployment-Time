@@ -1594,7 +1594,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gl-mobile-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.6);
-  z-index: calc(var(--gl-header-z) + 5);
+  /* Stay below #site-header so the fixed nav / mobile bar remain clickable; drawer panel stays above via z-index +10 */
+  z-index: calc(var(--gl-header-z) - 5);
   opacity: 0; pointer-events: none;
   transition: opacity 0.38s;
 }

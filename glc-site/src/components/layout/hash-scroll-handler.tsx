@@ -14,6 +14,13 @@ function scrollToId(id: string, behavior: ScrollBehavior = "smooth") {
   return true;
 }
 
+function anchorFromEvent(e: MouseEvent): HTMLAnchorElement | null {
+  for (const n of e.composedPath()) {
+    if (n instanceof HTMLAnchorElement) return n;
+  }
+  return null;
+}
+
 /** After route change or direct load with `#id`, scroll matching section into view (header offset). */
 function scrollToHashFromLocation(attempt = 0) {
   const raw = window.location.hash;
@@ -41,39 +48,53 @@ export function HashScrollHandler() {
   }, []);
 
   useEffect(() => {
-    const header = document.getElementById("site-header");
-    if (!header) return;
-
     const onClick = (e: MouseEvent) => {
-      const t = e.target as HTMLElement | null;
-      const a = t?.closest?.("a") as HTMLAnchorElement | null;
+      if (e.defaultPrevented) return;
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const a = anchorFromEvent(e);
       if (!a) return;
-      const href = a.getAttribute("href");
-      if (!href) return;
+      if (a.hasAttribute("download")) return;
+      const targetAttr = a.getAttribute("target");
+      if (targetAttr === "_blank" || targetAttr === "_parent") return;
+
+      const hrefAttr = a.getAttribute("href");
+      if (!hrefAttr) return;
 
       // Same-page #anchor (e.g. #request-site-visit on service pages)
-      if (href.startsWith("#") && href.length > 1) {
-        const id = href.slice(1);
-        const target = document.getElementById(id);
-        if (!target) return;
+      if (hrefAttr.startsWith("#") && hrefAttr.length > 1) {
+        const id = hrefAttr.slice(1);
+        const el = document.getElementById(id);
+        if (!el) return;
         e.preventDefault();
         scrollToId(id, "smooth");
-        history.pushState(null, "", href);
+        history.pushState(null, "", hrefAttr);
         return;
       }
 
-      // On homepage: jump to section without a full navigation round-trip.
-      // Normalize trailing slashes so this matches Next trailingSlash + usePathname quirks.
+      // On homepage only: /#section — scroll in place (avoid a redundant navigation)
       const homePath = (pathname ?? "").replace(/\/+$/, "") === "";
-      if (homePath && href.startsWith("/#") && href.length > 3) {
-        const id = href.slice(2);
-        if (!id) return;
-        const target = document.getElementById(id);
-        if (!target) return;
-        e.preventDefault();
-        scrollToId(id, "smooth");
-        history.pushState(null, "", href);
+      if (!homePath) return;
+
+      let url: URL;
+      try {
+        url = new URL(hrefAttr, window.location.origin);
+      } catch {
+        return;
       }
+
+      const pathOnly = url.pathname.replace(/\/+$/, "") || "/";
+      if (pathOnly !== "/" || url.hash.length <= 1) return;
+
+      const id = url.hash.slice(1);
+      if (!id) return;
+      const targetEl = document.getElementById(id);
+      if (!targetEl) return;
+
+      e.preventDefault();
+      scrollToId(id, "smooth");
+      history.pushState(null, "", `${url.pathname}${url.hash}`);
     };
 
     document.addEventListener("click", onClick);
