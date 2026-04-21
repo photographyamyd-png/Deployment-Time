@@ -19,6 +19,14 @@ Or from **`glc-site/`**:
 npm run dev
 ```
 
+## Troubleshooting (ERR -102 / connection refused)
+
+Chrome/Edge **error -102** on **`http://localhost:3000/`** means nothing was listening on that port. This app’s default dev server binds to **3040**, not 3000.
+
+- Use **`http://127.0.0.1:3040/`** after `npm run dev` (or `npm run dev:watch`).
+- If you need port 3000 explicitly: `npm run dev:3000` → then `http://localhost:3000/`.
+- Wait until the terminal shows **Ready** before the first load (first compile can take a bit).
+
 ## Static assets
 
 Place files in **`public/`**. They are served from the site root:
