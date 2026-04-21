@@ -48,6 +48,7 @@ const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
   "testimonials",
   "coverage",
   "contactStrip",
+  "ctaBand",
 ];
 
 function orderHomeSections(sections: HomePageContent["sections"]): HomePageContent["sections"] {

@@ -1,8 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
 import {
   motion,
+  useScroll,
+  useTransform,
+  useSpring,
   type Variants,
 } from "framer-motion";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -113,14 +117,39 @@ export function HeroSection(props: HeroProps) {
       : (trustItems?.slice(0, 3) ?? []);
 
   const secondaryCta = secondaryCtaProp;
-  const showStatChips = stats.length > 0;
-  const showCoverageChip = (coverage.tags?.length ?? 0) > 0;
-  const showChips = showStatChips || showCoverageChip;
-  const showServiceBar =
-    (trustItems?.length ?? 0) > 0 || serviceBarSlugTitles.length > 0;
 
   const isTelOrMail = (href: string) =>
     href.startsWith("tel:") || href.startsWith("mailto:");
+
+  const sectionRef  = useRef<HTMLElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  // ── Parallax ──────────────────────────────────────────────────────────────
+  const { scrollYProgress } = useScroll({
+    target:  sectionRef,
+    offset:  ["start start", "end start"],
+  });
+
+  const rawBgY   = useTransform(scrollYProgress, [0, 1], ["0%", "38%"]);
+  const rawPhotoY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const rawTextY  = useTransform(scrollYProgress, [0, 1], ["0%", "7%"]);
+
+  const bgY    = useSpring(rawBgY,    { stiffness: 80, damping: 30 });
+  const photoY = useSpring(rawPhotoY, { stiffness: 80, damping: 30 });
+  const textY  = useSpring(rawTextY,  { stiffness: 80, damping: 30 });
+
+  // ── Scroll-mask for lede ──────────────────────────────────────────────────
+  // Reveals the lede copy like ink bleeding through on first scroll
+  const ledeMask = useTransform(
+    scrollYProgress,
+    [0, 0.18],
+    [
+      "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+      "linear-gradient(to bottom, black 0%, black 100%, transparent 100%)",
+    ]
+  );
 
   const lines: { text: string; lineNum: 1 | 2 | 3 }[] = [
     { text: title.line1, lineNum: 1 },
@@ -128,13 +157,10 @@ export function HeroSection(props: HeroProps) {
     { text: title.line3, lineNum: 3 },
   ];
 
-  const sectionClass =
-    "hero-v2" + (!showServiceBar ? " hero-v2--no-service-rail" : "");
-
   return (
-    <section id="hero" aria-label="Hero" className={sectionClass}>
-      {/* ════ LAYER 0 — Deep background photo (static — scroll parallax removed: it shifted layers and clashed with no service rail) ═══ */}
-      <div className="hero-v2__bg-plane" aria-hidden>
+    <section id="hero" ref={sectionRef} aria-label="Hero" className="hero-v2">
+      {/* ════ LAYER 0 — Deep background photo ════════════════════════════════ */}
+      <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
         {parallaxBackgroundImage ? (
           <div className="hero-v2__bg-roll" aria-hidden>
             <div
@@ -149,7 +175,7 @@ export function HeroSection(props: HeroProps) {
         )}
         <div className="hero-v2__scrim-radial" />
         <div className="hero-v2__scrim-left" />
-      </div>
+      </motion.div>
 
       {/* ════ LAYER 1 — Blueprint geometry ══════════════════════════════════ */}
       <div className="hero-v2__structure-plane" aria-hidden>
@@ -176,6 +202,7 @@ export function HeroSection(props: HeroProps) {
         {/* ── Photo panel (right column, absolute, parallelogram clip) ── */}
         <motion.div
           className="hero-v2__photo-panel"
+          style={mounted ? { y: photoY } : {}}
           variants={PHOTO_VARIANT}
           initial="hidden"
           animate="visible"
@@ -193,44 +220,43 @@ export function HeroSection(props: HeroProps) {
           <div className="hero-v2__photo-scrim" />
 
           {/* ── Glass stat chips floating over photo ── */}
-          {showChips ? (
-            <div className="hero-v2__chips">
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  className="hero-v2__chip"
-                  variants={CHIP_VARIANT}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <span className="hero-v2__chip-num">{s.value}</span>
-                  <span className="hero-v2__chip-label">{s.label}</span>
-                </motion.div>
-              ))}
+          <div className="hero-v2__chips">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                className="hero-v2__chip"
+                variants={CHIP_VARIANT}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+              >
+                <span className="hero-v2__chip-num">{s.value}</span>
+                <span className="hero-v2__chip-label">{s.label}</span>
+              </motion.div>
+            ))}
 
-              {showCoverageChip ? (
-                <motion.div
-                  className="hero-v2__chip hero-v2__chip--coverage"
-                  variants={CHIP_VARIANT}
-                  custom={stats.length}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <span className="hero-v2__chip-eyebrow">{coverage.label}</span>
-                  <div className="hero-v2__chip-tags">
-                    {coverage.tags.map((t) => (
-                      <span key={t} className="hero-v2__chip-tag">{t}</span>
-                    ))}
-                  </div>
-                </motion.div>
-              ) : null}
-            </div>
-          ) : null}
+            <motion.div
+              className="hero-v2__chip hero-v2__chip--coverage"
+              variants={CHIP_VARIANT}
+              custom={2}
+              initial="hidden"
+              animate="visible"
+            >
+              <span className="hero-v2__chip-eyebrow">{coverage.label}</span>
+              <div className="hero-v2__chip-tags">
+                {coverage.tags.map((t) => (
+                  <span key={t} className="hero-v2__chip-tag">{t}</span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* ── Main content ── */}
-        <div className="hero-v2__content">
+        <motion.div
+          className="hero-v2__content"
+          style={mounted ? { y: textY } : {}}
+        >
           {topCredentialChips.length > 0 ? (
             <motion.div
               className="hero-v2__trust-badges"
@@ -326,6 +352,7 @@ export function HeroSection(props: HeroProps) {
             return (
               <motion.div
                 className="hero-v2__lede-block"
+                style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
                 variants={FADE_UP}
                 custom={0}
                 initial="hidden"
@@ -376,68 +403,71 @@ export function HeroSection(props: HeroProps) {
                 </MotionSmartLink>
               )}
 
-              {secondaryCta && !isTelOrMail(secondaryCta.href) ? (
-                <MotionSmartLink
-                  href={secondaryCta.href}
-                  className="btn-hero-glass"
-                  whileHover={{ scale: 1.025, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 380, damping: 18 }}
-                >
-                  {secondaryCta.label}
-                </MotionSmartLink>
+              {secondaryCta ? (
+                isTelOrMail(secondaryCta.href) ? (
+                  <motion.a
+                    href={secondaryCta.href}
+                    className="btn-hero-glass"
+                    whileHover={{ scale: 1.025, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                  >
+                    {secondaryCta.label}
+                  </motion.a>
+                ) : (
+                  <MotionSmartLink
+                    href={secondaryCta.href}
+                    className="btn-hero-glass"
+                    whileHover={{ scale: 1.025, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 380, damping: 18 }}
+                  >
+                    {secondaryCta.label}
+                  </MotionSmartLink>
+                )
               ) : null}
             </div>
-            {secondaryCta && isTelOrMail(secondaryCta.href) ? (
-              <p className="hero-v2__phone-inline">
-                <a href={secondaryCta.href} className="hero-v2__phone-link">
-                  {secondaryCta.label}
-                </a>
-              </p>
-            ) : null}
             {ctaMicrocopy ? (
               <p className="hero-v2__cta-microcopy">{ctaMicrocopy}</p>
             ) : null}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Single frosted footer (spec §4.2 layer 4): optional trust row + service tiles — one gold rail, no extra mid-hero band */}
-      {showServiceBar ? (
-        <div className="hero-v2__service-bar">
-          {trustItems && trustItems.length > 0 ? (
-            <div className="hero-v2__trust-row" aria-label="Credentials">
-              <div className="hero-v2__trust-inner">
-                {trustItems.map((t) => (
-                  <span key={t} className="hero-v2__trust-item">
-                    {t}
-                  </span>
-                ))}
-              </div>
+      <div className="hero-v2__service-bar">
+        {trustItems && trustItems.length > 0 ? (
+          <div className="hero-v2__trust-row" aria-label="Credentials">
+            <div className="hero-v2__trust-inner">
+              {trustItems.map((t) => (
+                <span key={t} className="hero-v2__trust-item">
+                  {t}
+                </span>
+              ))}
             </div>
-          ) : null}
-          {trustItems && trustItems.length > 0 ? (
-            <div className="hero-v2__trust-seam" aria-hidden />
-          ) : null}
-          <div className="hero-v2__service-inner">
-            {serviceBarSlugTitles.map((s, i) => (
-              <motion.div
-                key={s.slug}
-                className="hero-v2__service-tile-wrap"
-                variants={TILE_VARIANT}
-                custom={i}
-                initial="hidden"
-                animate="visible"
-              >
-                <SmartLink className="hero-v2__service-tile" href={ROUTES.service(s.slug)}>
-                  <HeroServiceIcon slug={s.slug} />
-                  <span className="hero-v2__service-label">{s.title}</span>
-                </SmartLink>
-              </motion.div>
-            ))}
           </div>
+        ) : null}
+        {trustItems && trustItems.length > 0 ? (
+          <div className="hero-v2__trust-seam" aria-hidden />
+        ) : null}
+        <div className="hero-v2__service-inner">
+          {serviceBarSlugTitles.map((s, i) => (
+            <motion.div
+              key={s.slug}
+              className="hero-v2__service-tile-wrap"
+              variants={TILE_VARIANT}
+              custom={i}
+              initial="hidden"
+              animate="visible"
+            >
+              <SmartLink className="hero-v2__service-tile" href={ROUTES.service(s.slug)}>
+                <HeroServiceIcon slug={s.slug} />
+                <span className="hero-v2__service-label">{s.title}</span>
+              </SmartLink>
+            </motion.div>
+          ))}
         </div>
-      ) : null}
+      </div>
     </section>
   );
 }
