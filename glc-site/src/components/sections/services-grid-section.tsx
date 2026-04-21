@@ -1,11 +1,10 @@
 import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
-import { HomeServicesPhotoTile } from "@/components/sections/home-services-photo-tile";
+import { HomeServicesExpandableList } from "@/components/sections/home-services-expandable-list";
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
 import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
-import type { RevealDelayClass } from "@/components/ui/reveal";
 import styles from "@/components/sections/services-grid-section.module.css";
 
 const FALLBACK_FEATURE = "/images/excavation-and-foundations-orillia-barrie.png";
@@ -14,12 +13,6 @@ type Props = ServicesSectionProps & {
   cards: MegaMenuCard[];
   /** When set (homepage), renders quote + view-all CTAs in the split bar. */
   servicesBandCta?: ServicesBandCta;
-};
-
-const delayFor = (i: number): RevealDelayClass | undefined => {
-  if (i % 3 === 1) return "reveal--delay-1";
-  if (i % 3 === 2) return "reveal--delay-2";
-  return undefined;
 };
 
 function HeaderBlueprintGhost() {
@@ -125,10 +118,11 @@ export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props)
 
               <div className={styles.gridRail}>
                 <div className={styles.rail} aria-hidden />
-                <div className={`home-services-photo__grid ${styles.grid}`} role="list">
-                  {cards.map((card, i) => (
-                    <HomeServicesPhotoTile key={card.slug} card={card} delayClass={delayFor(i)} />
-                  ))}
+                <div className={styles.expandListShell}>
+                  <span className={styles.glWatermark} aria-hidden>
+                    GL
+                  </span>
+                  <HomeServicesExpandableList cards={cards} />
                 </div>
               </div>
             </div>
