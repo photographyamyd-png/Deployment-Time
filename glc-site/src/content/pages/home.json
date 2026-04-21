@@ -79,6 +79,7 @@
     {
       "type": "marquee",
       "props": {
+        "bandTone": "light",
         "items": [
           "Commercial Excavation Barrie",
           "Site Prep & Grading Simcoe County",
