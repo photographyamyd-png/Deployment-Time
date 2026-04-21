@@ -9,14 +9,14 @@ import {
   useSpring,
   type Variants,
 } from "framer-motion";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
 import { SmartLink } from "@/components/ui/smart-link";
 import { MotionSmartLink } from "@/components/ui/motion-smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
 import type { HeroProps } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 // ─── Variants ────────────────────────────────────────────────────────────────
 
