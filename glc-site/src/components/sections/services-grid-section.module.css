@@ -7,6 +7,15 @@
   overflow-y: visible;
 }
 
+/* Pointer depth shell — vars consumed by parallax + blueprint layers */
+.depthShell {
+  position: relative;
+  isolation: isolate;
+  --depth-x: 0;
+  --depth-y: 0;
+  --depth-pull: 0;
+}
+
 /* GROUND — technical grid paper (structure plane, very low contrast) */
 .layerGround {
   position: absolute;
@@ -100,21 +109,37 @@
   background-size: 180px;
 }
 
-/* FEATURE — off-grid shell + slanted clip */
+/* FEATURE — full-bleed industrial cut + fore-index (z above image, below read card) */
 .featureShell {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  margin-bottom: clamp(-56px, -7vw, -32px);
+  margin-bottom: clamp(-48px, -6vw, -24px);
+}
+
+.featureForeIndex {
+  position: absolute;
+  left: clamp(12px, 3vw, 36px);
+  bottom: clamp(10px, 2vw, 28px);
+  z-index: 5;
+  font-family: var(--font-display);
+  font-size: clamp(52px, 12vw, 120px);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: color-mix(in srgb, var(--white) 22%, transparent);
+  text-shadow: 0 0 1px color-mix(in srgb, var(--charcoal-deep) 55%, transparent);
+  pointer-events: none;
+  user-select: none;
 }
 
 .featureClip {
   position: relative;
-  height: clamp(260px, 36vw, 540px);
+  height: clamp(280px, 38vw, 560px);
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
+  clip-path: polygon(0 12%, 100% 0%, 100% 88%, 0% 100%);
   border-bottom: 3px solid var(--charcoal-deep);
   box-shadow: var(--shadow-heavy);
 }
@@ -135,7 +160,7 @@
       calc(var(--svc-py) * -14px),
       0
     )
-    scale(1.07);
+    scale(calc(1.06 + var(--depth-pull, 0) * 0.05));
   transition: transform 0.35s var(--ease-expo);
 }
 
@@ -145,7 +170,7 @@
       calc(var(--svc-py) * -14px),
       0
     )
-    scale(1.09);
+    scale(calc(1.08 + var(--depth-pull, 0) * 0.05));
 }
 
 .parallaxScrim {
@@ -168,7 +193,7 @@
     );
 }
 
-/* Faster “blueprint” layer drift */
+/* Blueprint layer — counter-drifts vs image; extra opposition in CTA / lower zone */
 .parallaxBlueprint {
   position: absolute;
   inset: -10%;
@@ -188,8 +213,8 @@
       transparent 1px 44px
     );
   transform: translate3d(
-    calc(var(--svc-px) * 28px),
-    calc(var(--svc-py) * 24px),
+    calc(var(--svc-px) * 28px - var(--depth-x, 0) * var(--depth-pull, 0) * 42px),
+    calc(var(--svc-py) * 24px - var(--depth-y, 0) * var(--depth-pull, 0) * 36px),
     0
   );
   transition: transform 0.18s var(--ease-expo);
@@ -220,20 +245,43 @@
   );
 }
 
-/* READ — body clears overlap; asym board */
+/* READ — asymmetric split: left rail + tiles | right floating card overlapping feature */
 .body {
   position: relative;
   z-index: 8;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: clamp(48px, 7vw, 96px) clamp(20px, 4vw, 40px) var(--section-v);
+  padding: clamp(40px, 6vw, 88px) clamp(20px, 4vw, 48px) var(--section-v);
 }
 
-.asymBoard {
+.overhaulMain {
   display: grid;
-  grid-template-columns: minmax(0, 0.22fr) minmax(0, 1fr);
-  gap: clamp(18px, 2.8vw, 36px);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(16px, 2.5vw, 32px);
   align-items: start;
+}
+
+.overhaulRight {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.overhaulLeft {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.5vw, 28px);
+}
+
+.floatingReadCard {
+  position: relative;
+  z-index: 12;
+  margin-top: clamp(-100px, -12vw, -44px);
+  margin-left: clamp(-12px, -2vw, 0px);
+  margin-bottom: clamp(8px, 1.5vw, 16px);
 }
 
 .asideTech {
@@ -293,26 +341,32 @@
   color: color-mix(in srgb, var(--charcoal-deep) 22%, transparent);
 }
 
-.asymMain {
-  min-width: 0;
+.headerGhostBp {
+  position: absolute;
+  right: -8%;
+  top: 8%;
+  width: min(220px, 48%);
+  height: auto;
+  z-index: 0;
+  color: var(--charcoal-mid);
+  opacity: 0.24;
+  pointer-events: none;
+  transform: rotate(-8deg);
 }
 
-.headOverlap {
-  margin-bottom: clamp(24px, 3.5vw, 40px);
-  position: relative;
-  z-index: 2;
-}
-
-/* Floating read plate */
+/* Floating read plate — glass + hard yellow depth offset (industrial, not soft blur shadow) */
 .header {
   position: relative;
-  background: color-mix(in srgb, var(--white) 86%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  z-index: 1;
+  background: color-mix(in srgb, var(--white) 88%, transparent);
+  backdrop-filter: blur(14px) brightness(1.02);
+  -webkit-backdrop-filter: blur(14px) brightness(1.02);
   padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
-  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
   border-left: 3px solid var(--yellow-core);
-  box-shadow: var(--shadow-elevate);
+  box-shadow:
+    clamp(12px, 2vw, 20px) clamp(12px, 2vw, 20px) 0 0 var(--yellow-core),
+    var(--shadow-elevate);
 }
 
 .header::before {
@@ -320,14 +374,15 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: min(48%, 220px);
+  width: min(52%, 240px);
   height: 3px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--yellow-core) 60%, transparent) 100%
+    color-mix(in srgb, var(--yellow-core) 65%, transparent) 100%
   );
   pointer-events: none;
+  z-index: 2;
 }
 
 .heading {
@@ -357,37 +412,49 @@
   color: var(--text-400);
 }
 
-.caption {
-  position: relative;
-  margin: clamp(14px, 2vw, 22px) 0 0;
-  padding-left: clamp(20px, 2.5vw, 28px);
-  max-width: 52ch;
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(15px, 1.65vw, 17px);
-  line-height: 1.75;
-  color: var(--text-500);
-  border-left: 2px solid var(--gray-200);
+.technicalSpecs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 18px) clamp(16px, 3vw, 28px);
+  margin: clamp(18px, 2.5vw, 26px) 0 0;
+  padding: 0;
 }
 
-.captionMark {
-  position: absolute;
-  left: 4px;
-  top: -0.15em;
-  font-family: var(--font-accent);
-  font-size: clamp(36px, 5vw, 52px);
-  line-height: 1;
-  color: var(--yellow-core);
-  opacity: 0.32;
-  pointer-events: none;
+.specItem {
+  margin: 0;
+  padding: clamp(10px, 1.5vw, 14px) 0 0;
+  border-top: 1px solid var(--gray-200);
 }
 
-.caption strong {
+.specLabel {
   font-family: var(--font-body);
-  font-style: normal;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-400);
+  margin: 0 0 6px;
+}
+
+.specValue {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.35vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--text-700);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.microLede {
+  margin: clamp(16px, 2vw, 22px) 0 0;
+  max-width: 48ch;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.25vw, 15px);
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-500);
 }
 
 .gridRail {
@@ -396,7 +463,8 @@
   gap: clamp(16px, 2.5vw, 28px);
   align-items: start;
   position: relative;
-  z-index: 1;
+  z-index: 10;
+  flex: 1;
 }
 
 .rail {
@@ -432,17 +500,19 @@
   box-shadow: var(--shadow-elevate);
 }
 
-/* CTA — collage bar; primary industrial clip */
+/* CTA — hard-offset depth + glass secondary */
 .ctaBar {
   display: grid;
   grid-template-columns: 1fr auto;
   min-height: 80px;
   margin-top: clamp(36px, 5vw, 52px);
   border: 1px solid var(--gray-200);
-  box-shadow: var(--shadow-card);
   background: var(--white);
   position: relative;
-  z-index: 2;
+  z-index: 14;
+  box-shadow:
+    10px 10px 0 0 color-mix(in srgb, var(--charcoal-mid) 35%, transparent),
+    var(--shadow-card);
 }
 
 .ctaMain {
@@ -550,7 +620,9 @@
   align-items: center;
   gap: 10px;
   padding: 0 clamp(18px, 3vw, 40px);
-  background: var(--charcoal-mid);
+  background: color-mix(in srgb, var(--charcoal-mid) 92%, transparent);
+  backdrop-filter: blur(10px) brightness(0.82);
+  -webkit-backdrop-filter: blur(10px) brightness(0.82);
   border-left: 1px solid color-mix(in srgb, var(--white) 8%, transparent);
   text-decoration: none;
   overflow: hidden;
@@ -614,8 +686,19 @@
 }
 
 @media (max-width: 960px) {
-  .asymBoard {
+  .overhaulMain {
     grid-template-columns: 1fr;
+  }
+
+  .overhaulRight,
+  .overhaulLeft {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .floatingReadCard {
+    margin-top: clamp(-64px, -10vw, -28px);
+    margin-left: 0;
   }
 
   .asideTech {

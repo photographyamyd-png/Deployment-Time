@@ -103,6 +103,11 @@ export type ServicesBandCta = {
   servicesViewAll: { label: string; href: string };
 };
 
+export type ServicesTechnicalSpec = {
+  label: string;
+  value: string;
+};
+
 export type ServicesSectionProps = {
   eyebrow: string;
   headingLine1: string;
@@ -113,6 +118,8 @@ export type ServicesSectionProps = {
   /** Full-bleed band image above the copy grid (falls back to first mega card photo). */
   featureImageSrc?: string;
   featureImageAlt?: string;
+  /** Optional “technical data point” rows under the headline; inherits homepage + hub when set in `home.json`. */
+  technicalSpecs?: ServicesTechnicalSpec[];
 };
 
 export type StatCellProps = {

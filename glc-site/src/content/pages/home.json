@@ -135,7 +135,13 @@
         "tagline": "Six commercial lines — excavation, grading, foundations, drainage & hardscaping, hauling, snow — one dispatch standard across Simcoe County.",
         "intro": "Ground Level Contracting handles civil and site work from first cut to final grade — Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County.",
         "featureImageSrc": "/images/excavation-and-foundations-orillia-barrie.png",
-        "featureImageAlt": "Heavy equipment on a commercial excavation and grading site in Simcoe County"
+        "featureImageAlt": "Heavy equipment on a commercial excavation and grading site in Simcoe County",
+        "technicalSpecs": [
+          { "label": "Coordination", "value": "Direct PM line" },
+          { "label": "Mobilization", "value": "24-hr site ready" },
+          { "label": "Coverage", "value": "Simcoe County + corridor" },
+          { "label": "Dispatch", "value": "One crew standard" }
+        ]
       }
     },
     {
