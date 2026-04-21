@@ -1,120 +1,154 @@
-/* #services — light band with explicit GROUND · STRUCTURE · READ layers (GLC 3-plane rule). Tokens + var(--ease-expo) only. */
+/* #services — collage layers, slanted media stage, asym read board, parallax drift. GLC tokens + var(--ease-expo). */
 
 .showcase {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
-/* READ / decoration: ghost watermark (structure plane, low contrast) */
+/* GROUND — technical grid paper (structure plane, very low contrast) */
+.layerGround {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--charcoal-deep) 14%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  opacity: 0.35;
+}
+
 .wm {
   position: absolute;
   right: -0.04em;
-  top: 52%;
+  top: 48%;
   transform: translateY(-50%);
   font-family: var(--font-display);
-  font-size: clamp(100px, 14vw, 200px);
+  font-size: clamp(96px, 13vw, 190px);
   font-weight: 700;
   color: var(--charcoal-deep);
-  opacity: 0.035;
+  opacity: 0.028;
   letter-spacing: -0.05em;
   text-transform: uppercase;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
   line-height: 1;
   user-select: none;
 }
 
-/* STRUCTURE — architectural sheets behind content */
 .structure {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
 }
 
 .structureSheet {
   position: absolute;
-  left: min(-3vw, -24px);
-  top: 18%;
-  width: min(68%, 760px);
-  height: 64%;
+  left: min(-4vw, -32px);
+  top: 22%;
+  width: min(62%, 700px);
+  height: 58%;
   background: var(--gray-100);
-  transform: rotate(-1.1deg);
+  transform: rotate(-1.25deg);
   transform-origin: 0 50%;
-  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 7%, transparent);
   box-shadow: var(--shadow-sm);
+  clip-path: polygon(0 4%, 100% 0, 96% 100%, 0 96%);
 }
 
 .structureSpine {
   position: absolute;
-  left: 8%;
-  top: 22%;
+  left: 10%;
+  top: 28%;
   width: 3px;
-  height: 48%;
+  height: 42%;
   background: linear-gradient(
     180deg,
     var(--yellow-core) 0%,
-    color-mix(in srgb, var(--yellow-core) 22%, transparent) 72%,
+    color-mix(in srgb, var(--yellow-core) 18%, transparent) 70%,
     transparent 100%
   );
-  transform: translateX(-50%) rotate(0.2deg);
-  opacity: 0.85;
+  transform: translateX(-50%) rotate(0.15deg);
+  opacity: 0.9;
 }
 
 .structureTrace {
   position: absolute;
-  right: 6%;
-  bottom: 10%;
-  width: clamp(120px, 16vw, 200px);
-  height: clamp(72px, 10vw, 120px);
-  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
-  transform: rotate(3deg);
-  background: transparent;
+  right: 5%;
+  bottom: 8%;
+  width: clamp(100px, 14vw, 180px);
+  height: clamp(64px, 9vw, 100px);
+  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 14%, transparent);
+  transform: rotate(4deg);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 88%);
 }
 
-/* Subtle film grain over section (allowed texture overlay; not section fill gradient) */
+/* Film grain — below READ */
 .showcase::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 3;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.04;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   background-size: 180px;
 }
 
-/* FEATURE — ground photo + scrim + frame (structure on read) */
-.featureStage {
+/* FEATURE — off-grid shell + slanted clip */
+.featureShell {
   position: relative;
-  z-index: 1;
-}
-
-.featureBleed {
-  position: relative;
+  z-index: 2;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  height: clamp(240px, 34vw, 500px);
+  margin-bottom: clamp(-56px, -7vw, -32px);
+}
+
+.featureClip {
+  position: relative;
+  height: clamp(260px, 36vw, 540px);
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
   border-bottom: 3px solid var(--charcoal-deep);
-  box-shadow: var(--shadow-editorial);
+  box-shadow: var(--shadow-heavy);
 }
 
-.featureImg {
+.parallaxRoot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  --svc-px: 0;
+  --svc-py: 0;
+}
+
+.parallaxImg {
   object-fit: cover;
-  object-position: center 55%;
-  transform: scale(1.04);
-  transition: transform 1.1s var(--ease-expo);
+  object-position: center 52%;
+  transform: translate3d(
+      calc(var(--svc-px) * -16px),
+      calc(var(--svc-py) * -14px),
+      0
+    )
+    scale(1.07);
+  transition: transform 0.35s var(--ease-expo);
 }
 
-.featureBleed:hover .featureImg {
-  transform: scale(1.07);
+.parallaxRoot:hover .parallaxImg {
+  transform: translate3d(
+      calc(var(--svc-px) * -16px),
+      calc(var(--svc-py) * -14px),
+      0
+    )
+    scale(1.09);
 }
 
-.featureScrim {
+.parallaxScrim {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -122,66 +156,163 @@
   background:
     linear-gradient(
       105deg,
-      color-mix(in srgb, var(--charcoal-deep) 55%, transparent) 0%,
-      color-mix(in srgb, var(--charcoal-deep) 20%, transparent) 40%,
-      transparent 62%
+      color-mix(in srgb, var(--charcoal-deep) 58%, transparent) 0%,
+      color-mix(in srgb, var(--charcoal-deep) 22%, transparent) 38%,
+      transparent 58%
     ),
     linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--charcoal-deep) 38%, transparent) 0%,
-      transparent 42%,
-      color-mix(in srgb, var(--off-white) 96%, transparent) 100%
+      color-mix(in srgb, var(--charcoal-deep) 42%, transparent) 0%,
+      transparent 44%,
+      color-mix(in srgb, var(--off-white) 97%, transparent) 100%
     );
 }
 
-/* Inner frame — partial border “shell” on photo */
-.featureFrame {
+/* Faster “blueprint” layer drift */
+.parallaxBlueprint {
   position: absolute;
-  inset: clamp(12px, 2vw, 22px);
+  inset: -10%;
   z-index: 2;
   pointer-events: none;
-  border: 1px solid color-mix(in srgb, var(--white) 42%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--charcoal-deep) 18%, transparent);
+  opacity: 0.11;
+  mix-blend-mode: multiply;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--charcoal-deep) 35%, transparent) 0 1px,
+      transparent 1px 44px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--charcoal-deep) 35%, transparent) 0 1px,
+      transparent 1px 44px
+    );
+  transform: translate3d(
+    calc(var(--svc-px) * 28px),
+    calc(var(--svc-py) * 24px),
+    0
+  );
+  transition: transform 0.18s var(--ease-expo);
 }
 
-.featureFloor {
+.parallaxFrame {
+  position: absolute;
+  inset: clamp(14px, 2.2vw, 26px);
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--white) 48%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--charcoal-deep) 20%, transparent);
+}
+
+.parallaxFloor {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 5px;
-  z-index: 3;
+  height: 6px;
+  z-index: 4;
   pointer-events: none;
   background: linear-gradient(
     90deg,
     var(--yellow-core) 0%,
-    color-mix(in srgb, var(--yellow-core) 35%, transparent) 45%,
+    color-mix(in srgb, var(--yellow-core) 32%, transparent) 42%,
     transparent 100%
   );
 }
 
-/* BODY — READ stack above structure */
+/* READ — body clears overlap; asym board */
 .body {
   position: relative;
-  z-index: 6;
+  z-index: 8;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: clamp(8px, 1.5vw, 20px) clamp(20px, 4vw, 40px) var(--section-v);
+  padding: clamp(48px, 7vw, 96px) clamp(20px, 4vw, 40px) var(--section-v);
+}
+
+.asymBoard {
+  display: grid;
+  grid-template-columns: minmax(0, 0.22fr) minmax(0, 1fr);
+  gap: clamp(18px, 2.8vw, 36px);
+  align-items: start;
+}
+
+.asideTech {
+  position: relative;
+  min-height: 180px;
+  padding: clamp(12px, 2vw, 20px) 0;
+  border: 1px solid var(--gray-200);
+  background: color-mix(in srgb, var(--white) 92%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.asideTech::before,
+.asideTech::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--yellow-core);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.asideTech::before {
+  top: 10px;
+  left: 10px;
+  border-width: 2px 0 0 2px;
+}
+
+.asideTech::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2px 2px 0;
+}
+
+.asideVert {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-400);
+  margin: 0 auto;
+  padding: 8px 0;
+}
+
+.asideNum {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--charcoal-deep) 22%, transparent);
+}
+
+.asymMain {
+  min-width: 0;
 }
 
 .headOverlap {
-  margin-top: clamp(-56px, -7vw, -36px);
-  margin-bottom: clamp(28px, 4vw, 44px);
+  margin-bottom: clamp(24px, 3.5vw, 40px);
   position: relative;
+  z-index: 2;
 }
 
+/* Floating read plate */
 .header {
   position: relative;
-  background: var(--white);
-  padding: clamp(28px, 4vw, 44px) clamp(24px, 3.5vw, 40px);
-  border: 1px solid var(--gray-200);
+  background: color-mix(in srgb, var(--white) 86%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
+  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
   border-left: 3px solid var(--yellow-core);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-elevate);
 }
 
 .header::before {
@@ -189,12 +320,12 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: min(40%, 180px);
+  width: min(48%, 220px);
   height: 3px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--yellow-core) 55%, transparent) 100%
+    color-mix(in srgb, var(--yellow-core) 60%, transparent) 100%
   );
   pointer-events: none;
 }
@@ -211,11 +342,10 @@
 }
 
 .eyebrowDash {
-  width: 32px;
+  width: 36px;
   height: 2px;
   flex-shrink: 0;
   background: var(--yellow-core);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--yellow-core) 25%, transparent);
 }
 
 .eyebrowText {
@@ -249,7 +379,7 @@
   font-size: clamp(36px, 5vw, 52px);
   line-height: 1;
   color: var(--yellow-core);
-  opacity: 0.35;
+  opacity: 0.32;
   pointer-events: none;
 }
 
@@ -260,25 +390,25 @@
   color: var(--text-700);
 }
 
-/* Grid stage: vertical rail + tiles */
 .gridRail {
   display: grid;
-  grid-template-columns: 4px 1fr;
+  grid-template-columns: 5px 1fr;
   gap: clamp(16px, 2.5vw, 28px);
   align-items: start;
-  margin-bottom: clamp(8px, 1vw, 12px);
+  position: relative;
+  z-index: 1;
 }
 
 .rail {
-  min-height: 120px;
+  min-height: 140px;
   height: 100%;
   background: linear-gradient(
     180deg,
     var(--yellow-core) 0%,
-    color-mix(in srgb, var(--yellow-core) 15%, transparent) 55%,
-    color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 100%
+    color-mix(in srgb, var(--yellow-core) 14%, transparent) 52%,
+    color-mix(in srgb, var(--charcoal-deep) 10%, transparent) 100%
   );
-  box-shadow: inset -1px 0 0 color-mix(in srgb, var(--charcoal-deep) 8%, transparent);
+  box-shadow: inset -1px 0 0 color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
 }
 
 .grid {
@@ -287,21 +417,32 @@
   padding: 0;
 }
 
-/* Elevate tiles on the READ layer */
 .grid :global(.home-services-photo__card) {
   box-shadow: var(--shadow-card);
-  border-color: color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
+  border-color: color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
+  transition:
+    transform 0.35s var(--ease-expo),
+    box-shadow 0.35s var(--ease-expo),
+    border-color 0.35s var(--ease-expo);
 }
 
-/* CTA bar — sits on READ layer */
+.grid :global(.home-services-photo__card:hover),
+.grid :global(.home-services-photo__card:focus-visible) {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevate);
+}
+
+/* CTA — collage bar; primary industrial clip */
 .ctaBar {
   display: grid;
   grid-template-columns: 1fr auto;
-  min-height: 76px;
-  margin-top: clamp(32px, 4vw, 48px);
+  min-height: 80px;
+  margin-top: clamp(36px, 5vw, 52px);
   border: 1px solid var(--gray-200);
   box-shadow: var(--shadow-card);
   background: var(--white);
+  position: relative;
+  z-index: 2;
 }
 
 .ctaMain {
@@ -315,6 +456,7 @@
   text-decoration: none;
   color: var(--charcoal-deep);
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 98.5% 100%, 0% 100%);
   transition: color 0.3s var(--ease-expo);
 }
 
@@ -471,49 +613,68 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-@media (max-width: 900px) {
-  .structureSheet {
-    opacity: 0.55;
+@media (max-width: 960px) {
+  .asymBoard {
+    grid-template-columns: 1fr;
   }
 
-  .structureTrace {
-    opacity: 0.6;
+  .asideTech {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: center;
+    min-height: 0;
+    padding: 16px 20px;
+  }
+
+  .asideVert {
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin: 0;
+    text-align: left;
+  }
+
+  .asideNum {
+    margin-top: 0;
+    text-align: right;
   }
 }
 
 @media (max-width: 768px) {
   .gridRail {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .rail {
-    min-height: 3px;
-    height: 3px;
+    min-height: 4px;
+    height: 4px;
     width: 100%;
     background: linear-gradient(
       90deg,
       var(--yellow-core) 0%,
-      color-mix(in srgb, var(--yellow-core) 20%, transparent) 50%,
+      color-mix(in srgb, var(--yellow-core) 22%, transparent) 55%,
       transparent 100%
     );
     box-shadow: none;
   }
 
-  .headOverlap {
-    margin-top: clamp(-40px, -6vw, -24px);
-  }
-
-  .featureBleed:hover .featureImg {
-    transform: scale(1.04);
+  .ctaMain {
+    clip-path: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .featureImg,
-  .featureBleed:hover .featureImg {
+  .parallaxImg,
+  .parallaxBlueprint,
+  .parallaxRoot:hover .parallaxImg {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .grid :global(.home-services-photo__card:hover),
+  .grid :global(.home-services-photo__card:focus-visible) {
     transform: none;
-    transition: none;
   }
 }
 
