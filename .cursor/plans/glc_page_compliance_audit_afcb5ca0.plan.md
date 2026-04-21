@@ -3,30 +3,39 @@ name: GLC page compliance audit (ground rules)
 overview: Structured pass over production routes for section alternation (dark/light), one job per section, one primary quote CTA label sitewide, and no duplicate closing CTAs. Ops—one page.tsx per fix session; do not mix glc-base.css with page/layout in one commit; use /sandbox/ for labeled backups before production edits.
 todos:
   - id: audit-matrix
-    content: "Fill PAGE-COMPLIANCE-MATRIX.md per URL: DOM order, tone (D/L), adjacent violations, primary CTA count + labels (browser + DevTools)."
+    content: "1 — Audit only: matrix §1–4 + §9; D/L + primary CTA per route (browser where required)."
+    status: in_progress
+  - id: fix-home-alternation
+    content: "2 — Home Rule 1: coverage→cta, hero/marquee, services/why, process/parallax — reorder-only OR glc-base-only; never mixed."
     status: pending
   - id: sandbox-cta-spike
-    content: "Optional: two /sandbox variants—header included vs excluded from per-page CTA count; browser snapshot for stakeholder."
-    status: pending
-  - id: fix-home-cta-dup
-    content: "Home: omit contactStrip from HOME_SECTION_ORDER; keep ctaBand; contactStrip JSON for getHomeSectionProps; browser /; OPEN coverage→cta D→D for alternation commit."
-    status: completed
-  - id: fix-home-alternation
-    content: "Separate session(s): hero/marquee, services/why, process/parallax adjacency via reorder OR CSS-only ground change (never mixed with page commit)."
+    content: "3 — Optional: /sandbox header hidden vs canonical header CTA (visual CTA count)."
     status: pending
   - id: fix-company-cta
-    content: "One session: company/page.tsx—drop ContactStrip or CtaBand; simplify dispatch CTAs; browser check."
+    content: "4 — company/page.tsx only; dedupe closing CTAs; browser /company/."
+    status: pending
+  - id: fix-about-cta
+    content: "5 — about view only; dedupe btn-primary + CtaBand; browser /about/."
     status: pending
   - id: fix-service-tail
-    content: "One session: service-page-view.tsx—resolve coverage+stats dark adjacency and multiple end CTAs; verify one slug."
+    content: "6 — service-page-view.tsx only; coverage→stats + tail CTAs; one slug in browser."
     status: pending
   - id: canonical-quote-label
-    content: "Define single label; migrate home.json, cta-band defaults, header/drawer, registry in separate small commits."
+    content: "7 — Canonical quote label migration (small commits; header/drawer last)."
     status: pending
+  - id: fix-home-cta-dup
+    content: "Done: contactStrip off home order; ctaBand on home; OPEN coverage→cta → step 2."
+    status: completed
 isProject: false
 ---
 
 # GLC page compliance audit (ground rules)
+
+**Where the todo list lives**
+
+1. **Cursor Plans panel** — open this file from **Plans** in the sidebar; checkboxes bind to YAML `todos` above (execution order **1 → 7**).
+2. **Repo mirror (always visible)** — [`glc-site/audit/PAGE-COMPLIANCE-MATRIX.md` §9](../../glc-site/audit/PAGE-COMPLIANCE-MATRIX.md) duplicates the same ordered steps so you are not dependent on the Plan UI or a single chat thread.
+3. **Composer/agent checkboxes** — ephemeral to that conversation; **not** authoritative.
 
 **Working checklist (audit findings scaffold):** [`glc-site/audit/PAGE-COMPLIANCE-MATRIX.md`](../../glc-site/audit/PAGE-COMPLIANCE-MATRIX.md) — route table, app entry links, and **initial notes**. Per-row **Tone** / **CTA** detail is filled during the browser walk (not yet complete in the matrix “Compliance notes” column beyond the first pass).
 

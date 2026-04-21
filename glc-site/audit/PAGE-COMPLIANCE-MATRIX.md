@@ -33,7 +33,7 @@
 | URL path | App entry | Compliance notes (initial pass) |
 |----------|-----------|----------------------------------|
 | `/` | [`src/app/page.tsx`](../src/app/page.tsx) + [`home-section-order.ts`](../src/lib/home-section-order.ts) + [`SectionRenderer`](../src/components/sections/section-renderer.tsx) | **CTA (aligned 2026-04-21):** **`contactStrip` omitted from live** [`HOME_SECTION_ORDER`](../src/lib/home-section-order.ts) — one closing conversion zone = **`ctaBand`** (`ContactStripSection` data stays in [`home.json`](../src/content/pages/home.json) for `getHomeSectionProps` on company, etc.). **Tone:** see §5 — **OPEN:** `#coverage` (D) → `#cta-band` (D) until `fix-home-alternation` (reorder **or** CSS-only commit, never mixed). Known stacks: hero→marquee D→D; services→why L→L; process→parallax D→D. |
-| `/about/` | [`src/app/about/page.tsx`](../src/app/about/page.tsx) → [`AboutPageView`](../src/components/pages/about-page-view.tsx) | **CTA:** multiple `about.cta` + parallax CTA + `CtaBandSection`. **Tone:** verify each band in browser. |
+| `/about/` | [`src/app/about/page.tsx`](../src/app/about/page.tsx) → [`AboutPageView`](../src/components/pages/about-page-view.tsx) | **CTA (code audit):** `btn-primary` reuses `about.cta` on **split** + **audience** (2× primary same label/href); **split** + **media** use `about.cta` (primary + `btn-ghost`). **`ParallaxWhiteFrameBand`** `parallax.cta` (home JSON). **`CtaBandSection`** tail. **Dom order:** `MiniPageHero` (D) → `about-pg-split` → `about-pg-media` → optional `about-pg-audience` → parallax → `ctaBand`. **Tone:** each section’s ground — browser pass required. |
 | `/company/` | [`src/app/company/page.tsx`](../src/app/company/page.tsx) | **CTA:** dispatch block + `ContactStripSection` + `CtaBandSection`. |
 | `/contact/` | [`src/app/contact/page.tsx`](../src/app/contact/page.tsx) → `ContactPageView` | Form-first; confirm single primary quote CTA vs header. |
 | `/coverage/` | [`src/app/coverage/page.tsx`](../src/app/coverage/page.tsx) | **CTA:** `ParallaxWhiteFrameBand` CTA + `CtaBandSection`; **tone:** audit figure band + `CoverageSection` + parallax sequence. |
@@ -140,4 +140,21 @@ From [`service-page-view.tsx`](../src/components/services/service-page-view.tsx)
 - Master plan: [`.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md`](../../.cursor/plans/glc_page_compliance_audit_afcb5ca0.plan.md) (repo-relative from glc-site: `../../.cursor/plans/...`)
 - Prior audit notes: [`routes-matrix.md`](routes-matrix.md)
 
-_Last updated: 2026-04-21 — methodology §0 locked; homepage **Rules 4–5:** `contactStrip` removed from live order, **`ctaBand` retained**; **Rule 1 OPEN:** `#coverage`→`#cta-band` D→D + hero/marquee, services/why, process/parallax. Prior pass that dropped `ctaBand` was **reverted** in favor of this plan. **Next:** browser `/` + `fix-home-alternation` (isolated); then company (single `page.tsx` session)._
+---
+
+## 9. Ordered checklist (same as plan YAML — use when Plan panel is empty)
+
+| Step | Todo ID | Status | What |
+|------|---------|--------|------|
+| 1 | `audit-matrix` | **in progress** | Fill §1–4 route notes + D/L + primary CTAs; browser where required. **No code until this row is done enough to prioritize fixes.** |
+| 2 | `fix-home-alternation` | pending | Home Rule 1 only: reorder **or** `glc-base.css` / `glc-services-rebuild.css` — isolated commits. |
+| 3 | `sandbox-cta-spike` | pending | Optional `/sandbox` header vs CTA variants. |
+| 4 | `fix-company-cta` | pending | `company/page.tsx` only + browser. |
+| 5 | `fix-about-cta` | pending | About view only + browser. |
+| 6 | `fix-service-tail` | pending | `service-page-view.tsx` only + one slug browser. |
+| 7 | `canonical-quote-label` | pending | Label migration last. |
+| — | `fix-home-cta-dup` | **completed** | `contactStrip` off home order; `ctaBand` on home. |
+
+Execution rule: **do not start step 2+ until step 1 has enough matrix coverage** to pick the first alternation target (unless you explicitly override).
+
+_Last updated: 2026-04-21 — **§9** ordered checklist = plan YAML execution order; plan file explains where Cursor shows todos. `/about/` row expanded (code CTA audit). **Next:** continue step **1** (`audit-matrix`) on remaining static routes; no step **2** code until step 1 is sufficient per §9 rule._
