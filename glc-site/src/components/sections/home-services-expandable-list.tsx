@@ -58,7 +58,7 @@ function ExpandRow({
             alt={alt}
             fill
             className={styles.expandHeroImg}
-            sizes="(max-width: 640px) 96px, 20vw"
+            sizes="(max-width: 699px) 100vw, (max-width: 1179px) 50vw, 34vw"
           />
           <span className={styles.expandHeroNum} aria-hidden>
             {card.num}
