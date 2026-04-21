@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MiniPageHero } from "@/components/pages/mini-page-hero";
-import { ContactStripSection } from "@/components/sections/contact-strip-section";
 import { CtaBandSection } from "@/components/sections/cta-band-section";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -11,13 +10,12 @@ import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 import site from "@/content/site.json";
 import type { NavigationConfig, SiteConfig } from "@/content/types";
-import type { CtaBandProps, HomeContactStripProps } from "@/content/types";
+import type { CtaBandProps } from "@/content/types";
 
 const navData = navigation as NavigationConfig;
 const mega = navData.companyMega;
 const siteData = site as SiteConfig;
 const ctaProps = getHomeSectionProps<CtaBandProps>("ctaBand");
-const contactProps = getHomeSectionProps<HomeContactStripProps>("contactStrip");
 
 const heroLede = chunkSentences(mega.intro, 2)[0] ?? "";
 
@@ -98,8 +96,6 @@ export default function CompanyPage() {
           </div>
         </div>
       </section>
-
-      <ContactStripSection {...contactProps} sectionId="company-contact-strip" />
 
       <CtaBandSection {...ctaProps} />
     </main>
