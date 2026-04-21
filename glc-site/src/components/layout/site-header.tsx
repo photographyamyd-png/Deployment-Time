@@ -116,7 +116,10 @@ export function SiteHeader({ navigation }: Props) {
       : mega.intro;
 
   const mobileServiceLinks = mega.cards.map((c) => ({
-    label: c.gridTitle.join(" "),
+    label:
+      Array.isArray(c.gridTitle) && c.gridTitle.length > 0
+        ? c.gridTitle.join(" ")
+        : c.title,
     href: ROUTES.service(c.slug),
   }));
 
