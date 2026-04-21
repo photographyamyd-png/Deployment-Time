@@ -1,0 +1,15 @@
+/**
+ * Internal /sandbox/ playground only.
+ * Scroll-reveal (`.reveal` + `.glc-feat-acc__clip`) hides content until IntersectionObserver
+ * adds `.visible`. If that never runs, the page reads as “broken / no styling”.
+ * This route is for visual QA — always show full content.
+ */
+.sandbox .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.sandbox .glc-feat-acc__clip,
+.sandbox .glc-feat-acc__clip--b {
+  clip-path: inset(0 0 0 0);
+}
