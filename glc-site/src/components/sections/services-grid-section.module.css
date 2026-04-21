@@ -3,7 +3,8 @@
 .showcase {
   position: relative;
   isolation: isolate;
-  overflow-x: clip;
+  /* Let hard shadows + ghost SVGs bleed; section still bounded by main */
+  overflow-x: visible;
   overflow-y: visible;
 }
 
@@ -96,12 +97,12 @@
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 88%);
 }
 
-/* Film grain — below READ */
+/* Film grain — below feature + read (avoid painting over media) */
 .showcase::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 1;
   pointer-events: none;
   opacity: 0.04;
   mix-blend-mode: multiply;
@@ -109,7 +110,11 @@
   background-size: 180px;
 }
 
-/* FEATURE — full-bleed industrial cut + fore-index (z above image, below read card) */
+/*
+  Feature stack (inside .featureClip / parallax):
+  z1 photo · z2 blueprint grid · z3 frame · z4 yellow floor + fore-corner
+  Fore index sits above clipped media, below floating read card.
+*/
 .featureShell {
   position: relative;
   z-index: 3;
@@ -119,11 +124,30 @@
   margin-bottom: clamp(-48px, -6vw, -24px);
 }
 
+/* Fore-layer (inside .featureClip, above parallax floor): yellow survey corner */
+.featureForeCorner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(46%, 520px);
+  height: min(48%, 320px);
+  z-index: 5;
+  pointer-events: none;
+  border-left: 3px solid color-mix(in srgb, var(--yellow-core) 62%, transparent);
+  border-bottom: 3px solid color-mix(in srgb, var(--yellow-core) 62%, transparent);
+  box-sizing: border-box;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--yellow-core) 12%, transparent) 0%,
+    transparent 55%
+  );
+}
+
 .featureForeIndex {
   position: absolute;
   left: clamp(12px, 3vw, 36px);
   bottom: clamp(10px, 2vw, 28px);
-  z-index: 5;
+  z-index: 6;
   font-family: var(--font-display);
   font-size: clamp(52px, 12vw, 120px);
   font-weight: 700;
@@ -137,11 +161,12 @@
 
 .featureClip {
   position: relative;
-  height: clamp(280px, 38vw, 560px);
+  height: clamp(300px, 40vw, 600px);
   overflow: hidden;
-  clip-path: polygon(0 12%, 100% 0%, 100% 88%, 0% 100%);
+  clip-path: polygon(0 15%, 100% 0%, 100% 85%, 0% 100%);
   border-bottom: 3px solid var(--charcoal-deep);
   box-shadow: var(--shadow-heavy);
+  isolation: isolate;
 }
 
 .parallaxRoot {
@@ -153,6 +178,7 @@
 }
 
 .parallaxImg {
+  z-index: 0;
   object-fit: cover;
   object-position: center 52%;
   transform: translate3d(
@@ -193,13 +219,13 @@
     );
 }
 
-/* Blueprint layer — counter-drifts vs image; extra opposition in CTA / lower zone */
+/* Blueprint layer — counter-drifts vs image; reads on photo, not buried */
 .parallaxBlueprint {
   position: absolute;
   inset: -10%;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.11;
+  opacity: 0.17;
   mix-blend-mode: multiply;
   background-image:
     repeating-linear-gradient(
@@ -256,8 +282,8 @@
 
 .overhaulMain {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
-  gap: clamp(16px, 2.5vw, 32px);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 0;
   align-items: start;
 }
 
@@ -274,14 +300,23 @@
   display: flex;
   flex-direction: column;
   gap: clamp(18px, 2.5vw, 28px);
+  padding-right: clamp(12px, 2vw, 28px);
 }
 
 .floatingReadCard {
   position: relative;
   z-index: 12;
-  margin-top: clamp(-100px, -12vw, -44px);
-  margin-left: clamp(-12px, -2vw, 0px);
+  overflow: visible;
+  margin-top: clamp(-120px, -16vw, -56px);
+  margin-left: clamp(-8px, -1.5vw, 0px);
   margin-bottom: clamp(8px, 1.5vw, 16px);
+}
+
+@media (min-width: 961px) {
+  .floatingReadCard {
+    margin-top: clamp(-160px, -20vw, -100px);
+    margin-left: -18%;
+  }
 }
 
 .asideTech {
@@ -343,29 +378,31 @@
 
 .headerGhostBp {
   position: absolute;
-  right: -8%;
-  top: 8%;
-  width: min(220px, 48%);
+  left: -22%;
+  top: -4%;
+  right: auto;
+  width: min(280px, 75%);
   height: auto;
   z-index: 0;
   color: var(--charcoal-mid);
-  opacity: 0.24;
+  opacity: 0.38;
   pointer-events: none;
-  transform: rotate(-8deg);
+  transform: rotate(-11deg);
 }
 
-/* Floating read plate — glass + hard yellow depth offset (industrial, not soft blur shadow) */
+/* Floating read plate — glass + bold hard yellow step (spec: ~50px offset at large widths) */
 .header {
   position: relative;
   z-index: 1;
+  overflow: visible;
   background: color-mix(in srgb, var(--white) 88%, transparent);
   backdrop-filter: blur(14px) brightness(1.02);
   -webkit-backdrop-filter: blur(14px) brightness(1.02);
-  padding: clamp(28px, 4vw, 48px) clamp(24px, 3.5vw, 44px);
+  padding: clamp(28px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
   border: 1px solid color-mix(in srgb, var(--charcoal-deep) 12%, transparent);
   border-left: 3px solid var(--yellow-core);
   box-shadow:
-    clamp(12px, 2vw, 20px) clamp(12px, 2vw, 20px) 0 0 var(--yellow-core),
+    clamp(18px, 3.2vw, 50px) clamp(18px, 3.2vw, 50px) 0 0 var(--yellow-core),
     var(--shadow-elevate);
 }
 
@@ -699,6 +736,10 @@
   .floatingReadCard {
     margin-top: clamp(-64px, -10vw, -28px);
     margin-left: 0;
+  }
+
+  .overhaulMain {
+    gap: clamp(12px, 3vw, 24px);
   }
 
   .asideTech {

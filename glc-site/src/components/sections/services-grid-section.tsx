@@ -68,11 +68,12 @@ export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props)
         <div className="home-services-photo__seam" aria-hidden />
 
         <div className={styles.featureShell}>
-          <span className={styles.featureForeIndex} aria-hidden>
-            {lineCount}
-          </span>
           <div className={styles.featureClip}>
             <ServicesFeatureParallax src={featureSrc} alt={featureAlt} />
+            <span className={styles.featureForeCorner} aria-hidden />
+            <span className={styles.featureForeIndex} aria-hidden>
+              {lineCount}
+            </span>
           </div>
         </div>
 
