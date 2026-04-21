@@ -31,46 +31,70 @@ export function ServicesGridSection({ cards, servicesBandCta, ...props }: Props)
 
   return (
     <section id="services" className={`home-services-photo ${styles.showcase}`} aria-labelledby="services-heading">
-      <div className="home-services-photo__seam" aria-hidden />
+      <span className={styles.wm} aria-hidden>
+        GLC
+      </span>
 
-      <div className={styles.featureBleed}>
-        <Image
-          src={featureSrc}
-          alt={featureAlt}
-          fill
-          className={styles.featureImg}
-          sizes="100vw"
-          priority={false}
-        />
-        <div className={styles.featureScrim} aria-hidden />
+      <div className={styles.structure} aria-hidden>
+        <span className={styles.structureSheet} />
+        <span className={styles.structureSpine} />
+        <span className={styles.structureTrace} />
       </div>
 
-      <div className="home-services-photo__inner">
-        <header className="home-services-photo__header">
-          <Reveal>
-            <div className={styles.eyebrow}>
-              <span className={styles.eyebrowDash} aria-hidden />
-              <span className={styles.eyebrowText}>{props.eyebrow}</span>
-            </div>
-          </Reveal>
-          <Reveal delayClass="reveal--delay-1">
-            <h2 id="services-heading" className="home-services-photo__heading">
-              {props.headingLine1}
-              <br />
-              <span>{props.headingLine2}</span>
-            </h2>
-          </Reveal>
-          {lede ? (
-            <Reveal delayClass="reveal--delay-2">
-              <p className={styles.caption}>{lede}</p>
-            </Reveal>
-          ) : null}
-        </header>
+      <div className="home-services-photo__seam" aria-hidden />
 
-        <div className={`home-services-photo__grid ${styles.grid}`} role="list">
-          {cards.map((card, i) => (
-            <HomeServicesPhotoTile key={card.slug} card={card} delayClass={delayFor(i)} />
-          ))}
+      <div className={styles.featureStage}>
+        <div className={styles.featureBleed}>
+          <Image
+            src={featureSrc}
+            alt={featureAlt}
+            fill
+            className={styles.featureImg}
+            sizes="100vw"
+            priority={false}
+          />
+          <div className={styles.featureScrim} aria-hidden />
+          <div className={styles.featureFrame} aria-hidden />
+          <div className={styles.featureFloor} aria-hidden />
+        </div>
+      </div>
+
+      <div className={styles.body}>
+        <div className={styles.headOverlap}>
+          <header className={styles.header}>
+            <Reveal>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowDash} aria-hidden />
+                <span className={styles.eyebrowText}>{props.eyebrow}</span>
+              </div>
+            </Reveal>
+            <Reveal delayClass="reveal--delay-1">
+              <h2 id="services-heading" className={`home-services-photo__heading ${styles.heading}`}>
+                {props.headingLine1}
+                <br />
+                <span>{props.headingLine2}</span>
+              </h2>
+            </Reveal>
+            {lede ? (
+              <Reveal delayClass="reveal--delay-2">
+                <p className={styles.caption}>
+                  <span className={styles.captionMark} aria-hidden>
+                    {"\u201C"}
+                  </span>
+                  {lede}
+                </p>
+              </Reveal>
+            ) : null}
+          </header>
+        </div>
+
+        <div className={styles.gridRail}>
+          <div className={styles.rail} aria-hidden />
+          <div className={`home-services-photo__grid ${styles.grid}`} role="list">
+            {cards.map((card, i) => (
+              <HomeServicesPhotoTile key={card.slug} card={card} delayClass={delayFor(i)} />
+            ))}
+          </div>
         </div>
 
         {servicesBandCta ? (
