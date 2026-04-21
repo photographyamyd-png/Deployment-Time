@@ -30,8 +30,6 @@ import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
 import { ROUTES } from "@/lib/routes";
 
-import "./excavation-hub-hero.css";
-
 const EASE_OUT = [0, 0, 0.2, 1] as const;
 
 const DEFAULT_PANEL_IMAGE = "/images/hero-armour-stone-retaining-walls.png";

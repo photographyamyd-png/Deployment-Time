@@ -6,6 +6,7 @@ import { ExcavationServiceCanon } from "@/components/services/excavation-service
 import { ExcavationTrustStrip } from "@/components/services/excavation-trust-strip";
 import { ServiceInlineQuote } from "@/components/services/service-inline-quote";
 import { JsonLdExcavationHub } from "@/components/seo/json-ld-excavation-hub";
+import "@/components/services/excavation-site-preparation/excavation-hub-hero.css";
 import {
   ExcavationHubHero,
   type ExcavationHubHeroProps,
