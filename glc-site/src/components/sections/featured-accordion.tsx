@@ -115,6 +115,15 @@ export function FeaturedAccordion({
     .filter(Boolean)
     .join(" ");
 
+  const inactiveCount = Math.max(0, items.length - 1);
+  const gapUnit = widePanels || panelFrame ? 12 : 8;
+  const gapsTotalPx = inactiveCount * gapUnit;
+  const panelsRowStyle = {
+    "--glc-feat-acc-inactive-count": inactiveCount,
+    "--glc-feat-acc-gaps": `${gapsTotalPx}px`,
+    gap: `${gapUnit}px`,
+  } as CSSProperties;
+
   const handleMove: MouseEventHandler<HTMLElement> = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -209,7 +218,7 @@ export function FeaturedAccordion({
                 </a>
               </div>
               <div className="glc-feat-acc__panels-stage">
-              <div className="glc-feat-acc__panels-row">
+              <div className="glc-feat-acc__panels-row" style={panelsRowStyle}>
                 {(reversePanelOrder ? [...items].reverse() : items).map((item, displayIndex) => {
                   const index = reversePanelOrder ? items.length - 1 - displayIndex : displayIndex;
                   return (

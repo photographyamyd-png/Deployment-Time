@@ -17,19 +17,50 @@ const homeContent = home as HomePageContent;
 const accordionBlock = homeContent.sections.find((s) => s.type === "accordion");
 const fallbackAccordionProps: AccordionSectionProps = {
   eyebrow: "What We Do",
-  headingLine1: "Five Core",
+  headingLine1: "Six Core",
   headingLine2: "Service Lines",
   intro:
-    "From initial site clearing to final drainage, Ground Level Contracting delivers end-to-end excavation and civil infrastructure services for commercial builds across Barrie, Midland, Orillia, and Simcoe County.",
+    "From excavation and grading through foundations, drainage, hauling, and commercial snow, Ground Level Contracting delivers end-to-end civil and site services for commercial builds across Barrie, Midland, Orillia, and Simcoe County.",
   cta: { label: "Request a Quote", href: "tel:+17056194902" },
-  sectionBadge: "05",
+  sectionBadge: "06",
   items: [
-    { id: 1, title: "Excavation & Site Prep", imageUrl: "/images/excavation-and-foundations.png" },
-    { id: 2, title: "Foundations & Civil", imageUrl: "/images/excavation-and-foundations-orillia-barrie.png" },
-    { id: 3, title: "Drainage & Hardscaping", imageUrl: "/images/excavation-and-foundations-orillia-barrie-pools.png" },
-    { id: 4, title: "Hauling & Clearing", imageUrl: "/images/armour-stone-retaining-walls.png" },
-    { id: 5, title: "Snow Removal", imageUrl: "/images/hero-armour-stone-retaining-walls.png" }
-  ]
+    {
+      id: 1,
+      title: "Excavation & Site Prep",
+      imageUrl: "/images/excavation-and-foundations.png",
+      href: ROUTES.service("excavation-site-preparation"),
+    },
+    {
+      id: 2,
+      title: "Site Prep & Grading",
+      imageUrl: "/images/services/site-preparation-grading/cat-skid-steer-grading-simcoe-county.jpg",
+      href: ROUTES.service("site-preparation-grading"),
+    },
+    {
+      id: 3,
+      title: "Foundations & Civil",
+      imageUrl: "/images/excavation-and-foundations-orillia-barrie.png",
+      href: ROUTES.service("foundations-civil-infrastructure"),
+    },
+    {
+      id: 4,
+      title: "Drainage & Hardscaping",
+      imageUrl: "/images/excavation-and-foundations-orillia-barrie-pools.png",
+      href: ROUTES.service("drainage-hardscaping"),
+    },
+    {
+      id: 5,
+      title: "Hauling & Clearing",
+      imageUrl: "/images/armour-stone-retaining-walls.png",
+      href: ROUTES.service("hauling-site-clearing-logistics"),
+    },
+    {
+      id: 6,
+      title: "Snow Removal",
+      imageUrl: "/images/hero-armour-stone-retaining-walls.png",
+      href: ROUTES.service("snow-removal"),
+    },
+  ],
 };
 const accProps = (accordionBlock?.props ?? fallbackAccordionProps) as AccordionSectionProps;
 
@@ -162,15 +193,14 @@ export default function SandboxPage() {
         <div className="sandbox-feat-acc-band">
           <p className="sandbox-feat-acc-band__eyebrow">Featured accordion · Wide rail + framed chassis</p>
           <p className="sandbox-feat-acc-band__line">
-            Mirror split for left/right balance. Three contrast layers: deep charcoal + hairline grid (section),
-            mid charcoal + blueprint behind the rail only (sandbox-ds-cov language), then the framed chassis and
-            strips (near-black read surface)—so the accordion is never one flat plane on the background.
+            Full-width rail on a light blueprint pad, dark photo chassis on top, then a white copy band—clear dark/light
+            steps (not dark-on-dark). Six service panels match the six service hubs. Layout: mirror-stack-wide.
           </p>
         </div>
         <FeaturedAccordion
           {...accProps}
           tone="dark"
-          layoutMode="mirror"
+          layoutMode="mirror-stack-wide"
           widePanels
           panelFrame
           headingId="sandbox-feat-heading-dark-framed-rail"

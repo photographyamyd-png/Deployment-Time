@@ -3311,6 +3311,8 @@ a.hero__service-item {
 }
 /* No horizontal scroll / scrollbar — rail fits container; hover & focus switch active strip */
 .glc-feat-acc__panels-row {
+  --glc-feat-acc-inactive-count: 4;
+  --glc-feat-acc-gaps: 32px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -3362,28 +3364,28 @@ a.hero__service-item {
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   min-width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   max-width: min(
     380px,
     max(
       80px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 24px)
     )
   );
   box-shadow: 0 20px 44px rgba(30, 28, 26, 0.12);
@@ -3485,11 +3487,9 @@ a.hero__service-item {
   }
   .glc-feat-acc__panel {
     --glc-feat-acc-collapsed: 48px;
-    --glc-feat-acc-gaps: 32px;
   }
   .glc-feat-acc--panels-wide .glc-feat-acc__panel {
     --glc-feat-acc-collapsed: 68px;
-    --glc-feat-acc-gaps: 40px;
     height: 400px;
   }
 }
@@ -3573,7 +3573,6 @@ a.hero__service-item {
 /* Wider collapsed strips + broader active column (more photograph visible) */
 .glc-feat-acc--panels-wide .glc-feat-acc__panel {
   --glc-feat-acc-collapsed: 96px;
-  --glc-feat-acc-gaps: 48px; /* 4 × 12px gutters when row gap is 12px */
   height: 480px;
 }
 .glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
@@ -3581,28 +3580,28 @@ a.hero__service-item {
     720px,
     max(
       120px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   width: min(
     720px,
     max(
       120px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   min-width: min(
     720px,
     max(
       120px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   max-width: min(
     720px,
     max(
       120px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+      calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
 }
@@ -3671,10 +3670,6 @@ a.hero__service-item {
   padding: 6px 4px 8px;
   background: rgba(0, 0, 0, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-/* Row gap 12px → four gutters = 48px; keep flex-basis math aligned when not using --panels-wide */
-.glc-feat-acc--panel-chassis:not(.glc-feat-acc--panels-wide) .glc-feat-acc__panel {
-  --glc-feat-acc-gaps: 48px;
 }
 .glc-feat-acc--panel-chassis.glc-feat-acc--tone-dark .glc-feat-acc__panels-row {
   background: rgba(0, 0, 0, 0.28);
@@ -3857,32 +3852,30 @@ a.hero__service-item {
 /* Squarer, shorter strips + active uses remaining row width (paired with --panels-wide) */
 .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel {
   --glc-feat-acc-collapsed: 72px;
-  --glc-feat-acc-gaps: 48px;
-  height: clamp(300px, 32vw, 380px);
+  height: clamp(320px, 36vw, 420px);
 }
 .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
   flex: 0 0 max(
     140px,
-    calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
   width: max(
     140px,
-    calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
   min-width: max(
     140px,
-    calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
   max-width: max(
     140px,
-    calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
 }
 @media (max-width: 767px) {
   .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel {
     --glc-feat-acc-collapsed: 56px;
-    --glc-feat-acc-gaps: 32px;
-    height: clamp(260px, 52vw, 340px);
+    height: clamp(280px, 58vw, 380px);
   }
 }
 
@@ -21338,13 +21331,13 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--off-white);
 }
 
-/* Sandbox framed rail: 3-layer contrast (deep ground → mid+blueprint rail pad → dark chassis) */
+/* Sandbox framed rail: dark section ground + light rail pad + dark chassis + light copy (clear value steps) */
 .sandbox-feat-acc-scope--rail-stage {
   position: relative;
   overflow: hidden;
   border-top: 3px solid rgba(242, 183, 5, 0.35);
 }
-/* Layer 1 — structure on deepest ground (same vocabulary as sandbox-ds-cov, tuned for charcoal-deep) */
+/* Layer 1 — deep charcoal + cool structure grid */
 .sandbox-feat-acc-scope--rail-stage::before {
   content: "";
   position: absolute;
@@ -21372,141 +21365,172 @@ body.gl-mega-open .gl-mega-backdrop {
   position: relative;
   z-index: 1;
 }
-/* Layer 2 — mid charcoal + blueprint only behind the accordion column (mirror: panels left) */
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-wrap {
+/* Layer 2 — light pad + dark hairline blueprint (full-width rail; mirrors sandbox-ds-cov rhythm but on off-white) */
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-wrap {
   position: relative;
   z-index: 0;
 }
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-wrap::before {
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-wrap::before {
   content: "";
   position: absolute;
-  inset: -28px -18px -32px -28px;
+  inset: -26px -24px -30px -24px;
   pointer-events: none;
   z-index: 0;
-  background-color: var(--charcoal-mid);
+  background-color: var(--off-white);
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.028) 0,
-      rgba(255, 255, 255, 0.028) 1px,
+      rgba(30, 28, 26, 0.07) 0,
+      rgba(30, 28, 26, 0.07) 1px,
       transparent 1px,
       transparent 80px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.028) 0,
-      rgba(255, 255, 255, 0.028) 1px,
+      rgba(30, 28, 26, 0.07) 0,
+      rgba(30, 28, 26, 0.07) 1px,
       transparent 1px,
       transparent 80px
     );
   box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
+    inset 0 0 0 1px rgba(30, 28, 26, 0.1),
+    0 16px 48px rgba(0, 0, 0, 0.22);
 }
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-wrap::after {
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-wrap::after {
   content: "";
   position: absolute;
   top: -10px;
-  left: -28px;
-  right: -18px;
+  left: -24px;
+  right: -24px;
   height: 3px;
   pointer-events: none;
   z-index: 2;
   background: linear-gradient(
     90deg,
     var(--yellow-core) 0%,
-    rgba(242, 183, 5, 0.2) 55%,
+    rgba(242, 183, 5, 0.25) 50%,
     transparent 100%
   );
-  opacity: 0.9;
+  opacity: 0.95;
 }
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-dse {
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-dse {
   position: relative;
   z-index: 1;
 }
-@media (min-width: 768px) {
-  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__layout {
-    align-items: center;
-  }
+/* Rail meta readable on light pad */
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-meta {
+  border-bottom-color: rgba(30, 28, 26, 0.12);
 }
-/* Layer 3 — chassis + tray read darker against mid pad */
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc--tone-dark .glc-feat-acc__panels-active {
+  color: var(--charcoal-deep);
+}
+/* Layer 3 — dark chassis + strips on top of light pad */
 .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse {
-  border-color: rgba(255, 255, 255, 0.26);
+  border-color: rgba(30, 28, 26, 0.2);
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.55),
-    0 28px 72px rgba(0, 0, 0, 0.58),
-    inset 0 0 0 1px rgba(242, 183, 5, 0.22);
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 28px 72px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(242, 183, 5, 0.28);
 }
 .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse::before {
-  background-color: rgba(0, 0, 0, 0.52);
+  background-color: rgba(0, 0, 0, 0.55);
   opacity: 1;
 }
 .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse::after {
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.12);
   background: linear-gradient(
     180deg,
-    rgba(242, 183, 5, 0.12) 0%,
+    rgba(242, 183, 5, 0.14) 0%,
     transparent 32%,
     transparent 100%
   );
 }
 .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--panel-chassis .glc-feat-acc__panels-row {
-  background: rgba(0, 0, 0, 0.5);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.42);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--panel-chassis .glc-feat-acc__panel {
-  border-color: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.22);
 }
-/* Balanced mirror + squarer strips (same proportions as former stack-wide, inside 50% column) */
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror.glc-feat-acc--panels-wide .glc-feat-acc__panel {
-  --glc-feat-acc-collapsed: 72px;
-  --glc-feat-acc-gaps: 48px;
-  height: clamp(300px, 32vw, 380px);
+/* Layer 4 — light typography band under rail */
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__copy {
+  background: var(--white);
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 40px);
+  border-top: 3px solid var(--yellow-core);
+  box-shadow:
+    0 -18px 44px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  color: var(--text-900);
 }
-.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror.glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
-  flex: 0 0 min(
-    620px,
-    max(
-      140px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
-    )
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__title {
+  color: var(--charcoal-deep);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__title-accent {
+  color: var(--yellow-core);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__anno {
+  color: var(--text-500);
+  border-left: 3px solid var(--yellow-core);
+  border-right: none;
+  padding-left: 16px;
+  padding-right: 0;
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__act-ghost {
+  color: var(--text-400);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__sec-head {
+  border-bottom-color: var(--gray-200);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__sec-rule {
+  background: var(--gray-200);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__badge {
+  color: var(--yellow-core);
+}
+@media (min-width: 768px) {
+  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--tone-dark.glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__anno {
+    border-left: none;
+    border-right: 3px solid var(--yellow-core);
+    padding-left: 0;
+    padding-right: 16px;
+  }
+}
+/* Larger full-width rail in this sandbox (taller + wider active than generic stack-wide) */
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel {
+  --glc-feat-acc-collapsed: 68px;
+  height: clamp(340px, 38vw, 460px);
+}
+.sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
+  flex: 0 0 max(
+    160px,
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
-  width: min(
-    620px,
-    max(
-      140px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
-    )
+  width: max(
+    160px,
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
-  min-width: min(
-    620px,
-    max(
-      140px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
-    )
+  min-width: max(
+    160px,
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
-  max-width: min(
-    620px,
-    max(
-      140px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
-    )
+  max-width: max(
+    160px,
+    calc(100% - (var(--glc-feat-acc-inactive-count, 4) * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
   );
 }
 @media (max-width: 767px) {
-  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-wrap::before {
+  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-wrap::before {
     inset: -14px -20px -18px -20px;
   }
-  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror .glc-feat-acc__panels-wrap::after {
+  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide .glc-feat-acc__panels-wrap::after {
     top: -8px;
     left: -20px;
     right: -20px;
     height: 3px;
   }
-  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror.glc-feat-acc--panels-wide .glc-feat-acc__panel {
-    --glc-feat-acc-collapsed: 56px;
-    --glc-feat-acc-gaps: 32px;
-    height: clamp(260px, 52vw, 340px);
+  .sandbox-feat-acc-scope--rail-stage .glc-feat-acc--layout-mirror-stack-wide.glc-feat-acc--panels-wide .glc-feat-acc__panel {
+    --glc-feat-acc-collapsed: 52px;
+    height: clamp(300px, 62vw, 400px);
   }
 }
 
