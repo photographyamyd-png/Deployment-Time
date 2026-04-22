@@ -5,12 +5,19 @@ import type { CoverageProps } from "@/content/types";
 type CoverageSectionProps = CoverageProps & {
   /** Default dark charcoal; `light` = grey band for contact / light stacks */
   tone?: "dark" | "light";
+  htmlSectionId?: string;
+  headingDomId?: string;
 };
 
 /**
  * Coverage — 70/30 split: narrative stack + territory rail (no accordion hide).
  */
-export function CoverageSection({ tone = "dark", ...props }: CoverageSectionProps) {
+export function CoverageSection({
+  tone = "dark",
+  htmlSectionId = "coverage",
+  headingDomId = "coverage-heading",
+  ...props
+}: CoverageSectionProps) {
   const introChunks = chunkSentences(
     props.intro ??
       "Headquartered in Barrie with county-wide dispatch — no travel surcharges within Simcoe County.",
@@ -21,7 +28,7 @@ export function CoverageSection({ tone = "dark", ...props }: CoverageSectionProp
   const shell = tone === "light" ? "cov4 cov4--light" : "cov4";
 
   return (
-    <section id="coverage" className={shell} aria-labelledby="coverage-heading">
+    <section id={htmlSectionId} className={shell} aria-labelledby={headingDomId}>
       <span className="cov4__wm" aria-hidden>
         ON
       </span>
@@ -31,7 +38,7 @@ export function CoverageSection({ tone = "dark", ...props }: CoverageSectionProp
             <span className="cov4__eyebrow-dash" aria-hidden />
             <span>{props.eyebrow}</span>
           </p>
-          <h2 id="coverage-heading" className="cov4__title">
+          <h2 id={headingDomId} className="cov4__title">
             {props.headingBefore}
             <em>{props.headingEmphasis}</em>
             {props.headingAfter}

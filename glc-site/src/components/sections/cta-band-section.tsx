@@ -4,11 +4,16 @@ import type { CtaBandProps } from "@/content/types";
 
 type CtaBandSectionProps = CtaBandProps & {
   sectionId?: string;
+  headingDomId?: string;
 };
 
-export function CtaBandSection({ sectionId = "cta-band", ...props }: CtaBandSectionProps) {
+export function CtaBandSection({
+  sectionId = "cta-band",
+  headingDomId = "cta-heading",
+  ...props
+}: CtaBandSectionProps) {
   return (
-    <section id={sectionId} className="cta3" aria-labelledby="cta-heading">
+    <section id={sectionId} className="cta3" aria-labelledby={headingDomId}>
       {/* Structural diagonal accent */}
       <div className="cta3__diag" aria-hidden />
 
@@ -20,7 +25,7 @@ export function CtaBandSection({ sectionId = "cta-band", ...props }: CtaBandSect
             <span className="cta3__eyebrow">{props.eyebrow}</span>
             <span className="cta3__eyebrow-line" />
           </div>
-          <h2 id="cta-heading" className="cta3__heading">
+          <h2 id={headingDomId} className="cta3__heading">
             {props.headingLine1}
             <br />
             {props.headingLine2}

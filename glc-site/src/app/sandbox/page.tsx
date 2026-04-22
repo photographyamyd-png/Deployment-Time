@@ -112,6 +112,8 @@ export default function SandboxPage() {
     <main id="main-content">
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
+      <SandboxApprovedSectionDna site={siteData} />
+
       <SandboxKeeperMasterReference />
 
       <SandboxComplianceBackup />
@@ -122,8 +124,6 @@ export default function SandboxPage() {
       <SandboxServicePagesArchive />
 
       <SandboxServicesHubArchive hubData={servicesHubData} navData={navData} />
-
-      <SandboxApprovedSectionDna site={siteData} />
 
       {/* 1 — Hero */}
       <section className="sandbox__s1 dse" aria-labelledby="sandbox-hero-heading">

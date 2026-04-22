@@ -1,7 +1,12 @@
 import type { StatsProps } from "@/content/types";
 import { StatCellAnimated } from "@/components/ui/stat-cell-animated";
 
-export function StatsSection({ cells }: StatsProps) {
+type Props = StatsProps & {
+  /** Multi-instance pages (sandbox archive + DNA): unique root id. Default `stats`. */
+  htmlSectionId?: string;
+};
+
+export function StatsSection({ cells, htmlSectionId = "stats" }: Props) {
   const delays = [
     undefined,
     "reveal--delay-1",
@@ -10,7 +15,7 @@ export function StatsSection({ cells }: StatsProps) {
   ] as const;
 
   return (
-    <section id="stats" className="st3" aria-label="Company statistics">
+    <section id={htmlSectionId} className="st3" aria-label="Company statistics">
       {/* Yellow punctuation rail */}
       <div className="st3__top-rail" aria-hidden />
 

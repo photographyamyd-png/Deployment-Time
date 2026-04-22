@@ -102,8 +102,9 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       <SandboxDnaMarker registryId="catalog" title="Approved section DNA — all 15 visuals (registry order)">
         <p className="sandbox-dna-marker__note">
           Order matches <code>_meta.sectionIds</code> in <code>approved-sections.json</code>. Content from{" "}
-          <code>home.json</code> / <code>navigation.json</code> where applicable. Deep links:{" "}
-          <code>#sandbox-dna-visual-…</code>.
+          <code>home.json</code> / <code>navigation.json</code> where applicable. Each block uses{" "}
+          <strong>unique DOM ids</strong> (<code>sandbox-dna-*</code>) so it does not collide with the archived homepage
+          stack below. Deep links: <code>#sandbox-dna-visual-…</code>.
         </p>
       </SandboxDnaMarker>
 
@@ -112,7 +113,7 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 1 — stats-st3-dark-editorial */}
       <VisualSlot registryId="stats-st3-dark-editorial">
         <SandboxDnaMarker registryId="stats-st3-dark-editorial" title="Stats — ST3 dark editorial" />
-        <StatsSection {...pickHomeSectionProps("stats")} />
+        <StatsSection {...pickHomeSectionProps("stats")} htmlSectionId="sandbox-dna-stats" />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
@@ -120,7 +121,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 2 — about-ab3-editorial-split */}
       <VisualSlot registryId="about-ab3-editorial-split">
         <SandboxDnaMarker registryId="about-ab3-editorial-split" title="About — AB3 editorial split" />
-        <AboutSection {...pickHomeSectionProps("about")} />
+        <AboutSection
+          {...pickHomeSectionProps("about")}
+          htmlSectionId="sandbox-dna-about"
+          headingDomId="sandbox-dna-about-heading"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-dark" aria-hidden />
@@ -128,7 +133,7 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 3 — hero-v2-flagship-asymmetric */}
       <VisualSlot registryId="hero-v2-flagship-asymmetric">
         <SandboxDnaMarker registryId="hero-v2-flagship-asymmetric" title="Hero — V2 flagship asymmetric" />
-        <HeroSection {...pickHomeSectionProps("hero")} />
+        <HeroSection {...pickHomeSectionProps("hero")} htmlSectionId="sandbox-dna-hero" />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
@@ -136,7 +141,7 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 4 — gl-parallax-type-band-shared */}
       <VisualSlot registryId="gl-parallax-type-band-shared">
         <SandboxDnaMarker registryId="gl-parallax-type-band-shared" title="Parallax type band" />
-        <ParallaxTypeBand id="sandbox-parallax-type-band" {...pickHomeSectionProps("parallaxBand")} />
+        <ParallaxTypeBand id="sandbox-dna-parallax-type-band" {...pickHomeSectionProps("parallaxBand")} />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-dark" aria-hidden />
@@ -144,7 +149,12 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 5 — exc-hub-parallax-cta-band */}
       <VisualSlot registryId="exc-hub-parallax-cta-band">
         <SandboxDnaMarker registryId="exc-hub-parallax-cta-band" title="Excavation hub — parallax CTA band" />
-        <ExcavationParallaxCta phoneDisplay={site.telephoneDisplay} phoneHref={site.telephone} />
+        <ExcavationParallaxCta
+          phoneDisplay={site.telephoneDisplay}
+          phoneHref={site.telephone}
+          htmlSectionId="sandbox-dna-exc-parallax-cta"
+          headingDomId="sandbox-dna-exc-parallax-cta-heading"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
@@ -173,6 +183,8 @@ export function SandboxApprovedSectionDna({ site }: Props) {
           cards={navData.megaMenu.cards}
           servicesBandCta={servicesBandCta}
           referenceSplitLayout
+          htmlSectionId="sandbox-dna-services"
+          headingDomId="sandbox-dna-services-heading"
         />
       </VisualSlot>
 
@@ -181,7 +193,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 9 — why-why3-editorial-manifesto */}
       <VisualSlot registryId="why-why3-editorial-manifesto">
         <SandboxDnaMarker registryId="why-why3-editorial-manifesto" title="Why — editorial manifesto (Why3)" />
-        <WhySection {...pickHomeSectionProps("why")} />
+        <WhySection
+          {...pickHomeSectionProps("why")}
+          htmlSectionId="sandbox-dna-why"
+          headingDomId="sandbox-dna-why-heading"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
@@ -189,7 +205,12 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 10 — process-proc3-split-timeline */}
       <VisualSlot registryId="process-proc3-split-timeline">
         <SandboxDnaMarker registryId="process-proc3-split-timeline" title="Process — split timeline (Proc3)" />
-        <ProcessSection {...pickHomeSectionProps("process")} />
+        <ProcessSection
+          {...pickHomeSectionProps("process")}
+          htmlSectionId="sandbox-dna-process"
+          headingDomId="sandbox-dna-process-heading"
+          stepIdPrefix="sandbox-dna-process-step"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-dark" aria-hidden />
@@ -197,7 +218,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 11 — coverage-dark-territory-band */}
       <VisualSlot registryId="coverage-dark-territory-band">
         <SandboxDnaMarker registryId="coverage-dark-territory-band" title="Coverage — dark territory band" />
-        <CoverageSection {...pickHomeSectionProps("coverage")} />
+        <CoverageSection
+          {...pickHomeSectionProps("coverage")}
+          htmlSectionId="sandbox-dna-coverage"
+          headingDomId="sandbox-dna-coverage-heading"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
@@ -205,7 +230,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 12 — testimonials-tst3-editorial */}
       <VisualSlot registryId="testimonials-tst3-editorial">
         <SandboxDnaMarker registryId="testimonials-tst3-editorial" title="Testimonials — editorial (Tst3)" />
-        <TestimonialsSection {...pickHomeSectionProps("testimonials")} />
+        <TestimonialsSection
+          {...pickHomeSectionProps("testimonials")}
+          htmlSectionId="sandbox-dna-testimonials"
+          headingDomId="sandbox-dna-testimonials-heading"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-dark" aria-hidden />
@@ -213,7 +242,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 13 — cta-band-cta3-charcoal-close */}
       <VisualSlot registryId="cta-band-cta3-charcoal-close">
         <SandboxDnaMarker registryId="cta-band-cta3-charcoal-close" title="CTA band — charcoal close (Cta3)" />
-        <CtaBandSection sectionId="sandbox-cta-band" {...pickHomeSectionProps("ctaBand")} />
+        <CtaBandSection
+          sectionId="sandbox-dna-cta-band"
+          headingDomId="sandbox-dna-cta-heading"
+          {...pickHomeSectionProps("ctaBand")}
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />

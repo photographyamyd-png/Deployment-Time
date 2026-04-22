@@ -6,31 +6,37 @@ import { SmartLink } from "@/components/ui/smart-link";
 import { chunkSentences } from "@/lib/chunk-sentences";
 import type { TestimonialsProps } from "@/content/types";
 
+type TestimonialsSectionProps = TestimonialsProps & {
+  htmlSectionId?: string;
+  headingDomId?: string;
+};
+
 /**
  * Projects / testimonials — light band with sticky index + stage panel (unique vs other sections).
  */
-export function TestimonialsSection(props: TestimonialsProps) {
+export function TestimonialsSection(props: TestimonialsSectionProps) {
+  const { htmlSectionId = "testimonials", headingDomId = "testimonials-heading", ...rest } = props;
   const baseId = useId();
   const [active, setActive] = useState(0);
 
   return (
     <section
-      id="testimonials"
+      id={htmlSectionId}
       className="proj4"
-      aria-labelledby="testimonials-heading"
+      aria-labelledby={headingDomId}
     >
       <div className="proj4__inner">
         <div className="proj4__mast">
           <p className="proj4__eyebrow">
             <span className="proj4__eyebrow-dash" aria-hidden />
-            <span>{props.eyebrow}</span>
+            <span>{rest.eyebrow}</span>
           </p>
-          <h2 id="testimonials-heading" className="proj4__title">
-            {props.headingBefore}
-            <em>{props.headingAccent}</em>
-            {props.headingAfter}
+          <h2 id={headingDomId} className="proj4__title">
+            {rest.headingBefore}
+            <em>{rest.headingAccent}</em>
+            {rest.headingAfter}
           </h2>
-          {chunkSentences(props.sub, 2).map((chunk) => (
+          {chunkSentences(rest.sub, 2).map((chunk) => (
             <p key={chunk.slice(0, 28)} className="proj4__lede">
               {chunk}
             </p>
@@ -40,7 +46,7 @@ export function TestimonialsSection(props: TestimonialsProps) {
         <div className="proj4__stage">
           <nav className="proj4__index" aria-label="Client stories">
             <ul className="proj4__index-list" role="tablist">
-              {props.items.map((t, i) => (
+              {rest.items.map((t, i) => (
                 <li key={t.name} role="none">
                   <button
                     type="button"
@@ -62,7 +68,7 @@ export function TestimonialsSection(props: TestimonialsProps) {
           </nav>
 
           <div className="proj4__panels">
-            {props.items.map((t, i) => {
+            {rest.items.map((t, i) => {
               const on = active === i;
               return (
                 <div
@@ -98,12 +104,12 @@ export function TestimonialsSection(props: TestimonialsProps) {
                       Book a reference call
                       <IconArrow />
                     </a>
-                    {props.googleReviews ? (
+                    {rest.googleReviews ? (
                       <SmartLink
-                        href={props.googleReviews.href}
+                        href={rest.googleReviews.href}
                         className="btn-ghost proj4__google"
                       >
-                        {props.googleReviews.label}
+                        {rest.googleReviews.label}
                         <IconArrow />
                       </SmartLink>
                     ) : null}

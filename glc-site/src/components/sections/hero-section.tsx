@@ -94,8 +94,9 @@ const TILE_VARIANT: Variants = {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export function HeroSection(props: HeroProps) {
+export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
   const {
+    htmlSectionId = "hero",
     title,
     eyebrow,
     subheadline,
@@ -158,7 +159,7 @@ export function HeroSection(props: HeroProps) {
   ];
 
   return (
-    <section id="hero" ref={sectionRef} aria-label="Hero" className="hero-v2">
+    <section id={htmlSectionId} ref={sectionRef} aria-label="Hero" className="hero-v2">
       {/* ════ LAYER 0 — Deep background photo ════════════════════════════════ */}
       <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
         {parallaxBackgroundImage ? (

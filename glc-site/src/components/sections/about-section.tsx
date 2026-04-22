@@ -9,12 +9,18 @@ import { ROUTES } from "@/lib/routes";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function AboutSection(props: AboutProps) {
-  const homeCompact = Boolean(props.homeTeaser);
-  const bodyText = props.homeTeaser ?? props.body;
+type AboutSectionProps = AboutProps & {
+  htmlSectionId?: string;
+  headingDomId?: string;
+};
+
+export function AboutSection(props: AboutSectionProps) {
+  const { htmlSectionId = "about", headingDomId = "about-heading", ...rest } = props;
+  const homeCompact = Boolean(rest.homeTeaser);
+  const bodyText = rest.homeTeaser ?? rest.body;
 
   return (
-    <section id="about" aria-labelledby="about-heading">
+    <section id={htmlSectionId} aria-labelledby={headingDomId}>
       {/* Ghost GLC watermark — right-side decorative */}
       <span className="ab3__wm" aria-hidden>GLC</span>
 
@@ -25,19 +31,19 @@ export function AboutSection(props: AboutProps) {
 
           {/* Eyebrow + since marker */}
           <Reveal className="ab3__top-row">
-            <span className="eyebrow">{props.eyebrow}</span>
-            <span className="ab3__since" aria-label={`${props.mediaStat.value} ${props.mediaStat.label}`}>
-              {props.mediaStat.value}&thinsp;
-              <span>{props.mediaStat.label}</span>
+            <span className="eyebrow">{rest.eyebrow}</span>
+            <span className="ab3__since" aria-label={`${rest.mediaStat.value} ${rest.mediaStat.label}`}>
+              {rest.mediaStat.value}&thinsp;
+              <span>{rest.mediaStat.label}</span>
             </span>
           </Reveal>
 
           {/* Heading — large stacked display */}
           <Reveal delayClass="reveal--delay-1" className="ab3__heading-wrap">
-            <h2 id="about-heading" className="ab3__heading">
-              {props.headingBefore}
-              <em className="ab3__heading-em">{props.headingAccent}</em>
-              {props.headingAfter}
+            <h2 id={headingDomId} className="ab3__heading">
+              {rest.headingBefore}
+              <em className="ab3__heading-em">{rest.headingAccent}</em>
+              {rest.headingAfter}
             </h2>
             <span className="ab3__heading-rule" aria-hidden />
           </Reveal>
@@ -47,12 +53,12 @@ export function AboutSection(props: AboutProps) {
             <p className="ab3__body">{bodyText}</p>
           </Reveal>
 
-          {!homeCompact && props.whoWeServe ? (
+          {!homeCompact && rest.whoWeServe ? (
             <Reveal delayClass="reveal--delay-2" className="ab3__who-serve">
-              <p className="ab3__who-serve-title">{props.whoWeServe.title}</p>
-              <p className="ab3__who-serve-intro">{props.whoWeServe.intro}</p>
+              <p className="ab3__who-serve-title">{rest.whoWeServe.title}</p>
+              <p className="ab3__who-serve-intro">{rest.whoWeServe.intro}</p>
               <ul className="ab3__who-serve-chips" aria-label="Who we work with">
-                {props.whoWeServe.chips.map((c) => (
+                {rest.whoWeServe.chips.map((c) => (
                   <li key={c} className="ab3__who-serve-chip">
                     {c}
                   </li>
@@ -63,7 +69,7 @@ export function AboutSection(props: AboutProps) {
 
           {!homeCompact ? (
             <Reveal delayClass="reveal--delay-3" className="ab3__creds">
-              {props.credentials.map((c, i) => (
+              {rest.credentials.map((c, i) => (
                 <div key={c.title} className="ab3__cred">
                   <div className="ab3__cred-idx" aria-hidden>0{i + 1}</div>
                   <div className="ab3__cred-body">
@@ -78,8 +84,8 @@ export function AboutSection(props: AboutProps) {
           <Reveal delayClass={homeCompact ? "reveal--delay-3" : "reveal--delay-4"}>
             {homeCompact ? (
               <div className="ab3__cta-row">
-                <a href={props.cta.href} className="btn-primary">
-                  {props.cta.label}
+                <a href={rest.cta.href} className="btn-primary">
+                  {rest.cta.label}
                   <IconArrow />
                 </a>
                 <SmartLink href={ROUTES.about} className="btn-ghost-dark">
@@ -88,8 +94,8 @@ export function AboutSection(props: AboutProps) {
                 </SmartLink>
               </div>
             ) : (
-              <a href={props.cta.href} className="btn-primary">
-                {props.cta.label}
+              <a href={rest.cta.href} className="btn-primary">
+                {rest.cta.label}
                 <IconArrow />
               </a>
             )}
@@ -100,7 +106,7 @@ export function AboutSection(props: AboutProps) {
         <div className="ab3__media">
           {/* Yellow badge — punches off the left edge */}
           <div className="ab3__badge" aria-hidden>
-            <span>{props.badgeText}</span>
+            <span>{rest.badgeText}</span>
           </div>
 
           {/* Photo fill */}
@@ -115,8 +121,8 @@ export function AboutSection(props: AboutProps) {
             transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
             aria-hidden
           >
-            <div className="ab3__chip-num">{props.mediaStat.value}</div>
-            <div className="ab3__chip-lbl">{props.mediaStat.label}</div>
+            <div className="ab3__chip-num">{rest.mediaStat.value}</div>
+            <div className="ab3__chip-lbl">{rest.mediaStat.label}</div>
           </motion.div>
 
           {/* Bottom corner accent */}

@@ -8,26 +8,36 @@ import type { WhyProps } from "@/content/types";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function WhySection(props: WhyProps) {
+type WhySectionProps = WhyProps & {
+  htmlSectionId?: string;
+  headingDomId?: string;
+};
+
+export function WhySection(props: WhySectionProps) {
+  const { htmlSectionId = "why", headingDomId = "why-heading", ...rest } = props;
   const tags = ["Logistics", "Expertise", "Coordination", "Accountability"];
 
   return (
-    <section id="why" className="why-v3-shell glc-motif-a6-watermark" aria-labelledby="why-heading">
+    <section
+      id={htmlSectionId}
+      className="why-v3-shell glc-motif-a6-watermark"
+      aria-labelledby={headingDomId}
+    >
       <span className="glc-motif-b2 why-v3__motif-b2" aria-hidden />
       <span className="glc-motif-b4 why-v3__motif-b4" aria-hidden />
       <div className="why-v3__container">
         <div className="why-v3__header">
-          <Reveal className="eyebrow eyebrow--dark why-v3__eyebrow">{props.eyebrow}</Reveal>
+          <Reveal className="eyebrow eyebrow--dark why-v3__eyebrow">{rest.eyebrow}</Reveal>
           <div className="why-v3__header-grid">
             <Reveal delayClass="reveal--delay-1">
-              <h2 id="why-heading" className="why-v3__heading">
-                {props.headingBefore}
-                <em>{props.headingEmphasis}</em>
-                {props.headingAfter}
+              <h2 id={headingDomId} className="why-v3__heading">
+                {rest.headingBefore}
+                <em>{rest.headingEmphasis}</em>
+                {rest.headingAfter}
               </h2>
             </Reveal>
             <Reveal delayClass="reveal--delay-2">
-              <p className="why-v3__header-body">{props.body}</p>
+              <p className="why-v3__header-body">{rest.body}</p>
             </Reveal>
           </div>
         </div>
@@ -49,13 +59,13 @@ export function WhySection(props: WhyProps) {
             </Reveal>
             <Reveal delayClass="reveal--delay-1">
               <div className="why-v3__proof-chip" aria-label="Proof point">
-                <span className="why-v3__chip-label">{props.floatChip.line1}</span>
-                <strong className="why-v3__chip-value">{props.floatChip.line2}</strong>
+                <span className="why-v3__chip-label">{rest.floatChip.line1}</span>
+                <strong className="why-v3__chip-value">{rest.floatChip.line2}</strong>
               </div>
             </Reveal>
             <Reveal delayClass="reveal--delay-2">
-              <a href={props.cta.href} className="btn-primary">
-                {props.cta.label}
+              <a href={rest.cta.href} className="btn-primary">
+                {rest.cta.label}
                 <IconArrow />
               </a>
             </Reveal>
@@ -63,7 +73,7 @@ export function WhySection(props: WhyProps) {
           <div className="why-v3__reasons-col">
             <div className="why-v3__rail" aria-hidden />
             <div className="why-v3__rows">
-              {props.reasons.map((r, i) => (
+              {rest.reasons.map((r, i) => (
                 <motion.div
                   key={r.num}
                   className="why-v3__row"

@@ -5,6 +5,12 @@ import type { ProcessProps } from "@/content/types";
 export type ProcessSectionProps = ProcessProps & {
   /** `dark` — charcoal shell (About page). Default `light` matches homepage/process landing history. */
   surface?: "light" | "dark";
+  /** Multi-instance: root section id (default `process`). */
+  htmlSectionId?: string;
+  /** Multi-instance: main heading id (default `process-heading`). */
+  headingDomId?: string;
+  /** Multi-instance: card id prefix (default `process-step`). Cards become `{stepPrefix}-{num}`. */
+  stepIdPrefix?: string;
 };
 
 /**
@@ -16,10 +22,13 @@ export function ProcessSection({
   heading,
   headingAccent,
   steps,
+  htmlSectionId = "process",
+  headingDomId = "process-heading",
+  stepIdPrefix = "process-step",
 }: ProcessSectionProps) {
   const shell = surface === "dark" ? "proc4 proc4--dark" : "proc4";
   return (
-    <section id="process" className={shell} aria-labelledby="process-heading">
+    <section id={htmlSectionId} className={shell} aria-labelledby={headingDomId}>
       <div className="proc4__rail" aria-hidden />
 
       <div className="proc4__inner">
@@ -28,7 +37,7 @@ export function ProcessSection({
             <span className="proc4__eyebrow-dash" aria-hidden />
             <span>{eyebrow}</span>
           </p>
-          <h2 id="process-heading" className="proc4__title">
+          <h2 id={headingDomId} className="proc4__title">
             {heading}
             <em>{headingAccent}</em>
           </h2>
@@ -38,7 +47,7 @@ export function ProcessSection({
           <ul className="proc4__jump-list">
             {steps.map((step) => (
               <li key={step.num}>
-                <a className="proc4__jump-link" href={`#process-step-${step.num}`}>
+                <a className="proc4__jump-link" href={`#${stepIdPrefix}-${step.num}`}>
                   <span className="proc4__jump-num">{step.num}</span>
                   <span className="proc4__jump-txt">{step.title}</span>
                 </a>
@@ -51,7 +60,7 @@ export function ProcessSection({
           {steps.map((step) => (
             <article
               key={step.num}
-              id={`process-step-${step.num}`}
+              id={`${stepIdPrefix}-${step.num}`}
               className="proc4__card"
             >
               <div className="proc4__card-top">
