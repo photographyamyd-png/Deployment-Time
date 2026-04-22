@@ -149,36 +149,49 @@ export default function TestPage() {
           GLC
         </span>
         <div className="testpage__container">
-          <header className="testpage__head testpage__head--services-ref gl-reveal">
-            <div className={svcStyles.svcRefEyebrow}>
-              <span className={svcStyles.svcRefEyebrowDash} aria-hidden />
-              <span className={svcStyles.svcRefEyebrowTxt}>What we do</span>
-            </div>
-            <h2 id="testpage-services-heading" className={svcStyles.svcRefStageHeading}>
-              Complete Construction <span>Services</span>
-            </h2>
-            <p className={svcStyles.svcRefStageSub}>
-              From start to finish, we deliver quality craftsmanship and reliable solutions.
-            </p>
-          </header>
           <div className="testpage__services-motif-bridge" aria-hidden>
             <div className="glc-motif-divider-a3--to-light" />
           </div>
-          <ul className="testpage__services-grid">
+          <div className="testpage__services-layout">
+            <aside className="testpage__services-rail gl-reveal" aria-labelledby="testpage-services-heading">
+              <div className={svcStyles.svcRefEyebrow}>
+                <span className={svcStyles.svcRefEyebrowDash} aria-hidden />
+                <span className={svcStyles.svcRefEyebrowTxt}>Start here</span>
+              </div>
+              <h2 id="testpage-services-heading" className="gl-h2 testpage__services-rail-title">
+                Ready to break ground on your next <em>commercial build</em>?
+              </h2>
+              <p className="gl-prose testpage__services-rail-lede">
+                Scope, schedule, and mobilization — we move from excavation through civil finish across Barrie,
+                Simcoe County, and central Ontario. Tell us what you are building; we will tell you how we get it
+                moving.
+              </p>
+              <div className="testpage__services-rail-cta">
+                <SmartLink href={ROUTES.contact} className="btn-primary">
+                  Start your project <IconArrow />
+                </SmartLink>
+                <SmartLink href={ROUTES.services} className="gl-btn gl-btn--link testpage__services-rail-link">
+                  View all services
+                </SmartLink>
+              </div>
+              <p className="testpage__services-rail-note">
+                Commercial dispatch available — same-week site walkthroughs when capacity allows.
+              </p>
+            </aside>
+            <div className="testpage__services-stage gl-reveal gl-delay-2">
+              <div className="testpage__services-stage-inner">
+                <p className="testpage__services-stage-kicker">Capabilities in the field</p>
+                <ul className="testpage__services-grid">
             {navCards.map((card, idx) => {
               const src = card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
               const alt = [card.title, card.description].filter(Boolean).join(" — ");
               const hl = serviceHeadline(card);
-              const wide = idx >= 4;
               return (
                 <li
                   key={card.slug}
                   className={`testpage__services-grid-item gl-reveal gl-delay-${(idx % 5) + 1}`}
                 >
-                  <SmartLink
-                    href={ROUTES.service(card.slug)}
-                    className={`testpage__svc-card${wide ? " testpage__svc-card--wide" : ""}`}
-                  >
+                  <SmartLink href={ROUTES.service(card.slug)} className="testpage__svc-card">
                     <div className="testpage__svc-card__stack">
                       {/* z-0 — image plane (bleeds past card edge like header layer stack) */}
                       <div className="testpage__svc-card__image-layer">
@@ -225,7 +238,10 @@ export default function TestPage() {
                 </li>
               );
             })}
-          </ul>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
