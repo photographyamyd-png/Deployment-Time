@@ -7,6 +7,7 @@ const REF = "/sandbox-reference";
 
 const TOC = [
   { id: "sandbox-ref-intro", label: "Overview" },
+  { id: "sandbox-ref-section-dna-index", label: "Section DNA index" },
   { id: "sandbox-ref-keepers-catchall", label: "KEEPERS · catchall" },
   { id: "sandbox-ref-keepers-approved", label: "KEEPERS · approved" },
   { id: "sandbox-ref-master-ab3", label: "Master · AB3 HTML" },
@@ -25,6 +26,32 @@ function formatJson(raw: string): string {
   }
 }
 
+type CatchallSection = {
+  id: string;
+  status?: string;
+  displayName?: string;
+  implementation?: {
+    kind?: string;
+    plainEnglishName?: string;
+    reactComponent?: string;
+    sectionElementId?: string;
+  };
+  referenceFiles?: {
+    specMarkdown?: string;
+    staticHtml?: string;
+  };
+};
+
+function masterMirrorUrl(fileRef: unknown): string | null {
+  if (typeof fileRef !== "string" || !fileRef.trim()) return null;
+  const base = fileRef.replace(/\\/g, "/").split("/").pop();
+  if (!base) return null;
+  if (base.endsWith(".html") || base.endsWith(".md")) {
+    return `${REF}/master-sections/${encodeURIComponent(base)}`;
+  }
+  return null;
+}
+
 export async function SandboxKeeperMasterReference() {
   const pub = path.join(process.cwd(), "public", "sandbox-reference");
   const [catchallRaw, approvedRaw, specAb3, specSt3] = await Promise.all([
@@ -34,7 +61,16 @@ export async function SandboxKeeperMasterReference() {
     readFile(path.join(pub, "master-sections", "DESIGN-SPEC-stats-st3.md"), "utf8"),
   ]);
 
-  const catchallPretty = formatJson(catchallRaw);
+  let catchallPretty = catchallRaw;
+  let dnaSections: CatchallSection[] = [];
+  try {
+    const parsed = JSON.parse(catchallRaw) as { sections?: CatchallSection[] };
+    catchallPretty = JSON.stringify(parsed, null, 2);
+    dnaSections = Array.isArray(parsed.sections) ? parsed.sections : [];
+  } catch {
+    catchallPretty = formatJson(catchallRaw);
+  }
+
   const approvedPretty = formatJson(approvedRaw);
 
   return (
@@ -48,12 +84,12 @@ export async function SandboxKeeperMasterReference() {
           KEEPERS + MY MASTER DESIGN SECTIONS
         </h2>
         <p className="sandbox-ref-rack__lede">
-          Static copies under{" "}
-          <code className="sandbox-ref-rack__code">public/sandbox-reference/</code> — synced from{" "}
-          <code className="sandbox-ref-rack__code">D:\htnl attempts\KEEPERS</code> and{" "}
-          <code className="sandbox-ref-rack__code">D:\htnl attempts\MY MASTER DESIGN SECTIONS</code>.
-          Re-copy those folders into <code className="sandbox-ref-rack__code">public/sandbox-reference</code> when your
-          backups change. HTML masters render in isolated iframes (self-contained styles).
+          Your <strong>pre-made section library</strong> mostly lives inside{" "}
+          <code className="sandbox-ref-rack__code">catchall.json</code> → <code className="sandbox-ref-rack__code">sections[]</code>{" "}
+          (full layout DNA, typography, motion, reference paths) — not only as separate HTML files. On disk,{" "}
+          <code className="sandbox-ref-rack__code">MY MASTER DESIGN SECTIONS</code> currently holds the AB3/ST3 HTML masters + specs + motifs;{" "}
+          <code className="sandbox-ref-rack__code">KEEPERS</code> holds the JSON registries. Everything is mirrored under{" "}
+          <code className="sandbox-ref-rack__code">public/sandbox-reference/</code> (re-copy from D: when you update backups).
         </p>
         <nav className="sandbox-ref-rack__toc" aria-label="Jump to reference panels">
           {TOC.map((item) => (
@@ -62,6 +98,76 @@ export async function SandboxKeeperMasterReference() {
             </a>
           ))}
         </nav>
+      </div>
+
+      <div id="sandbox-ref-section-dna-index" className="sandbox-ref-catalog">
+        <div className="sandbox-ref-catalog__inner">
+          <h3 className="sandbox-ref-catalog__h">Section DNA index (catchall.json → sections[])</h3>
+          <p className="sandbox-ref-catalog__sub">
+            Use a row’s <strong>id</strong> when you ask Cursor to match a layout. Example prompt:{" "}
+            <q className="sandbox-ref-catalog__quote">
+              Match section DNA id <code>why-why3-editorial-manifesto</code> — same structure, spacing, and hierarchy as in{" "}
+              <code>catchall.json</code> / sandbox Section DNA index; use production tokens from <code>glc-base.css</code>.
+            </q>
+          </p>
+          <div className="sandbox-ref-catalog__table-wrap">
+            <table className="sandbox-ref-catalog__table">
+              <caption className="sandbox-ref-catalog__cap">
+                {dnaSections.length} registered section pattern{dnaSections.length === 1 ? "" : "s"} (approved list also in{" "}
+                <code>approved-sections.json</code> <code className="sandbox-ref-catalog__meta">_meta.sectionIds</code>)
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Id (anchor)</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Refs</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dnaSections.map((row) => {
+                  const spec = masterMirrorUrl(row.referenceFiles?.specMarkdown);
+                  const html = masterMirrorUrl(row.referenceFiles?.staticHtml);
+                  const anchor = `sandbox-dna-id-${row.id}`;
+                  return (
+                    <tr key={row.id} id={anchor} className="sandbox-ref-catalog__row">
+                      <td className="sandbox-ref-catalog__cell sandbox-ref-catalog__cell--id">
+                        <code className="sandbox-ref-catalog__id">{row.id}</code>
+                        <a className="sandbox-ref-catalog__hash" href={`#${anchor}`} title="Link to this row">
+                          #
+                        </a>
+                      </td>
+                      <td className="sandbox-ref-catalog__cell">
+                        <span className="sandbox-ref-catalog__name">{row.displayName || "—"}</span>
+                        {row.implementation?.plainEnglishName ? (
+                          <span className="sandbox-ref-catalog__plain">{row.implementation.plainEnglishName}</span>
+                        ) : null}
+                      </td>
+                      <td className="sandbox-ref-catalog__cell sandbox-ref-catalog__cell--status">
+                        {row.status ? <span className="sandbox-ref-catalog__status">{row.status}</span> : "—"}
+                      </td>
+                      <td className="sandbox-ref-catalog__cell sandbox-ref-catalog__cell--refs">
+                        {html ? (
+                          <a className="sandbox-ref-catalog__ref" href={html} target="_blank" rel="noopener noreferrer">
+                            HTML
+                          </a>
+                        ) : null}
+                        {spec ? (
+                          <a className="sandbox-ref-catalog__ref" href={spec} target="_blank" rel="noopener noreferrer">
+                            Spec
+                          </a>
+                        ) : null}
+                        {!html && !spec ? (
+                          <span className="sandbox-ref-catalog__ref-none">JSON only</span>
+                        ) : null}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div className="sandbox-ref-rack__panels">
