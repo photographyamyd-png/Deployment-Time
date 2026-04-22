@@ -207,94 +207,87 @@
   line-height: 0;
 }
 
-/* Full-width ribbon — field photo (first mega card), hero-style scrim */
-.testpage__svc-ribbon {
-  margin: 0 0 clamp(20px, 3vw, 32px);
-  border: 1px solid var(--gray-200);
-  box-shadow: var(--shadow-sm);
-}
-
-.testpage__svc-ribbon__inner {
-  position: relative;
+/* Wireframe-style hub: centered intro, full-width 6-up grid below */
+.testpage__svc-hub {
+  display: flex;
+  justify-content: center;
   width: 100%;
-  aspect-ratio: 21 / 8;
-  max-height: min(220px, 30vw);
-  overflow: hidden;
-  background: var(--charcoal-deep);
-}
-
-.testpage__svc-ribbon__img {
-  object-fit: cover;
-  object-position: center 35%;
-}
-
-.testpage__svc-ribbon__scrim {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(20, 18, 16, 0.55) 0%,
-    rgba(20, 18, 16, 0.12) 55%,
-    rgba(20, 18, 16, 0.2) 100%
-  );
-}
-
-/* ~44 / 56 split: wider rail for image+copy tiles; copy capped so it doesn’t float in empty space */
-.testpage__svc-split {
-  display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-  gap: clamp(24px, 3.5vw, 40px);
-  align-items: start;
-}
-
-.testpage__svc-copy-col {
-  min-width: 0;
+  padding-top: clamp(4px, 1.5vw, 12px);
 }
 
 .testpage__svc-copy.ab3__copy {
-  max-width: 32rem;
-  padding: clamp(20px, 3vw, 36px) clamp(12px, 2vw, 20px) clamp(24px, 4vw, 48px) 0;
+  max-width: min(52rem, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 2.5vw, 28px) clamp(16px, 3vw, 32px) clamp(8px, 2vw, 16px);
+  align-items: center;
+  text-align: center;
   justify-content: flex-start;
+}
+
+.testpage__svc-copy.ab3__copy::before {
+  display: none;
+}
+
+.testpage__svc-copy .ab3__top-row {
+  justify-content: center;
+}
+
+.testpage__svc-copy .eyebrow {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.testpage__svc-copy .ab3__heading {
+  text-align: center;
+}
+
+.testpage__svc-copy .ab3__heading-rule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testpage__svc-copy .ab3__body {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 62ch;
+  text-align: center;
 }
 
 .testpage__svc-copy-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
 }
 
 .testpage__svc-copy-link {
-  padding-left: 2px;
-}
-
-/* Light rail — not .ab3__media (avoids jammed dark column) */
-.testpage__svc-tiles-col {
-  min-width: 0;
-  background: var(--off-white);
-  border: 1px solid var(--gray-200);
-  padding: clamp(16px, 2.2vw, 24px);
-  box-shadow: var(--shadow-card);
+  padding-left: 0;
 }
 
 .testpage__svc-tile-grid {
   list-style: none;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 1.6vw, 16px);
+  padding: 0 0 clamp(20px, 3vw, 40px);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--gap-grid);
+  width: 100%;
+  margin-top: clamp(20px, 3vw, 36px);
 }
 
 .testpage__svc-tile-item {
   min-width: 0;
+  display: flex;
 }
 
-/* Horizontal tile: photo | ab3-type title/sub/chips; CTA always charcoal (no yellow-on-yellow hover) */
+/* Vertical tile (wireframe card): photo stack, cred type, CTA; yellow hover bar preserved */
 .testpage__svc-tile {
-  display: grid;
-  grid-template-columns: minmax(100px, 36%) minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
   text-decoration: none;
   color: inherit;
   background: var(--white);
@@ -322,8 +315,9 @@
 
 .testpage__svc-tile__media {
   position: relative;
-  min-height: 112px;
+  width: 100%;
   aspect-ratio: 4/3;
+  flex-shrink: 0;
   overflow: hidden;
   background: var(--charcoal-deep);
 }
@@ -354,12 +348,14 @@
 }
 
 .testpage__svc-tile__body {
-  padding: 14px 16px 16px;
+  flex: 1;
+  padding: 12px 10px 14px;
   display: flex;
   flex-direction: column;
   gap: 0;
   min-width: 0;
   background: var(--gray-100);
+  text-align: left;
 }
 
 .testpage__svc-tile__title {
@@ -374,7 +370,14 @@
 }
 
 .testpage__svc-tile-chips {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
+}
+
+/* Six-across columns are tight; hide chip row on xl+ (restore when grid is ≤3 cols) */
+@media (min-width: 1025px) {
+  .testpage__svc-band .testpage__svc-tile-chips {
+    display: none;
+  }
 }
 
 .testpage__svc-tile__cta {
@@ -1069,14 +1072,14 @@
 }
 
 @media (max-width: 1024px) {
-  .testpage__svc-split {
-    grid-template-columns: 1fr;
-    gap: clamp(20px, 4vw, 28px);
+  .testpage__svc-tile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .testpage__svc-copy.ab3__copy {
     max-width: none;
     padding-left: 0;
+    padding-right: 0;
   }
 
   .testpage__detail-grid,
@@ -1116,13 +1119,8 @@
     width: min(100% - 32px, var(--container-max));
   }
 
-  .testpage__svc-tile {
-    grid-template-columns: 1fr;
-  }
-
-  .testpage__svc-tile__media {
-    aspect-ratio: 16/9;
-    max-height: 200px;
+  .testpage__svc-tile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .testpage__proof-stats,
@@ -1159,6 +1157,17 @@
   }
 
   .testpage__cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .testpage__svc-tile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testpage__svc-copy-actions {
     flex-direction: column;
     align-items: center;
   }

@@ -146,8 +146,8 @@ export default function TestPage() {
           <div className="testpage__svc-band-bridge" aria-hidden>
             <div className="glc-motif-divider-a3--to-light" />
           </div>
-          {/* Same grid ratio as #about.ab3__layout (55 / 45): copy column + engineered media column */}
-          <div className="ab3__layout testpage__svc-ab3">
+
+          <div className="testpage__svc-hub">
             <div className="ab3__copy testpage__svc-copy">
               <Reveal className="ab3__top-row">
                 <span className="eyebrow">Capabilities</span>
@@ -165,9 +165,8 @@ export default function TestPage() {
               <Reveal delayClass="reveal--delay-2">
                 <p className="ab3__body">
                   Scope, schedule, and mobilization — we move from excavation through civil finish across Barrie,
-                  Simcoe County, and central Ontario. The six tiles on the right use the same credential-cell logic as
-                  the Why section: index, title, supporting line, optional focus chips, and a direct link to each service
-                  hub.
+                  Simcoe County, and central Ontario. Six capabilities below mirror the mega-menu: project photography,
+                  scope lines, and a clear “View service” path on every card.
                 </p>
               </Reveal>
               <Reveal delayClass="reveal--delay-3" className="testpage__svc-copy-actions">
@@ -179,60 +178,63 @@ export default function TestPage() {
                 </SmartLink>
               </Reveal>
             </div>
-
-            {/* Right column: #about .ab3__media shell — six NEW tiles built as Why-style .ab3__cred cells (not hero photos) */}
-            <div className="ab3__media testpage__svc-media">
-              <div className="testpage__svc-board">
-                <ul className="ab3__creds testpage__svc-cred-board" aria-label="Service capabilities">
-                  {navCards.map((card, idx) => {
-                    const hl = serviceHeadline(card);
-                    const sub =
-                      card.gridDescription?.trim() ||
-                      card.description?.trim() ||
-                      "Commercial scope · Barrie & Simcoe County";
-                    return (
-                      <li
-                        key={card.slug}
-                        className={`testpage__svc-cred-item gl-reveal gl-delay-${(idx % 5) + 1}`}
-                      >
-                        <SmartLink
-                          href={ROUTES.service(card.slug)}
-                          className="ab3__cred testpage__svc-cred-link"
-                        >
-                          <div className="ab3__cred-idx" aria-hidden>
-                            {card.num}
-                          </div>
-                          <div className="ab3__cred-body">
-                            <div className="ab3__cred-title">
-                              <ServiceCardHeading slug={card.slug} headline={hl} />
-                            </div>
-                            <div className="ab3__cred-sub">{sub}</div>
-                            {card.subTags && card.subTags.length > 0 ? (
-                              <ul
-                                className="ab3__who-serve-chips testpage__svc-cred-chips"
-                                aria-label="Focus areas"
-                              >
-                                {card.subTags.map((t) => (
-                                  <li key={`${card.slug}-${t}`} className="ab3__who-serve-chip">
-                                    {t}
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : null}
-                            <span className="testpage__svc-cred-cta">
-                              View service
-                              <IconArrowSmall />
-                            </span>
-                          </div>
-                        </SmartLink>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-              <div className="ab3__corner-mark" aria-hidden />
-            </div>
           </div>
+
+          <ul className="testpage__svc-tile-grid" aria-label="Service capabilities">
+            {navCards.map((card, idx) => {
+              const src =
+                card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
+              const alt = [card.title, card.description].filter(Boolean).join(" — ");
+              const hl = serviceHeadline(card);
+              const sub =
+                card.gridDescription?.trim() ||
+                card.description?.trim() ||
+                "Commercial scope · Barrie & Simcoe County";
+              return (
+                <li
+                  key={card.slug}
+                  className={`testpage__svc-tile-item gl-reveal gl-delay-${(idx % 5) + 1}`}
+                >
+                  <SmartLink href={ROUTES.service(card.slug)} className="testpage__svc-tile">
+                    <div className="testpage__svc-tile__media">
+                      <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        className="testpage__svc-tile__img"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 34vw, 17vw"
+                      />
+                      <span className="testpage__svc-tile__idx" aria-hidden>
+                        {card.num}
+                      </span>
+                    </div>
+                    <div className="testpage__svc-tile__body">
+                      <div className="ab3__cred-title testpage__svc-tile__title">
+                        <ServiceCardHeading slug={card.slug} headline={hl} />
+                      </div>
+                      <div className="ab3__cred-sub testpage__svc-tile__sub">{sub}</div>
+                      {card.subTags && card.subTags.length > 0 ? (
+                        <ul
+                          className="ab3__who-serve-chips testpage__svc-tile-chips"
+                          aria-label="Focus areas"
+                        >
+                          {card.subTags.map((t) => (
+                            <li key={`${card.slug}-${t}`} className="ab3__who-serve-chip">
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      <span className="testpage__svc-tile__cta">
+                        View service
+                        <IconArrowSmall />
+                      </span>
+                    </div>
+                  </SmartLink>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
