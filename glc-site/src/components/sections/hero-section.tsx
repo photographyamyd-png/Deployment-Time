@@ -92,11 +92,18 @@ const TILE_VARIANT: Variants = {
   }),
 };
 
+/** Full-bleed sandbox hero — real equipment/site photography (not stock). */
+const SANDBOX_FALLBACK_PARALLAX_BG =
+  "/images/services/site-preparation-grading/cat-skid-steer-grading-simcoe-county.jpg";
+
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
+export function HeroSection(
+  props: HeroProps & { htmlSectionId?: string; variant?: "default" | "sandbox" },
+) {
   const {
     htmlSectionId = "hero",
+    variant = "default",
     title,
     eyebrow,
     subheadline,
@@ -112,12 +119,20 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
     trustBadges,
   } = props;
 
+  const isSandbox = variant === "sandbox";
+
   const topCredentialChips =
-    trustBadges && trustBadges.length > 0
+    !isSandbox && trustBadges && trustBadges.length > 0
       ? trustBadges
-      : (trustItems?.slice(0, 3) ?? []);
+      : !isSandbox
+        ? (trustItems?.slice(0, 3) ?? [])
+        : [];
 
   const secondaryCta = secondaryCtaProp;
+
+  const deepBgPhoto =
+    parallaxBackgroundImage ??
+    (isSandbox ? SANDBOX_FALLBACK_PARALLAX_BG : undefined);
 
   const isTelOrMail = (href: string) =>
     href.startsWith("tel:") || href.startsWith("mailto:");
@@ -159,15 +174,20 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
   ];
 
   return (
-    <section id={htmlSectionId} ref={sectionRef} aria-label="Hero" className="hero-v2">
+    <section
+      id={htmlSectionId}
+      ref={sectionRef}
+      aria-label="Hero"
+      className={`hero-v2${isSandbox ? " hero-v2--sandbox hero-v2--no-service-rail" : ""}`}
+    >
       {/* ════ LAYER 0 — Deep background photo ════════════════════════════════ */}
       <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
-        {parallaxBackgroundImage ? (
+        {deepBgPhoto ? (
           <div className="hero-v2__bg-roll" aria-hidden>
             <div
               className="hero-v2__bg-photo hero-v2__bg-photo--image"
               style={{
-                backgroundImage: `url('${parallaxBackgroundImage}')`,
+                backgroundImage: `url('${deepBgPhoto}')`,
               }}
             />
           </div>
@@ -179,85 +199,108 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
       </motion.div>
 
       {/* ════ LAYER 1 — Blueprint geometry ══════════════════════════════════ */}
-      <div className="hero-v2__structure-plane" aria-hidden>
-        <svg className="hero-v2__blueprint" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="598" height="598" stroke="white" strokeWidth="1.5" />
-          <rect x="40" y="40" width="520" height="520" stroke="white" strokeWidth="0.5" strokeDasharray="3 9" />
-          <line x1="300" y1="1" x2="300" y2="599" stroke="white" strokeWidth="0.5" />
-          <line x1="1" y1="300" x2="599" y2="300" stroke="white" strokeWidth="0.5" />
-          <circle cx="300" cy="300" r="140" stroke="white" strokeWidth="0.5" />
-          <circle cx="300" cy="300" r="220" stroke="white" strokeWidth="0.5" strokeDasharray="2 10" />
-          <line x1="80" y1="80" x2="520" y2="520" stroke="white" strokeWidth="0.3" strokeDasharray="4 12" />
-          <line x1="520" y1="80" x2="80" y2="520" stroke="white" strokeWidth="0.3" strokeDasharray="4 12" />
-        </svg>
-        {/* Engineering micro-grid */}
-        <div className="hero-v2__eng-grid" />
-      </div>
+      {!isSandbox ? (
+        <div className="hero-v2__structure-plane" aria-hidden>
+          <svg className="hero-v2__blueprint" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="598" height="598" stroke="white" strokeWidth="1.5" />
+            <rect x="40" y="40" width="520" height="520" stroke="white" strokeWidth="0.5" strokeDasharray="3 9" />
+            <line x1="300" y1="1" x2="300" y2="599" stroke="white" strokeWidth="0.5" />
+            <line x1="1" y1="300" x2="599" y2="300" stroke="white" strokeWidth="0.5" />
+            <circle cx="300" cy="300" r="140" stroke="white" strokeWidth="0.5" />
+            <circle cx="300" cy="300" r="220" stroke="white" strokeWidth="0.5" strokeDasharray="2 10" />
+            <line x1="80" y1="80" x2="520" y2="520" stroke="white" strokeWidth="0.3" strokeDasharray="4 12" />
+            <line x1="520" y1="80" x2="80" y2="520" stroke="white" strokeWidth="0.3" strokeDasharray="4 12" />
+          </svg>
+          {/* Engineering micro-grid */}
+          <div className="hero-v2__eng-grid" />
+        </div>
+      ) : null}
 
       {/* ════ LAYER 2 — Yellow diagonal accent ══════════════════════════════ */}
-      <div className="hero-v2__diag-stripe" aria-hidden />
+      {!isSandbox ? <div className="hero-v2__diag-stripe" aria-hidden /> : null}
 
       {/* ════ LAYER 3 — Content + Photo ════════════════════════════════════ */}
       <div className="hero-v2__canvas">
 
         {/* ── Photo panel (right column, absolute, parallelogram clip) ── */}
-        <motion.div
-          className="hero-v2__photo-panel"
-          style={mounted ? { y: photoY } : {}}
-          variants={PHOTO_VARIANT}
-          initial="hidden"
-          animate="visible"
-          aria-hidden
-        >
-          <Image
-            src="/images/hero-armour-stone-retaining-walls.png"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 900px) 100vw, 58vw"
-            style={{ objectFit: "cover", objectPosition: "center 30%" }}
-          />
-          {/* Photo scrim for readability of overlapping text */}
-          <div className="hero-v2__photo-scrim" />
+        {!isSandbox ? (
+          <motion.div
+            className="hero-v2__photo-panel"
+            style={mounted ? { y: photoY } : {}}
+            variants={PHOTO_VARIANT}
+            initial="hidden"
+            animate="visible"
+            aria-hidden
+          >
+            <Image
+              src="/images/hero-armour-stone-retaining-walls.png"
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 58vw"
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
+            />
+            {/* Photo scrim for readability of overlapping text */}
+            <div className="hero-v2__photo-scrim" />
 
-          {/* ── Glass stat chips floating over photo ── */}
-          <div className="hero-v2__chips">
-            {stats.map((s, i) => (
+            {/* ── Glass stat chips floating over photo ── */}
+            <div className="hero-v2__chips">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  className="hero-v2__chip"
+                  variants={CHIP_VARIANT}
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <span className="hero-v2__chip-num">{s.value}</span>
+                  <span className="hero-v2__chip-label">{s.label}</span>
+                </motion.div>
+              ))}
+
               <motion.div
-                key={s.label}
-                className="hero-v2__chip"
+                className="hero-v2__chip hero-v2__chip--coverage"
                 variants={CHIP_VARIANT}
-                custom={i}
+                custom={2}
                 initial="hidden"
                 animate="visible"
               >
-                <span className="hero-v2__chip-num">{s.value}</span>
-                <span className="hero-v2__chip-label">{s.label}</span>
+                <span className="hero-v2__chip-eyebrow">{coverage.label}</span>
+                <div className="hero-v2__chip-tags">
+                  {coverage.tags.map((t) => (
+                    <span key={t} className="hero-v2__chip-tag">{t}</span>
+                  ))}
+                </div>
               </motion.div>
-            ))}
-
-            <motion.div
-              className="hero-v2__chip hero-v2__chip--coverage"
-              variants={CHIP_VARIANT}
-              custom={2}
-              initial="hidden"
-              animate="visible"
-            >
-              <span className="hero-v2__chip-eyebrow">{coverage.label}</span>
-              <div className="hero-v2__chip-tags">
-                {coverage.tags.map((t) => (
-                  <span key={t} className="hero-v2__chip-tag">{t}</span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        ) : null}
 
         {/* ── Main content ── */}
         <motion.div
           className="hero-v2__content"
           style={mounted ? { y: textY } : {}}
         >
+          {isSandbox ? (
+            <motion.div
+              className="hero-v2__sandbox-trust-row"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.04, ease: EASE }}
+            >
+              <span>Licensed &amp; Insured</span>
+              <span className="hero-v2__sandbox-trust-sep" aria-hidden="true">
+                |
+              </span>
+              <span>Commercial Only</span>
+              <span className="hero-v2__sandbox-trust-sep" aria-hidden="true">
+                |
+              </span>
+              <span>Barrie to Sudbury</span>
+            </motion.div>
+          ) : null}
+
           {topCredentialChips.length > 0 ? (
             <motion.div
               className="hero-v2__trust-badges"
@@ -276,29 +319,44 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
           ) : null}
 
           {/* Vertical rotated eyebrow — left rail */}
-          <motion.div
-            className="hero-v2__vert-label"
-            initial={{ opacity: 0, x: -12 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            aria-hidden
-          >
-            {eyebrow}
-          </motion.div>
+          {!isSandbox ? (
+            <motion.div
+              className="hero-v2__vert-label"
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              aria-hidden
+            >
+              {eyebrow}
+            </motion.div>
+          ) : null}
+
+          {isSandbox ? (
+            <motion.p
+              className="hero-v2__sandbox-eyebrow"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.08, ease: EASE }}
+            >
+              {eyebrow}
+            </motion.p>
+          ) : null}
 
           {/* Ghost logo watermark — native <img> avoids next/image SSR/CSR drift + stale chunk mismatches */}
-          <div className="hero-v2__ghost-mark" aria-hidden>
-            {/* eslint-disable-next-line @next/next/no-img-element -- decorative watermark; must match SSR exactly */}
-            <img
-              src="/images/glc-logo.png"
-              alt=""
-              width={360}
-              height={360}
-              className="hero-v2__ghost-mark-img"
-              draggable={false}
-              decoding="async"
-            />
-          </div>
+          {!isSandbox ? (
+            <div className="hero-v2__ghost-mark" aria-hidden>
+              {/* eslint-disable-next-line @next/next/no-img-element -- decorative watermark; must match SSR exactly */}
+              <img
+                src="/images/glc-logo.png"
+                alt=""
+                width={360}
+                height={360}
+                className="hero-v2__ghost-mark-img"
+                draggable={false}
+                decoding="async"
+              />
+            </div>
+          ) : null}
 
           {/* ── H1 Headline: each line clips up individually ── */}
           <h1 className="hero-v2__headline" aria-label={`${title.line1} ${title.line2} ${title.line3}`}>
@@ -325,7 +383,7 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
             transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
           />
 
-          {subheadline ? (
+          {!isSandbox && subheadline ? (
             <motion.h2
               className="hero-v2__subheadline"
               variants={FADE_UP}
@@ -337,39 +395,56 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
             </motion.h2>
           ) : null}
 
-          {/* ── Lede — two-tier editorial structure ── */}
-          {(() => {
-            // Split at em-dash: lead = core proposition, body = service detail
-            const [ledeLead = lede, ledeBody] = lede.split(' — ');
-            const brand = 'Ground Level Contracting';
-            const hasBrand = ledeLead.startsWith(brand);
-            const leadRemainder = hasBrand ? ledeLead.slice(brand.length) : ledeLead;
-            const ledeBodyTrimmed = ledeBody?.trimStart() ?? "";
-            const ledeBodyFormatted =
-              ledeBody && ledeBodyTrimmed.length > 0
-                ? ledeBodyTrimmed.charAt(0).toUpperCase() + ledeBodyTrimmed.slice(1)
-                : ledeBody;
+          {/* ── Lede — two-tier editorial (default) / single sentence (sandbox) ── */}
+          {isSandbox ? (
+            <motion.div
+              className="hero-v2__lede-block hero-v2__lede-block--sandbox"
+              variants={FADE_UP}
+              custom={0}
+              initial="hidden"
+              animate="visible"
+            >
+              <p className="hero-v2__lede-lead hero-v2__lede-lead--sandbox">{lede}</p>
+            </motion.div>
+          ) : (
+            (() => {
+              // Split at em-dash: lead = core proposition, body = service detail
+              const [ledeLead = lede, ledeBody] = lede.split(" — ");
+              const brand = "Ground Level Contracting";
+              const hasBrand = ledeLead.startsWith(brand);
+              const leadRemainder = hasBrand ? ledeLead.slice(brand.length) : ledeLead;
+              const ledeBodyTrimmed = ledeBody?.trimStart() ?? "";
+              const ledeBodyFormatted =
+                ledeBody && ledeBodyTrimmed.length > 0
+                  ? ledeBodyTrimmed.charAt(0).toUpperCase() + ledeBodyTrimmed.slice(1)
+                  : ledeBody;
 
-            return (
-              <motion.div
-                className="hero-v2__lede-block"
-                style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
-                variants={FADE_UP}
-                custom={0}
-                initial="hidden"
-                animate="visible"
-              >
-                <p className="hero-v2__lede-lead">
-                  {hasBrand ? (
-                    <><strong className="hero-v2__lede-brand">{brand}</strong>{leadRemainder}</>
-                  ) : ledeLead}
-                </p>
-                {ledeBodyFormatted && (
-                  <p className="hero-v2__lede-body">{ledeBodyFormatted}</p>
-                )}
-              </motion.div>
-            );
-          })()}
+              return (
+                <motion.div
+                  className="hero-v2__lede-block"
+                  style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
+                  variants={FADE_UP}
+                  custom={0}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <p className="hero-v2__lede-lead">
+                    {hasBrand ? (
+                      <>
+                        <strong className="hero-v2__lede-brand">{brand}</strong>
+                        {leadRemainder}
+                      </>
+                    ) : (
+                      ledeLead
+                    )}
+                  </p>
+                  {ledeBodyFormatted ? (
+                    <p className="hero-v2__lede-body">{ledeBodyFormatted}</p>
+                  ) : null}
+                </motion.div>
+              );
+            })()
+          )}
 
           {/* ── CTA row ── */}
           <motion.div
@@ -428,7 +503,7 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
                 )
               ) : null}
             </div>
-            {ctaMicrocopy ? (
+            {!isSandbox && ctaMicrocopy ? (
               <p className="hero-v2__cta-microcopy">{ctaMicrocopy}</p>
             ) : null}
           </motion.div>
@@ -436,39 +511,41 @@ export function HeroSection(props: HeroProps & { htmlSectionId?: string }) {
       </div>
 
       {/* Single frosted footer (spec §4.2 layer 4): optional trust row + service tiles — one gold rail, no extra mid-hero band */}
-      <div className="hero-v2__service-bar">
-        {trustItems && trustItems.length > 0 ? (
-          <div className="hero-v2__trust-row" aria-label="Credentials">
-            <div className="hero-v2__trust-inner">
-              {trustItems.map((t) => (
-                <span key={t} className="hero-v2__trust-item">
-                  {t}
-                </span>
-              ))}
+      {!isSandbox ? (
+        <div className="hero-v2__service-bar">
+          {trustItems && trustItems.length > 0 ? (
+            <div className="hero-v2__trust-row" aria-label="Credentials">
+              <div className="hero-v2__trust-inner">
+                {trustItems.map((t) => (
+                  <span key={t} className="hero-v2__trust-item">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
+          ) : null}
+          {trustItems && trustItems.length > 0 ? (
+            <div className="hero-v2__trust-seam" aria-hidden />
+          ) : null}
+          <div className="hero-v2__service-inner">
+            {serviceBarSlugTitles.map((s, i) => (
+              <motion.div
+                key={s.slug}
+                className="hero-v2__service-tile-wrap"
+                variants={TILE_VARIANT}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+              >
+                <SmartLink className="hero-v2__service-tile" href={ROUTES.service(s.slug)}>
+                  <HeroServiceIcon slug={s.slug} />
+                  <span className="hero-v2__service-label">{s.title}</span>
+                </SmartLink>
+              </motion.div>
+            ))}
           </div>
-        ) : null}
-        {trustItems && trustItems.length > 0 ? (
-          <div className="hero-v2__trust-seam" aria-hidden />
-        ) : null}
-        <div className="hero-v2__service-inner">
-          {serviceBarSlugTitles.map((s, i) => (
-            <motion.div
-              key={s.slug}
-              className="hero-v2__service-tile-wrap"
-              variants={TILE_VARIANT}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-            >
-              <SmartLink className="hero-v2__service-tile" href={ROUTES.service(s.slug)}>
-                <HeroServiceIcon slug={s.slug} />
-                <span className="hero-v2__service-label">{s.title}</span>
-              </SmartLink>
-            </motion.div>
-          ))}
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

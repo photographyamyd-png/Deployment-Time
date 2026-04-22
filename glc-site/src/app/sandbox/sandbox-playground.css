@@ -594,3 +594,95 @@
     font-size: 10px;
   }
 }
+
+/* ── Sandbox DNA hero (`HeroSection` variant="sandbox") — full-bleed job-site photo, left stack ── */
+#sandbox-dna-hero.hero-v2--sandbox {
+  min-height: 92vh;
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__scrim-left {
+  background: linear-gradient(
+    to right,
+    rgba(20, 18, 16, 0.94) 0%,
+    rgba(20, 18, 16, 0.72) 48%,
+    rgba(20, 18, 16, 0.38) 100%
+  );
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__canvas {
+  max-width: none;
+  padding-bottom: var(--section-v-sm);
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__headline {
+  margin-top: 0;
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__headline .hero-v2__line-overflow:nth-child(1) .hero-v2__line {
+  font-size: 0.62em;
+  font-weight: 200;
+  opacity: 1;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__headline .hero-v2__line-overflow:nth-child(2) .hero-v2__line {
+  font-size: 1em;
+  font-weight: 600;
+  opacity: 1;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__headline .hero-v2__line-overflow:nth-child(3) .hero-v2__line {
+  font-size: 0.74em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__lede-block--sandbox {
+  max-width: min(100%, var(--container-max));
+}
+#sandbox-dna-hero.hero-v2--sandbox .hero-v2__lede-lead--sandbox {
+  max-width: 42rem;
+}
+
+.hero-v2__sandbox-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.hero-v2__sandbox-trust-sep {
+  opacity: 0.45;
+  font-weight: 500;
+  user-select: none;
+}
+
+.hero-v2__sandbox-eyebrow {
+  margin: 0 0 14px;
+  max-width: min(100%, var(--container-max));
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+}
+
+@media (max-width: 768px) {
+  #sandbox-dna-hero.hero-v2--sandbox {
+    min-height: 80vh;
+  }
+  #sandbox-dna-hero.hero-v2--sandbox .hero-v2__cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #sandbox-dna-hero.hero-v2--sandbox .hero-v2__cta-row .btn-primary,
+  #sandbox-dna-hero.hero-v2--sandbox .hero-v2__cta-row .btn-hero-glass {
+    width: 100%;
+    justify-content: center;
+  }
+}

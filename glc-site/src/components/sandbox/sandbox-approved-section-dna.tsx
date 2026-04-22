@@ -20,6 +20,7 @@ import { commercialSnowClosingCta } from "@/content/commercial-snow-page-data";
 import home from "@/content/pages/home.json";
 import navigation from "@/content/navigation.json";
 import type {
+  HeroProps,
   HomePageContent,
   HomeSectionBlock,
   NavigationConfig,
@@ -37,6 +38,34 @@ function pickHomeSectionProps<T extends HomeSectionBlock["type"]>(type: T) {
     }
   }
   throw new Error(`sandbox-approved-section-dna: home.json is missing section type "${type}"`);
+}
+
+/** `/sandbox/` DNA hero only — does not change production homepage `home.json`. */
+function sandboxDnaHeroProps(): HeroProps {
+  const base = pickHomeSectionProps("hero");
+  return {
+    ...base,
+    eyebrow: "Commercial Site Work — Simcoe County & Beyond",
+    title: {
+      line1: "From",
+      line2: "Concept",
+      line3: "To Creation",
+      emphasizeLine: 3,
+    },
+    subheadline: undefined,
+    lede:
+      "GLC handles excavation, site grading, drainage, foundations, hauling, and commercial snow removal for contractors and developers across Barrie, Orillia, and Simcoe County.",
+    primaryCta: { label: "Request a Site Quote", href: "/contact/" },
+    secondaryCta: { label: "Call 705-619-4902", href: "tel:+17056194902" },
+    ctaMicrocopy: undefined,
+    trustItems: undefined,
+    trustBadges: undefined,
+    parallaxBackgroundImage:
+      "/images/services/site-preparation-grading/cat-skid-steer-grading-simcoe-county.jpg",
+    stats: [],
+    coverage: { label: "", tags: [] },
+    serviceBarSlugTitles: [],
+  };
 }
 
 function homeServicesBandCta(content: HomePageContent, nav: NavigationConfig): ServicesBandCta | undefined {
@@ -133,7 +162,11 @@ export function SandboxApprovedSectionDna({ site }: Props) {
       {/* 3 — hero-v2-flagship-asymmetric */}
       <VisualSlot registryId="hero-v2-flagship-asymmetric">
         <SandboxDnaMarker registryId="hero-v2-flagship-asymmetric" title="Hero — V2 flagship asymmetric" />
-        <HeroSection {...pickHomeSectionProps("hero")} htmlSectionId="sandbox-dna-hero" />
+        <HeroSection
+          {...sandboxDnaHeroProps()}
+          variant="sandbox"
+          htmlSectionId="sandbox-dna-hero"
+        />
       </VisualSlot>
 
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
