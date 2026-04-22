@@ -2,10 +2,15 @@ import { IconArrow } from "@/components/ui/icon-arrow";
 import { chunkSentences } from "@/lib/chunk-sentences";
 import type { CoverageProps } from "@/content/types";
 
+type CoverageSectionProps = CoverageProps & {
+  /** Default dark charcoal; `light` = grey band for contact / light stacks */
+  tone?: "dark" | "light";
+};
+
 /**
- * Coverage — dark 70/30 split: narrative stack + territory rail (no accordion hide).
+ * Coverage — 70/30 split: narrative stack + territory rail (no accordion hide).
  */
-export function CoverageSection(props: CoverageProps) {
+export function CoverageSection({ tone = "dark", ...props }: CoverageSectionProps) {
   const introChunks = chunkSentences(
     props.intro ??
       "Headquartered in Barrie with county-wide dispatch — no travel surcharges within Simcoe County.",
@@ -13,8 +18,10 @@ export function CoverageSection(props: CoverageProps) {
   );
   const bodyChunks = chunkSentences(props.body, 2);
 
+  const shell = tone === "light" ? "cov4 cov4--light" : "cov4";
+
   return (
-    <section id="coverage" className="cov4" aria-labelledby="coverage-heading">
+    <section id="coverage" className={shell} aria-labelledby="coverage-heading">
       <span className="cov4__wm" aria-hidden>
         ON
       </span>
