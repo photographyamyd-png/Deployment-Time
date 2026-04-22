@@ -162,15 +162,15 @@ export default function SandboxPage() {
         <div className="sandbox-feat-acc-band">
           <p className="sandbox-feat-acc-band__eyebrow">Featured accordion · Wide rail + framed chassis</p>
           <p className="sandbox-feat-acc-band__line">
-            Full-width framed rail up top (squarer, shorter strips so it is not a tall skinny column); mirror copy,
-            intro, and CTA sit below across the container width so typography keeps the same DNA without fighting the
-            photo strip for horizontal space.
+            Mirror split for left/right balance. Three contrast layers: deep charcoal + hairline grid (section),
+            mid charcoal + blueprint behind the rail only (sandbox-ds-cov language), then the framed chassis and
+            strips (near-black read surface)—so the accordion is never one flat plane on the background.
           </p>
         </div>
         <FeaturedAccordion
           {...accProps}
           tone="dark"
-          layoutMode="mirror-stack-wide"
+          layoutMode="mirror"
           widePanels
           panelFrame
           headingId="sandbox-feat-heading-dark-framed-rail"
