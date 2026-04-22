@@ -28,6 +28,12 @@ import {
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
+import {
+  FADE_UP_GPU_SAFE,
+  LINE_VARIANT_GPU_SAFE,
+  PHOTO_PANEL_GPU_SAFE,
+} from "@/lib/motion-variants-gpu-safe";
 import { ROUTES } from "@/lib/routes";
 
 const EASE_OUT = [0, 0, 0.2, 1] as const;
@@ -178,6 +184,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const sandboxGpu = useSandboxGpuSafe();
 
   useEffect(() => {
     setMounted(true);
@@ -238,9 +245,16 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
         </svg>
       </div>
 
-      <motion.div className="exc-hub__bg-plane" style={{ y: bgY }} aria-hidden>
+      <motion.div
+        className="exc-hub__bg-plane"
+        style={sandboxGpu ? undefined : { y: bgY }}
+        aria-hidden
+      >
         {parallaxBackgroundImage ? (
-          <div className="exc-hub__bg-roll" aria-hidden>
+          <div
+            className={`exc-hub__bg-roll${sandboxGpu ? " exc-hub__bg-roll--static" : ""}`}
+            aria-hidden
+          >
             <div
               className="exc-hub__bg-photo exc-hub__bg-photo--image"
               style={{
@@ -255,7 +269,11 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
         <div className="exc-hub__scrim-left" />
       </motion.div>
 
-      <motion.div className="exc-hub__structure-plane" style={{ y: textureY }} aria-hidden>
+      <motion.div
+        className="exc-hub__structure-plane"
+        style={sandboxGpu ? undefined : { y: textureY }}
+        aria-hidden
+      >
         <svg className="exc-hub__blueprint" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="598" height="598" stroke="white" strokeWidth="1.5" />
           <rect x="40" y="40" width="520" height="520" stroke="white" strokeWidth="0.5" strokeDasharray="3 9" />
@@ -269,13 +287,17 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
         <div className="exc-hub__eng-grid" />
       </motion.div>
 
-      <motion.div className="exc-hub__diag-stripe" style={{ y: motifY }} aria-hidden />
+      <motion.div
+        className="exc-hub__diag-stripe"
+        style={sandboxGpu ? undefined : { y: motifY }}
+        aria-hidden
+      />
 
       <div className="exc-hub__canvas">
         <motion.div
           className="exc-hub__photo-panel"
-          style={mounted ? { y: photoY } : {}}
-          variants={PHOTO_VARIANT}
+          style={mounted && !sandboxGpu ? { y: photoY } : {}}
+          variants={sandboxGpu ? PHOTO_PANEL_GPU_SAFE : PHOTO_VARIANT}
           initial="hidden"
           animate="visible"
           aria-hidden
@@ -351,7 +373,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
 
           <motion.div
             className={`exc-hub__ghost-mark${ghostWatermarkWord ? " exc-hub__ghost-mark--word" : ""}`}
-            style={{ y: mounted ? ghostY : 0 }}
+            style={{ y: mounted && !sandboxGpu ? ghostY : 0 }}
             aria-hidden
           >
             {ghostWatermarkWord ? (
@@ -386,7 +408,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
                           ? "exc-hub__line exc-hub__line--act2"
                           : "exc-hub__line exc-hub__line--act3"
                   }
-                  variants={LINE_VARIANT}
+                  variants={sandboxGpu ? LINE_VARIANT_GPU_SAFE : LINE_VARIANT}
                   custom={lineNum}
                   initial="hidden"
                   animate="visible"
@@ -407,7 +429,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
           {subheadline ? (
             <motion.h2
               className="exc-hub__subheadline exc-hub__subheadline--vcc"
-              variants={FADE_UP}
+              variants={sandboxGpu ? FADE_UP_GPU_SAFE : FADE_UP}
               custom={0}
               initial="hidden"
               animate="visible"
@@ -430,8 +452,12 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
             return (
               <motion.div
                 className="exc-hub__lede-block"
-                style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
-                variants={FADE_UP}
+                style={
+                  mounted && !sandboxGpu
+                    ? { WebkitMaskImage: ledeMask, maskImage: ledeMask }
+                    : {}
+                }
+                variants={sandboxGpu ? FADE_UP_GPU_SAFE : FADE_UP}
                 custom={0}
                 initial="hidden"
                 animate="visible"
@@ -455,7 +481,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
 
           <motion.div
             className="exc-hub__cta-stack"
-            variants={FADE_UP}
+            variants={sandboxGpu ? FADE_UP_GPU_SAFE : FADE_UP}
             custom={1}
             initial="hidden"
             animate="visible"

@@ -6,6 +6,7 @@ import {
   type MouseEventHandler,
   type SyntheticEvent,
 } from "react";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { Reveal } from "@/components/ui/reveal";
 import type { AccordionContentItem, FeaturedAccordionLayoutVariant } from "@/content/types";
@@ -101,6 +102,7 @@ export function FeaturedAccordion({
   const [motifOffset, setMotifOffset] = useState({ x: 0, y: 0 });
   const [cursor, setCursor] = useState({ x: -9999, y: -9999 });
   const [cursorInside, setCursorInside] = useState(false);
+  const sandboxGpu = useSandboxGpuSafe();
   const activeItem = items[activeIndex] ?? items[0];
 
   void layoutVariant;
@@ -142,9 +144,13 @@ export function FeaturedAccordion({
     "--glc-feat-cy": `${cursor.y}px`,
   } as CSSProperties;
 
-  const wmTransform = {
-    transform: `translate3d(calc(-50% + ${motifOffset.x * 0.35}px), ${motifOffset.y * 0.2}px, 0)`,
-  } as CSSProperties;
+  const wmTransform = (
+    sandboxGpu
+      ? { transform: "translate3d(-50%, 0, 0)" }
+      : {
+          transform: `translate3d(calc(-50% + ${motifOffset.x * 0.35}px), ${motifOffset.y * 0.2}px, 0)`,
+        }
+  ) as CSSProperties;
 
   return (
     <div className={rootClass}>

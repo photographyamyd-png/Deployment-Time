@@ -45,6 +45,21 @@
   transform: none !important;
 }
 
+/**
+ * `background-attachment: fixed` + long scroll is a common Chrome/Edge compositor failure mode
+ * (tearing / vertical banding). Force scroll attachment under `.sandbox` only.
+ */
+.sandbox .exc-parallax-cta__bg {
+  background-attachment: scroll !important;
+  transform: none !important;
+}
+
+.sandbox .hero-v2__bg-plane,
+.sandbox .service-page-hero--parallax .service-page-hero__bg-plane,
+.sandbox .gl-parallax-type-band__media {
+  will-change: auto !important;
+}
+
 /* Compliance reference strip (top of /sandbox/) */
 .sandbox-compliance-ref {
   background: var(--charcoal-deep);

@@ -19,6 +19,7 @@ import {
   DRAINAGE_HUB_OVERVIEW_MEDIA_STAT,
   DRAINAGE_HUB_OVERVIEW_PARAS,
 } from "@/content/drainage-hardscaping-page";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import { splitFirstTwoSentences } from "@/lib/copy-density";
 import { ROUTES } from "@/lib/routes";
 
@@ -35,6 +36,7 @@ export function DrainageHubOverview() {
   const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
   const reduceMotion = useReducedMotion();
+  const sandboxGpu = useSandboxGpuSafe();
   const [firstPara, ...otherParas] = DRAINAGE_HUB_OVERVIEW_PARAS;
   const { lead, remainder } = splitFirstTwoSentences(firstPara);
   const readmoreParas = remainder ? [remainder, ...otherParas] : [...otherParas];
@@ -141,7 +143,9 @@ export function DrainageHubOverview() {
           >
             <motion.div
               className="glc-drain-hub__ab3-photo-parallax"
-              style={mounted && !reduceMotion ? { y: imgY } : undefined}
+              style={
+                mounted && !reduceMotion && !sandboxGpu ? { y: imgY } : undefined
+              }
             >
               <Image
                 src={DRAINAGE_HUB_OVERVIEW_IMAGE}

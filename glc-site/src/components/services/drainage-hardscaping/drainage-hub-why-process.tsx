@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import { DrainageFragmentedH2 } from "@/components/services/drainage-hardscaping/drainage-typography";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import {
   DRAINAGE_HUB_PROCESS_EYEBROW,
   DRAINAGE_HUB_PROCESS_STEPS,
@@ -32,6 +33,7 @@ export function DrainageHubWhyProcess() {
   const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
   const reduceMotion = useReducedMotion();
+  const sandboxGpu = useSandboxGpuSafe();
   const [whyOpen, setWhyOpen] = useState<number | null>(0);
   const [procOpen, setProcOpen] = useState<number | null>(0);
 
@@ -102,7 +104,9 @@ export function DrainageHubWhyProcess() {
             <div className="glc-drain-hub__proc3-hero-frame">
               <motion.div
                 className="glc-drain-hub__proc3-hero-parallax"
-                style={mounted && !reduceMotion ? { y: heroY } : undefined}
+                style={
+                  mounted && !reduceMotion && !sandboxGpu ? { y: heroY } : undefined
+                }
               >
                 <Image
                   src={DRAINAGE_HUB_WHY_IMAGE}

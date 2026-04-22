@@ -13,11 +13,17 @@ import { SmartLink } from "@/components/ui/smart-link";
 import { MotionSmartLink } from "@/components/ui/motion-smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import {
   DRAINAGE_HUB_HERO,
   DRAINAGE_HUB_HERO_IMAGE,
   DRAINAGE_HUB_TRUST_BAR,
 } from "@/content/drainage-hardscaping-page";
+import {
+  FADE_UP_GPU_SAFE,
+  LINE_VARIANT_GPU_SAFE,
+  PHOTO_PANEL_GPU_SAFE,
+} from "@/lib/motion-variants-gpu-safe";
 import { ROUTES } from "@/lib/routes";
 import type { MegaMenuCard, SiteConfig } from "@/content/types";
 
@@ -142,6 +148,7 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
   const telHref = site.telephone.startsWith("tel:") ? site.telephone : `tel:${site.telephone}`;
   const h1Full = DRAINAGE_HUB_HERO.h1;
   const { lines: titleLines, emphasizeLine } = drainageHubHeroTitleLines(h1Full);
+  const sandboxGpu = useSandboxGpuSafe();
 
   const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -182,8 +189,8 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
       <div className="hero-v2__canvas">
         <motion.div
           className="hero-v2__photo-panel"
-          style={mounted ? { y: photoY } : {}}
-          variants={PHOTO_VARIANT}
+          style={mounted && !sandboxGpu ? { y: photoY } : {}}
+          variants={sandboxGpu ? PHOTO_PANEL_GPU_SAFE : PHOTO_VARIANT}
           initial="hidden"
           animate="visible"
           aria-hidden
@@ -231,7 +238,10 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
           </div>
         </motion.div>
 
-        <motion.div className="hero-v2__content" style={mounted ? { y: textY } : {}}>
+        <motion.div
+          className="hero-v2__content"
+          style={mounted && !sandboxGpu ? { y: textY } : {}}
+        >
           <motion.div
             className="hero-v2__vert-label"
             initial={{ opacity: 0, x: -12 }}
@@ -273,7 +283,7 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
               <span key={lineNum} className="hero-v2__line-overflow" aria-hidden>
                 <motion.span
                   className={`hero-v2__line${lineNum === emphasizeLine ? " hero-v2__line--accent" : ""}`}
-                  variants={LINE_VARIANT}
+                  variants={sandboxGpu ? LINE_VARIANT_GPU_SAFE : LINE_VARIANT}
                   custom={lineNum}
                   initial="hidden"
                   animate="visible"
@@ -306,8 +316,12 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
             return (
               <motion.div
                 className="hero-v2__lede-block"
-                style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
-                variants={FADE_UP}
+                style={
+                  mounted && !sandboxGpu
+                    ? { WebkitMaskImage: ledeMask, maskImage: ledeMask }
+                    : {}
+                }
+                variants={sandboxGpu ? FADE_UP_GPU_SAFE : FADE_UP}
                 custom={0}
                 initial="hidden"
                 animate="visible"
@@ -329,7 +343,7 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
 
           <motion.div
             className="hero-v2__cta-row glc-drain-hub__hero-cta-row"
-            variants={FADE_UP}
+            variants={sandboxGpu ? FADE_UP_GPU_SAFE : FADE_UP}
             custom={1}
             initial="hidden"
             animate="visible"
@@ -368,8 +382,15 @@ export function DrainageHubHeroV2({ site, megaCards }: Props) {
         </motion.div>
       </div>
 
-      <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
-        <div className="hero-v2__bg-roll" aria-hidden>
+      <motion.div
+        className="hero-v2__bg-plane"
+        style={sandboxGpu ? undefined : { y: bgY }}
+        aria-hidden
+      >
+        <div
+          className={`hero-v2__bg-roll${sandboxGpu ? " hero-v2__bg-roll--static" : ""}`}
+          aria-hidden
+        >
           <div
             className="hero-v2__bg-photo hero-v2__bg-photo--image"
             style={{ backgroundImage: `url('${DRAINAGE_HUB_HERO_IMAGE}')` }}

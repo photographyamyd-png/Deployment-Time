@@ -6839,6 +6839,10 @@ body.gl-mega-open .gl-mega-backdrop {
   from { transform: scale(1); }
   to { transform: scale(1.07); }
 }
+.service-page-hero__bg-roll--static {
+  animation: none;
+  transform: none;
+}
 .service-page-hero__bg {
   position: absolute;
   inset: 0;

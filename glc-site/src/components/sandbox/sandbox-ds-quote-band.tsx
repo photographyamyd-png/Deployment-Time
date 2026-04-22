@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 
 const QUOTE_BG =
   "/images/services/drainage-hardscaping/work-cap-retaining-timber-grading.jpg";
@@ -10,6 +11,7 @@ const QUOTE_BG =
 export function SandboxDsQuoteBand() {
   const ref = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion();
+  const sandboxGpu = useSandboxGpuSafe();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -25,7 +27,7 @@ export function SandboxDsQuoteBand() {
     >
       <motion.div
         className="sandbox-ds-quote__bg"
-        style={reduceMotion ? undefined : { y }}
+        style={reduceMotion || sandboxGpu ? undefined : { y }}
         aria-hidden
       >
         <Image

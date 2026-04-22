@@ -87,6 +87,10 @@
   from { transform: scale(1); }
   to { transform: scale(1.08); }
 }
+.exc-hub__bg-roll--static {
+  animation: none;
+  transform: none;
+}
 .exc-hub__bg-photo--image {
   position: absolute;
   inset: 0;

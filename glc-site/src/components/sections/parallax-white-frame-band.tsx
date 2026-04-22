@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import { IconArrow } from "@/components/ui/icon-arrow";
 
 export type ParallaxWhiteFrameBandProps = {
@@ -29,6 +30,7 @@ export function ParallaxWhiteFrameBand({
 }: ParallaxWhiteFrameBandProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [mounted, setMounted] = useState(false);
+  const sandboxGpu = useSandboxGpuSafe();
 
   useEffect(() => {
     setMounted(true);
@@ -52,7 +54,7 @@ export function ParallaxWhiteFrameBand({
       <div className="gl-parallax-wf__frame-outer">
         <motion.div
           className="gl-parallax-wf__media"
-          style={mounted ? { y: imgY } : undefined}
+          style={mounted && !sandboxGpu ? { y: imgY } : undefined}
           aria-hidden
         >
           <Image

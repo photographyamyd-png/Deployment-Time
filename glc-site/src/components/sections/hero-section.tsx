@@ -13,7 +13,13 @@ import { SmartLink } from "@/components/ui/smart-link";
 import { MotionSmartLink } from "@/components/ui/motion-smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HeroServiceIcon } from "@/components/sections/service-card-icon";
+import { useSandboxGpuSafe } from "@/components/sandbox/sandbox-page-shell";
 import type { HeroProps } from "@/content/types";
+import {
+  FADE_UP_GPU_SAFE,
+  LINE_VARIANT_GPU_SAFE,
+  PHOTO_PANEL_GPU_SAFE,
+} from "@/lib/motion-variants-gpu-safe";
 import { ROUTES } from "@/lib/routes";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -120,6 +126,9 @@ export function HeroSection(
   } = props;
 
   const isSandbox = variant === "sandbox";
+  const sandboxGpu = useSandboxGpuSafe();
+  /** Sandbox route + DNA hero: drop scroll parallax, blur, clip masks over full-bleed layers. */
+  const gpuChill = isSandbox || sandboxGpu;
 
   const topCredentialChips =
     !isSandbox && trustBadges && trustBadges.length > 0
@@ -184,12 +193,12 @@ export function HeroSection(
       {/* Sandbox: skip bg-plane parallax — stacking `y` + `.hero-v2__bg-roll` scale can slit-scan CSS backgrounds on some GPUs. */}
       <motion.div
         className="hero-v2__bg-plane"
-        style={isSandbox ? undefined : { y: bgY }}
+        style={gpuChill ? undefined : { y: bgY }}
         aria-hidden
       >
         {deepBgPhoto ? (
           <div
-            className={`hero-v2__bg-roll${isSandbox ? " hero-v2__bg-roll--static" : ""}`}
+            className={`hero-v2__bg-roll${gpuChill ? " hero-v2__bg-roll--static" : ""}`}
             aria-hidden
           >
             <div
@@ -234,8 +243,8 @@ export function HeroSection(
         {!isSandbox ? (
           <motion.div
             className="hero-v2__photo-panel"
-            style={mounted ? { y: photoY } : {}}
-            variants={PHOTO_VARIANT}
+            style={mounted && !gpuChill ? { y: photoY } : {}}
+            variants={gpuChill ? PHOTO_PANEL_GPU_SAFE : PHOTO_VARIANT}
             initial="hidden"
             animate="visible"
             aria-hidden
@@ -288,7 +297,7 @@ export function HeroSection(
         {/* ── Main content ── */}
         <motion.div
           className="hero-v2__content"
-          style={mounted ? { y: textY } : {}}
+          style={mounted && !gpuChill ? { y: textY } : {}}
         >
           {isSandbox ? (
             <motion.div
@@ -372,7 +381,7 @@ export function HeroSection(
               <span key={lineNum} className="hero-v2__line-overflow" aria-hidden>
                 <motion.span
                   className={`hero-v2__line${lineNum === title.emphasizeLine ? " hero-v2__line--accent" : ""}`}
-                  variants={LINE_VARIANT}
+                  variants={gpuChill ? LINE_VARIANT_GPU_SAFE : LINE_VARIANT}
                   custom={lineNum}
                   initial="hidden"
                   animate="visible"
@@ -394,7 +403,7 @@ export function HeroSection(
           {!isSandbox && subheadline ? (
             <motion.h2
               className="hero-v2__subheadline"
-              variants={FADE_UP}
+              variants={gpuChill ? FADE_UP_GPU_SAFE : FADE_UP}
               custom={0}
               initial="hidden"
               animate="visible"
@@ -407,7 +416,7 @@ export function HeroSection(
           {isSandbox ? (
             <motion.div
               className="hero-v2__lede-block hero-v2__lede-block--sandbox"
-              variants={FADE_UP}
+              variants={gpuChill ? FADE_UP_GPU_SAFE : FADE_UP}
               custom={0}
               initial="hidden"
               animate="visible"
@@ -430,8 +439,12 @@ export function HeroSection(
               return (
                 <motion.div
                   className="hero-v2__lede-block"
-                  style={mounted ? { WebkitMaskImage: ledeMask, maskImage: ledeMask } : {}}
-                  variants={FADE_UP}
+                  style={
+                    mounted && !gpuChill
+                      ? { WebkitMaskImage: ledeMask, maskImage: ledeMask }
+                      : {}
+                  }
+                  variants={gpuChill ? FADE_UP_GPU_SAFE : FADE_UP}
                   custom={0}
                   initial="hidden"
                   animate="visible"
@@ -457,7 +470,7 @@ export function HeroSection(
           {/* ── CTA row ── */}
           <motion.div
             className="hero-v2__cta-stack"
-            variants={FADE_UP}
+            variants={gpuChill ? FADE_UP_GPU_SAFE : FADE_UP}
             custom={1}
             initial="hidden"
             animate="visible"

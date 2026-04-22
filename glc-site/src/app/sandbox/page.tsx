@@ -25,6 +25,7 @@ import { SandboxServicePagesArchive } from "@/components/sandbox/sandbox-service
 import { SandboxServicesHubArchive } from "@/components/sandbox/sandbox-services-hub-archive";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
+import { SandboxPageShell } from "@/components/sandbox/sandbox-page-shell";
 
 const siteData = site as SiteConfig;
 const navData = navigation as NavigationConfig;
@@ -110,8 +111,8 @@ export const metadata: Metadata = {
 export default function SandboxPage() {
   return (
     <main id="main-content">
-      {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
-      <div className="sandbox">
+      {/* Inner wrapper: `useSandboxGpuSafe()` + scoped `.sandbox` rules for QA-only GPU mitigations. */}
+      <SandboxPageShell>
       <SandboxApprovedSectionDna site={siteData} />
 
       <SandboxKeeperMasterReference />
@@ -494,7 +495,7 @@ export default function SandboxPage() {
           </p>
         </div>
       </section>
-      </div>
+      </SandboxPageShell>
     </main>
   );
 }
