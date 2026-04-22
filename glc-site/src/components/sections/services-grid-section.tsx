@@ -18,9 +18,8 @@ type Props = ServicesSectionProps & {
   /** Homepage-only: stats/coverage-style dark editorial surface + contrast. */
   editorialSurface?: boolean;
   /**
-   * Homepage-only: dark services showcase (OSTECH-style layout reference) —
-   * centered headline + specs, 3 image cards with yellow icon badge + title bar,
-   * remaining lines in accordion. Uses GLC tokens only (not reference orange hex).
+   * Homepage-only: light minimal band — balanced intro | specs grid, preview row,
+   * accordion; charcoal for rails, dividers, and card footers only.
    */
   referenceSplitLayout?: boolean;
 };
@@ -52,7 +51,7 @@ export function ServicesGridSection({
 
   const effectiveEditorial = Boolean(editorialSurface && !referenceSplitLayout);
   const sectionSurface = referenceSplitLayout
-    ? "ostech"
+    ? "light"
     : effectiveEditorial
       ? "editorial"
       : undefined;
@@ -94,24 +93,32 @@ export function ServicesGridSection({
     </>
   );
 
-  const specsBlock =
-    specs && specs.length > 0 ? (
-      <Reveal delayClass="reveal--delay-1">
-        <ol className={styles.specNumberedList}>
-          {specs.map((row, i) => (
-            <li key={`${row.label}-${row.value}-${i}`} className={styles.specNumberedItem}>
-              <span className={styles.specOrdinal} aria-hidden>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className={styles.specNumberedBody}>
-                <span className={styles.specLabel}>{row.label}</span>
-                <span className={styles.specValue}>{row.value}</span>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Reveal>
-    ) : null;
+  const hasSpecs = Boolean(specs && specs.length > 0);
+  const specItems = hasSpecs
+    ? specs!.map((row, i) => (
+        <li key={`${row.label}-${row.value}-${i}`} className={styles.specNumberedItem}>
+          <span className={styles.specOrdinal} aria-hidden>
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <div className={styles.specNumberedBody}>
+            <span className={styles.specLabel}>{row.label}</span>
+            <span className={styles.specValue}>{row.value}</span>
+          </div>
+        </li>
+      ))
+    : null;
+
+  const specsBlockDefault = hasSpecs ? (
+    <Reveal delayClass="reveal--delay-1">
+      <ol className={styles.specNumberedList}>{specItems}</ol>
+    </Reveal>
+  ) : null;
+
+  const specsBlockReference = hasSpecs ? (
+    <Reveal delayClass="reveal--delay-1">
+      <ol className={`${styles.specNumberedList} ${styles.specNumberedListCompact}`}>{specItems}</ol>
+    </Reveal>
+  ) : null;
 
   return (
     <section
@@ -137,10 +144,14 @@ export function ServicesGridSection({
         <div className={styles.body}>
           {referenceSplitLayout ? (
             <>
-              <header className={styles.referenceOstechHeader}>
-                {introBlock}
-                {specsBlock}
-                <div className={styles.referenceOstechDiag} aria-hidden />
+              <header className={styles.referenceHeader}>
+                <div className={styles.referenceHeaderIntro}>{introBlock}</div>
+                {specs && specs.length > 0 ? (
+                  <div className={styles.referenceHeaderSpecs}>{specsBlockReference}</div>
+                ) : null}
+                <div className={styles.referenceHeaderRule} aria-hidden>
+                  <span className={styles.referenceAccentBar} />
+                </div>
               </header>
 
               <ul className={styles.previewStrip} aria-label="Featured service lines">
@@ -162,8 +173,8 @@ export function ServicesGridSection({
                             <svg
                               className={styles.previewCardIconSvg}
                               viewBox="0 0 24 24"
-                              width={20}
-                              height={20}
+                              width={16}
+                              height={16}
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
                             >
@@ -203,7 +214,7 @@ export function ServicesGridSection({
                     <SmartLink href={servicesBandCta.quoteCta.href} className="gl-btn gl-btn--primary">
                       {servicesBandCta.quoteCta.label}
                     </SmartLink>
-                    <SmartLink href={servicesBandCta.servicesViewAll.href} className="gl-btn gl-btn--ghost">
+                    <SmartLink href={servicesBandCta.servicesViewAll.href} className="gl-btn gl-btn--ghost-dark">
                       {servicesBandCta.servicesViewAll.label}
                     </SmartLink>
                   </div>
@@ -219,7 +230,7 @@ export function ServicesGridSection({
               <div className="home-services-photo__seam" aria-hidden />
 
               <div className={styles.splitMain}>
-                <div className={styles.splitCopy}>{specsBlock}</div>
+                <div className={styles.splitCopy}>{specsBlockDefault}</div>
 
                 <div className={styles.splitMedia}>
                   <div className={styles.splitMediaInner}>

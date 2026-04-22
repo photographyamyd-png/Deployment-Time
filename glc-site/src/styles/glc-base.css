@@ -23326,9 +23326,9 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--charcoal-deep);
 }
 
-/* Homepage OSTECH-style reference band (charcoal + yellow accents) */
-#services.home-services-photo[data-glc-services-surface="ostech"] {
-  background: var(--charcoal-deep);
+/* Homepage reference band — light surface; dark = accents in module only */
+#services.home-services-photo[data-glc-services-surface="light"] {
+  background: var(--off-white);
 }
 
 #services.home-services-photo.ls {
@@ -23339,8 +23339,8 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--charcoal-deep);
 }
 
-#services.home-services-photo[data-glc-services-surface="ostech"].ls {
-  background: var(--charcoal-deep);
+#services.home-services-photo[data-glc-services-surface="light"].ls {
+  background: var(--off-white);
 }
 
 .home-services-photo__seam {

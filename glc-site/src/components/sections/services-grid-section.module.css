@@ -422,9 +422,9 @@
   min-width: 0;
 }
 
-/* Homepage reference — OSTECH-style “Services we’re providing” (GLC tokens only) */
+/* Homepage reference — light, minimal; dark = dividers, title bars, motif only */
 .referenceOstech {
-  background: var(--charcoal-deep);
+  background: var(--off-white);
   position: relative;
   overflow: hidden;
 }
@@ -435,59 +435,36 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.012) 0,
-      rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px,
-      transparent 80px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.012) 0,
-      rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px,
-      transparent 80px
-    );
+  opacity: 0.5;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
 }
 
 .referenceOstech .layerGround {
-  opacity: 0.12;
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--white) 16%, transparent) 1px,
-    transparent 1px
-  );
+  opacity: 0.05;
 }
 
 .referenceOstech .wm {
-  top: 8%;
-  right: 3%;
-  left: auto;
-  transform: none;
-  font-size: clamp(72px, 14vw, 160px);
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.04);
-  opacity: 1;
+  top: 14%;
+  right: 4%;
+  color: var(--charcoal-deep);
+  opacity: 0.035;
+  font-size: clamp(48px, 9vw, 100px);
+}
+
+.referenceOstech .structure {
+  opacity: 0.25;
 }
 
 .referenceOstech .structureSheet {
-  opacity: 0.45;
-  border-color: rgba(255, 255, 255, 0.08);
+  opacity: 0.55;
 }
 
 .referenceOstech.showcase::after {
-  opacity: 0.05;
-  mix-blend-mode: soft-light;
-}
-
-.referenceOstechHeader {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 48rem;
-  margin: 0 auto clamp(28px, 4vw, 48px);
-  padding: 0 clamp(12px, 3vw, 28px);
+  opacity: 0.025;
 }
 
 .referenceOstech .depthShell {
@@ -495,66 +472,121 @@
   z-index: 1;
 }
 
-.referenceOstechHeader .eyebrow {
-  justify-content: center;
+.referenceOstech .body {
+  padding: var(--section-v-sm) clamp(16px, 3vw, 28px) var(--section-v-sm);
 }
 
-.referenceOstechHeader .eyebrowText {
-  color: var(--yellow-core);
+.referenceHeader {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(14px, 2vw, 18px);
+  max-width: var(--container-max);
+  margin: 0 auto clamp(18px, 2.5vw, 24px);
+  position: relative;
+  z-index: 2;
 }
 
-.referenceOstechHeader .eyebrowDash {
-  background: var(--yellow-core);
+@media (min-width: 900px) {
+  .referenceHeader {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    align-items: start;
+    column-gap: clamp(24px, 3.5vw, 40px);
+  }
 }
 
-.referenceOstechHeader :global(.home-services-photo__heading) {
-  color: var(--white);
-}
-
-.referenceOstechHeader :global(.home-services-photo__heading span) {
-  color: var(--yellow-core);
-}
-
-.referenceOstechHeader .microLede,
-.referenceOstechHeader .microLedeSecondary {
-  margin-left: auto;
-  margin-right: auto;
-  color: rgba(255, 255, 255, 0.62);
-}
-
-.referenceOstechHeader .specNumberedList {
-  margin-top: clamp(22px, 3vw, 32px);
+.referenceHeaderIntro {
+  min-width: 0;
   text-align: left;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-  border-color: rgba(255, 255, 255, 0.14);
-  background: color-mix(in srgb, var(--charcoal-deep) 88%, transparent);
 }
 
-.referenceOstechHeader .specNumberedItem {
-  border-top-color: rgba(255, 255, 255, 0.12);
+.referenceHeaderIntro .eyebrow {
+  justify-content: flex-start;
+  margin-bottom: clamp(6px, 1vw, 10px);
 }
 
-.referenceOstechHeader .specOrdinal {
+.referenceHeaderIntro :global(.home-services-photo__heading) {
+  font-size: clamp(24px, 2.75vw, 34px);
+  line-height: 1.06;
+  margin: 0 0 clamp(8px, 1.2vw, 12px);
+  color: var(--charcoal-deep);
+}
+
+.referenceHeaderIntro :global(.home-services-photo__heading span) {
   color: var(--yellow-core);
 }
 
-.referenceOstechHeader .specLabel {
-  color: rgba(255, 255, 255, 0.45);
+.referenceHeaderIntro .microLede,
+.referenceHeaderIntro .microLedeSecondary {
+  margin: clamp(6px, 1vw, 10px) 0 0;
+  max-width: 38ch;
+  text-align: left;
+  font-size: clamp(12px, 1.15vw, 14px);
+  line-height: 1.55;
+  color: var(--text-500);
 }
 
-.referenceOstechHeader .specValue {
-  color: rgba(255, 255, 255, 0.9);
+.referenceHeaderSpecs {
+  min-width: 0;
 }
 
-.referenceOstechDiag {
-  width: min(120px, 28vw);
-  height: 4px;
-  margin: clamp(20px, 3vw, 28px) auto 0;
+@media (min-width: 900px) {
+  .referenceHeaderSpecs {
+    border-left: 3px solid var(--charcoal-deep);
+    padding-left: clamp(16px, 2.2vw, 24px);
+  }
+}
+
+.referenceHeaderRule {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.referenceAccentBar {
+  display: block;
+  width: min(88px, 20vw);
+  height: 3px;
   background: var(--yellow-core);
-  transform: skewX(-18deg);
-  transform-origin: center;
+  transform: skewX(-12deg);
+}
+
+.specNumberedListCompact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  box-shadow: none;
+}
+
+.specNumberedListCompact .specNumberedItem {
+  padding: clamp(10px, 1.3vw, 13px) clamp(11px, 1.5vw, 14px);
+}
+
+.specNumberedListCompact .specOrdinal {
+  font-size: clamp(15px, 1.6vw, 20px);
+}
+
+.specNumberedListCompact .specValue {
+  font-size: clamp(11px, 1vw, 13px);
+}
+
+@media (min-width: 640px) {
+  .specNumberedListCompact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .specNumberedListCompact .specNumberedItem {
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .specNumberedListCompact .specNumberedItem:nth-child(-n + 2) {
+    border-top: none;
+  }
+
+  .specNumberedListCompact .specNumberedItem:nth-child(odd) {
+    border-right: 1px solid var(--gray-200);
+  }
 }
 
 .previewStrip {
@@ -578,23 +610,21 @@
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  background: var(--charcoal-deep);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   transition:
     border-color 0.35s var(--ease-expo),
-    box-shadow 0.35s var(--ease-expo),
-    transform 0.35s var(--ease-expo);
+    box-shadow 0.35s var(--ease-expo);
 }
 
 .previewCardOstech:hover,
 .previewCardOstech:focus-visible {
-  border-color: color-mix(in srgb, var(--yellow-core) 55%, rgba(255, 255, 255, 0.14));
-  box-shadow: var(--shadow-elevate);
-  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--yellow-core) 40%, var(--gray-200));
+  box-shadow: var(--shadow-card);
 }
 
 .previewCardOstech:focus-visible {
@@ -606,8 +636,9 @@
   position: relative;
   aspect-ratio: 4 / 3;
   flex-shrink: 0;
+  max-height: clamp(96px, 14vw, 132px);
   overflow: hidden;
-  background: var(--charcoal-mid);
+  background: var(--gray-100);
 }
 
 .previewCardImg {
@@ -617,12 +648,12 @@
 
 .previewCardIconBadge {
   position: absolute;
-  top: -14px;
+  top: -11px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -640,11 +671,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  min-height: 52px;
-  padding: clamp(12px, 1.8vw, 16px) clamp(14px, 2vw, 18px);
-  background: color-mix(in srgb, var(--charcoal-deep) 78%, var(--charcoal-mid));
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px;
+  min-height: 44px;
+  padding: clamp(8px, 1.2vw, 12px) clamp(10px, 1.5vw, 14px);
+  background: var(--charcoal-deep);
+  border-top: 1px solid color-mix(in srgb, var(--charcoal-deep) 90%, var(--white));
 }
 
 .previewCardFooterTitle {
@@ -676,11 +707,11 @@
   height: 1px;
   width: 100%;
   max-width: var(--container-max);
-  margin: clamp(32px, 5vw, 48px) auto;
+  margin: clamp(18px, 2.5vw, 26px) auto;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.18) 50%,
+    color-mix(in srgb, var(--charcoal-deep) 18%, transparent) 50%,
     transparent 100%
   );
 }
@@ -690,34 +721,17 @@
 }
 
 .accordionRegionOstech .expandItem {
-  background: color-mix(in srgb, var(--charcoal-deep) 94%, var(--white));
-  border-color: rgba(255, 255, 255, 0.12);
+  border-left: 3px solid var(--gray-200);
+  background: var(--white);
 }
 
-.accordionRegionOstech .expandHeadline {
-  color: var(--white);
-}
-
-.accordionRegionOstech .expandToggle:hover,
-.accordionRegionOstech .expandToggle:focus-visible {
-  background: rgba(242, 183, 5, 0.1);
-}
-
-.accordionRegionOstech .expandDesc {
-  color: rgba(255, 255, 255, 0.62);
+.accordionRegionOstech .expandItem:hover,
+.accordionRegionOstech .expandItemOpen {
+  border-left-color: var(--yellow-core);
 }
 
 .accordionRegionOstech .expandHero {
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-}
-
-.accordionRegionOstech .expandPanel {
-  border-top-color: rgba(255, 255, 255, 0.12);
-}
-
-.accordionRegionOstech .expandTags li {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.5);
+  max-height: clamp(88px, 12vw, 118px);
 }
 
 .referenceFooterCtas {
@@ -725,10 +739,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(12px, 2vw, 20px);
-  margin-top: clamp(32px, 5vw, 52px);
-  padding-top: clamp(24px, 4vw, 40px);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  gap: clamp(10px, 1.5vw, 16px);
+  margin-top: clamp(18px, 2.5vw, 26px);
+  padding-top: clamp(16px, 2.2vw, 22px);
+  border-top: 1px solid var(--gray-200);
   position: relative;
   z-index: 2;
 }
