@@ -41,18 +41,22 @@ export function SiteFooter({ site, navigation, minimal }: Props) {
   const servingYear = site.servingSinceYear ?? site.copyrightYear;
 
   return (
-    <footer id="footer" className="footer--site-dark" aria-label="Site footer">
-      <div className="footer__blueprint blueprint-grid" aria-hidden="true" />
+    <footer id="footer" className="footer--site-light" aria-label="Site footer">
+      <div className="footer__watermark" aria-hidden="true">
+        <Image
+          src={LOGO}
+          alt=""
+          width={720}
+          height={720}
+          className="footer__watermark-img"
+          priority={false}
+        />
+      </div>
       <div className="footer__main">
         <div className="footer__brand">
-          <div className="footer__logo-row">
-            <div className="footer__logo-mark-wrap">
-              <Image src={LOGO} alt="" width={40} height={40} />
-            </div>
-            <div>
-              <div className="footer__wordmark-name">{site.name}</div>
-              <div className="footer__wordmark-sub">{site.slogan}</div>
-            </div>
+          <div className="footer__wordmark-stack">
+            <div className="footer__wordmark-name">{site.name}</div>
+            <div className="footer__wordmark-sub">{site.slogan}</div>
           </div>
           {footer.descriptionLines.map((line, i) => (
             <p key={i} className="footer__desc-line">
