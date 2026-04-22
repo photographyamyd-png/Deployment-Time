@@ -1,4 +1,4 @@
-import { CommercialSnowLinkedPage } from "@/components/services/commercial-snow-linked-page";
+import { CommercialSnowLocationPageContent } from "@/components/services/commercial-snow-location-page";
 import { getAllSnowLocationDefs, getSnowLocationDef } from "@/lib/commercial-snow-routes";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
@@ -35,8 +35,8 @@ export default async function CommercialSnowLocationPage({ params }: Props) {
     notFound();
   }
   return (
-    <main id="main-content" className="glc-snow-linked-shell">
-      <CommercialSnowLinkedPage variant="location" def={def} />
+    <main id="main-content" className="glc-loc-snow-shell">
+      <CommercialSnowLocationPageContent def={def} />
     </main>
   );
 }
