@@ -13,10 +13,12 @@ type Props = {
   imageUrl: string;
   title: string;
   sizes: string;
+  /** Fill a flex parent (e.g. square tile) instead of a fixed aspect-ratio rail. */
+  fill?: boolean;
 };
 
 /** Parallax shift inside the photo rail — disabled when prefers-reduced-motion. */
-export function SandboxAccgridMotionFig({ imageUrl, title, sizes }: Props) {
+export function SandboxAccgridMotionFig({ imageUrl, title, sizes, fill }: Props) {
   const [reduceMotion, setReduceMotion] = useState(true);
   const [n, setN] = useState({ x: 0, y: 0 });
 
@@ -57,7 +59,11 @@ export function SandboxAccgridMotionFig({ imageUrl, title, sizes }: Props) {
 
   return (
     <div
-      className="sandbox-svc-accgrid__fig"
+      className={
+        fill
+          ? "sandbox-svc-accgrid__fig sandbox-svc-accgrid__fig--fill"
+          : "sandbox-svc-accgrid__fig"
+      }
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       role="presentation"

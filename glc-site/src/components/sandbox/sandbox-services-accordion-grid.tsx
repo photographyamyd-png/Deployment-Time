@@ -60,24 +60,29 @@ export function SandboxServicesAccordionGrid({
             return (
               <details key={item.id} className="sandbox-svc-accgrid__card">
                 <summary className="sandbox-svc-accgrid__sum">
-                  <span className="sandbox-svc-accgrid__num">{num}</span>
-                  <span className="sandbox-svc-accgrid__card-title">{item.title}</span>
-                  <span className="sandbox-svc-accgrid__chev" aria-hidden />
+                  <div className="sandbox-svc-accgrid__sum-media">
+                    <SandboxAccgridMotionFig
+                      fill
+                      imageUrl={item.imageUrl}
+                      title={item.title}
+                      sizes="(max-width: 599px) 100vw, (max-width: 999px) 50vw, 33vw"
+                    />
+                  </div>
+                  <div className="sandbox-svc-accgrid__sum-bar">
+                    <span className="sandbox-svc-accgrid__num">{num}</span>
+                    <span className="sandbox-svc-accgrid__card-title">{item.title}</span>
+                    <span className="sandbox-svc-accgrid__chev" aria-hidden />
+                  </div>
                 </summary>
                 <div className="sandbox-svc-accgrid__panel">
-                  <SandboxAccgridMotionFig
-                    imageUrl={item.imageUrl}
-                    title={item.title}
-                    sizes="(max-width: 599px) 100vw, (max-width: 999px) 50vw, 33vw"
-                  />
                   <p className="sandbox-svc-accgrid__panel-copy">{copy}</p>
-                  <div className="sandbox-svc-accgrid__panel-actions">
-                    {item.href ? (
-                      <SmartLink href={item.href} className="sandbox-svc-accgrid__link-charcoal">
-                        View service line
+                  {item.href ? (
+                    <div className="sandbox-svc-accgrid__panel-cta">
+                      <SmartLink href={item.href} className="btn-primary sandbox-svc-accgrid__cta-service">
+                        Get a quote — {item.title} →
                       </SmartLink>
-                    ) : null}
-                  </div>
+                    </div>
+                  ) : null}
                 </div>
               </details>
             );
