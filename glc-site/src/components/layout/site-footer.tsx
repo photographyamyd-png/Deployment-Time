@@ -17,12 +17,26 @@ type Props = {
   navigation: NavigationConfig;
   /** Minimal bar-only footer (legacy services HTML). */
   minimal?: boolean;
+  /** Override `<footer id>` (e.g. sandbox duplicate). Default: `footer`. */
+  footerElementId?: string;
+  /** Override accessible name when embedding a duplicate footer. */
+  footerAriaLabel?: string;
 };
 
-export function SiteFooter({ site, navigation, minimal }: Props) {
+export function SiteFooter({
+  site,
+  navigation,
+  minimal,
+  footerElementId,
+  footerAriaLabel,
+}: Props) {
   if (minimal) {
     return (
-      <footer id="footer" aria-label="Site footer" style={{ marginTop: 48 }}>
+      <footer
+        id={footerElementId ?? "footer"}
+        aria-label={footerAriaLabel ?? "Site footer"}
+        style={{ marginTop: 48 }}
+      >
         <div className="footer__bar">
           <div className="footer__bar-inner">
             <p className="footer__copy">
@@ -41,7 +55,11 @@ export function SiteFooter({ site, navigation, minimal }: Props) {
   const servingYear = site.servingSinceYear ?? site.copyrightYear;
 
   return (
-    <footer id="footer" className="footer--site-light" aria-label="Site footer">
+    <footer
+      id={footerElementId ?? "footer"}
+      className="footer--site-light"
+      aria-label={footerAriaLabel ?? "Site footer"}
+    >
       <div className="footer__main">
         <div className="footer__brand">
           <div className="footer__brand-head">

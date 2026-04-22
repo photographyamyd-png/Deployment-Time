@@ -79,6 +79,98 @@
   scroll-margin-top: var(--header-total-h, 104px);
 }
 
+.sandbox-dna-visual-slot {
+  scroll-margin-top: calc(var(--header-total-h, 104px) + 8px);
+}
+
+.sandbox-dna-marker__deeplink {
+  color: var(--charcoal-deep);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sandbox-dna-marker__deeplink:hover {
+  color: var(--gold);
+}
+
+/* Chrome previews — mega panel + nav strip (forced visible inside .sandbox) */
+.sandbox-dna-chrome-preview {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px var(--section-v-sm);
+}
+.sandbox-dna-chrome-preview__note {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-500);
+  max-width: 72ch;
+}
+.sandbox-dna-chrome-preview__note code {
+  font-size: 11px;
+  background: var(--gray-100);
+  padding: 1px 5px;
+  border: 1px solid var(--gray-200);
+}
+
+.sandbox .sandbox-dna-mega-panel--static.gl-mega-panel {
+  display: block !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  margin: 0 auto;
+  max-width: 100%;
+  box-sizing: border-box !important;
+}
+
+.sandbox-dna-nav-shell {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.sandbox-dna-nav-shell .gl-header__nav-row {
+  position: relative;
+  border-bottom: none;
+}
+.sandbox-dna-mega-trigger--inert:disabled {
+  opacity: 1;
+  cursor: default;
+  color: var(--text-600);
+  background: transparent;
+}
+.sandbox-dna-mega-trigger--inert:disabled:hover {
+  color: var(--text-600);
+  background: transparent;
+}
+
+.sandbox-dna-chrome-preview--footer {
+  padding-bottom: 0;
+  max-width: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.sandbox-dna-chrome-preview--footer .sandbox-dna-chrome-preview__note {
+  padding: 0 40px;
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+  .sandbox-dna-chrome-preview {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .sandbox-dna-chrome-preview--footer .sandbox-dna-chrome-preview__note {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 .sandbox-dna-marker {
   background: var(--yellow-core);
   color: var(--charcoal-deep);
