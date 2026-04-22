@@ -6,7 +6,6 @@ import { HomeServicesStickyTabs } from "@/components/sections/home-services-stic
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
 import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
-import { ROUTES } from "@/lib/routes";
 import styles from "@/components/sections/services-grid-section.module.css";
 
 const FALLBACK_FEATURE = "/images/excavation-and-foundations-orillia-barrie.png";
