@@ -3,6 +3,7 @@ import { FeaturedAccordion } from "@/components/sections/featured-accordion";
 import { SandboxApprovedSectionDna } from "@/components/sandbox/sandbox-approved-section-dna";
 import { SandboxComplianceBackup } from "@/components/sandbox/sandbox-compliance-backup";
 import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
+import { SandboxServicesAccordionGrid } from "@/components/sandbox/sandbox-services-accordion-grid";
 import { SmartLink } from "@/components/ui/smart-link";
 import { glcDevPreviewUrl } from "@/lib/glc-dev-preview";
 import home from "@/content/pages/home.json";
@@ -63,6 +64,18 @@ const fallbackAccordionProps: AccordionSectionProps = {
   ],
 };
 const accProps = (accordionBlock?.props ?? fallbackAccordionProps) as AccordionSectionProps;
+
+const sandboxSvcAccGridIntro =
+  "Design-lab band: six square accordion tiles on a charcoal ground with the shared blueprint grid, ghost watermark, and corner motif from /public. Cards use a yellow structural rail, native details/summary, and token-only colors—no hardcoded hex in new rules. Expand any tile for photography, scope copy, and a charcoal CTA to the matching service hub.";
+
+const sandboxSvcAccGridPanelCopy = [
+  "Cut-to-fill, trenching, and mass grading for commercial pads and road allowances—mobilization, spoils strategy, and engineer tie-ins documented for inspection.",
+  "Finish grading, compaction, and drainage tie-ins that set up foundations and hardscape—survey-aware tolerances and storm-ready surfaces.",
+  "Footings, walls, pits, and civil tie-ins with pour-day discipline—forming, reinforcing, and backfill sequencing aligned to geotech.",
+  "Storm, foundation, and hardscape water management with armor stone, walls, and permeable details—integrated scopes instead of siloed trades.",
+  "Export, import, clearing, and site logistics with truck-matched scheduling—clean gates, scale tickets, and placement control.",
+  "Commercial-only snow and ice programs—SLA language, GPS-tracked passes, and salting plans for plazas, yards, and institutional sites.",
+];
 
 const base = pageMetadata({
   title: "My sandbox.",
@@ -266,6 +279,22 @@ export default function SandboxPage() {
           headingId="sandbox-feat-heading-balance"
         />
       </section>
+
+      <div className="glc-motif-divider-a3--to-dark" aria-hidden />
+
+      <SandboxServicesAccordionGrid
+        eyebrow="Sandbox · Accordion grid"
+        headingLine1="Six core"
+        headingLine2="service lines"
+        headingLine3="— square tiles"
+        intro={sandboxSvcAccGridIntro}
+        items={accProps.items.slice(0, 6)}
+        panelCopy={sandboxSvcAccGridPanelCopy}
+        primaryCta={{ label: accProps.cta.label, href: accProps.cta.href }}
+        secondaryCta={{ label: "Call 24/7 dispatch", href: "tel:+17056194902" }}
+      />
+
+      <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
       {/* 4 — Stat row */}
       <section className="sandbox__s4 ls ls-c" aria-label="Sample metrics">
