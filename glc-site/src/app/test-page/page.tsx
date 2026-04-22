@@ -139,12 +139,9 @@ export default function TestPage() {
       </section>
 
       <section id="testpage-services" className="testpage__services testpage__svc-band" aria-labelledby="testpage-services-heading">
-        <span className="ab3__wm" aria-hidden>
-          GLC
-        </span>
         <div className="testpage__container">
           <div className="testpage__svc-band-bridge" aria-hidden>
-            <div className="glc-motif-divider-a3--to-light" />
+            <div className="glc-motif-divider-a3--to-dark" />
           </div>
 
           <div className="testpage__svc-hub">
@@ -235,6 +232,11 @@ export default function TestPage() {
               );
             })}
           </ul>
+
+          <div className="testpage__svc-outro" aria-hidden>
+            <div className="testpage__svc-parallelogram" />
+            <div className="glc-motif-divider-a3--to-light" />
+          </div>
         </div>
       </section>
 
