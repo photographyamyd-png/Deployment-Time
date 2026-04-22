@@ -59,10 +59,12 @@ export const commercialSnowVideoSection = {
     "January 08, 2026 at 6:23PM EST",
   ],
   /**
-   * In-page player: same segment as the CTV story; iframe host does not allow CTV embeds.
-   * Clean /embed/ URL (no playlist query).
+   * Self-hosted MP4 (same segment). CTV’s own player blocks third-party iframes on most sites;
+   * a saved copy plays reliably in a native video element.
    */
-  segmentEmbedSrc: "https://www.youtube.com/embed/IvSW_aS1T2E",
+  segmentVideoSrc: "/media/commercial-snow-ctv-salt-segment.mp4",
+  /** Same segment on YouTube — fallback link in UI / for users who prefer it. */
+  youtubeWatchUrl: "https://www.youtube.com/watch?v=IvSW_aS1T2E",
   /** Canonical story: CTV News Barrie — use for outbound authority links. */
   ctvArticleUrl:
     "https://www.ctvnews.ca/barrie/video/2026/01/08/municipalities-relying-on-the-same-resource-to-manage-winter-weather/",

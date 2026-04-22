@@ -74,19 +74,27 @@ export function CommercialSnowPageMain() {
             <p className="glc-snow-ctv__published">{commercialSnowVideoSection.ctvBodyParagraphs[1]}</p>
           </div>
           <div className="glc-snow-ctv__frame">
-            <iframe
-              title={`${commercialSnowVideoSection.segmentTitle} — ${commercialSnowVideoSection.ctvBodyParagraphs[0]}`}
-              src={commercialSnowVideoSection.segmentEmbedSrc}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
+            <video
+              className="glc-snow-ctv__video"
+              controls
+              playsInline
+              preload="metadata"
+              aria-label={`${commercialSnowVideoSection.segmentTitle} — CTV News Barrie segment (video)`}
+            >
+              <source src={commercialSnowVideoSection.segmentVideoSrc} type="video/mp4" />
+              <a href={commercialSnowVideoSection.youtubeWatchUrl}>Watch this segment on YouTube</a>
+              {" · "}
+              <a href={commercialSnowVideoSection.ctvArticleUrl}>CTV News Barrie article</a>
+            </video>
           </div>
           <p className="glc-snow-ctv__note">
             <span className="glc-snow-ctv__note-label">Source — </span>
             <a href={commercialSnowVideoSection.ctvArticleUrl} target="_blank" rel="noopener noreferrer">
               CTV News Barrie: full segment and article
+            </a>
+            <span className="glc-snow-ctv__note-sep"> · </span>
+            <a href={commercialSnowVideoSection.youtubeWatchUrl} target="_blank" rel="noopener noreferrer">
+              Same clip on YouTube
             </a>
           </p>
         </div>
