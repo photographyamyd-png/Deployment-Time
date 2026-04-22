@@ -137,88 +137,90 @@
     ]
   },
   "footer": {
-    "tagline": "\"From Concept to Creation\" — excavation and civil infrastructure for commercial builds across Barrie, Midland, Orillia, and Simcoe County.",
+    "descriptionLines": [
+      "Ground Level Contracting delivers commercial excavation, foundations, drainage, and civil infrastructure for builds across Barrie, Simcoe County, and surrounding regions.",
+      "Licensed, insured, and dispatch-ready — we partner with owners and contractors from concept through creation."
+    ],
     "columns": [
       {
         "title": "Services",
         "links": [
           {
-            "label": "Commercial excavation — Barrie",
-            "href": "/services/excavation-site-preparation/"
-          },
-          {
-            "label": "Site preparation — Simcoe County",
-            "href": "/services/excavation-site-preparation/"
-          },
-          {
             "label": "Excavation & Site Preparation",
             "href": "/services/excavation-site-preparation/"
-          },
-          {
-            "label": "Site Prep & Grading",
-            "href": "/services/site-preparation-grading/"
           },
           {
             "label": "Foundations & Civil Infrastructure",
             "href": "/services/foundations-civil-infrastructure/"
           },
           {
-            "label": "Drainage, Hardscaping & Landscaping",
+            "label": "Drainage & Hardscaping",
             "href": "/services/drainage-hardscaping/"
           },
           {
-            "label": "Hauling, Site Clearing & Logistics",
+            "label": "Hauling & Site Clearing",
             "href": "/services/hauling-site-clearing-logistics/"
           },
           {
-            "label": "Snow Removal Services",
+            "label": "Snow Removal",
             "href": "/services/snow-removal/"
+          },
+          { "type": "divider" },
+          {
+            "label": "Commercial excavation — Barrie",
+            "href": "/services/excavation-site-preparation/",
+            "variant": "seo"
+          },
+          {
+            "label": "Site preparation — Simcoe County",
+            "href": "/services/excavation-site-preparation/",
+            "variant": "seo"
           }
         ]
       },
       {
         "title": "Company",
         "links": [
-          { "label": "About Us", "href": "/about/" },
+          { "label": "About", "href": "/about/" },
           { "label": "Contact", "href": "/contact/" },
-          { "label": "Why Ground Level", "href": "/#why" },
           { "label": "Our Process", "href": "/process/" },
           { "label": "Coverage Area", "href": "/coverage/" },
           { "label": "Client Projects", "href": "/projects/" }
         ]
       },
       {
-        "title": "Coverage",
+        "title": "Service areas",
         "links": [
           { "label": "Barrie, ON", "href": "/coverage/" },
-          { "label": "Midland", "href": "/coverage/" },
+          { "label": "Innisfil", "href": "/coverage/" },
           { "label": "Orillia", "href": "/coverage/" },
-          { "label": "Simcoe County", "href": "/coverage/" }
-        ]
-      },
-      {
-        "title": "Commercial snow",
-        "links": [
-          { "label": "Snow removal hub", "href": "/services/snow-removal/" },
+          { "label": "Midland", "href": "/coverage/" },
+          { "label": "Simcoe County", "href": "/coverage/" },
+          { "type": "divider" },
           {
-            "label": "Commercial snow removal — Barrie",
-            "href": "/locations/commercial-snow-removal-barrie-ontario/"
+            "label": "Snow removal — Barrie",
+            "href": "/locations/commercial-snow-removal-barrie-ontario/",
+            "variant": "seo"
           },
           {
-            "label": "Commercial snow removal — Orillia",
-            "href": "/locations/commercial-snow-removal-orillia-ontario/"
+            "label": "Snow removal — Orillia",
+            "href": "/locations/commercial-snow-removal-orillia-ontario/",
+            "variant": "seo"
           },
           {
-            "label": "Commercial snow removal — Innisfil",
-            "href": "/locations/commercial-snow-removal-innisfil-ontario/"
+            "label": "Snow removal — Innisfil",
+            "href": "/locations/commercial-snow-removal-innisfil-ontario/",
+            "variant": "seo"
           },
           {
-            "label": "Commercial snow removal — Wasaga Beach",
-            "href": "/locations/commercial-snow-removal-wasaga-beach-ontario/"
+            "label": "Snow removal — Wasaga Beach",
+            "href": "/locations/commercial-snow-removal-wasaga-beach-ontario/",
+            "variant": "seo"
           },
           {
-            "label": "Commercial snow — Simcoe County",
-            "href": "/locations/commercial-snow-removal-simcoe-county/"
+            "label": "Snow removal — Simcoe County",
+            "href": "/locations/commercial-snow-removal-simcoe-county/",
+            "variant": "seo"
           }
         ]
       }

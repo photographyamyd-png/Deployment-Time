@@ -259,6 +259,8 @@ export type SiteConfig = {
   areaServed: string[];
   locale: string;
   copyrightYear: number;
+  /** Shown in footer: “Serving Simcoe County Since [year]”. */
+  servingSinceYear?: number;
   og?: {
     image?: string;
   };
@@ -268,6 +270,11 @@ export type NavLink = {
   label: string;
   href: string;
 };
+
+/** Footer column entry: link (optional SEO styling) or horizontal divider. */
+export type FooterLinkItem =
+  | (NavLink & { variant?: "seo" })
+  | { type: "divider" };
 
 export type MegaMenuCard = {
   slug: string;
@@ -321,8 +328,9 @@ export type NavigationConfig = {
     links: NavLink[];
   };
   footer: {
-    tagline: string;
-    columns: Array<{ title: string; links: NavLink[] }>;
+    /** Two short sentences under the logo (column 1). */
+    descriptionLines: string[];
+    columns: Array<{ title: string; links: FooterLinkItem[] }>;
     legal: Array<{ label: string; href: string }>;
   };
 };

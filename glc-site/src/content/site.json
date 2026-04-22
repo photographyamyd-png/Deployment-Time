@@ -16,5 +16,6 @@
   },
   "areaServed": ["Barrie", "Midland", "Orillia", "Simcoe County"],
   "locale": "en-CA",
-  "copyrightYear": 2026
+  "copyrightYear": 2026,
+  "servingSinceYear": 2010
 }
