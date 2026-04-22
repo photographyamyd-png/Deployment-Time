@@ -9,16 +9,12 @@ import { HomeServicesExpandableList } from "@/components/sections/home-services-
 import { HomeServicesStickyTabs } from "@/components/sections/home-services-sticky-tabs";
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
-import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps, SiteConfig } from "@/content/types";
-import site from "@/content/site.json";
+import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
 import {
   countServicesSectionWords,
   SERVICES_INDUSTRIAL_TAB_WORD_THRESHOLD,
 } from "@/lib/count-services-section-words";
 import styles from "@/components/sections/services-grid-section.module.css";
-
-const siteData = site as SiteConfig;
-const telHref = siteData.telephone.replace(/\s/g, "");
 
 const FALLBACK_FEATURE = "/images/excavation-and-foundations-orillia-barrie.png";
 
@@ -118,51 +114,6 @@ export function ServicesGridSection({
     </Reveal>
   ) : null;
 
-  const introBlockStage = (
-    <>
-      <Reveal>
-        <div className={styles.svcRefEyebrow}>
-          <span className={styles.svcRefEyebrowDash} aria-hidden />
-          <span className={styles.svcRefEyebrowTxt}>{props.eyebrow}</span>
-        </div>
-      </Reveal>
-      <Reveal delayClass="reveal--delay-1">
-        <h2 id="services-heading" className={styles.svcRefStageHeading}>
-          {props.headingLine1} <span>{props.headingLine2}</span>
-        </h2>
-      </Reveal>
-      {tagline ? (
-        <Reveal delayClass="reveal--delay-2">
-          <p className={styles.svcRefStageSub}>{tagline}</p>
-        </Reveal>
-      ) : null}
-      {hasDistinctIntro ? (
-        <Reveal delayClass="reveal--delay-3">
-          <p className={styles.svcRefStageSubMuted}>{intro}</p>
-        </Reveal>
-      ) : null}
-      {!tagline && intro ? (
-        <Reveal delayClass="reveal--delay-2">
-          <p className={styles.svcRefStageSub}>{intro}</p>
-        </Reveal>
-      ) : null}
-    </>
-  );
-
-  const specsDeckItems = hasSpecs
-    ? specs!.map((row, i) => (
-        <li key={`deck-${row.label}-${row.value}-${i}`} className={styles.svcRefSpecCell}>
-          <span className={styles.svcRefSpecOrdinal} aria-hidden>
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <div className={styles.svcRefSpecBody}>
-            <span className={styles.svcRefSpecLbl}>{row.label}</span>
-            <span className={styles.svcRefSpecVal}>{row.value}</span>
-          </div>
-        </li>
-      ))
-    : null;
-
   return (
     <section
       id="services"
@@ -186,81 +137,72 @@ export function ServicesGridSection({
 
         <div className={styles.body}>
           {referenceSplitLayout ? (
-            <>
-              <div className={styles.svcRefMotifBleed} aria-hidden>
-                <div className="glc-motif-divider-a3--to-light" />
+            <div className={styles.svcStage}>
+              <div className={styles.svcStageBleed}>
+                <div className="glc-motif-divider-a3--to-dark" aria-hidden />
               </div>
 
-              <section className={styles.svcRefStage} aria-labelledby="services-heading">
-                <div className={styles.svcRefStageInner}>
-                  <div className={styles.svcRefStageCopy}>{introBlockStage}</div>
-                  <div className={styles.svcRefStageActions}>
-                    <div>
-                      <div className={styles.svcRefPhoneLbl}>Call directly</div>
-                      <SmartLink href={`tel:${telHref}`} className={styles.svcRefPhone}>
-                        {siteData.telephoneDisplay}
-                      </SmartLink>
-                    </div>
-                    <SmartLink
-                      href={`mailto:${siteData.email}`}
-                      className={`btn-ghost btn-ghost--dark ${styles.svcRefGhost}`}
-                    >
-                      Email {siteData.email}
-                    </SmartLink>
-                  </div>
-                </div>
-              </section>
-
-              {hasSpecs ? (
-                <>
-                  <div className={styles.svcRefMotifBleed} aria-hidden>
-                    <div className="glc-motif-divider-a3--to-dark" />
-                  </div>
-                  <Reveal delayClass="reveal--delay-1">
-                    <div className={styles.svcRefSpecsDeck}>
-                      <ol className={styles.svcRefSpecsList} aria-label="Service scope highlights">
-                        {specsDeckItems}
-                      </ol>
-                    </div>
-                  </Reveal>
-                  <div className={styles.svcRefMotifBleed} aria-hidden>
-                    <div className="glc-motif-divider-a3--to-light" />
-                  </div>
-                </>
-              ) : (
-                <div className={styles.svcRefMotifBleed} aria-hidden>
-                  <div className="glc-motif-divider-a3--to-light" />
-                </div>
-              )}
-
-              {useIndustrialTabs ? (
-                <HomeServicesStickyTabs cards={cards} />
-              ) : (
-                <div className={`${styles.accordionRegion} ${styles.svcRefAccordion}`}>
-                  <HomeServicesExpandableList cards={cards} />
-                </div>
-              )}
-
-              {servicesBandCta ? (
-                <Reveal delayClass="reveal--delay-2">
-                  <div className={styles.svcRefCtaBand}>
-                    <div className={styles.svcRefCtaInner}>
-                      <div className={styles.svcRefCtaActions}>
-                        <SmartLink href={servicesBandCta.quoteCta.href} className="gl-btn gl-btn--primary">
+              <header className={`${styles.svcStageLead} gl-reveal`}>
+                <div className={styles.svcStageLeadInner}>
+                  <div className={styles.svcStageCopy}>{introBlock}</div>
+                  {servicesBandCta ? (
+                    <Reveal delayClass="reveal--delay-1">
+                      <div className={styles.svcStageActions}>
+                        <SmartLink
+                          href={servicesBandCta.quoteCta.href}
+                          className="gl-btn gl-btn--primary"
+                        >
                           {servicesBandCta.quoteCta.label}
                         </SmartLink>
                         <SmartLink
                           href={servicesBandCta.servicesViewAll.href}
-                          className={`gl-btn gl-btn--ghost-dark ${styles.svcRefCtaGhost}`}
+                          className="gl-btn gl-btn--ghost-dark"
                         >
                           {servicesBandCta.servicesViewAll.label}
                         </SmartLink>
                       </div>
+                    </Reveal>
+                  ) : null}
+                </div>
+              </header>
+
+              {hasSpecs ? (
+                <>
+                  <div className={styles.svcStageBleed}>
+                    <div className="glc-motif-divider-a3--to-light" aria-hidden />
+                  </div>
+                  <div className={`${styles.svcStageSpecBand} gl-reveal`}>
+                    <div className={styles.svcStageSpecInner}>
+                      <ol className={styles.svcStageSpecGrid} aria-label="Service dispatch snapshot">
+                        {specs!.map((row, i) => (
+                          <li key={`${row.label}-${row.value}-${i}`} className={styles.svcStageSpecCell}>
+                            <span className={styles.svcStageSpecOrd} aria-hidden>
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span className={styles.svcStageSpecLbl}>{row.label}</span>
+                            <span className={styles.svcStageSpecVal}>{row.value}</span>
+                          </li>
+                        ))}
+                      </ol>
                     </div>
                   </div>
-                </Reveal>
+                </>
               ) : null}
-            </>
+
+              <div className={styles.svcStageBleed}>
+                <div className="glc-motif-divider-a3--to-dark" aria-hidden />
+              </div>
+
+              <div className={`${styles.svcStageListDeck} gl-reveal`}>
+                {useIndustrialTabs ? (
+                  <HomeServicesStickyTabs cards={cards} />
+                ) : (
+                  <div className={`${styles.accordionRegion} ${styles.accordionRegionOstech}`}>
+                    <HomeServicesExpandableList cards={cards} />
+                  </div>
+                )}
+              </div>
+            </div>
           ) : (
             <>
               <div className={styles.topBand}>
