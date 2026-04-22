@@ -14,6 +14,37 @@
   clip-path: inset(0 0 0 0);
 }
 
+/**
+ * Very long `/sandbox/` + Framer `translateY` on layers that also use CSS
+ * `background-image` / cover photos + optional scale keyframes can produce
+ * vertical “slit-scan” corruption on some Windows Chrome/Edge GPUs. Production
+ * routes are unchanged — only elements under `.sandbox` are neutralized.
+ */
+.sandbox .hero-v2__bg-plane,
+.sandbox .hero-v2__photo-panel,
+.sandbox .hero-v2__content,
+.sandbox .exc-hub__bg-plane,
+.sandbox .exc-hub__structure-plane,
+.sandbox .exc-hub__diag-stripe,
+.sandbox .exc-hub__photo-panel,
+.sandbox .exc-hub__ghost-mark,
+.sandbox .service-page-hero__bg-plane,
+.sandbox .gl-parallax-type-band__media,
+.sandbox .gl-parallax-type-band__content,
+.sandbox .gl-parallax-wf__media,
+.sandbox .glc-drain-hub__ab3-photo-parallax,
+.sandbox .glc-drain-hub__proc3-hero-parallax,
+.sandbox .sandbox-ds-quote__bg {
+  transform: none !important;
+}
+
+.sandbox .hero-v2__bg-roll,
+.sandbox .exc-hub__bg-roll,
+.sandbox .service-page-hero__bg-roll {
+  animation: none !important;
+  transform: none !important;
+}
+
 /* Compliance reference strip (top of /sandbox/) */
 .sandbox-compliance-ref {
   background: var(--charcoal-deep);
