@@ -11,6 +11,7 @@ import {
 } from "react";
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrowSmall } from "@/components/ui/icon-arrow";
+import { ServiceCardIcon } from "@/components/sections/service-card-icon";
 import type { MegaMenuCard } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
 import styles from "@/components/sections/services-grid-section.module.css";
@@ -108,6 +109,9 @@ export function HomeServicesStickyTabs({ cards }: Props) {
                   className={`${styles.refTab} ${selected ? styles.refTabActive : ""}`}
                   onClick={() => setActive(i)}
                 >
+                  <span className={styles.refTabIcon} aria-hidden>
+                    <ServiceCardIcon slug={c.slug} className={styles.refTabIconSvg} strokeWeight="fine" />
+                  </span>
                   <span className={styles.refTabNum} aria-hidden>
                     {c.num}
                   </span>
@@ -126,16 +130,19 @@ export function HomeServicesStickyTabs({ cards }: Props) {
         className={styles.refTabPanel}
       >
         <div className={styles.refTabPanelGrid}>
-          <div className={styles.refTabPanelMedia}>
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              className={styles.refTabPanelImg}
-              sizes="(max-width: 768px) 100vw, min(560px, 52vw)"
-              priority={safeIndex === 0}
-            />
-            <span className={styles.refTabPanelMediaRule} aria-hidden />
+          <div className={styles.refTabPanelMediaShell}>
+            <span className={styles.refTabPanelMediaOffset} aria-hidden />
+            <div className={styles.refTabPanelMedia}>
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className={styles.refTabPanelImg}
+                sizes="(max-width: 768px) 100vw, min(560px, 52vw)"
+                priority={safeIndex === 0}
+              />
+              <span className={styles.refTabPanelMediaRule} aria-hidden />
+            </div>
           </div>
           <div className={styles.refTabPanelCopy}>
             <h3 className={styles.refTabPanelHeadline}>{headline}</h3>

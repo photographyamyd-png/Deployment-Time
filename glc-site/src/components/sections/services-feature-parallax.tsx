@@ -44,7 +44,9 @@ export function ServicesFeatureParallax({ src, alt, imageSizes = "100vw" }: Prop
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
     >
-      <Image src={src} alt={alt} fill className={styles.parallaxImg} sizes={imageSizes} priority={false} />
+      <div className={styles.parallaxZoomLayer} aria-hidden>
+        <Image src={src} alt={alt} fill className={styles.parallaxImg} sizes={imageSizes} priority={false} />
+      </div>
       <div className={styles.parallaxScrim} aria-hidden />
       <div className={styles.parallaxBlueprint} aria-hidden />
       <div className={styles.parallaxFrame} aria-hidden />

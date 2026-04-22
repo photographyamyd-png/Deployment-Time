@@ -1,3 +1,7 @@
+/**
+ * #services band — Industrial Authority interaction patterns (tab density gate, dark sticky rail,
+ * 7/5 split, gold media rails, motion) implemented with GLC tokens from `.cursorrules` (no Tailwind).
+ */
 import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
@@ -6,6 +10,10 @@ import { HomeServicesStickyTabs } from "@/components/sections/home-services-stic
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
 import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
+import {
+  countServicesSectionWords,
+  SERVICES_INDUSTRIAL_TAB_WORD_THRESHOLD,
+} from "@/lib/count-services-section-words";
 import styles from "@/components/sections/services-grid-section.module.css";
 
 const FALLBACK_FEATURE = "/images/excavation-and-foundations-orillia-barrie.png";
@@ -47,6 +55,10 @@ export function ServicesGridSection({
     : effectiveEditorial
       ? "editorial"
       : undefined;
+
+  const servicesWordCount = countServicesSectionWords(props, cards);
+  const useIndustrialTabs =
+    referenceSplitLayout && servicesWordCount > SERVICES_INDUSTRIAL_TAB_WORD_THRESHOLD;
 
   const introBlock = (
     <>
@@ -142,7 +154,17 @@ export function ServicesGridSection({
                 </div>
               </header>
 
-              <HomeServicesStickyTabs cards={cards} />
+              <div className={styles.referenceStructuralDivider} aria-hidden>
+                <span className={styles.referenceStructuralDividerGold} />
+              </div>
+
+              {useIndustrialTabs ? (
+                <HomeServicesStickyTabs cards={cards} />
+              ) : (
+                <div className={styles.accordionRegion}>
+                  <HomeServicesExpandableList cards={cards} />
+                </div>
+              )}
 
               {servicesBandCta ? (
                 <Reveal delayClass="reveal--delay-2">

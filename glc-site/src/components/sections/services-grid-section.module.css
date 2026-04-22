@@ -23,6 +23,15 @@
   --depth-pull: 0;
 }
 
+@keyframes svcFeatureSlowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 /* GROUND — technical grid paper (structure plane, very low contrast) */
 .layerGround {
   position: absolute;
@@ -128,8 +137,13 @@
   height: clamp(260px, 36vw, 520px);
   overflow: hidden;
   border: 1px solid var(--gray-200);
+  border-bottom: 8px solid var(--yellow-core);
   box-shadow: var(--shadow-card);
   isolation: isolate;
+}
+
+.splitMediaInner .parallaxFloor {
+  display: none;
 }
 
 /* Fore-layer (above parallax floor): yellow survey corner */
@@ -175,6 +189,23 @@
   --svc-py: 0;
 }
 
+.parallaxZoomLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform-origin: center 52%;
+  animation: svcFeatureSlowZoom 20s var(--ease-expo) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallaxZoomLayer {
+    animation: none;
+    transform: none;
+  }
+}
+
 .parallaxImg {
   z-index: 0;
   object-fit: cover;
@@ -186,6 +217,7 @@
     )
     scale(calc(1.06 + var(--depth-pull, 0) * 0.05));
   transition: transform 0.35s var(--ease-expo);
+  filter: grayscale(0.35);
 }
 
 .parallaxRoot:hover .parallaxImg {
@@ -195,6 +227,17 @@
       0
     )
     scale(calc(1.08 + var(--depth-pull, 0) * 0.05));
+  filter: grayscale(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallaxImg {
+    filter: none;
+  }
+
+  .parallaxRoot:hover .parallaxImg {
+    filter: none;
+  }
 }
 
 .parallaxScrim {
@@ -293,10 +336,16 @@
 
 .splitMain {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(24px, 4vw, 48px);
   align-items: stretch;
   margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+@media (max-width: 899px) {
+  .splitMain {
+    grid-template-columns: 1fr;
+  }
 }
 
 .splitCopy {
@@ -441,7 +490,7 @@
     color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 1px,
     transparent 1px
   );
-  background-size: 22px 22px;
+  background-size: 28px 28px;
 }
 
 .referenceOstech .layerGround,
@@ -475,7 +524,7 @@
 
 @media (min-width: 900px) {
   .referenceHeader {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: start;
     column-gap: clamp(24px, 3.5vw, 40px);
   }
@@ -537,6 +586,28 @@
   transform: skewX(-12deg);
 }
 
+/* Full-width structural rule + gold cap (Industrial Authority divider) */
+.referenceStructuralDivider {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max);
+  height: 1px;
+  margin: 0 auto clamp(16px, 2.2vw, 22px);
+  background: var(--gray-200);
+  z-index: 2;
+}
+
+.referenceStructuralDividerGold {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 24px;
+  height: 4px;
+  margin-top: -2px;
+  background: var(--yellow-core);
+  pointer-events: none;
+}
+
 /* Sticky service tabs + single detail panel (homepage reference layout) */
 .refTabRoot {
   position: relative;
@@ -551,10 +622,10 @@
   top: var(--header-total-h, 104px);
   z-index: 12;
   margin: 0 0 clamp(14px, 2vw, 20px);
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-bottom: 3px solid var(--charcoal-deep);
-  box-shadow: var(--shadow-sm);
+  background: var(--charcoal-deep);
+  border: 1px solid var(--charcoal-mid);
+  border-bottom: 3px solid var(--yellow-core);
+  box-shadow: var(--shadow-card);
 }
 
 .refTabBandInner {
@@ -572,9 +643,9 @@
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-400);
-  background: color-mix(in srgb, var(--charcoal-deep) 4%, var(--white));
-  border-bottom: 1px solid var(--gray-200);
+  color: rgba(255, 255, 255, 0.55);
+  background: color-mix(in srgb, var(--charcoal-deep) 88%, var(--charcoal-mid));
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
 }
 
 .refTabScroll {
@@ -593,7 +664,7 @@
 }
 
 .refTabScroll::-webkit-scrollbar-thumb {
-  background: var(--gray-200);
+  background: color-mix(in srgb, var(--white) 25%, var(--charcoal-mid));
 }
 
 .refTab {
@@ -604,9 +675,9 @@
   padding: 10px clamp(11px, 1.6vw, 15px);
   min-height: 44px;
   border: none;
-  border-right: 1px solid var(--gray-200);
-  background: var(--white);
-  color: var(--charcoal-deep);
+  border-right: 1px solid color-mix(in srgb, var(--white) 10%, transparent);
+  background: color-mix(in srgb, var(--charcoal-deep) 92%, var(--charcoal-mid));
+  color: rgba(255, 255, 255, 0.72);
   font-family: var(--font-body);
   text-align: left;
   cursor: pointer;
@@ -622,7 +693,8 @@
 
 .refTab:hover,
 .refTab:focus-visible {
-  background: var(--gray-100);
+  background: color-mix(in srgb, var(--charcoal-deep) 78%, var(--charcoal-mid));
+  color: rgba(255, 255, 255, 0.92);
   outline: none;
 }
 
@@ -631,8 +703,35 @@
 }
 
 .refTabActive {
-  background: color-mix(in srgb, var(--yellow-tint) 55%, var(--white));
-  box-shadow: inset 0 -3px 0 0 var(--yellow-core);
+  background: var(--white);
+  color: var(--charcoal-deep);
+  box-shadow: inset 0 -4px 0 0 var(--yellow-core);
+}
+
+.refTabActive:hover,
+.refTabActive:focus-visible {
+  background: var(--white);
+  color: var(--charcoal-deep);
+}
+
+.refTabIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--yellow-core);
+}
+
+.refTabActive .refTabIcon {
+  color: var(--yellow-core);
+}
+
+.refTabIconSvg {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
 .refTabNum {
@@ -642,6 +741,10 @@
   letter-spacing: -0.02em;
   color: var(--yellow-core);
   line-height: 1;
+}
+
+.refTabActive .refTabNum {
+  color: var(--charcoal-deep);
 }
 
 .refTabTitle {
@@ -676,13 +779,38 @@
 
 @media (min-width: 768px) {
   .refTabPanelGrid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     align-items: stretch;
+  }
+}
+
+.refTabPanelMediaShell {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.refTabPanelMediaOffset {
+  position: absolute;
+  z-index: 0;
+  left: -2rem;
+  top: 1rem;
+  right: 1rem;
+  bottom: -1.25rem;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .refTabPanelMediaOffset {
+    display: none;
   }
 }
 
 .refTabPanelMedia {
   position: relative;
+  z-index: 1;
   aspect-ratio: 16 / 10;
   min-height: clamp(200px, 42vw, 300px);
   background: var(--gray-100);
@@ -699,6 +827,31 @@
 .refTabPanelImg {
   object-fit: cover;
   object-position: center 42%;
+  transform: scale(1);
+  filter: grayscale(1);
+  transition:
+    filter 0.45s var(--ease-expo),
+    transform 0.45s var(--ease-expo);
+}
+
+.refTabPanelMedia:hover .refTabPanelImg,
+.refTabPanelMedia:focus-within .refTabPanelImg {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .refTabPanelImg {
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  .refTabPanelMedia:hover .refTabPanelImg,
+  .refTabPanelMedia:focus-within .refTabPanelImg {
+    filter: none;
+    transform: none;
+  }
 }
 
 .refTabPanelMediaRule {
@@ -706,7 +859,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 3px;
+  height: 8px;
   background: var(--yellow-core);
   pointer-events: none;
   z-index: 2;
@@ -1013,6 +1166,18 @@
   }
 }
 
+.referenceFooterCtas :global(.gl-btn--primary:hover),
+.referenceFooterCtas :global(.gl-btn--primary:focus-visible) {
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .referenceFooterCtas :global(.gl-btn--primary:hover),
+  .referenceFooterCtas :global(.gl-btn--primary:focus-visible) {
+    transform: none;
+  }
+}
+
 .expandList {
   list-style: none;
   margin: 0;
@@ -1042,12 +1207,31 @@
   flex-direction: column;
   min-height: 0;
   height: 100%;
+  position: relative;
   background: var(--white);
   border: 1px solid var(--gray-200);
   box-shadow: var(--shadow-sm);
   transition:
     border-color 0.35s var(--ease-expo),
     box-shadow 0.35s var(--ease-expo);
+}
+
+.expandItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 8px;
+  background: var(--yellow-core);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition:
+    opacity 0.35s var(--ease-expo),
+    transform 0.35s var(--ease-expo);
+  pointer-events: none;
+  z-index: 3;
 }
 
 .expandItemAlt .expandHero {
@@ -1057,6 +1241,18 @@
 .expandItemOpen {
   border-color: color-mix(in srgb, var(--yellow-core) 55%, var(--gray-200));
   box-shadow: var(--shadow-card);
+}
+
+.expandItem:hover::before,
+.expandItemOpen::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandItem::before {
+    transition: none;
+  }
 }
 
 /* Photo band on top (horizontal), copy + accordion below — reads as a tile grid, not one skinny vertical stack */
@@ -1082,6 +1278,29 @@
 .expandHeroImg {
   object-fit: cover;
   object-position: center 42%;
+  transform: scale(1);
+  filter: grayscale(1);
+  transition:
+    filter 0.45s var(--ease-expo),
+    transform 0.45s var(--ease-expo);
+}
+
+.expandHero:hover .expandHeroImg {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandHeroImg {
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  .expandHero:hover .expandHeroImg {
+    filter: none;
+    transform: none;
+  }
 }
 
 .expandHeroNum {

@@ -1,12 +1,12 @@
-type Props = { slug: string; className?: string };
+type Props = { slug: string; className?: string; strokeWeight?: "default" | "fine" };
 
-export function ServiceCardIcon({ slug, className = "service-card__icon" }: Props) {
+export function ServiceCardIcon({ slug, className = "service-card__icon", strokeWeight = "default" }: Props) {
   const common = {
     className,
     viewBox: "0 0 40 40",
     fill: "none" as const,
     stroke: "currentColor" as const,
-    strokeWidth: 2,
+    strokeWidth: strokeWeight === "fine" ? 1 : 2,
     xmlns: "http://www.w3.org/2000/svg",
     "aria-hidden": true as const,
   };
