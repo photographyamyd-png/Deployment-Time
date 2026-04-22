@@ -169,6 +169,7 @@ export default function TestPage() {
               const src = card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
               const alt = [card.title, card.description].filter(Boolean).join(" — ");
               const hl = serviceHeadline(card);
+              const wide = idx >= 4;
               return (
                 <li
                   key={card.slug}
@@ -176,45 +177,50 @@ export default function TestPage() {
                 >
                   <SmartLink
                     href={ROUTES.service(card.slug)}
-                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link`}
+                    className={`testpage__svc-card${wide ? " testpage__svc-card--wide" : ""}`}
                   >
-                  <div className={svcStyles.expandRow}>
-                    <div
-                      className={`${svcStyles.expandHero} testpage__service-expand-hero ${idx >= 4 ? "testpage__service-expand-hero--row2" : ""}`}
-                    >
-                      <Image
-                        src={src}
-                        alt={alt}
-                        fill
-                        className={`${svcStyles.expandHeroImg} testpage__service-hero-img`}
-                        sizes="(max-width: 768px) 100vw, (max-width: 980px) 50vw, (max-width: 1399px) 25vw, 16vw"
-                      />
-                      <span className={svcStyles.expandHeroNum} aria-hidden>
-                        {card.num}
-                      </span>
-                    </div>
-                    <div className={svcStyles.expandMain}>
-                      <div className="testpage__expand-static-head">
-                        <h3 className={svcStyles.expandHeadline}>
-                          <ServiceCardHeading slug={card.slug} headline={hl} />
-                        </h3>
-                      </div>
-                      <div className="testpage__expand-static-panel">
-                        <p className={svcStyles.expandDesc}>{card.gridDescription}</p>
-                        {card.subTags && card.subTags.length > 0 ? (
-                          <ul className={svcStyles.expandTags}>
-                            {card.subTags.map((t) => (
-                              <li key={`${card.slug}-${t}`}>{t}</li>
-                            ))}
-                          </ul>
-                        ) : null}
-                        <span className={`${svcStyles.expandCta} testpage__expand-cta-span`}>
-                          View service
-                          <IconArrowSmall />
+                    <div className="testpage__svc-card__stack">
+                      {/* z-0 — image plane (bleeds past card edge like header layer stack) */}
+                      <div className="testpage__svc-card__image-layer">
+                        <Image
+                          src={src}
+                          alt={alt}
+                          fill
+                          className="testpage__svc-card__img"
+                          sizes="(max-width: 768px) 100vw, (max-width: 980px) 50vw, (max-width: 1399px) 25vw, 16vw"
+                        />
+                        <div className="testpage__svc-card__scrim" aria-hidden />
+                        <span className={`${svcStyles.expandHeroNum} testpage__svc-card__num`} aria-hidden>
+                          {card.num}
                         </span>
                       </div>
+                      {/* z-10 — hero-v2__chip glass plate + header gold strip / vertical rail (marquee + nav DNA) */}
+                      <div className="testpage__svc-card__plate">
+                        <span className="testpage__svc-card__plate-cap" aria-hidden />
+                        <div className="testpage__svc-card__plate-body">
+                          <span className="testpage__svc-card__plate-rail" aria-hidden />
+                          <div className="testpage__svc-card__plate-inner">
+                            <h3 className={`${svcStyles.expandHeadline} testpage__svc-card__title`}>
+                              <ServiceCardHeading slug={card.slug} headline={hl} />
+                            </h3>
+                            {card.gridDescription ? (
+                              <p className="testpage__svc-card__lede">{card.gridDescription}</p>
+                            ) : null}
+                            {card.subTags && card.subTags.length > 0 ? (
+                              <ul className={`${svcStyles.expandTags} testpage__svc-card__tags`}>
+                                {card.subTags.map((t) => (
+                                  <li key={`${card.slug}-${t}`}>{t}</li>
+                                ))}
+                              </ul>
+                            ) : null}
+                            <span className="testpage__svc-card__cta btn-hero-glass">
+                              Learn more
+                              <IconArrowSmall />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                   </SmartLink>
                 </li>
               );

@@ -190,8 +190,8 @@
 }
 
 /*
- * Services band — GLC-SVG-MOTIF-PREVIEW.html patterns: DSE rail, ls hairline grid, blueprint plane,
- * grain, watermark, bridge; cards match expandItem / svc-tile rhythm (top bar + border depth only — no corner shards).
+ * Services band — DSE rail, grid, grain, watermark, bridge.
+ * Cards: multi-layer stack (image plane z-0 + hero-v2 chip glass plate z-10), marquee + header strip DNA.
  */
 .testpage__services--dna {
   background: var(--off-white);
@@ -332,8 +332,9 @@
 }
 
 /*
- * Service cards — compose ServicesGridSection expandItem (::before top bar + module shadows).
- * Grid: row 1 = 4 equal; row 2 = two cards each span 2 cols so total width matches row 1.
+ * Service cards — layered stack (not a single flat tile).
+ * Ratios: hero-v2__chip (glass) + marquee-band (charcoal/yellow edge) + gl-header__gold-strip (cap).
+ * Grid: row 1 = 4 equal; row 2 = two cards span 2 cols (or 6×1 at ≥1400px).
  */
 .testpage__services-grid {
   list-style: none;
@@ -341,7 +342,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1.4vw, 14px);
+  gap: clamp(14px, 2vw, 22px);
   align-items: stretch;
   position: relative;
   z-index: 2;
@@ -355,100 +356,208 @@
 .testpage__services-grid-item {
   min-width: 0;
   display: flex;
+  padding-top: clamp(10px, 1.6vw, 16px);
 }
 
-.testpage__service-card-link {
+.testpage__svc-card {
   flex: 1;
   min-width: 0;
+  display: block;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   position: relative;
   isolation: isolate;
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--white) 70%, transparent) inset,
-    0 16px 36px color-mix(in srgb, var(--charcoal-deep) 14%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
-  transition: box-shadow 0.35s var(--ease-expo), border-color 0.35s var(--ease-expo);
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.testpage__service-card-link:hover,
-.testpage__service-card-link:focus-visible {
-  box-shadow:
-    0 1px 0 color-mix(in srgb, var(--white) 80%, transparent) inset,
-    0 22px 48px color-mix(in srgb, var(--charcoal-deep) 20%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--charcoal-mid) 22%, transparent);
-}
-
-/* Photo band — neutral bar + 1px yellow accent (not a heavy gold strip) */
-.testpage__service-expand-hero {
-  border-bottom: 2px solid var(--gray-200);
-  box-shadow: 0 1px 0 0 var(--yellow-core);
-}
-
-/* Expand row top reveal: charcoal bar, not a solid yellow cap */
-.testpage__services--dna .testpage__service-card-link::before {
-  background: var(--charcoal-mid);
-  height: 2px;
-}
-
-.testpage__services--dna .testpage__service-card-link:hover::before,
-.testpage__services--dna .testpage__service-card-link:focus-visible::before {
-  background: linear-gradient(90deg, var(--yellow-core) 0%, var(--yellow-core) 20%, var(--charcoal-deep) 20%);
-  height: 3px;
-  opacity: 1;
-}
-
-/* Static title band (homepage expand uses a button; here the whole card is the link). */
-.testpage__expand-static-head {
-  padding: clamp(12px, 1.8vw, 16px) clamp(14px, 2vw, 20px);
-  border-bottom: 1px solid var(--gray-200);
-  transition: background 0.25s var(--ease-expo);
-}
-
-.testpage__service-card-link:hover .testpage__expand-static-head,
-.testpage__service-card-link:focus-visible .testpage__expand-static-head {
-  background: color-mix(in srgb, var(--charcoal-deep) 3%, transparent);
-}
-
-.testpage__expand-static-panel {
-  padding: clamp(14px, 2vw, 18px) clamp(14px, 2vw, 20px);
-  flex: 1;
+.testpage__svc-card__stack {
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ── Layer 0 — photo bleeds beyond stack (header-style depth) ───────── */
+.testpage__svc-card__image-layer {
+  position: relative;
+  z-index: 0;
+  width: calc(100% + clamp(10px, 2vw, 18px));
+  max-width: none;
+  align-self: center;
+  margin-top: clamp(-12px, -1.8vw, -8px);
+  aspect-ratio: 4/3;
+  max-height: clamp(148px, 19vw, 220px);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--charcoal-deep) 14%, transparent);
+  box-shadow: var(--shadow-card);
+}
+
+.testpage__svc-card--wide .testpage__svc-card__image-layer {
+  max-height: clamp(168px, 16vw, 240px);
+}
+
+.testpage__svc-card__img {
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.35s var(--ease-expo);
+}
+
+/* Hero photo scrim — same rgba(20,18,16) family as hero-v2__photo-scrim */
+.testpage__svc-card__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(20, 18, 16, 0.78) 0%,
+    rgba(20, 18, 16, 0.28) 42%,
+    rgba(20, 18, 16, 0.06) 100%
+  );
+}
+
+.testpage__svc-card__num {
+  z-index: 2;
+}
+
+/* ── Layer 10 — glass plate overlaps image (hero-v2__chip) ───────────── */
+.testpage__svc-card__plate {
+  position: relative;
+  z-index: 10;
+  margin-top: clamp(-40px, -5.5vw, -28px);
+  margin-left: clamp(4px, 1vw, 10px);
+  align-self: flex-start;
+  max-width: min(100% - 12px, 320px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.38));
+}
+
+.testpage__svc-card--wide .testpage__svc-card__plate {
+  max-width: min(100% - 12px, 400px);
+}
+
+/* Marquee band: top edge yellow hairline (rgba(242,183,5,0.18) family) */
+.testpage__svc-card__plate-cap {
+  height: 3px;
+  width: min(46%, 140px);
+  background: var(--yellow-core);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--yellow-core) 18%, transparent);
+}
+
+.testpage__svc-card__plate-body {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-width: 0;
+}
+
+/* Vertical structural bar — nav / rail language */
+.testpage__svc-card__plate-rail {
+  width: 3px;
+  flex-shrink: 0;
+  background: var(--yellow-core);
+  box-shadow: inset -1px 0 0 color-mix(in srgb, var(--yellow-core) 35%, transparent);
+}
+
+/* hero-v2__chip: background rgba(20,18,16,0.52), blur 20px, chamfer, inset highlights + yellow edge */
+.testpage__svc-card__plate-inner {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: rgba(20, 18, 16, 0.52);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset -1px 0 0 rgba(242, 183, 5, 0.18),
+    inset 0 -1px 0 rgba(242, 183, 5, 0.12);
+  border-top: 1px solid rgba(242, 183, 5, 0.18);
+  transition:
+    background 0.22s var(--ease-expo),
+    box-shadow 0.22s var(--ease-expo);
+}
+
+.testpage__svc-card__plate-inner .testpage__svc-card__title {
+  color: rgba(255, 255, 255, 0.96);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.testpage__svc-card__lede {
+  margin: 10px 0 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.52);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Chip tags — marquee chip-tag contrast */
+.testpage__svc-card__tags {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.testpage__svc-card__tags li {
+  color: rgba(255, 255, 255, 0.72);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.testpage__svc-card__cta {
+  margin-top: 14px;
+  align-self: flex-start;
+  width: auto;
+}
+
+.testpage__svc-card:hover .testpage__svc-card__plate-inner,
+.testpage__svc-card:focus-visible .testpage__svc-card__plate-inner {
+  background: rgba(20, 18, 16, 0.8);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px 0 0 rgba(242, 183, 5, 0.5),
+    inset 0 -1px 0 rgba(242, 183, 5, 0.35);
+}
+
+.testpage__svc-card:hover .testpage__svc-card__img,
+.testpage__svc-card:focus-visible .testpage__svc-card__img {
+  transform: scale(1.07);
+}
+
+.testpage__svc-card:focus-visible {
+  outline: 2px solid var(--yellow-core);
+  outline-offset: 3px;
 }
 
 .testpage__service-head-accent {
   color: var(--yellow-core);
 }
 
-/* Row-2 cards are wider — give the photo band slightly more vertical presence for balance. */
-.testpage__service-expand-hero--row2 {
-  max-height: clamp(112px, 12vw, 190px);
-}
-
-/* Full-color imagery only — overrides expandHeroImg grayscale from services-grid-section.module.css */
-.testpage__services--dna .testpage__service-card-link .testpage__service-hero-img {
-  filter: none !important;
-}
-
-.testpage__service-card-link:hover .testpage__service-hero-img,
-.testpage__service-card-link:focus-visible .testpage__service-hero-img {
-  filter: none !important;
-  transform: scale(1.04);
-}
-
-.testpage__service-card-link:hover .testpage__expand-cta-span,
-.testpage__service-card-link:focus-visible .testpage__expand-cta-span {
-  color: var(--gold);
-  gap: 12px;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .testpage__service-card-link:hover .testpage__service-hero-img,
-  .testpage__service-card-link:focus-visible .testpage__service-hero-img {
-    transform: none;
+  .testpage__svc-card__img,
+  .testpage__svc-card__plate-inner {
+    transition: none;
+  }
+
+  .testpage__svc-card:hover .testpage__svc-card__img,
+  .testpage__svc-card:focus-visible .testpage__svc-card__img {
+    transform: scale(1.02);
   }
 }
 
@@ -1103,10 +1212,6 @@
   .testpage__services-grid > .testpage__services-grid-item:nth-child(5),
   .testpage__services-grid > .testpage__services-grid-item:nth-child(6) {
     grid-column: auto;
-  }
-
-  .testpage__service-expand-hero--row2 {
-    max-height: clamp(100px, 14vw, 160px);
   }
 }
 
