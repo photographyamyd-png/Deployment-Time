@@ -31,13 +31,13 @@ export function ExcavationServiceCanon() {
           <p className="gl-prose exc-canon__intro">{canon.intro}</p>
         </header>
 
-        <div className="exc-canon__list" role="list">
+        <div className="exc-canon__list exc-canon__list--grid" role="list">
           {services.map((svc, index) => (
             <details
               key={svc.id}
               id={svc.id}
               name="glc-exc-canon"
-              className="exc-canon__disclosure gl-reveal"
+              className="exc-canon__disclosure exc-canon__disclosure--compact gl-reveal"
             >
               <summary className="exc-canon__summary">
                 <span className="exc-canon__summary-index" aria-hidden>

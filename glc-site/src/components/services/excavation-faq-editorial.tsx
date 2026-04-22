@@ -37,24 +37,25 @@ export function ExcavationFaqEditorial() {
           </h2>
         </header>
 
-        <ol className="exc-faq__rail">
+        <ul className="exc-faq__grid" role="list">
           {faqItems.map((item, index) => (
-            <li key={item.question} className="exc-faq__item gl-reveal">
-              <div className="exc-faq__marker">
-                <span className="exc-faq__num">{String(index + 1).padStart(2, "0")}</span>
-                <span className="exc-faq__rail-line" aria-hidden />
-              </div>
-              <div className="exc-faq__card">
-                <h3 className="exc-faq__q">{item.question}</h3>
-                <div className="exc-faq__a">
-                  <p className="gl-prose exc-faq__a-text">
-                    <AnswerBody answer={item.answer} index={index} />
-                  </p>
-                </div>
-              </div>
+            <li key={item.question} className="exc-faq__cell gl-reveal" role="listitem">
+              <article className="exc-faq__card exc-faq__card--compact" aria-labelledby={`exc-faq-q-${index}`}>
+                <header className="exc-faq__card-head">
+                  <span className="exc-faq__num" aria-hidden>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 id={`exc-faq-q-${index}`} className="exc-faq__q">
+                    {item.question}
+                  </h3>
+                </header>
+                <p className="gl-prose exc-faq__a-text">
+                  <AnswerBody answer={item.answer} index={index} />
+                </p>
+              </article>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );
