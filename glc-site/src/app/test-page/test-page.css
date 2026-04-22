@@ -232,169 +232,82 @@
 }
 
 /*
- * Right column: reuse #about .ab3__media engineered shell — cards are mini hero-v2__photo-panel stacks.
- * Canvas is a positioning context only (not full-bleed hero .hero-v2__canvas padding).
+ * Right column: #about .ab3__media — six tiles = NEW markup using Why-band .ab3__cred DNA (not hero photos).
  */
 .testpage__svc-media.ab3__media {
-  min-height: clamp(420px, 52vw, 640px);
+  min-height: 0;
 }
 
-.testpage__svc-canvas {
+.testpage__svc-board {
   position: relative;
   z-index: 2;
   height: 100%;
-  min-height: inherit;
-  padding: clamp(18px, 2.5vw, 28px);
+  padding: clamp(20px, 3vw, 32px);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.testpage__svc-canvas .testpage__services-grid {
+/* 2×3 grid — same as .ab3__creds on #testpage-why; list reset + hairline tuned for dark column */
+.testpage__svc-cred-board.ab3__creds {
   list-style: none;
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 20px);
-  align-items: stretch;
+  padding: clamp(16px, 2vw, 24px) 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
+  flex: 1;
+  align-content: center;
 }
 
-.testpage__services-grid-item {
+.testpage__svc-cred-item {
   min-width: 0;
   display: flex;
 }
 
-/* Mini hero photo panel — parallelogram clip + scrim + chips (glc-base .hero-v2__photo-panel) */
-.testpage__svc-photo-panel {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4/3;
-  z-index: 0;
-  clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
-  overflow: hidden;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
-}
-
-.testpage__svc-card {
+/* SmartLink carries .ab3__cred — match #about / #testpage-why credential cell behavior */
+.testpage__svc-cred-link.ab3__cred {
   flex: 1;
   min-width: 0;
-  display: block;
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color 0.22s var(--ease-expo),
+    background 0.22s var(--ease-expo);
 }
 
-.testpage__svc-card__img {
-  object-fit: cover;
-  transform: scale(1.02);
-  transition: transform 0.35s var(--ease-expo);
+.testpage__svc-cred-link:focus-visible {
+  outline: 2px solid var(--yellow-core);
+  outline-offset: 2px;
 }
 
-/* Chips anchored to panel like homepage hero */
-.testpage__svc-photo-panel .hero-v2__chips {
-  position: absolute;
-  bottom: clamp(10px, 2vw, 18px);
-  left: clamp(8px, 2.5%, 14px);
-  right: clamp(8px, 2.5%, 14px);
-  width: auto;
-  z-index: 2;
+/* Optional tag row — same chips as ab3__who-serve inside each cred */
+.testpage__svc-cred-chips {
+  margin: 10px 0 0;
 }
 
-.testpage__svc-photo-panel .hero-v2__chip {
-  min-width: 0;
-  width: 100%;
-  max-width: none;
-  gap: 6px;
-}
-
-.testpage__svc-chip-headline {
-  display: block;
-  font-size: 10px;
-  line-height: 1.35;
-  letter-spacing: 0.1em;
-  white-space: normal;
-  max-height: 2.8em;
-  overflow: hidden;
-}
-
-.testpage__svc-chip-lede {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.78);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.testpage__svc-chip-tags {
-  margin-top: 4px;
-}
-
-.testpage__svc-chip-tags .hero-v2__chip-tag {
-  color: rgba(255, 255, 255, 0.92);
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.testpage__svc-chip-cta {
+.testpage__svc-cred-cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 12px;
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--yellow-core);
   transition: color 0.22s var(--ease-expo), gap 0.22s var(--ease-expo);
 }
 
-.testpage__svc-card:hover .testpage__svc-chip-cta,
-.testpage__svc-card:focus-visible .testpage__svc-chip-cta {
-  color: var(--white);
+.testpage__svc-cred-link:hover .testpage__svc-cred-cta,
+.testpage__svc-cred-link:focus-visible .testpage__svc-cred-cta {
+  color: var(--charcoal-deep);
   gap: 10px;
-}
-
-.testpage__svc-card:hover .testpage__svc-card__img,
-.testpage__svc-card:focus-visible .testpage__svc-card__img {
-  transform: scale(1.06);
-}
-
-.testpage__svc-card:hover .hero-v2__chip,
-.testpage__svc-card:focus-visible .hero-v2__chip {
-  background: rgba(20, 18, 16, 0.82);
-  transform: translateY(-2px);
-}
-
-.testpage__svc-card:focus-visible {
-  outline: 2px solid var(--yellow-core);
-  outline-offset: 3px;
 }
 
 .testpage__service-head-accent {
   color: var(--yellow-core);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .testpage__svc-card__img,
-  .testpage__svc-photo-panel .hero-v2__chip {
-    transition: none;
-  }
-
-  .testpage__svc-card:hover .testpage__svc-card__img,
-  .testpage__svc-card:focus-visible .testpage__svc-card__img {
-    transform: scale(1.02);
-  }
-
-  .testpage__svc-card:hover .hero-v2__chip,
-  .testpage__svc-card:focus-visible .hero-v2__chip {
-    transform: none;
-  }
 }
 
 .testpage__detail-grid {
@@ -1081,7 +994,7 @@
     width: min(100% - 32px, var(--container-max));
   }
 
-  .testpage__svc-canvas .testpage__services-grid,
+  .testpage__svc-cred-board.ab3__creds,
   .testpage__proof-stats,
   .testpage__process-rail {
     grid-template-columns: 1fr;

@@ -165,8 +165,9 @@ export default function TestPage() {
               <Reveal delayClass="reveal--delay-2">
                 <p className="ab3__body">
                   Scope, schedule, and mobilization — we move from excavation through civil finish across Barrie,
-                  Simcoe County, and central Ontario. Each capability uses the same layered read as the homepage
-                  hero: clipped photo plane, directional scrim, and frosted glass chip for the title and action.
+                  Simcoe County, and central Ontario. The six tiles on the right use the same credential-cell logic as
+                  the Why section: index, title, supporting line, optional focus chips, and a direct link to each service
+                  hub.
                 </p>
               </Reveal>
               <Reveal delayClass="reveal--delay-3" className="testpage__svc-copy-actions">
@@ -179,54 +180,49 @@ export default function TestPage() {
               </Reveal>
             </div>
 
-            {/* Right column: homepage About media shell (#about .ab3__media) — grid of hero-style photo panels inside */}
+            {/* Right column: #about .ab3__media shell — six NEW tiles built as Why-style .ab3__cred cells (not hero photos) */}
             <div className="ab3__media testpage__svc-media">
-              <div className="testpage__svc-canvas" aria-label="Service capabilities">
-                <ul className="testpage__services-grid">
+              <div className="testpage__svc-board">
+                <ul className="ab3__creds testpage__svc-cred-board" aria-label="Service capabilities">
                   {navCards.map((card, idx) => {
-                    const src =
-                      card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
-                    const alt = [card.title, card.description].filter(Boolean).join(" — ");
                     const hl = serviceHeadline(card);
+                    const sub =
+                      card.gridDescription?.trim() ||
+                      card.description?.trim() ||
+                      "Commercial scope · Barrie & Simcoe County";
                     return (
                       <li
                         key={card.slug}
-                        className={`testpage__services-grid-item gl-reveal gl-delay-${(idx % 5) + 1}`}
+                        className={`testpage__svc-cred-item gl-reveal gl-delay-${(idx % 5) + 1}`}
                       >
-                        <SmartLink href={ROUTES.service(card.slug)} className="testpage__svc-card">
-                          <div className="testpage__svc-photo-panel">
-                            <Image
-                              src={src}
-                              alt={alt}
-                              fill
-                              className="testpage__svc-card__img"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 22vw"
-                            />
-                            <div className="hero-v2__photo-scrim" aria-hidden />
-                            <div className="hero-v2__chips">
-                              <div className="hero-v2__chip">
-                                <span className="hero-v2__chip-num">{card.num}</span>
-                                <span className="hero-v2__chip-label testpage__svc-chip-headline">
-                                  <ServiceCardHeading slug={card.slug} headline={hl} />
-                                </span>
-                                {card.gridDescription ? (
-                                  <p className="testpage__svc-chip-lede">{card.gridDescription}</p>
-                                ) : null}
-                                {card.subTags && card.subTags.length > 0 ? (
-                                  <div className="hero-v2__chip-tags testpage__svc-chip-tags">
-                                    {card.subTags.map((t) => (
-                                      <span key={`${card.slug}-${t}`} className="hero-v2__chip-tag">
-                                        {t}
-                                      </span>
-                                    ))}
-                                  </div>
-                                ) : null}
-                                <span className="testpage__svc-chip-cta">
-                                  Learn more
-                                  <IconArrowSmall />
-                                </span>
-                              </div>
+                        <SmartLink
+                          href={ROUTES.service(card.slug)}
+                          className="ab3__cred testpage__svc-cred-link"
+                        >
+                          <div className="ab3__cred-idx" aria-hidden>
+                            {card.num}
+                          </div>
+                          <div className="ab3__cred-body">
+                            <div className="ab3__cred-title">
+                              <ServiceCardHeading slug={card.slug} headline={hl} />
                             </div>
+                            <div className="ab3__cred-sub">{sub}</div>
+                            {card.subTags && card.subTags.length > 0 ? (
+                              <ul
+                                className="ab3__who-serve-chips testpage__svc-cred-chips"
+                                aria-label="Focus areas"
+                              >
+                                {card.subTags.map((t) => (
+                                  <li key={`${card.slug}-${t}`} className="ab3__who-serve-chip">
+                                    {t}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : null}
+                            <span className="testpage__svc-cred-cta">
+                              View service
+                              <IconArrowSmall />
+                            </span>
                           </div>
                         </SmartLink>
                       </li>
