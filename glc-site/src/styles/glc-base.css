@@ -11320,12 +11320,53 @@ body.gl-mega-open .gl-mega-backdrop {
   }
 }
 
-/* ═══ Excavation — trust strip ═══ */
+/* ═══ Excavation — trust strip (logo watermark + interactive deck cards) ═══ */
 .exc-trust {
-  background: var(--white);
+  position: relative;
+  overflow: hidden;
   padding: var(--section-v) 24px;
+  background-color: var(--off-white);
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.018) 0,
+    rgba(0, 0, 0, 0.018) 1px,
+    transparent 1px,
+    transparent 64px
+  );
+}
+/* Top rail — same language as ST3 / hub accent strips */
+.exc-trust::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--yellow-core), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+.exc-trust__logo-watermark {
+  position: absolute;
+  right: -3%;
+  bottom: -14%;
+  width: min(400px, 56vw);
+  height: min(400px, 56vw);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+.exc-trust__logo-watermark-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: brightness(0);
+  opacity: 0.06;
 }
 .exc-trust__inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--container-max);
   margin: 0 auto;
 }
@@ -11337,11 +11378,6 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-trust__copy {
   min-width: 0;
-}
-.exc-trust__slot--reviews,
-.exc-trust__slot--gallery,
-.exc-trust__slot--map {
-  border-top: 2px solid rgba(242, 183, 5, 0.25);
 }
 .exc-trust__media {
   position: relative;
@@ -11400,41 +11436,98 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .exc-trust__deck {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 48px;
-  background: var(--gray-200);
-  border: 1px solid var(--gray-200);
+  background: transparent;
+  border: none;
 }
+/* Placeholder deck — sandbox/coverage-style card chrome + hover affordance */
 .exc-trust__slot {
-  background: var(--off-white);
-  padding: 24px 20px;
-  min-height: 140px;
+  position: relative;
+  box-sizing: border-box;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 22px 20px 24px;
+  min-height: 148px;
+  transition:
+    border-color 0.3s var(--ease-expo),
+    background 0.3s var(--ease-expo),
+    box-shadow 0.3s var(--ease-expo),
+    transform 0.3s var(--ease-expo);
+}
+.exc-trust__slot::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--yellow-core);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-expo);
+}
+.exc-trust__slot:hover {
+  border-color: rgba(242, 183, 5, 0.42);
+  background: var(--yellow-tint);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+.exc-trust__slot:hover::after {
+  transform: scaleX(1);
 }
 .exc-trust__slot-label {
   display: block;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-900);
+  letter-spacing: 0.1em;
+  color: var(--charcoal-deep);
   margin-bottom: 10px;
+  transition: color 0.3s var(--ease-expo);
+}
+.exc-trust__slot:hover .exc-trust__slot-label {
+  color: var(--yellow-core);
 }
 .exc-trust__slot-text {
   margin: 0;
   font-size: 14px;
+  line-height: 1.62;
+  color: var(--text-500);
+  transition: color 0.3s var(--ease-expo);
+}
+.exc-trust__slot:hover .exc-trust__slot-text {
+  color: var(--text-700);
 }
 .exc-trust__thumb-pair {
   display: flex;
-  gap: 2px;
-  margin-top: 12px;
+  gap: 6px;
+  margin-top: 14px;
 }
 .exc-trust__thumb {
   flex: 1;
   aspect-ratio: 4/3;
-  background: var(--gray-200);
-  border: 1px dashed var(--charcoal-mid);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  transition:
+    border-color 0.3s var(--ease-expo),
+    background 0.3s var(--ease-expo);
+}
+.exc-trust__slot--gallery:hover .exc-trust__thumb {
+  border-color: rgba(242, 183, 5, 0.4);
+  background: var(--yellow-tint-md);
+}
+@media (prefers-reduced-motion: reduce) {
+  .exc-trust__slot,
+  .exc-trust__slot::after,
+  .exc-trust__thumb {
+    transition: none;
+  }
+  .exc-trust__slot:hover {
+    transform: none;
+  }
 }
 @media (max-width: 900px) {
   .exc-trust__grid {

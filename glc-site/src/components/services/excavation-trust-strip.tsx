@@ -15,6 +15,19 @@ const trust = hub.trust as {
 export function ExcavationTrustStrip() {
   return (
     <section className="exc-trust gl-reveal" aria-labelledby="exc-trust-heading">
+      <div className="exc-trust__logo-watermark" aria-hidden>
+        {/* Decorative motif — matches hub hero ghost treatment; not a branding header */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/glc-logo.png"
+          alt=""
+          width={400}
+          height={400}
+          className="exc-trust__logo-watermark-img"
+          decoding="async"
+          draggable={false}
+        />
+      </div>
       <div className="exc-trust__inner">
         <div className="exc-trust__grid">
           <div className="exc-trust__media">
