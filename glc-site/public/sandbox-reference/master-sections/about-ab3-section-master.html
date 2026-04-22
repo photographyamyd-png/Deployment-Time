@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GLC — About AB3 Master (Editorial Split)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --charcoal: #202020;
+      --charcoal-deep: #1E1C1A;
+      --white: #FFFFFF;
+      --off-white: #F2F2F2;
+      --yellow-core: #F2B705;
+      --gold: #D9A004;
+      --yellow-tint: rgba(242,183,5,0.08);
+      --text-900: #0E0D0C;
+      --text-500: #6B6560;
+      --text-400: #9C9690;
+      --gray-200: #E0DEDA;
+      --gray-100: #F7F6F4;
+      --font-display: 'Oswald', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --container-max: 1200px;
+      --section-v: 96px;
+      --section-v-sm: 64px;
+      --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+      --r: 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-900);
+      background: var(--gray-200);
+      line-height: 1.6;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--yellow-core);
+    }
+    .eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 2px;
+      background: var(--yellow-core);
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--yellow-core);
+      color: var(--charcoal-deep);
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--r);
+      transition: background 0.2s, transform 0.3s var(--ease-expo), box-shadow 0.3s;
+      position: relative; overflow: hidden;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(242,183,5,0.35); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary .arrow { transition: transform 0.2s var(--ease-expo); }
+    .btn-primary:hover .arrow { transform: translateX(4px); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s var(--ease-expo), transform 0.6s var(--ease-expo);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal--delay-1 { transition-delay: 0.1s; }
+    .reveal--delay-2 { transition-delay: 0.2s; }
+    .reveal--delay-3 { transition-delay: 0.3s; }
+    .reveal--delay-4 { transition-delay: 0.4s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ═══ ABOUT — v3 + v2 #about overlay (as in glc-base cascade) ═══ */
+    #about {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      padding: 0 0 calc(var(--section-v) + 16px);
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg, transparent, transparent 63px,
+          rgba(0,0,0,0.022) 63px, rgba(0,0,0,0.022) 64px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ab3__wm {
+      position: absolute;
+      right: -0.06em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(140px, 18vw, 240px);
+      font-weight: 700;
+      color: var(--charcoal-deep);
+      opacity: 0.028;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Optional: extra traced SVG watermark layer (not in AboutSection.tsx — remove for 1:1 port) */
+    .ab3__wm-svg-corner {
+      position: absolute;
+      left: clamp(12px, 3vw, 40px);
+      bottom: clamp(80px, 12vh, 160px);
+      width: min(200px, 28vw);
+      height: auto;
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ab3__layout {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      min-height: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ab3__copy {
+      padding: var(--section-v) clamp(32px, 5vw, 80px) var(--section-v) clamp(24px, 4vw, 60px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      position: relative;
+      max-width: 660px;
+      justify-content: center;
+    }
+
+    .ab3__copy::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 60px;
+      background: var(--yellow-core);
+    }
+
+    .ab3__top-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ab3__since {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-400);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--gray-200);
+      padding: 4px 12px;
+      flex-shrink: 0;
+    }
+    .ab3__since span { font-weight: 500; }
+
+    .ab3__heading {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 52px);
+      font-weight: 700;
+      color: var(--charcoal-deep);
+      text-transform: uppercase;
+      line-height: 1.04;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .ab3__heading-em {
+      font-style: normal;
+      color: var(--yellow-core);
+    }
+
+    .ab3__heading-rule {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--charcoal-deep);
+      margin-top: 16px;
+    }
+
+    .ab3__body {
+      font-size: 15px;
+      line-height: 1.82;
+      color: var(--text-500);
+      max-width: 46ch;
+    }
+
+    /* Master-only traced divider between body and creds (optional) */
+    .ab3__motif-divider {
+      display: block;
+      width: min(240px, 70%);
+      height: auto;
+      opacity: 0.4;
+      margin: 4px 0 0;
+    }
+
+    .ab3__creds {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      border-top: 1px solid var(--gray-200);
+      padding-top: 24px;
+    }
+
+    .ab3__cred {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      background: var(--gray-100);
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.22s, background 0.22s;
+    }
+
+    .ab3__cred:hover {
+      border-color: var(--yellow-core);
+      background: var(--yellow-tint);
+    }
+
+    .ab3__cred-body { min-width: 0; flex: 1; }
+
+    .ab3__cred-idx {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--yellow-core);
+      flex-shrink: 0;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .ab3__cred-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--charcoal-deep);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .ab3__cred-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-400);
+      letter-spacing: 0.02em;
+    }
+
+    .ab3__media {
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal-deep);
+      clip-path: polygon(28px 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .ab3__media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(242,183,5,0.06) 0%, transparent 55%),
+        repeating-linear-gradient(
+          0deg, transparent, transparent 39px,
+          rgba(255,255,255,0.018) 39px, rgba(255,255,255,0.018) 40px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ab3__photo {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(165deg, #1c2e3c 0%, #0e1d28 45%, #0a150f 100%);
+      z-index: 0;
+    }
+
+    .ab3__badge {
+      position: absolute;
+      top: 48px;
+      left: 0;
+      background: var(--yellow-core);
+      padding: 8px 22px 8px 16px;
+      z-index: 2;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    }
+
+    .ab3__badge span {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--charcoal-deep);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .ab3__chip {
+      position: absolute;
+      bottom: 52px;
+      right: 36px;
+      background: rgba(10, 9, 8, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: 3px solid var(--yellow-core);
+      padding: 18px 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 2;
+    }
+
+    .ab3__chip-num {
+      font-family: var(--font-display);
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--yellow-core);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .ab3__chip-lbl {
+      font-size: 10px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.48);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .ab3__corner-mark {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border-top: 2px solid var(--yellow-core);
+      border-right: 2px solid var(--yellow-core);
+      z-index: 2;
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 1024px) {
+      .ab3__layout { grid-template-columns: 1fr; }
+      .ab3__media {
+        min-height: 420px;
+        clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+      }
+      .ab3__copy {
+        padding: var(--section-v-sm) 40px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ab3__copy { padding: var(--section-v-sm) 20px; }
+      .ab3__creds { grid-template-columns: 1fr; }
+      .ab3__media { min-height: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <main id="main-content">
+    <!-- Structure mirrors glc-site/src/components/sections/about-section.tsx -->
+    <section id="about" aria-labelledby="about-heading">
+      <span class="ab3__wm" aria-hidden="true">GLC</span>
+
+      <!-- Self-contained traced motif (optional; React app uses text watermark only) -->
+      <img class="ab3__wm-svg-corner" src="motifs/GLC-motif-01-corner-traced.svg" alt="" />
+
+      <div class="ab3__layout">
+        <div class="ab3__copy">
+          <div class="reveal visible ab3__top-row">
+            <span class="eyebrow">Who We Are</span>
+            <span class="ab3__since" aria-label="15+ Yrs. Experience">15+&thinsp;<span>Yrs. Experience</span></span>
+          </div>
+
+          <div class="reveal visible reveal--delay-1 ab3__heading-wrap">
+            <h2 id="about-heading" class="ab3__heading">
+              Built On <em class="ab3__heading-em">Ground Level</em> — Trusted From Below Up
+            </h2>
+            <span class="ab3__heading-rule" aria-hidden="true"></span>
+          </div>
+
+          <div class="reveal visible reveal--delay-2">
+            <p class="ab3__body">
+              Ground Level Contracting is a commercial excavation and civil infrastructure company serving project managers and site supervisors across Barrie, Midland, Orillia, and Simcoe County. We prepare land for development — solving geotechnical challenges efficiently and safely, so your build can proceed on schedule.
+            </p>
+          </div>
+
+          <!-- Optional traced divider: omit when porting 1:1 to TSX -->
+          <img class="ab3__motif-divider" src="motifs/GLC-motif-03-divider-traced.svg" alt="" aria-hidden="true" />
+
+          <div class="reveal visible reveal--delay-3 ab3__creds">
+            <div class="ab3__cred">
+              <div class="ab3__cred-idx" aria-hidden="true">01</div>
+              <div class="ab3__cred-body">
+                <div class="ab3__cred-title">Geotechnical Solutions</div>
+                <div class="ab3__cred-sub">Complex site challenges</div>
+              </div>
+            </div>
+            <div class="ab3__cred">
+              <div class="ab3__cred-idx" aria-hidden="true">02</div>
+              <div class="ab3__cred-body">
+                <div class="ab3__cred-title">On-Schedule Delivery</div>
+                <div class="ab3__cred-sub">Built around your timeline</div>
+              </div>
+            </div>
+            <div class="ab3__cred">
+              <div class="ab3__cred-idx" aria-hidden="true">03</div>
+              <div class="ab3__cred-body">
+                <div class="ab3__cred-title">Safety First</div>
+                <div class="ab3__cred-sub">Licensed &amp; insured crews</div>
+              </div>
+            </div>
+            <div class="ab3__cred">
+              <div class="ab3__cred-idx" aria-hidden="true">04</div>
+              <div class="ab3__cred-body">
+                <div class="ab3__cred-title">B2B Specialists</div>
+                <div class="ab3__cred-sub">PM &amp; supervisor trusted</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal visible reveal--delay-4">
+            <a href="tel:+17056194902" class="btn-primary">
+              Discuss Your Project
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="ab3__media">
+          <div class="ab3__badge" aria-hidden="true">
+            <span>Licensed &amp; Insured</span>
+          </div>
+          <div class="ab3__photo" role="img" aria-label="Ground Level Contracting crew on an excavation site"></div>
+          <!-- Static stand-in for framer-motion chip -->
+          <div class="ab3__chip" aria-hidden="true">
+            <div class="ab3__chip-num">15+</div>
+            <div class="ab3__chip-lbl">Yrs. Experience</div>
+          </div>
+          <div class="ab3__corner-mark" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

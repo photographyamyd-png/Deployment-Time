@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 32" width="240" height="32" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="glcT3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2B705"/>
+      <stop offset="100%" stop-color="#D9A004"/>
+    </linearGradient>
+  </defs>
+  <g id="uT" transform="translate(0,4)">
+    <path fill="none" stroke="#202020" stroke-width="3" stroke-linecap="round"
+          d="M 4 20 L 4 8 Q 4 4 8 4 L 22 4"/>
+    <path fill="url(#glcT3)" stroke="#202020" stroke-width="1.2"
+          d="M 10 2 L 10 16 Q 10 18 12 18 L 24 18 L 28 14 L 24 10 L 14 10 Q 12 10 12 8 L 12 2 Z"/>
+  </g>
+  <use xlink:href="#uT" href="#uT" x="72"/>
+  <use xlink:href="#uT" href="#uT" x="144"/>
+  <line x1="0" y1="28" x2="240" y2="28" stroke="#3A3632" stroke-width="1" opacity="0.32"/>
+</svg>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FeaturedAccordion } from "@/components/sections/featured-accordion";
+import { SandboxKeeperMasterReference } from "@/components/sandbox/sandbox-keeper-master-reference";
 import { SandboxApprovedSectionDna } from "@/components/sandbox/sandbox-approved-section-dna";
 import { SandboxComplianceBackup } from "@/components/sandbox/sandbox-compliance-backup";
 import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
@@ -111,6 +112,8 @@ export default function SandboxPage() {
     <main id="main-content">
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
+      <SandboxKeeperMasterReference />
+
       <SandboxComplianceBackup />
 
       <SandboxHomepageArchive navData={navData} site={siteData} />
