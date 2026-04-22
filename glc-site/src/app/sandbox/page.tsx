@@ -66,15 +66,15 @@ const fallbackAccordionProps: AccordionSectionProps = {
 const accProps = (accordionBlock?.props ?? fallbackAccordionProps) as AccordionSectionProps;
 
 const sandboxSvcAccGridIntro =
-  "Design-lab band: six square accordion tiles on a charcoal ground with the shared blueprint grid, ghost watermark, and corner motif from /public. Cards use a yellow structural rail, native details/summary, and token-only colors—no hardcoded hex in new rules. Expand any tile for photography, scope copy, and a charcoal CTA to the matching service hub.";
+  "Six light tiles on a dark band—expand for scope copy; photos track your cursor (motion off when prefers-reduced-motion).";
 
 const sandboxSvcAccGridPanelCopy = [
-  "Cut-to-fill, trenching, and mass grading for commercial pads and road allowances—mobilization, spoils strategy, and engineer tie-ins documented for inspection.",
-  "Finish grading, compaction, and drainage tie-ins that set up foundations and hardscape—survey-aware tolerances and storm-ready surfaces.",
-  "Footings, walls, pits, and civil tie-ins with pour-day discipline—forming, reinforcing, and backfill sequencing aligned to geotech.",
-  "Storm, foundation, and hardscape water management with armor stone, walls, and permeable details—integrated scopes instead of siloed trades.",
-  "Export, import, clearing, and site logistics with truck-matched scheduling—clean gates, scale tickets, and placement control.",
-  "Commercial-only snow and ice programs—SLA language, GPS-tracked passes, and salting plans for plazas, yards, and institutional sites.",
+  "Mass grading, trenching, and spoils strategy with engineer tie-ins and inspection-ready notes.",
+  "Finish grading and drainage prep for foundations and hardscape—tight tolerances, storm-ready surfaces.",
+  "Footings, walls, and civil tie-ins with pour-day sequencing aligned to geotech.",
+  "Storm, foundation, and hardscape water management—walls, stone, and permeable details in one scope.",
+  "Hauling, import/export, and clearing with gated logistics and placement control.",
+  "Commercial snow and ice—SLAs, GPS passes, and salting plans for lots and yards.",
 ];
 
 const base = pageMetadata({

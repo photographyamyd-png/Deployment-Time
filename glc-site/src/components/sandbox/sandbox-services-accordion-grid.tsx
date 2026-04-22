@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SandboxAccgridMotionFig } from "@/components/sandbox/sandbox-accgrid-motion-fig";
 import { SmartLink } from "@/components/ui/smart-link";
 import type { AccordionContentItem } from "@/content/types";
 
@@ -65,15 +65,11 @@ export function SandboxServicesAccordionGrid({
                   <span className="sandbox-svc-accgrid__chev" aria-hidden />
                 </summary>
                 <div className="sandbox-svc-accgrid__panel">
-                  <div className="sandbox-svc-accgrid__fig">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      className="sandbox-svc-accgrid__img"
-                      sizes="(max-width: 899px) 100vw, 33vw"
-                    />
-                  </div>
+                  <SandboxAccgridMotionFig
+                    imageUrl={item.imageUrl}
+                    title={item.title}
+                    sizes="(max-width: 599px) 100vw, (max-width: 999px) 50vw, 33vw"
+                  />
                   <p className="sandbox-svc-accgrid__panel-copy">{copy}</p>
                   <div className="sandbox-svc-accgrid__panel-actions">
                     {item.href ? (
