@@ -1,4 +1,15 @@
 /**
+ * First sentence only — used for service hero ledes (full body lives in overview).
+ */
+export function splitFirstSentence(text: string): string {
+  const trimmed = text.trim();
+  if (!trimmed) return "";
+  const match = trimmed.match(/^[\s\S]+?[.!?](?=\s|$)/);
+  if (match) return match[0].trim();
+  return trimmed;
+}
+
+/**
  * Split prose for the two-sentence visible lede + expandable remainder pattern.
  * Conservative sentence boundaries at . ! ? followed by space or end.
  */

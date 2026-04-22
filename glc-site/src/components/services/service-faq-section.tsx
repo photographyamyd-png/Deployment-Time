@@ -9,10 +9,10 @@ export function ServiceFaqSection({ service }: Props) {
   if (!items.length) return null;
 
   return (
-    <section id="faq" className="service-faq" aria-labelledby="service-faq-heading">
+    <section id="faq" className="service-faq service-faq--light" aria-labelledby="service-faq-heading">
       <div className="service-faq__inner">
         <div className="service-faq__head">
-          <p className="eyebrow service-faq__eyebrow">FAQ</p>
+          <p className="eyebrow eyebrow--dark service-faq__eyebrow">FAQ</p>
           <h2 id="service-faq-heading" className="service-faq__title">
             Questions for{" "}
             <span>{service.schemaOfferName.split("&")[0].trim()}</span>

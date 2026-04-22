@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { SmartLink } from "@/components/ui/smart-link";
 import type { ServiceDetailContent } from "@/content/types";
+import { splitFirstSentence } from "@/lib/copy-density";
 import { ROUTES } from "@/lib/routes";
 
 const DEFAULT_HERO_IMG =
@@ -60,12 +61,7 @@ export function ServicePageHero({ service }: Props) {
           {service.hero.titleBefore}
           <em>{service.hero.titleEmphasis}</em>
         </h1>
-        <p className="service-page-hero__lede">{service.hero.lede}</p>
-        {service.hero.taglineLines?.map((line) => (
-          <p key={line} className="service-page-hero__lede">
-            {line}
-          </p>
-        ))}
+        <p className="service-page-hero__lede">{splitFirstSentence(service.hero.lede)}</p>
       </div>
     </section>
   );

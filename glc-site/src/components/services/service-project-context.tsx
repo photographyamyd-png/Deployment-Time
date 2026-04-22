@@ -5,6 +5,11 @@ type Props = {
 };
 
 function fallbackPoints(service: ServiceDetailContent): string[] {
+  const fromSubs = service.subServiceSections
+    ?.map((s) => s.heading)
+    .filter(Boolean)
+    .slice(0, 8);
+  if (fromSubs?.length) return fromSubs;
   return [
     `Coverage: ${service.hero.titleEmphasis || "Simcoe County commercial sites"}.`,
     "Coordination with PMs, site supers, and downstream trades.",
@@ -15,13 +20,13 @@ function fallbackPoints(service: ServiceDetailContent): string[] {
 export function ServiceProjectContext({ service }: Props) {
   const config = service.projectContext;
   const heading = config?.heading ?? "Project context before boots on grade";
-  const eyebrow = config?.eyebrow ?? "Project context";
+  const eyebrow = config?.eyebrow ?? "Project types";
   const points = config?.points?.length ? config.points : fallbackPoints(service);
 
   return (
-    <section className="service-project-context" aria-labelledby="service-project-context-heading">
+    <section id="project-types" className="service-project-context" aria-labelledby="service-project-context-heading">
       <div className="service-project-context__inner">
-        <p className="eyebrow eyebrow--dark">{eyebrow}</p>
+        <p className="gl-eyebrow gl-eyebrow--light">{eyebrow}</p>
         <h2 id="service-project-context-heading" className="service-project-context__heading">
           {heading}
         </h2>

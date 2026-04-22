@@ -15,7 +15,11 @@ export function ServiceHubOverview({ service, hubStats }: Props) {
   const body = service.hero.body ?? service.intro;
   const [lead, ...restBody] = body;
   return (
-    <section id="overview" className="service-hub service-hub--editorial" aria-labelledby="overview-heading">
+    <section
+      id="overview"
+      className="service-hub service-hub--editorial service-hub--light"
+      aria-labelledby="overview-heading"
+    >
       <div className="about__inner service-hub__split service-hub__editorial-grid">
         <Reveal className="about__media service-hub__visual">
           <div className="service-hub__visual-slab" aria-hidden />
@@ -28,7 +32,7 @@ export function ServiceHubOverview({ service, hubStats }: Props) {
           <Reveal delayClass="reveal--delay-1">
             <h2 id="overview-heading" className="about__heading">
               {service.schemaOfferName.split("&")[0].trim()}{" "}
-              <span>Capabilities</span>
+              <span>— scope & overview</span>
             </h2>
           </Reveal>
           <Reveal delayClass="reveal--delay-2" className="about__divider service-hub__rule" />

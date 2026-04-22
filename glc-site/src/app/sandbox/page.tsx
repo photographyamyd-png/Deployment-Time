@@ -19,6 +19,7 @@ import type {
 } from "@/content/types";
 import type { ServicesHubArchiveHub } from "@/components/sandbox/sandbox-services-hub-archive";
 import { SandboxAboutArchive } from "@/components/sandbox/sandbox-about-archive";
+import { SandboxServicePagesArchive } from "@/components/sandbox/sandbox-service-pages-archive";
 import { SandboxServicesHubArchive } from "@/components/sandbox/sandbox-services-hub-archive";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
@@ -112,6 +113,7 @@ export default function SandboxPage() {
       <SandboxComplianceBackup />
 
       {aboutProps ? <SandboxAboutArchive about={aboutProps} /> : null}
+      <SandboxServicePagesArchive />
 
       <SandboxServicesHubArchive hubData={servicesHubData} navData={navData} />
 

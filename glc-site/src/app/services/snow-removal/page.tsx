@@ -1,6 +1,5 @@
-import { CommercialSnowHero } from "@/components/services/commercial-snow-hero";
-import { CommercialSnowPageMain } from "@/components/services/commercial-snow-page-main";
 import { JsonLdCommercialSnow } from "@/components/seo/json-ld-commercial-snow";
+import { ServicePageView } from "@/components/services/service-page-view";
 import { commercialSnowFaqs } from "@/content/commercial-snow-faqs";
 import {
   commercialSnowMeta,
@@ -9,6 +8,7 @@ import {
 import type { SiteConfig } from "@/content/types";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
+import { getServiceBySlug } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
 import site from "@/content/site.json";
@@ -23,6 +23,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function SnowRemovalPage() {
   const schemaSite: SiteConfig = { ...siteData, url: getSiteUrl() };
+  const s = getServiceBySlug("snow-removal")!;
 
   return (
     <>
@@ -31,10 +32,12 @@ export default function SnowRemovalPage() {
         faqItems={commercialSnowFaqs.map((f) => ({ question: f.question, answer: f.answer }))}
         offers={commercialSnowSchemaOfferEntries()}
       />
-      <main id="main-content" className="glc-snow-hub">
-        <CommercialSnowHero />
-        <CommercialSnowPageMain />
-      </main>
+      <ServicePageView
+        service={s}
+        site={schemaSite}
+        snowUrgencyStrip
+        includeFaqSchema={false}
+      />
     </>
   );
 }

@@ -22,10 +22,6 @@
         "titleBefore": "Professional Excavation & Site Preparation — Barrie, Orillia, Wasaga Beach & ",
         "titleEmphasis": "Simcoe County",
         "lede": "Bulk excavation, pool shells, utility trenches, hydrovac, and clearing — we move material on schedule so your grading and foundation trades start clean.",
-        "taglineLines": [
-          "Licensed crews and inspection-aware sequencing for residential, commercial, and industrial digs across Simcoe County.",
-          "Finish grading, certificates, and laser-controlled surfaces route through our Site Preparation & Grading hub."
-        ],
         "body": [
           "When your project needs reliable excavation, you need a partner who knows Simcoe County soils, access constraints, and permit holds. We mobilize excavators and support gear for structural digs, pool excavations, utility trenching, hydrovac around live utilities, lot clearing, and bulk civil cuts across Barrie, Orillia, Wasaga Beach, Innisfil, and surrounding townships.",
           "We coordinate with your surveyor, GC, and inspectors so trenches hit design depth, spoils stay managed, and the next trade is not re-working a bad bench. Precision finishing, final grades, and municipal certification are handled on the Site Preparation & Grading route — linked directly from this hub.",
@@ -78,34 +74,12 @@
         ]
       },
       "scopeStrip": [
-        {
-          "label": "Overview",
-          "href": "#overview"
-        },
-        {
-          "label": "Scope",
-          "href": "#scope"
-        },
-        {
-          "label": "Capabilities",
-          "href": "#field-capabilities"
-        },
-        {
-          "label": "Process",
-          "href": "#process"
-        },
-        {
-          "label": "FAQ",
-          "href": "#faq"
-        },
-        {
-          "label": "Related",
-          "href": "#related-services"
-        },
-        {
-          "label": "Request a site visit",
-          "href": "#request-site-visit"
-        }
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
         "We mobilize excavators, dozers, and hauling assets for bulk cuts, pool excavations, utility trenches, hydrovac, and clearing — the work that happens before finish grade and hardscape.",
@@ -287,10 +261,6 @@
         "titleBefore": "Site Preparation & Grading — ",
         "titleEmphasis": "Barrie & Simcoe County",
         "lede": "Precision surfaces, swale flow, and sub-base compaction that match the engineer’s sheet — not guesswork on inspection day.",
-        "taglineLines": [
-          "Subdivision road beds, custom lots, site prep packages, and certificate-ready finishes.",
-          "CAT skid steers and laser-guided workflows for tight corridors and municipal checkpoints."
-        ],
         "body": [
           "A bad grade is a permanent problem. We run digital stakes and compact equipment to hold drainage geometry through Barrie, Innisfil, Springwater, and Essa inspections.",
           "When bulk excavation wraps, we own the surface: road sub-bases, building pads, swales, and final tie-ins before hardscape and drainage trades finish the cap.",
@@ -332,9 +302,11 @@
       },
       "scopeStrip": [
         { "label": "Overview", "href": "#overview" },
-        { "label": "Capabilities", "href": "#site-prep-capabilities" },
-        { "label": "FAQ", "href": "#site-prep-faq" },
-        { "label": "Contact", "href": "/contact/" }
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
         "We deliver subdivision, custom residential, and commercial grading packages with laser and GPS control — tied to municipal plans and survey stakes.",
@@ -384,42 +356,82 @@
       "schemaOfferName": "Foundations & Civil Infrastructure",
       "meta": {
         "title": "Foundations & Civil Infrastructure | Barrie, Simcoe County",
-        "description": "Commercial & civil foundation contractor serving Barrie, Orillia, Innisfil & Simcoe County. Excavation, forming, site servicing & underpinning. Get a quote."
+        "description": "Commercial & civil foundation contractor serving Barrie, Orillia, Innisfil & Simcoe County. Excavation, forming, site servicing & underpinning. Get a quote.",
+        "canonicalPath": "/services/foundations-civil-infrastructure/"
+      },
+      "heroImage": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80&auto=format",
+      "overviewImage": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=80&auto=format",
+      "hubStats": [
+        { "value": "200+", "label": "Foundations", "sub": "Delivered" },
+        { "value": "Civil", "label": "Certified", "sub": "Spec-driven" },
+        { "value": "All", "label": "Soil types", "sub": "Geotech-aware" }
+      ],
+      "inlineQuote": {
+        "quote": "Need foundations or civil tie-ins quoted? Dispatch routes your drawings to the right field lead.",
+        "byline": "Ground Level dispatch",
+        "ctaLabel": "Request a quote",
+        "ctaHref": "/contact/"
       },
       "hero": {
         "breadcrumbParent": "Services",
         "titleBefore": "Foundations & Civil Infrastructure — ",
         "titleEmphasis": "Barrie & Simcoe County",
-        "lede": "Full hub copy, eight dedicated scopes, FAQs, and CTAs live on the Foundations & Civil Infrastructure route."
-      },
-      "lifecycleCallout": {
-        "heading": "Protect your foundation",
-        "body": "Protect your foundation with expert site grading to prevent water pooling at the footings before backfill is finalized.",
-        "ctaLabel": "See site prep & grading",
-        "ctaHref": "/services/site-preparation-grading/"
+        "lede": "Footings, walls, pits, slabs, and civil tie-ins for residential, commercial, and municipal builds — coordinated with engineers and inspectors across Simcoe County.",
+        "body": [
+          "Eight dedicated scopes branch from this hub — each with detail pages, FAQs, and dispatch-ready CTAs.",
+          "We maintain WSIB clearance, liability coverage, and pour-day discipline so backfill and tie-ins stay on your critical path."
+        ]
       },
       "scopeStrip": [
-        {
-          "label": "Hub services",
-          "href": "#foundations-hub-services"
-        },
-        {
-          "label": "FAQ",
-          "href": "#foundations-hub-faq"
-        },
-        {
-          "label": "Request quote",
-          "href": "#fnd-hub-request-quote"
-        }
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
-        "Ground Level Contracting is Simcoe County's civil and foundation partner for residential, commercial, and municipal scopes — with WSIB coverage, liability insurance, and engineer-led field standards."
+        "Ground Level Contracting is Simcoe County's civil and foundation partner for residential, commercial, and municipal scopes — with WSIB coverage, liability insurance, and engineer-led field standards.",
+        "Use the hub links below to open dedicated routes for footings, walls, servicing, and specialized civil packages."
       ],
-      "deliverablesHeading": "On the hub",
+      "deliverablesHeading": "Hub service lines",
       "deliverables": [
-        "Eight dedicated foundation and civil pages branch from /services/foundations-civil-infrastructure/"
+        "Strip & pad footings for wood and steel buildings",
+        "Foundation walls, pits, and elevator openings",
+        "Commercial slabs and equipment pads",
+        "Underpinning and shoring coordination",
+        "Site servicing and civil tie-ins",
+        "Engineered forming and rebar placement"
       ],
-      "closingHeading": "Open the Foundations hub"
+      "closingHeading": "Open a dedicated scope page",
+      "projectContext": {
+        "eyebrow": "Project types",
+        "heading": "Where we plug in on your civil package",
+        "points": [
+          "Mid-rise and single-storey commercial builds",
+          "Institutional and municipal civil tie-ins",
+          "Custom residential with engineered foundations",
+          "Industrial equipment slabs and pits"
+        ]
+      },
+      "faq": [
+        {
+          "question": "Do you pour year-round?",
+          "answer": "We schedule cold-weather pours with thermal protection when specifications allow — coordinate early for admixtures and curing plans."
+        },
+        {
+          "question": "Can you work from our engineer's drawings?",
+          "answer": "Yes — IFC sets drive forming, rebar, and pour sequencing; we flag conflicts early and document as-builts where required."
+        },
+        {
+          "question": "Do you handle municipal inspections?",
+          "answer": "We coordinate inspections for footings, walls, and servicing holds so downstream trades are not waiting on undocumented pours."
+        },
+        {
+          "question": "What regions do you cover?",
+          "answer": "Barrie, Midland, Orillia, Innisfil, Wasaga Beach, and Simcoe County — with mobilization sized to commercial and municipal sites."
+        }
+      ]
     },
     {
       "slug": "drainage-hardscaping",
@@ -491,34 +503,12 @@
         ]
       },
       "scopeStrip": [
-        {
-          "label": "Overview",
-          "href": "#overview"
-        },
-        {
-          "label": "Scope",
-          "href": "#scope"
-        },
-        {
-          "label": "Capabilities",
-          "href": "#field-capabilities"
-        },
-        {
-          "label": "Process",
-          "href": "#process"
-        },
-        {
-          "label": "FAQ",
-          "href": "#faq"
-        },
-        {
-          "label": "Related",
-          "href": "#related-services"
-        },
-        {
-          "label": "Get a quote",
-          "href": "#request-site-visit"
-        }
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
         "We establish positive drainage away from structures, install catch basins and storm pipe runs, and prepare subgrades for pavers, asphalt, and retaining walls.",
@@ -545,7 +535,7 @@
         "headline": "Precision from the Ground Up. Explore Our Capabilities.",
         "lede": "Storm systems, grades, wall bases, and hardscape-ready subgrades — built to engineer drawings for commercial sites across Barrie, Midland, Orillia, and Simcoe County.",
         "ctaLabel": "Request a quote",
-        "ctaHref": "#request-site-visit"
+        "ctaHref": "#service-contact-strip"
       },
       "subServiceSections": [
         {
@@ -720,34 +710,12 @@
         ]
       },
       "scopeStrip": [
-        {
-          "label": "Overview",
-          "href": "#overview"
-        },
-        {
-          "label": "Scope",
-          "href": "#scope"
-        },
-        {
-          "label": "Capabilities",
-          "href": "#field-capabilities"
-        },
-        {
-          "label": "Process",
-          "href": "#process"
-        },
-        {
-          "label": "FAQ",
-          "href": "#faq"
-        },
-        {
-          "label": "Related",
-          "href": "#related-services"
-        },
-        {
-          "label": "Get a quote",
-          "href": "#request-site-visit"
-        }
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
         "Our fleet supports ongoing excavation with tri-axle and dump truck hauling for topsoil, fill, granular, and export spoils.",
@@ -943,34 +911,12 @@
         ]
       },
       "scopeStrip": [
-        {
-          "label": "Overview",
-          "href": "#overview"
-        },
-        {
-          "label": "Scope",
-          "href": "#scope"
-        },
-        {
-          "label": "Capabilities",
-          "href": "#field-capabilities"
-        },
-        {
-          "label": "Process",
-          "href": "#process"
-        },
-        {
-          "label": "FAQ",
-          "href": "#faq"
-        },
-        {
-          "label": "Related",
-          "href": "#related-services"
-        },
-        {
-          "label": "Get a quote",
-          "href": "#request-site-visit"
-        }
+        { "label": "Overview", "href": "#overview" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Project types", "href": "#project-types" },
+        { "label": "FAQ", "href": "#faq" },
+        { "label": "Quote", "href": "#service-quote-related" },
+        { "label": "Contact", "href": "#service-contact-strip" }
       ],
       "intro": [
         "Ground Level provides reliable winter maintenance for properties across Barrie, Midland, Orillia, and Simcoe County — with clear routes, documented service, and rapid response during storms.",

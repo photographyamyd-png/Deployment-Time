@@ -4,6 +4,8 @@ import type { MegaMenuCard } from "@/content/types";
 
 type Props = {
   cards: MegaMenuCard[];
+  /** Inside grey quote stack — no charcoal top rule, transparent bg */
+  embedInStack?: boolean;
 };
 
 const delayFor = (i: number) => {
@@ -12,12 +14,12 @@ const delayFor = (i: number) => {
   return undefined;
 };
 
-export function ServiceRelatedServices({ cards }: Props) {
+export function ServiceRelatedServices({ cards, embedInStack }: Props) {
   if (!cards.length) return null;
   return (
     <section
-      id="related-services"
-      className="service-related-services"
+      id={embedInStack ? undefined : "related-services"}
+      className={`service-related-services${embedInStack ? " service-related-services--embed" : ""}`}
       aria-labelledby="related-services-heading"
     >
       <div className="services__header">

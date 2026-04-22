@@ -11,13 +11,17 @@ type Props = {
 export function ServiceScopeSection({ service }: Props) {
   const introJoined = service.intro.join(" ");
   return (
-    <section id="scope" className="service-scope-band service-scope-band--editorial" aria-labelledby="scope-heading">
+    <section
+      id="capabilities"
+      className="service-scope-band service-scope-band--editorial service-scope-band--capabilities"
+      aria-labelledby="capabilities-heading"
+    >
       <div className="service-scope-band__inner">
         <div className="service-scope-band__grid">
           <div className="service-scope-band__mast">
             <Reveal className="eyebrow eyebrow--dark service-scope-band__eyebrow">Scope of work</Reveal>
             <Reveal delayClass="reveal--delay-1">
-              <h2 id="scope-heading" className="service-scope-band__title">
+              <h2 id="capabilities-heading" className="service-scope-band__title">
                 {service.deliverablesHeading}
               </h2>
             </Reveal>
@@ -27,11 +31,11 @@ export function ServiceScopeSection({ service }: Props) {
               </blockquote>
             </Reveal>
             <Reveal delayClass="reveal--delay-3" className="service-scope-band__actions">
-              <SmartLink href="#field-capabilities" className="btn-ghost-dark">
-                Explore capabilities
+              <SmartLink href="#project-types" className="btn-ghost-dark">
+                Project types
                 <IconArrow />
               </SmartLink>
-              <SmartLink href="#request-site-visit" className="btn-primary">
+              <SmartLink href="#service-contact-strip" className="btn-primary">
                 Request site consult
                 <IconArrow />
               </SmartLink>
