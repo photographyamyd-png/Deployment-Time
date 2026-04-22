@@ -23326,9 +23326,11 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--charcoal-deep);
 }
 
-/* Homepage reference band — light surface; dark = accents in module only */
+/* Homepage reference band — light surface; vertical overflow must not clip tab panel */
 #services.home-services-photo[data-glc-services-surface="light"] {
   background: var(--off-white);
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 #services.home-services-photo.ls {
@@ -23341,6 +23343,8 @@ body.gl-mega-open .gl-mega-backdrop {
 
 #services.home-services-photo[data-glc-services-surface="light"].ls {
   background: var(--off-white);
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .home-services-photo__seam {

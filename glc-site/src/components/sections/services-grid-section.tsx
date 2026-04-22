@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
 import { IconArrow } from "@/components/ui/icon-arrow";
 import { HomeServicesExpandableList } from "@/components/sections/home-services-expandable-list";
+import { HomeServicesStickyTabs } from "@/components/sections/home-services-sticky-tabs";
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
 import type { MegaMenuCard, ServicesBandCta, ServicesSectionProps } from "@/content/types";
@@ -18,18 +18,11 @@ type Props = ServicesSectionProps & {
   /** Homepage-only: stats/coverage-style dark editorial surface + contrast. */
   editorialSurface?: boolean;
   /**
-   * Homepage-only: light minimal band — balanced intro | specs grid, preview row,
-   * accordion; charcoal for rails, dividers, and card footers only.
+   * Homepage-only: light band — intro | specs, sticky service tabs + single detail panel,
+   * CTAs; charcoal used for rails and contrast only.
    */
   referenceSplitLayout?: boolean;
 };
-
-function cardHeadline(card: MegaMenuCard): string {
-  if (Array.isArray(card.gridTitle) && card.gridTitle.length > 0) {
-    return card.gridTitle.join(" · ");
-  }
-  return card.title;
-}
 
 export function ServicesGridSection({
   cards,
@@ -55,10 +48,6 @@ export function ServicesGridSection({
     : effectiveEditorial
       ? "editorial"
       : undefined;
-
-  const previewCount = Math.min(3, cards.length);
-  const previewCards = cards.slice(0, previewCount);
-  const accordionCards = cards.length > previewCount ? cards.slice(previewCount) : [];
 
   const introBlock = (
     <>
@@ -154,59 +143,7 @@ export function ServicesGridSection({
                 </div>
               </header>
 
-              <ul className={styles.previewStrip} aria-label="Featured service lines">
-                {previewCards.map((card) => {
-                  const src = card.photoSrc?.trim() || FALLBACK_FEATURE;
-                  const alt = [card.title, card.description].filter(Boolean).join(" — ");
-                  return (
-                    <li key={card.slug} className={styles.previewStripItem}>
-                      <SmartLink href={ROUTES.service(card.slug)} className={styles.previewCardOstech}>
-                        <div className={styles.previewCardMedia}>
-                          <Image
-                            src={src}
-                            alt={alt}
-                            fill
-                            className={styles.previewCardImg}
-                            sizes="(max-width: 700px) 100vw, (max-width: 1024px) 33vw, 320px"
-                          />
-                          <div className={styles.previewCardIconBadge} aria-hidden>
-                            <svg
-                              className={styles.previewCardIconSvg}
-                              viewBox="0 0 24 24"
-                              width={16}
-                              height={16}
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"
-                                stroke="currentColor"
-                                strokeWidth="1.75"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className={styles.previewCardFooterBar}>
-                          <span className={styles.previewCardFooterTitle}>{cardHeadline(card)}</span>
-                          <span className={styles.previewCardFooterPlus} aria-hidden>
-                            +
-                          </span>
-                        </div>
-                      </SmartLink>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className={styles.referenceOstechSeam} aria-hidden />
-
-              {accordionCards.length > 0 ? (
-                <div className={`${styles.accordionRegion} ${styles.accordionRegionOstech}`}>
-                  <HomeServicesExpandableList cards={accordionCards} />
-                </div>
-              ) : null}
+              <HomeServicesStickyTabs cards={cards} />
 
               {servicesBandCta ? (
                 <Reveal delayClass="reveal--delay-2">

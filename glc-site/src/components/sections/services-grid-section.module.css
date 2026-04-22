@@ -422,11 +422,12 @@
   min-width: 0;
 }
 
-/* Homepage reference — light, minimal; dark = dividers, title bars, motif only */
+/* Homepage reference — light, minimal; dark = dividers, rails, motif only */
 .referenceOstech {
   background: var(--off-white);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .referenceOstech::before {
@@ -443,24 +444,10 @@
   background-size: 22px 22px;
 }
 
-.referenceOstech .layerGround {
-  opacity: 0.05;
-}
-
-.referenceOstech .wm {
-  top: 14%;
-  right: 4%;
-  color: var(--charcoal-deep);
-  opacity: 0.035;
-  font-size: clamp(48px, 9vw, 100px);
-}
-
+.referenceOstech .layerGround,
+.referenceOstech .wm,
 .referenceOstech .structure {
-  opacity: 0.25;
-}
-
-.referenceOstech .structureSheet {
-  opacity: 0.55;
+  display: none;
 }
 
 .referenceOstech.showcase::after {
@@ -473,7 +460,7 @@
 }
 
 .referenceOstech .body {
-  padding: var(--section-v-sm) clamp(16px, 3vw, 28px) var(--section-v-sm);
+  padding: clamp(40px, 5vw, 56px) clamp(16px, 3vw, 28px) var(--section-v-sm);
 }
 
 .referenceHeader {
@@ -548,6 +535,261 @@
   height: 3px;
   background: var(--yellow-core);
   transform: skewX(-12deg);
+}
+
+/* Sticky service tabs + single detail panel (homepage reference layout) */
+.refTabRoot {
+  position: relative;
+  z-index: 4;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.refTabBand {
+  position: sticky;
+  top: var(--header-total-h, 104px);
+  z-index: 12;
+  margin: 0 0 clamp(14px, 2vw, 20px);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-bottom: 3px solid var(--charcoal-deep);
+  box-shadow: var(--shadow-sm);
+}
+
+.refTabBandInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.refTabBandLabel {
+  margin: 0;
+  padding: clamp(7px, 1vw, 9px) clamp(12px, 2vw, 16px);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-400);
+  background: color-mix(in srgb, var(--charcoal-deep) 4%, var(--white));
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.refTabScroll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-200) transparent;
+}
+
+.refTabScroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.refTabScroll::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+}
+
+.refTab {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px clamp(11px, 1.6vw, 15px);
+  min-height: 44px;
+  border: none;
+  border-right: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--charcoal-deep);
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.28s var(--ease-expo),
+    color 0.28s var(--ease-expo),
+    box-shadow 0.28s var(--ease-expo);
+}
+
+.refTab:last-child {
+  border-right: none;
+}
+
+.refTab:hover,
+.refTab:focus-visible {
+  background: var(--gray-100);
+  outline: none;
+}
+
+.refTab:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--yellow-core);
+}
+
+.refTabActive {
+  background: color-mix(in srgb, var(--yellow-tint) 55%, var(--white));
+  box-shadow: inset 0 -3px 0 0 var(--yellow-core);
+}
+
+.refTabNum {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.35vw, 17px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--yellow-core);
+  line-height: 1;
+}
+
+.refTabTitle {
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  white-space: nowrap;
+  max-width: min(28ch, 40vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .refTabTitle {
+    max-width: 32ch;
+  }
+}
+
+.refTabPanel {
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.refTabPanelGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .refTabPanelGrid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: stretch;
+  }
+}
+
+.refTabPanelMedia {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: clamp(200px, 42vw, 300px);
+  background: var(--gray-100);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .refTabPanelMedia {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+}
+
+.refTabPanelImg {
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.refTabPanelMediaRule {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--yellow-core);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.refTabPanelCopy {
+  padding: clamp(16px, 2.2vw, 24px) clamp(16px, 2.2vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vw, 12px);
+  min-width: 0;
+  border-top: 1px solid var(--gray-200);
+}
+
+@media (min-width: 768px) {
+  .refTabPanelCopy {
+    border-top: none;
+    border-left: 3px solid var(--charcoal-deep);
+  }
+}
+
+.refTabPanelHeadline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.9vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--charcoal-deep);
+}
+
+.refTabPanelDesc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.1vw, 14px);
+  line-height: 1.58;
+  color: var(--text-500);
+  max-width: 52ch;
+}
+
+.refTabPanelTags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.refTabPanelTags li {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-500);
+  border: 1px solid var(--gray-200);
+  padding: 5px 9px;
+}
+
+.refTabPanelCta {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow-core);
+  text-decoration: none;
+  transition:
+    color 0.28s var(--ease-expo),
+    gap 0.28s var(--ease-expo);
+}
+
+.refTabPanelCta:hover,
+.refTabPanelCta:focus-visible {
+  color: var(--gold);
+  gap: 12px;
 }
 
 .specNumberedListCompact {
