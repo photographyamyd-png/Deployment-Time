@@ -391,6 +391,6 @@ export const DRAINAGE_HUB_FINAL = {
   footTemplate: "Licensed & insured. WSIB compliant. Serving Simcoe County since [YEAR].",
 } as const;
 
-/** Hero — served from `glc-site/public/images/services/drainage-hardscaping/hero-wide.png` */
+/** Hero — `glc-site/public/images/services/drainage-hardscaping/hero-wide.jpg` (Meta4q set). */
 export const DRAINAGE_HUB_HERO_IMAGE =
-  "/images/services/drainage-hardscaping/hero-wide.png";
+  "/images/services/drainage-hardscaping/hero-wide.jpg";
