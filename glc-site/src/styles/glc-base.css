@@ -1959,6 +1959,13 @@ a.hero__service-item {
   max-width: 46ch;
 }
 
+.ab3__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
 .ab3__who-serve {
   margin-top: 28px;
   max-width: 52ch;
@@ -5576,6 +5583,56 @@ section#coverage + section#stats {
   line-height: 1.65;
   color: var(--text-600);
   max-width: 48ch;
+}
+
+.home-contact-strip__service-area {
+  margin: 14px 0 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-700);
+  line-height: 1.45;
+  max-width: 56ch;
+}
+
+.home-contact-strip--brand {
+  background: var(--yellow-core) !important;
+  border-top: 1px solid rgba(14, 13, 12, 0.08);
+}
+.home-contact-strip--brand .home-contact-strip__eyebrow {
+  color: var(--charcoal-deep);
+}
+.home-contact-strip--brand .home-contact-strip__heading {
+  color: var(--charcoal-deep);
+}
+.home-contact-strip--brand .home-contact-strip__sub {
+  color: var(--charcoal-deep);
+  opacity: 0.88;
+}
+.home-contact-strip--brand .home-contact-strip__service-area {
+  color: var(--charcoal-deep);
+  opacity: 0.82;
+}
+.home-contact-strip--brand .home-contact-strip__label {
+  color: var(--charcoal-deep);
+  opacity: 0.75;
+}
+.home-contact-strip--brand .home-contact-strip__phone,
+.home-contact-strip--brand .home-contact-strip__email {
+  color: var(--charcoal-deep);
+}
+.home-contact-strip--brand .home-contact-strip__addr-line {
+  color: var(--charcoal-deep);
+  opacity: 0.88;
+}
+.home-contact-strip--brand .home-contact-strip__cta {
+  background: var(--charcoal-deep);
+  color: var(--white);
+}
+.home-contact-strip--brand .home-contact-strip__cta:hover {
+  opacity: 0.92;
 }
 
 .home-contact-strip__actions {
@@ -35130,6 +35187,12 @@ body.gl-mega-open .gl-mega-backdrop {
 }
 .sandbox-svc-arch__details[open] .sandbox-svc-arch__sum {
   border-bottom-color: var(--yellow-core);
+}
+
+.sandbox-home-arch__embed {
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  background: var(--white);
 }
 
 .about-pg-hero-split {

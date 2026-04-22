@@ -7,8 +7,11 @@ type ContactStripSectionProps = HomeContactStripProps & {
 
 export function ContactStripSection({ sectionId = "contact-strip", ...props }: ContactStripSectionProps) {
   const headingId = `${sectionId}-heading`;
+  const surface = props.surface ?? "default";
+  const shell =
+    surface === "brand" ? "home-contact-strip home-contact-strip--brand" : "home-contact-strip";
   return (
-    <section id={sectionId} className="home-contact-strip" aria-labelledby={headingId}>
+    <section id={sectionId} className={shell} aria-labelledby={headingId}>
       <div className="home-contact-strip__rail" aria-hidden />
       <div className="home-contact-strip__motif" aria-hidden />
       <div className="home-contact-strip__inner">
@@ -18,6 +21,9 @@ export function ContactStripSection({ sectionId = "contact-strip", ...props }: C
             {props.heading}
           </h2>
           <p className="home-contact-strip__sub">{props.sub}</p>
+          {props.serviceAreaLine ? (
+            <p className="home-contact-strip__service-area">{props.serviceAreaLine}</p>
+          ) : null}
         </div>
         <div className="home-contact-strip__actions">
           <div className="home-contact-strip__block">

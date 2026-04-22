@@ -3,11 +3,16 @@
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/reveal";
 import { IconArrow } from "@/components/ui/icon-arrow";
+import { SmartLink } from "@/components/ui/smart-link";
 import type { AboutProps } from "@/content/types";
+import { ROUTES } from "@/lib/routes";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function AboutSection(props: AboutProps) {
+  const homeCompact = Boolean(props.homeTeaser);
+  const bodyText = props.homeTeaser ?? props.body;
+
   return (
     <section id="about" aria-labelledby="about-heading">
       {/* Ghost GLC watermark — right-side decorative */}
@@ -37,12 +42,12 @@ export function AboutSection(props: AboutProps) {
             <span className="ab3__heading-rule" aria-hidden />
           </Reveal>
 
-          {/* Body */}
+          {/* Body — full copy on /about/; `homeTeaser` on homepage only */}
           <Reveal delayClass="reveal--delay-2">
-            <p className="ab3__body">{props.body}</p>
+            <p className="ab3__body">{bodyText}</p>
           </Reveal>
 
-          {props.whoWeServe ? (
+          {!homeCompact && props.whoWeServe ? (
             <Reveal delayClass="reveal--delay-2" className="ab3__who-serve">
               <p className="ab3__who-serve-title">{props.whoWeServe.title}</p>
               <p className="ab3__who-serve-intro">{props.whoWeServe.intro}</p>
@@ -56,24 +61,38 @@ export function AboutSection(props: AboutProps) {
             </Reveal>
           ) : null}
 
-          {/* Credentials — 4-cell compact grid */}
-          <Reveal delayClass="reveal--delay-3" className="ab3__creds">
-            {props.credentials.map((c, i) => (
-              <div key={c.title} className="ab3__cred">
-                <div className="ab3__cred-idx" aria-hidden>0{i + 1}</div>
-                <div className="ab3__cred-body">
-                  <div className="ab3__cred-title">{c.title}</div>
-                  <div className="ab3__cred-sub">{c.sub}</div>
+          {!homeCompact ? (
+            <Reveal delayClass="reveal--delay-3" className="ab3__creds">
+              {props.credentials.map((c, i) => (
+                <div key={c.title} className="ab3__cred">
+                  <div className="ab3__cred-idx" aria-hidden>0{i + 1}</div>
+                  <div className="ab3__cred-body">
+                    <div className="ab3__cred-title">{c.title}</div>
+                    <div className="ab3__cred-sub">{c.sub}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Reveal>
+              ))}
+            </Reveal>
+          ) : null}
 
-          <Reveal delayClass="reveal--delay-4">
-            <a href={props.cta.href} className="btn-primary">
-              {props.cta.label}
-              <IconArrow />
-            </a>
+          <Reveal delayClass={homeCompact ? "reveal--delay-3" : "reveal--delay-4"}>
+            {homeCompact ? (
+              <div className="ab3__cta-row">
+                <a href={props.cta.href} className="btn-primary">
+                  {props.cta.label}
+                  <IconArrow />
+                </a>
+                <SmartLink href={ROUTES.about} className="btn-ghost-dark">
+                  About Ground Level
+                  <IconArrow />
+                </SmartLink>
+              </div>
+            ) : (
+              <a href={props.cta.href} className="btn-primary">
+                {props.cta.label}
+                <IconArrow />
+              </a>
+            )}
           </Reveal>
         </div>
 

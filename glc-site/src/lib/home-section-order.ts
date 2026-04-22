@@ -1,28 +1,22 @@
 import type { HomePageContent, HomeSectionBlock } from "@/content/types";
 
 /**
- * Same sequence as the live homepage (`app/page.tsx`).
- * Rules 4–5: one closing conversion zone — `contactStrip` is omitted here (kept in
- * `home.json` for `getHomeSectionProps('contactStrip')` on company, etc.).
- * Rule 1: `#coverage` (dark) → `ctaBand` (dark) is **D→D** until `fix-home-alternation`
- * (reorder or CSS-only commit, never mixed with this order).
+ * Live homepage (`app/page.tsx`) — streamlined sequence (2026).
+ * Dark/light rhythm: hero (D) → about teaser (L) → services (L) → stats (D) → why (L) →
+ * parallax (D) → testimonials (L) → contact strip (brand/yellow).
  *
- * `services` immediately after light `marquee`: surfaces six service lines within ~1–2
- * scrolls and breaks **D→D** adjacency that existed when `#stats` sat directly above `#services`.
- *
- * `process` is omitted here — it renders on `/about/` only (`ProcessSection` + `#process`).
+ * Omitted from home (JSON retained for other routes / archives):
+ * `marquee`, `process` (About page only), `coverage` (city line in contact strip), `ctaBand`.
  */
 export const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
   "hero",
-  "marquee",
-  "services",
   "about",
+  "services",
   "stats",
   "why",
   "parallaxBand",
   "testimonials",
-  "coverage",
-  "ctaBand",
+  "contactStrip",
 ];
 
 export function orderHomeSections(

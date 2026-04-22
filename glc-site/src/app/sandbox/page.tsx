@@ -19,6 +19,7 @@ import type {
 } from "@/content/types";
 import type { ServicesHubArchiveHub } from "@/components/sandbox/sandbox-services-hub-archive";
 import { SandboxAboutArchive } from "@/components/sandbox/sandbox-about-archive";
+import { SandboxHomepageArchive } from "@/components/sandbox/sandbox-homepage-archive";
 import { SandboxServicePagesArchive } from "@/components/sandbox/sandbox-service-pages-archive";
 import { SandboxServicesHubArchive } from "@/components/sandbox/sandbox-services-hub-archive";
 import { pageMetadata } from "@/lib/seo";
@@ -111,6 +112,8 @@ export default function SandboxPage() {
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
       <SandboxComplianceBackup />
+
+      <SandboxHomepageArchive navData={navData} site={siteData} />
 
       {aboutProps ? <SandboxAboutArchive about={aboutProps} /> : null}
       <SandboxServicePagesArchive />

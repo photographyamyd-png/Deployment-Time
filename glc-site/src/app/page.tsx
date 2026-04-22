@@ -1,5 +1,7 @@
 import type {
+  HomeContactStripProps,
   HomePageContent,
+  HomeSectionBlock,
   NavigationConfig,
   ServicesBandCta,
   SiteConfig,
@@ -50,8 +52,27 @@ function homeServicesBandCta(content: HomePageContent, nav: NavigationConfig): S
   };
 }
 
+const HOME_CONTACT_STRIP_EXTRAS: Pick<HomeContactStripProps, "serviceAreaLine" | "surface"> = {
+  serviceAreaLine:
+    "Barrie · Midland · Orillia · Innisfil · Wasaga Beach · Angus · Springwater · Oro-Medonte · Collingwood · Bradford · Essa · Simcoe County",
+  surface: "brand",
+};
+
+function applyHomeOnlyContactStrip(sections: HomeSectionBlock[]): HomeSectionBlock[] {
+  return sections.map((s) => {
+    if (s.type !== "contactStrip") return s;
+    return {
+      ...s,
+      props: {
+        ...s.props,
+        ...HOME_CONTACT_STRIP_EXTRAS,
+      },
+    };
+  });
+}
+
 export default function HomePage() {
-  const sections = orderHomeSections(homeContent.sections);
+  const sections = applyHomeOnlyContactStrip(orderHomeSections(homeContent.sections));
   const servicesBandCta = homeServicesBandCta(homeContent, navData);
 
   return (

@@ -97,6 +97,8 @@ export type AboutProps = {
   headingAccent: string;
   headingAfter: string;
   body: string;
+  /** Homepage `#about` band only — 2–3 sentences; full `body` still used on /about/ */
+  homeTeaser?: string;
   credentials: Array<{ title: string; sub: string }>;
   cta: { label: string; href: string };
   mediaStat: { value: string; label: string };
@@ -238,6 +240,10 @@ export type HomeContactStripProps = {
   eyebrow: string;
   heading: string;
   sub: string;
+  /** Single-line service cities (replaces full coverage section on home) */
+  serviceAreaLine?: string;
+  /** `brand` = yellow closing band (homepage) */
+  surface?: "default" | "brand";
   phone: { label: string; value: string; href: string };
   email: { label: string; value: string; href: string };
   address: { label: string; lines: string[] };
