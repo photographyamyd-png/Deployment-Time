@@ -13192,13 +13192,22 @@ body.gl-mega-open .gl-mega-backdrop {
   list-style: none;
   cursor: pointer;
   padding: 18px 22px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  display: block;
   font-family: var(--font-body);
   font-weight: 600;
   color: var(--charcoal-deep);
   transition: color 0.2s;
+}
+.glc-snow-details__summary-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+/* Heading slot (any node after the chevron) — allow long titles to wrap in the flex row */
+.glc-snow-details__summary-inner > :not(.glc-snow-details__chev) {
+  flex: 1;
+  min-width: 0;
 }
 .glc-snow-band--structural .glc-snow-details__summary {
   color: rgba(255, 255, 255, 0.95);

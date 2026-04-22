@@ -239,7 +239,7 @@ export function CommercialSnowPageMain() {
         <div className="glc-snow-svc-stack">
           {commercialSnowPropertyTypes.types.map((t, idx) => (
             <SnowAccordion
-              key={t.title}
+              key={`snow-property-${idx}-${t.title}`}
               defaultOpen={idx === 0}
               heading={<span className="glc-snow-details__h">{t.title}</span>}
             >

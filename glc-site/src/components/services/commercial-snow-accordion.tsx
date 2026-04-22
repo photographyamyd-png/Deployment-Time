@@ -29,8 +29,11 @@ export function SnowAccordion({
       }}
     >
       <summary className="glc-snow-details__summary">
-        <span className="glc-snow-details__chev" aria-hidden />
-        {heading}
+        {/* Single child under <summary> avoids React 19 “unique key” warnings for sibling nodes. */}
+        <span className="glc-snow-details__summary-inner">
+          <span className="glc-snow-details__chev" aria-hidden />
+          {heading}
+        </span>
       </summary>
       <div className="glc-snow-details__body">{children}</div>
     </details>
