@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import "./test-page.css";
 import navigation from "@/content/navigation.json";
-import type { NavigationConfig } from "@/content/types";
+import type { MegaMenuCard, NavigationConfig } from "@/content/types";
 import { SmartLink } from "@/components/ui/smart-link";
-import { HeroServiceIcon } from "@/components/sections/service-card-icon";
 import { StatCellAnimated } from "@/components/ui/stat-cell-animated";
-import { IconArrow } from "@/components/ui/icon-arrow";
+import { IconArrow, IconArrowSmall } from "@/components/ui/icon-arrow";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
+import svcStyles from "@/components/sections/services-grid-section.module.css";
 
 const seo = pageMetadata({
   title: "Landing Page Test | Ground Level Contracting",
@@ -32,23 +33,20 @@ const SERVICE_CARD_TITLE_ACCENT: Record<
   "snow-removal": { mode: "word", word: "Removal" },
 };
 
-const SERVICE_CARD_MOTIF_CLASS = [
-  "testpage__service-card--motif-a",
-  "testpage__service-card--motif-b",
-  "testpage__service-card--motif-c",
-  "testpage__service-card--motif-a",
-  "testpage__service-card--motif-b",
-  "testpage__service-card--motif-c",
-] as const;
+function serviceHeadline(card: MegaMenuCard) {
+  return Array.isArray(card.gridTitle) && card.gridTitle.length > 0
+    ? card.gridTitle.join(" · ")
+    : card.title;
+}
 
-function ServiceCardHeading({ slug, title }: { slug: string; title: string }) {
+function ServiceCardHeading({ slug, headline }: { slug: string; headline: string }) {
   const cfg = SERVICE_CARD_TITLE_ACCENT[slug] ?? { mode: "none" as const };
-  const t = title.trim();
+  const t = headline.trim();
   if (cfg.mode === "all") {
     return (
-      <h3 className="testpage__service-title">
-        <span className="testpage__service-title-accent">{t.toUpperCase()}</span>
-      </h3>
+      <>
+        <span className="testpage__service-head-accent">{t}</span>
+      </>
     );
   }
   if (cfg.mode === "word" && cfg.word) {
@@ -56,20 +54,20 @@ function ServiceCardHeading({ slug, title }: { slug: string; title: string }) {
     const w = cfg.word.toLowerCase();
     const i = lower.indexOf(w);
     if (i < 0) {
-      return <h3 className="testpage__service-title">{t.toUpperCase()}</h3>;
+      return <>{t}</>;
     }
-    const before = t.slice(0, i).toUpperCase();
-    const mid = t.slice(i, i + cfg.word.length).toUpperCase();
-    const after = t.slice(i + cfg.word.length).toUpperCase();
+    const before = t.slice(0, i);
+    const mid = t.slice(i, i + cfg.word.length);
+    const after = t.slice(i + cfg.word.length);
     return (
-      <h3 className="testpage__service-title">
+      <>
         {before}
-        <span className="testpage__service-title-accent">{mid}</span>
+        <span className="testpage__service-head-accent">{mid}</span>
         {after}
-      </h3>
+      </>
     );
   }
-  return <h3 className="testpage__service-title">{t.toUpperCase()}</h3>;
+  return <>{t}</>;
 }
 
 const base = {
@@ -118,49 +116,85 @@ export default function TestPage() {
         </div>
       </section>
 
-      <section id="testpage-services" className="testpage__services" aria-labelledby="testpage-services-heading">
+      <section id="testpage-services" className="testpage__services testpage__services--dna" aria-labelledby="testpage-services-heading">
+        <div className="testpage__services-ground" aria-hidden />
+        <span className="testpage__services-wm" aria-hidden>
+          GLC
+        </span>
         <div className="testpage__section-rail" aria-hidden />
         <div className="testpage__section-noise" aria-hidden />
         <div className="testpage__container">
-          <header className="testpage__head gl-reveal">
-            <p className="eyebrow eyebrow--dark">What we do</p>
-            <span className="testpage__head-rule" aria-hidden />
-            <h2 id="testpage-services-heading" className="gl-h2">
-              Complete Construction <em>Services</em>
+          <header className="testpage__head testpage__head--services-ref gl-reveal">
+            <div className={svcStyles.svcRefEyebrow}>
+              <span className={svcStyles.svcRefEyebrowDash} aria-hidden />
+              <span className={svcStyles.svcRefEyebrowTxt}>What we do</span>
+            </div>
+            <h2 id="testpage-services-heading" className={svcStyles.svcRefStageHeading}>
+              Complete Construction <span>Services</span>
             </h2>
-            <p className="gl-prose">
+            <p className={svcStyles.svcRefStageSub}>
               From start to finish, we deliver quality craftsmanship and reliable solutions.
             </p>
           </header>
-          <div className="testpage__services-grid">
-            {navCards.map((card, idx) => (
-              <SmartLink
-                key={card.slug}
-                href={ROUTES.service(card.slug)}
-                className={`testpage__service-card ${SERVICE_CARD_MOTIF_CLASS[idx] ?? ""} ${idx === 0 ? "testpage__service-card--featured" : ""} gl-reveal gl-delay-${(idx % 5) + 1}`}
-              >
-                {idx === 0 ? <span className="testpage__service-feature-corner" aria-hidden /> : null}
-                <span className="testpage__service-motif-ghost" aria-hidden />
-                <div className="testpage__service-card-body">
-                  <div className="testpage__service-icon" aria-hidden>
-                    <HeroServiceIcon slug={card.slug} />
-                  </div>
-                  <ServiceCardHeading slug={card.slug} title={card.title} />
-                  <div
-                    className="testpage__service-media"
-                    style={{
-                      backgroundImage: `url('${card.photoSrc ?? "/images/excavation-and-foundations-orillia-barrie.png"}')`,
-                    }}
-                    aria-hidden
-                  />
-                  <p className="testpage__service-desc">{card.gridDescription}</p>
-                  <span className="testpage__service-cta btn-primary">
-                    LEARN MORE <IconArrow />
-                  </span>
-                </div>
-              </SmartLink>
-            ))}
+          <div className="testpage__services-motif-bridge" aria-hidden>
+            <div className="glc-motif-divider-a3--to-light" />
           </div>
+          <ul className="testpage__services-grid">
+            {navCards.map((card, idx) => {
+              const src = card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
+              const alt = [card.title, card.description].filter(Boolean).join(" — ");
+              const hl = serviceHeadline(card);
+              return (
+                <li
+                  key={card.slug}
+                  className={`testpage__services-grid-item gl-reveal gl-delay-${(idx % 5) + 1}`}
+                >
+                  <SmartLink
+                    href={ROUTES.service(card.slug)}
+                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link`}
+                  >
+                  <div className={svcStyles.expandRow}>
+                    <div
+                      className={`${svcStyles.expandHero} ${idx >= 4 ? "testpage__service-expand-hero--row2" : ""}`}
+                    >
+                      <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        className={`${svcStyles.expandHeroImg} testpage__service-hero-img`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 980px) 50vw, (max-width: 1399px) 25vw, 16vw"
+                      />
+                      <span className={svcStyles.expandHeroNum} aria-hidden>
+                        {card.num}
+                      </span>
+                    </div>
+                    <div className={svcStyles.expandMain}>
+                      <div className="testpage__expand-static-head">
+                        <h3 className={svcStyles.expandHeadline}>
+                          <ServiceCardHeading slug={card.slug} headline={hl} />
+                        </h3>
+                      </div>
+                      <div className="testpage__expand-static-panel">
+                        <p className={svcStyles.expandDesc}>{card.gridDescription}</p>
+                        {card.subTags && card.subTags.length > 0 ? (
+                          <ul className={svcStyles.expandTags}>
+                            {card.subTags.map((t) => (
+                              <li key={`${card.slug}-${t}`}>{t}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        <span className={`${svcStyles.expandCta} testpage__expand-cta-span`}>
+                          View service
+                          <IconArrowSmall />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  </SmartLink>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 

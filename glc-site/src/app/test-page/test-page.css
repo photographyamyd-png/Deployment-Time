@@ -145,6 +145,13 @@
   margin: 10px auto 0;
 }
 
+/* Services band header — matches homepage reference (#services) eyebrow + stage heading rhythm. */
+.testpage__head--services-ref {
+  text-align: left;
+  max-width: var(--container-max);
+  margin: 0 auto clamp(20px, 3vw, 32px);
+}
+
 .testpage__head-rule {
   display: block;
   width: 54px;
@@ -184,152 +191,153 @@
   position: relative;
 }
 
-/* Desktop: six cards in one row on very wide viewports; 4 + 2 (centered) on typical desktop. */
-.testpage__services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+/* Homepage #services reference surface — technical ground + GLC watermark (structure/read planes). */
+.testpage__services--dna {
+  background: var(--off-white);
+  overflow-x: hidden;
 }
 
-.testpage__services-grid .testpage__service-card:nth-child(5) {
-  grid-column: 2;
-}
-
-.testpage__services-grid .testpage__service-card:nth-child(6) {
-  grid-column: 3;
-}
-
-.testpage__service-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 520px;
-  border: 1px solid var(--gray-200);
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  cursor: pointer;
-  isolation: isolate;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.35s var(--ease-expo), border-color 0.28s var(--ease-expo), box-shadow 0.35s var(--ease-expo);
-}
-
-/* Rotating GLC watermark accents (sparingly). */
-.testpage__service-card--motif-a .testpage__service-motif-ghost {
-  background-image: url("/images/motifs/watermarks/g1-wm-04-corner-ghost.svg");
-}
-
-.testpage__service-card--motif-b .testpage__service-motif-ghost {
-  background-image: url("/images/motifs/preview-v2/motif-a6-diagonal-watermark.svg");
-}
-
-.testpage__service-card--motif-c .testpage__service-motif-ghost {
-  background-image: url("/images/motifs/watermarks/glc-wm-07-stepped-chevron.svg");
-}
-
-.testpage__service-motif-ghost {
+.testpage__services--dna::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background-repeat: no-repeat;
-  background-position: 108% 108%;
-  background-size: min(42%, 160px) auto;
-  opacity: 0.07;
-  pointer-events: none;
   z-index: 0;
-}
-
-.testpage__service-feature-corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 4;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 52px 52px 0;
-  border-color: transparent var(--yellow-core) transparent transparent;
   pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
 }
 
-.testpage__service-card-body {
-  position: relative;
+.testpage__services-ground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--charcoal-deep) 14%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  opacity: 0.22;
+}
+
+.testpage__services-wm {
+  position: absolute;
+  right: -0.04em;
+  top: 46%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(72px, 11vw, 150px);
+  font-weight: 700;
+  color: var(--charcoal-deep);
+  opacity: 0.028;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
   z-index: 1;
+  line-height: 1;
+  user-select: none;
+}
+
+.testpage__services--dna .testpage__container {
+  position: relative;
+  z-index: 2;
+}
+
+.testpage__services-motif-bridge {
+  width: 100vw;
+  max-width: 100vw;
+  margin: clamp(8px, 1.5vw, 16px) calc(50% - 50vw) clamp(20px, 3vw, 28px);
+  position: relative;
+  z-index: 2;
+  line-height: 0;
+}
+
+/*
+ * Service cards — compose ServicesGridSection expandItem module (yellow top bar, borders, shadows).
+ * Grid: row 1 = 4 equal; row 2 = two cards each span 2 cols so total width matches row 1.
+ */
+.testpage__services-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 14px);
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+}
+
+.testpage__services-grid > .testpage__services-grid-item:nth-child(5),
+.testpage__services-grid > .testpage__services-grid-item:nth-child(6) {
+  grid-column: span 2;
+}
+
+.testpage__services-grid-item {
+  min-width: 0;
+  display: flex;
+}
+
+.testpage__service-card-link {
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Static title band (homepage expand uses a button; here the whole card is the link). */
+.testpage__expand-static-head {
+  padding: clamp(12px, 1.8vw, 16px) clamp(14px, 2vw, 20px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: background 0.25s var(--ease-expo);
+}
+
+.testpage__service-card-link:hover .testpage__expand-static-head,
+.testpage__service-card-link:focus-visible .testpage__expand-static-head {
+  background: color-mix(in srgb, var(--yellow-tint) 65%, transparent);
+}
+
+.testpage__expand-static-panel {
+  padding: clamp(14px, 2vw, 18px) clamp(14px, 2vw, 20px);
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 14px;
-  padding: 22px 18px 24px;
-  flex: 1;
-  min-height: 100%;
+  min-height: 0;
 }
 
-.testpage__service-icon {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  color: var(--text-900);
-}
-
-.testpage__service-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.testpage__service-title {
-  margin: 0;
-  max-width: 22ch;
-  font: 700 clamp(15px, 1.05vw, 18px) / 1.2 var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--text-900);
-}
-
-.testpage__service-title-accent {
+.testpage__service-head-accent {
   color: var(--yellow-core);
 }
 
-.testpage__service-media {
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-  flex-shrink: 0;
-  margin-block: 2px;
-  background-size: cover;
-  background-position: center;
-  border: 1px solid var(--gray-200);
-  transition: transform 0.45s var(--ease-expo);
+/* Row-2 cards are wider — give the photo band slightly more vertical presence for balance. */
+.testpage__service-expand-hero--row2 {
+  max-height: clamp(112px, 12vw, 190px);
 }
 
-.testpage__service-desc {
-  flex: 1;
-  margin: 0;
-  max-width: 36ch;
-  font: 500 13px/1.55 var(--font-body);
-  color: var(--text-500);
-  text-align: center;
+/* Match homepage expand row: grayscale clears on card hover (not only media hover). */
+.testpage__service-card-link:hover .testpage__service-hero-img,
+.testpage__service-card-link:focus-visible .testpage__service-hero-img {
+  filter: grayscale(0);
+  transform: scale(1.05);
 }
 
-.testpage__service-cta {
-  margin-top: auto;
-  flex-shrink: 0;
-  align-self: center;
+.testpage__service-card-link:hover .testpage__expand-cta-span,
+.testpage__service-card-link:focus-visible .testpage__expand-cta-span {
+  color: var(--gold);
+  gap: 12px;
 }
 
-.testpage__service-cta svg {
-  width: 14px;
-  height: 14px;
-}
-
-.testpage__service-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(32, 32, 32, 0.22);
-  box-shadow: var(--shadow-card);
-}
-
-.testpage__service-card:hover .testpage__service-media {
-  transform: scale(1.03);
+@media (prefers-reduced-motion: reduce) {
+  .testpage__service-card-link:hover .testpage__service-hero-img,
+  .testpage__service-card-link:focus-visible .testpage__service-hero-img {
+    filter: none;
+    transform: none;
+  }
 }
 
 .testpage__why-grid,
@@ -935,26 +943,30 @@
   text-transform: uppercase;
 }
 
-/* Wide desktop: one row × six cards. */
+/* Wide desktop: one row × six equal cards. */
 @media (min-width: 1400px) {
   .testpage__services-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
-  .testpage__services-grid .testpage__service-card:nth-child(5),
-  .testpage__services-grid .testpage__service-card:nth-child(6) {
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(5),
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(6) {
     grid-column: auto;
+  }
+
+  .testpage__service-expand-hero--row2 {
+    max-height: clamp(100px, 14vw, 160px);
   }
 }
 
-/* Tablet: two columns; reset 4+2 placement. */
+/* Tablet: two columns; reset row-2 span. */
 @media (max-width: 980px) and (min-width: 769px) {
   .testpage__services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .testpage__services-grid .testpage__service-card:nth-child(5),
-  .testpage__services-grid .testpage__service-card:nth-child(6) {
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(5),
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(6) {
     grid-column: auto;
   }
 }
@@ -1003,6 +1015,11 @@
   .testpage__proof-stats,
   .testpage__process-rail {
     grid-template-columns: 1fr;
+  }
+
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(5),
+  .testpage__services-grid > .testpage__services-grid-item:nth-child(6) {
+    grid-column: auto;
   }
 
   .testpage__proof-stats .stat-cell {
