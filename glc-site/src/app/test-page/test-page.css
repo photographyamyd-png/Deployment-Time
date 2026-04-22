@@ -216,7 +216,7 @@
   );
 }
 
-/* DSE top rail — yellow thread (preview .dse-rail) */
+/* Top rail — charcoal-first; 2px yellow pin only at the leading edge */
 .testpage__services-dse-rail {
   position: absolute;
   top: 0;
@@ -227,10 +227,11 @@
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    var(--yellow-core) 0%,
-    color-mix(in srgb, var(--yellow-core) 12%, transparent) 65%,
+    var(--gray-200) 0%,
+    color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 12%,
     transparent 100%
   );
+  box-shadow: inset 2px 0 0 0 var(--yellow-core);
 }
 
 /* Blueprint crosshair — structure plane (preview .dse::before) */
@@ -269,28 +270,22 @@
   background-size: 180px;
 }
 
-/* Diagonal charcoal + yellow wash (A6-style, tuned for light ground) */
+/* Diagonal wash — charcoal only (no yellow wash) */
 .testpage__services-diagonal {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    linear-gradient(
-      118deg,
-      transparent 38%,
-      color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 48%,
-      transparent 58%
-    ),
-    linear-gradient(
-      165deg,
-      color-mix(in srgb, var(--yellow-core) 8%, transparent) 0%,
-      transparent 36%
-    );
-  opacity: 0.9;
+  background: linear-gradient(
+    118deg,
+    transparent 38%,
+    color-mix(in srgb, var(--charcoal-deep) 4%, transparent) 48%,
+    transparent 58%
+  );
+  opacity: 0.85;
 }
 
-/* SVG watermark from /public (preview A6 / B-series) */
+/* Neutral watermark — ghost corner SVG, very low contrast */
 .testpage__services-motif-svg {
   position: absolute;
   right: -4%;
@@ -300,8 +295,8 @@
   max-height: 55vh;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.07;
-  background: url("/images/motifs/preview-v2/motif-a6-diagonal-watermark.svg") no-repeat 80% 80% / contain;
+  opacity: 0.045;
+  background: url("/images/motifs/watermarks/g1-wm-04-corner-ghost.svg") no-repeat 80% 80% / contain;
 }
 
 .testpage__services-wm {
@@ -377,21 +372,21 @@
   transition: box-shadow 0.35s var(--ease-expo), border-color 0.35s var(--ease-expo);
 }
 
-/* Corner motif variants — B-series language from motif preview (yellow + charcoal triangle) */
+/* Corner motif — charcoal-dominant; yellow is a hairline only along the hypotenuse */
 .testpage__service-card-link::after {
   content: "";
   position: absolute;
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   pointer-events: none;
   z-index: 4;
-  opacity: 0.72;
+  opacity: 0.38;
   transition: opacity 0.35s var(--ease-expo), transform 0.35s var(--ease-expo);
   background: linear-gradient(
     135deg,
-    transparent 48%,
-    color-mix(in srgb, var(--yellow-core) 88%, var(--charcoal-deep)) 48%,
-    color-mix(in srgb, var(--yellow-core) 88%, var(--charcoal-deep)) 100%
+    transparent 46%,
+    color-mix(in srgb, var(--charcoal-deep) 94%, var(--yellow-core) 6%) 46%,
+    color-mix(in srgb, var(--charcoal-deep) 88%, var(--yellow-core) 12%) 100%
   );
   clip-path: polygon(100% 0, 100% 100%, 0 0);
 }
@@ -422,7 +417,7 @@
 
 .testpage__service-card-link:hover::after,
 .testpage__service-card-link:focus-visible::after {
-  opacity: 1;
+  opacity: 0.55;
   transform: translate(0, 0);
 }
 
@@ -451,12 +446,26 @@
   box-shadow:
     0 1px 0 color-mix(in srgb, var(--white) 80%, transparent) inset,
     0 22px 48px color-mix(in srgb, var(--charcoal-deep) 20%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--yellow-core) 35%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--charcoal-mid) 22%, transparent);
 }
 
-/* Photo band — yellow structural bar (split-media language) */
+/* Photo band — neutral bar + 1px yellow accent (not a heavy gold strip) */
 .testpage__service-expand-hero {
-  border-bottom: 3px solid var(--yellow-core);
+  border-bottom: 2px solid var(--gray-200);
+  box-shadow: 0 1px 0 0 var(--yellow-core);
+}
+
+/* Expand row top reveal: charcoal bar, not a solid yellow cap */
+.testpage__services--dna .testpage__service-card-link::before {
+  background: var(--charcoal-mid);
+  height: 2px;
+}
+
+.testpage__services--dna .testpage__service-card-link:hover::before,
+.testpage__services--dna .testpage__service-card-link:focus-visible::before {
+  background: linear-gradient(90deg, var(--yellow-core) 0%, var(--yellow-core) 20%, var(--charcoal-deep) 20%);
+  height: 3px;
+  opacity: 1;
 }
 
 /* Static title band (homepage expand uses a button; here the whole card is the link). */
@@ -468,7 +477,7 @@
 
 .testpage__service-card-link:hover .testpage__expand-static-head,
 .testpage__service-card-link:focus-visible .testpage__expand-static-head {
-  background: color-mix(in srgb, var(--yellow-tint) 65%, transparent);
+  background: color-mix(in srgb, var(--charcoal-deep) 3%, transparent);
 }
 
 .testpage__expand-static-panel {
