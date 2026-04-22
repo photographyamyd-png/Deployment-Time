@@ -9,7 +9,6 @@ import { StatCellAnimated } from "@/components/ui/stat-cell-animated";
 import { IconArrow, IconArrowSmall } from "@/components/ui/icon-arrow";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
-import svcStyles from "@/components/sections/services-grid-section.module.css";
 import home from "@/content/pages/home.json";
 
 const seo = pageMetadata({
@@ -139,107 +138,103 @@ export default function TestPage() {
         </div>
       </section>
 
-      <section id="testpage-services" className="testpage__services testpage__services--dna" aria-labelledby="testpage-services-heading">
-        <div className="testpage__services-dse-rail" aria-hidden />
-        <div className="testpage__services-blueprint" aria-hidden />
-        <div className="testpage__services-grain" aria-hidden />
-        <div className="testpage__services-diagonal" aria-hidden />
-        <div className="testpage__services-motif-svg" aria-hidden />
-        <span className="testpage__services-wm" aria-hidden>
+      <section id="testpage-services" className="testpage__services testpage__svc-band" aria-labelledby="testpage-services-heading">
+        <span className="ab3__wm" aria-hidden>
           GLC
         </span>
         <div className="testpage__container">
-          <div className="testpage__services-motif-bridge" aria-hidden>
+          <div className="testpage__svc-band-bridge" aria-hidden>
             <div className="glc-motif-divider-a3--to-light" />
           </div>
-          <div className="testpage__services-layout">
-            <aside className="testpage__services-rail gl-reveal" aria-labelledby="testpage-services-heading">
-              <div className={svcStyles.svcRefEyebrow}>
-                <span className={svcStyles.svcRefEyebrowDash} aria-hidden />
-                <span className={svcStyles.svcRefEyebrowTxt}>Start here</span>
-              </div>
-              <h2 id="testpage-services-heading" className="gl-h2 testpage__services-rail-title">
-                Ready to break ground on your next <em>commercial build</em>?
-              </h2>
-              <p className="gl-prose testpage__services-rail-lede">
-                Scope, schedule, and mobilization — we move from excavation through civil finish across Barrie,
-                Simcoe County, and central Ontario. Tell us what you are building; we will tell you how we get it
-                moving.
-              </p>
-              <div className="testpage__services-rail-cta">
+          {/* Same grid ratio as #about.ab3__layout (55 / 45): copy column + engineered media column */}
+          <div className="ab3__layout testpage__svc-ab3">
+            <div className="ab3__copy testpage__svc-copy">
+              <Reveal className="ab3__top-row">
+                <span className="eyebrow">Capabilities</span>
+                <span className="ab3__since" aria-label={`${String(navCards.length)} services`}>
+                  {String(navCards.length).padStart(2, "0")}
+                  <span> field services</span>
+                </span>
+              </Reveal>
+              <Reveal delayClass="reveal--delay-1" className="ab3__heading-wrap">
+                <h2 id="testpage-services-heading" className="ab3__heading">
+                  Ready to break <em className="ab3__heading-em">ground</em> on your next commercial build?
+                </h2>
+                <span className="ab3__heading-rule" aria-hidden />
+              </Reveal>
+              <Reveal delayClass="reveal--delay-2">
+                <p className="ab3__body">
+                  Scope, schedule, and mobilization — we move from excavation through civil finish across Barrie,
+                  Simcoe County, and central Ontario. Each capability uses the same layered read as the homepage
+                  hero: clipped photo plane, directional scrim, and frosted glass chip for the title and action.
+                </p>
+              </Reveal>
+              <Reveal delayClass="reveal--delay-3" className="testpage__svc-copy-actions">
                 <SmartLink href={ROUTES.contact} className="btn-primary">
                   Start your project <IconArrow />
                 </SmartLink>
-                <SmartLink href={ROUTES.services} className="gl-btn gl-btn--link testpage__services-rail-link">
+                <SmartLink href={ROUTES.services} className="gl-btn gl-btn--link testpage__svc-copy-link">
                   View all services
                 </SmartLink>
-              </div>
-              <p className="testpage__services-rail-note">
-                Commercial dispatch available — same-week site walkthroughs when capacity allows.
-              </p>
-            </aside>
-            <div className="testpage__services-stage gl-reveal gl-delay-2">
-              <div className="testpage__services-stage-inner">
-                <p className="testpage__services-stage-kicker">Capabilities in the field</p>
+              </Reveal>
+            </div>
+
+            {/* Right column: homepage About media shell (#about .ab3__media) — grid of hero-style photo panels inside */}
+            <div className="ab3__media testpage__svc-media">
+              <div className="testpage__svc-canvas" aria-label="Service capabilities">
                 <ul className="testpage__services-grid">
-            {navCards.map((card, idx) => {
-              const src = card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
-              const alt = [card.title, card.description].filter(Boolean).join(" — ");
-              const hl = serviceHeadline(card);
-              return (
-                <li
-                  key={card.slug}
-                  className={`testpage__services-grid-item gl-reveal gl-delay-${(idx % 5) + 1}`}
-                >
-                  <SmartLink href={ROUTES.service(card.slug)} className="testpage__svc-card">
-                    <div className="testpage__svc-card__stack">
-                      {/* z-0 — image plane (bleeds past card edge like header layer stack) */}
-                      <div className="testpage__svc-card__image-layer">
-                        <Image
-                          src={src}
-                          alt={alt}
-                          fill
-                          className="testpage__svc-card__img"
-                          sizes="(max-width: 768px) 100vw, (max-width: 980px) 50vw, (max-width: 1399px) 25vw, 16vw"
-                        />
-                        <div className="testpage__svc-card__scrim" aria-hidden />
-                        <span className={`${svcStyles.expandHeroNum} testpage__svc-card__num`} aria-hidden>
-                          {card.num}
-                        </span>
-                      </div>
-                      {/* z-10 — hero-v2__chip glass plate + header gold strip / vertical rail (marquee + nav DNA) */}
-                      <div className="testpage__svc-card__plate">
-                        <span className="testpage__svc-card__plate-cap" aria-hidden />
-                        <div className="testpage__svc-card__plate-body">
-                          <span className="testpage__svc-card__plate-rail" aria-hidden />
-                          <div className="testpage__svc-card__plate-inner">
-                            <h3 className={`${svcStyles.expandHeadline} testpage__svc-card__title`}>
-                              <ServiceCardHeading slug={card.slug} headline={hl} />
-                            </h3>
-                            {card.gridDescription ? (
-                              <p className="testpage__svc-card__lede">{card.gridDescription}</p>
-                            ) : null}
-                            {card.subTags && card.subTags.length > 0 ? (
-                              <ul className={`${svcStyles.expandTags} testpage__svc-card__tags`}>
-                                {card.subTags.map((t) => (
-                                  <li key={`${card.slug}-${t}`}>{t}</li>
-                                ))}
-                              </ul>
-                            ) : null}
-                            <span className="testpage__svc-card__cta btn-hero-glass">
-                              Learn more
-                              <IconArrowSmall />
-                            </span>
+                  {navCards.map((card, idx) => {
+                    const src =
+                      card.photoSrc?.trim() || "/images/excavation-and-foundations-orillia-barrie.png";
+                    const alt = [card.title, card.description].filter(Boolean).join(" — ");
+                    const hl = serviceHeadline(card);
+                    return (
+                      <li
+                        key={card.slug}
+                        className={`testpage__services-grid-item gl-reveal gl-delay-${(idx % 5) + 1}`}
+                      >
+                        <SmartLink href={ROUTES.service(card.slug)} className="testpage__svc-card">
+                          <div className="testpage__svc-photo-panel">
+                            <Image
+                              src={src}
+                              alt={alt}
+                              fill
+                              className="testpage__svc-card__img"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 22vw"
+                            />
+                            <div className="hero-v2__photo-scrim" aria-hidden />
+                            <div className="hero-v2__chips">
+                              <div className="hero-v2__chip">
+                                <span className="hero-v2__chip-num">{card.num}</span>
+                                <span className="hero-v2__chip-label testpage__svc-chip-headline">
+                                  <ServiceCardHeading slug={card.slug} headline={hl} />
+                                </span>
+                                {card.gridDescription ? (
+                                  <p className="testpage__svc-chip-lede">{card.gridDescription}</p>
+                                ) : null}
+                                {card.subTags && card.subTags.length > 0 ? (
+                                  <div className="hero-v2__chip-tags testpage__svc-chip-tags">
+                                    {card.subTags.map((t) => (
+                                      <span key={`${card.slug}-${t}`} className="hero-v2__chip-tag">
+                                        {t}
+                                      </span>
+                                    ))}
+                                  </div>
+                                ) : null}
+                                <span className="testpage__svc-chip-cta">
+                                  Learn more
+                                  <IconArrowSmall />
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </SmartLink>
-                </li>
-              );
-            })}
+                        </SmartLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
+              <div className="ab3__corner-mark" aria-hidden />
             </div>
           </div>
         </div>
