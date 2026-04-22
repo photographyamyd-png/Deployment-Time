@@ -47,7 +47,12 @@ function AccordionItem({ item, isActive, onMouseEnter }: ItemProps) {
 
 export type FeaturedAccordionTone = "default" | "light" | "dark" | "medium";
 
-export type FeaturedAccordionLayoutMode = "default" | "mirror" | "stack-top";
+export type FeaturedAccordionLayoutMode =
+  | "default"
+  | "mirror"
+  | "stack-top"
+  /** Full-width rail on top, mirror copy/CTA below (sandbox / editorial). */
+  | "mirror-stack-wide";
 
 export type FeaturedAccordionProps = {
   eyebrow: string;
@@ -59,7 +64,7 @@ export type FeaturedAccordionProps = {
   layoutVariant?: FeaturedAccordionLayoutVariant;
   /** Surface treatment (default matches production off-white). */
   tone?: FeaturedAccordionTone;
-  /** `mirror` flips copy/panels and rail direction; `stack-top` places panels above copy at all breakpoints. */
+  /** `mirror` side-by-side; `stack-top` panels above copy; `mirror-stack-wide` full-width rail then mirror copy below. */
   layoutMode?: FeaturedAccordionLayoutMode;
   /** Reverse strip order while preserving hover/active index mapping. */
   reversePanelOrder?: boolean;

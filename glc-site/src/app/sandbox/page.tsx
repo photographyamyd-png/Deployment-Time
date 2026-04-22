@@ -162,15 +162,15 @@ export default function SandboxPage() {
         <div className="sandbox-feat-acc-band">
           <p className="sandbox-feat-acc-band__eyebrow">Featured accordion · Wide rail + framed chassis</p>
           <p className="sandbox-feat-acc-band__line">
-            Same dark mirrored layout as variant 1, with thicker strips, a wider active panel, and a contained rail
-            module (inset well, hairlines, and a light grid watermark) so the accordion reads as an object on the
-            charcoal field—not a floating collage.
+            Full-width framed rail up top (squarer, shorter strips so it is not a tall skinny column); mirror copy,
+            intro, and CTA sit below across the container width so typography keeps the same DNA without fighting the
+            photo strip for horizontal space.
           </p>
         </div>
         <FeaturedAccordion
           {...accProps}
           tone="dark"
-          layoutMode="mirror"
+          layoutMode="mirror-stack-wide"
           widePanels
           panelFrame
           headingId="sandbox-feat-heading-dark-framed-rail"
