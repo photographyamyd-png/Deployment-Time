@@ -7,19 +7,26 @@ import { HomeServicesAccordionGrid } from "@/components/sections/home-services-a
 import { SmartLink } from "@/components/ui/smart-link";
 import { glcDevPreviewUrl } from "@/lib/glc-dev-preview";
 import home from "@/content/pages/home.json";
+import servicesHub from "@/content/pages/services-index.json";
 import site from "@/content/site.json";
+import navigation from "@/content/navigation.json";
 import type {
   AboutProps,
   AccordionSectionProps,
   HomePageContent,
+  NavigationConfig,
   SiteConfig,
 } from "@/content/types";
+import type { ServicesHubArchiveHub } from "@/components/sandbox/sandbox-services-hub-archive";
 import { SandboxAboutArchive } from "@/components/sandbox/sandbox-about-archive";
+import { SandboxServicesHubArchive } from "@/components/sandbox/sandbox-services-hub-archive";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 
 const siteData = site as SiteConfig;
+const navData = navigation as NavigationConfig;
 const homeContent = home as HomePageContent;
+const servicesHubData = servicesHub as ServicesHubArchiveHub;
 const aboutProps = homeContent.sections.find((s) => s.type === "about")
   ?.props as AboutProps;
 
@@ -105,6 +112,8 @@ export default function SandboxPage() {
       <SandboxComplianceBackup />
 
       {aboutProps ? <SandboxAboutArchive about={aboutProps} /> : null}
+
+      <SandboxServicesHubArchive hubData={servicesHubData} navData={navData} />
 
       <SandboxApprovedSectionDna site={siteData} />
 
