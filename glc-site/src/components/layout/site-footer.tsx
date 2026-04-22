@@ -42,30 +42,35 @@ export function SiteFooter({ site, navigation, minimal }: Props) {
 
   return (
     <footer id="footer" className="footer--site-light" aria-label="Site footer">
-      <div className="footer__watermark" aria-hidden="true">
-        <Image
-          src={LOGO}
-          alt=""
-          width={720}
-          height={720}
-          className="footer__watermark-img"
-          priority={false}
-        />
-      </div>
       <div className="footer__main">
         <div className="footer__brand">
-          <div className="footer__wordmark-stack">
-            <div className="footer__wordmark-name">{site.name}</div>
-            <div className="footer__wordmark-sub">{site.slogan}</div>
+          <div className="footer__brand-head">
+            <div className="footer__logo-wrap">
+              <Image
+                src={LOGO}
+                alt={site.name}
+                width={240}
+                height={240}
+                className="footer__logo-img"
+                sizes="(max-width: 768px) 160px, 240px"
+                priority={false}
+              />
+            </div>
+            <div className="footer__brand-copy">
+              <div className="footer__wordmark-stack">
+                <div className="footer__wordmark-name">{site.name}</div>
+                <div className="footer__wordmark-sub">{site.slogan}</div>
+              </div>
+              {footer.descriptionLines.map((line, i) => (
+                <p key={i} className="footer__desc-line">
+                  {line}
+                </p>
+              ))}
+              <a href={`tel:${site.telephone}`} className="footer__phone-link">
+                {site.telephoneDisplay}
+              </a>
+            </div>
           </div>
-          {footer.descriptionLines.map((line, i) => (
-            <p key={i} className="footer__desc-line">
-              {line}
-            </p>
-          ))}
-          <a href={`tel:${site.telephone}`} className="footer__phone-link">
-            {site.telephoneDisplay}
-          </a>
         </div>
 
         {footer.columns.map((col) => (

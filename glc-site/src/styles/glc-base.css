@@ -6022,47 +6022,53 @@ section.cta3::before {
   background: var(--gray-100);
   padding: var(--section-v) 0 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-top: 1px solid var(--gray-200);
-}
-/* Same GL mark as header — large left watermark, behind content */
-.footer__watermark {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  left: max(0px, calc(50% - (var(--container-max) * 0.5) - 120px));
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(320px, 52vw, 720px);
-  aspect-ratio: 1;
-  opacity: 0.16;
-}
-.footer__watermark-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left center;
-  display: block;
 }
 #footer.footer--site-light .footer__main {
   position: relative;
   z-index: 1;
 }
-/* Balanced 4-column grid: equal link columns + proportional brand */
+/* Brand + logo left; link columns balance to the right (~⅓ of former watermark max width) */
 .footer__main {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 40px 56px;
   display: grid;
-  grid-template-columns: minmax(200px, 1.2fr) repeat(3, minmax(0, 1fr));
-  gap: 40px 48px;
+  grid-template-columns: minmax(260px, 1.35fr) repeat(3, minmax(0, 1fr));
+  gap: 40px 40px;
   align-items: start;
 }
 .footer__brand {
   min-width: 0;
   position: relative;
   z-index: 1;
-  padding-right: 16px;
+  padding-right: 8px;
+}
+.footer__brand-head {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 32px);
+}
+.footer__logo-wrap {
+  flex: 0 0 auto;
+  width: clamp(100px, 18vw, 240px);
+  max-width: 240px;
+  line-height: 0;
+}
+.footer__logo-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  display: block;
+  opacity: 1;
+  filter: none;
+}
+.footer__brand-copy {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .footer__wordmark-stack {
   margin-bottom: 20px;
@@ -6274,11 +6280,6 @@ section.cta3::before {
     padding-left: 0;
     border-left: none;
   }
-  .footer__watermark {
-    width: clamp(260px, 48vw, 420px);
-    opacity: 0.11;
-    left: -6%;
-  }
   .coverage__inner {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -6316,15 +6317,18 @@ section.cta3::before {
     padding-right: 20px;
     padding-bottom: 48px;
   }
+  #footer.footer--site-light .footer__brand-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  #footer.footer--site-light .footer__logo-wrap {
+    width: clamp(96px, 30vw, 140px);
+    max-width: 140px;
+  }
   #footer.footer--site-light .footer__bar-inner {
     padding-left: 20px;
     padding-right: 20px;
-  }
-  .footer__watermark {
-    width: min(72vw, 320px);
-    opacity: 0.07;
-    left: -12%;
-    top: 62%;
   }
   .footer__bar-inner { flex-direction: column; text-align: center; gap: 12px; }
 }
