@@ -191,7 +191,7 @@
 
 /*
  * Services band — GLC-SVG-MOTIF-PREVIEW.html patterns: DSE rail, ls hairline grid, blueprint plane,
- * grain, diagonal watermark, motif asset; cards get depth + corner motifs (full-color media, no grayscale).
+ * grain, watermark, bridge; cards match expandItem / svc-tile rhythm (top bar + border depth only — no corner shards).
  */
 .testpage__services--dna {
   background: var(--off-white);
@@ -332,7 +332,7 @@
 }
 
 /*
- * Service cards — compose ServicesGridSection expandItem module (yellow top bar, borders, shadows).
+ * Service cards — compose ServicesGridSection expandItem (::before top bar + module shadows).
  * Grid: row 1 = 4 equal; row 2 = two cards each span 2 cols so total width matches row 1.
  */
 .testpage__services-grid {
@@ -370,75 +370,6 @@
     0 16px 36px color-mix(in srgb, var(--charcoal-deep) 14%, transparent),
     0 0 0 1px color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
   transition: box-shadow 0.35s var(--ease-expo), border-color 0.35s var(--ease-expo);
-}
-
-/* Corner motif — charcoal-dominant; yellow is a hairline only along the hypotenuse */
-.testpage__service-card-link::after {
-  content: "";
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
-  z-index: 4;
-  opacity: 0.38;
-  transition: opacity 0.35s var(--ease-expo), transform 0.35s var(--ease-expo);
-  background: linear-gradient(
-    135deg,
-    transparent 46%,
-    color-mix(in srgb, var(--charcoal-deep) 94%, var(--yellow-core) 6%) 46%,
-    color-mix(in srgb, var(--charcoal-deep) 88%, var(--yellow-core) 12%) 100%
-  );
-  clip-path: polygon(100% 0, 100% 100%, 0 0);
-}
-
-.testpage__service-card-link--motif-1::after {
-  top: 0;
-  right: 0;
-  transform: translate(18px, -18px);
-}
-
-.testpage__service-card-link--motif-2::after {
-  top: 0;
-  left: 0;
-  transform: translate(-18px, -18px) scale(-1, 1);
-}
-
-.testpage__service-card-link--motif-3::after {
-  bottom: 0;
-  right: 0;
-  transform: translate(18px, 18px) scale(1, -1);
-}
-
-.testpage__service-card-link--motif-4::after {
-  bottom: 0;
-  left: 0;
-  transform: translate(-18px, 18px) scale(-1, -1);
-}
-
-.testpage__service-card-link:hover::after,
-.testpage__service-card-link:focus-visible::after {
-  opacity: 0.55;
-  transform: translate(0, 0);
-}
-
-.testpage__service-card-link--motif-1:hover::after,
-.testpage__service-card-link--motif-1:focus-visible::after {
-  transform: translate(0, 0);
-}
-
-.testpage__service-card-link--motif-2:hover::after,
-.testpage__service-card-link--motif-2:focus-visible::after {
-  transform: translate(0, 0) scale(-1, 1);
-}
-
-.testpage__service-card-link--motif-3:hover::after,
-.testpage__service-card-link--motif-3:focus-visible::after {
-  transform: translate(0, 0) scale(1, -1);
-}
-
-.testpage__service-card-link--motif-4:hover::after,
-.testpage__service-card-link--motif-4:focus-visible::after {
-  transform: translate(0, 0) scale(-1, -1);
 }
 
 .testpage__service-card-link:hover,

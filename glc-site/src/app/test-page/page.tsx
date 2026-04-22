@@ -176,7 +176,7 @@ export default function TestPage() {
                 >
                   <SmartLink
                     href={ROUTES.service(card.slug)}
-                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link testpage__service-card-link--motif-${(idx % 4) + 1}`}
+                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link`}
                   >
                   <div className={svcStyles.expandRow}>
                     <div
