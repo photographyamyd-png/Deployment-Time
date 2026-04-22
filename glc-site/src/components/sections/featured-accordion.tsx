@@ -69,6 +69,8 @@ export type FeaturedAccordionProps = {
   sectionBadge?: string;
   /** When false, the primary button under the intro is omitted (e.g. CTA placed at section footer). */
   showCta?: boolean;
+  /** Wider collapsed strips + larger active panel (more of the photo visible); sandbox / editorial use. */
+  widePanels?: boolean;
 };
 
 export function FeaturedAccordion({
@@ -85,6 +87,7 @@ export function FeaturedAccordion({
   headingId = "accordion-services-heading",
   sectionBadge = "06",
   showCta = true,
+  widePanels = false,
 }: FeaturedAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [motifOffset, setMotifOffset] = useState({ x: 0, y: 0 });
@@ -98,6 +101,7 @@ export function FeaturedAccordion({
     "glc-feat-acc",
     tone !== "default" ? `glc-feat-acc--tone-${tone}` : "",
     layoutMode !== "default" ? `glc-feat-acc--layout-${layoutMode}` : "",
+    widePanels ? "glc-feat-acc--panels-wide" : "",
   ]
     .filter(Boolean)
     .join(" ");

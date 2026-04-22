@@ -153,6 +153,32 @@ export default function SandboxPage() {
         />
       </section>
 
+      {/* Duplicate: wide image strips + off-symmetry white plate behind panel rail (mirror = rail left) */}
+      <section
+        id="interactive-accordion-wide-canvas"
+        className="sandbox-feat-acc-scope sandbox-feat-acc-scope--dark sandbox-feat-acc-scope--with-canvas gl-react-embed-section"
+        aria-label="Featured accordion duplicate: wide panels on asymmetric white canvas"
+      >
+        <div className="sandbox-feat-acc-canvas" aria-hidden />
+        <div className="sandbox-feat-acc-scope__inner">
+          <div className="sandbox-feat-acc-band">
+            <p className="sandbox-feat-acc-band__eyebrow">Featured accordion · Wide rail + canvas</p>
+            <p className="sandbox-feat-acc-band__line">
+              Same dark mirrored layout as variant 1, with wider photo strips (more image visible) and a large
+              off-center white plane behind the accordion rail so the panel stack reads as a deliberate layer, not a
+              flat overlay on charcoal.
+            </p>
+          </div>
+          <FeaturedAccordion
+            {...accProps}
+            tone="dark"
+            layoutMode="mirror"
+            widePanels
+            headingId="sandbox-feat-heading-dark-wide-canvas"
+          />
+        </div>
+      </section>
+
       <div className="glc-motif-divider-a3--to-light" aria-hidden />
 
       <section

@@ -3487,6 +3487,10 @@ a.hero__service-item {
     --glc-feat-acc-collapsed: 48px;
     --glc-feat-acc-gaps: 32px;
   }
+  .glc-feat-acc--panels-wide .glc-feat-acc__panel {
+    --glc-feat-acc-collapsed: 56px;
+    height: 360px;
+  }
 }
 
 /* Featured accordion — optional tones + layout modes (sandbox / reuse) */
@@ -3563,6 +3567,46 @@ a.hero__service-item {
 }
 .glc-feat-acc--tone-dark .glc-feat-acc__panel.is-active {
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Wider collapsed strips + broader active column (more photograph visible; slightly squarer stage) */
+.glc-feat-acc--panels-wide .glc-feat-acc__panel {
+  --glc-feat-acc-collapsed: 76px;
+  --glc-feat-acc-gaps: 32px;
+  height: 400px;
+}
+.glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
+  flex: 0 0 min(
+    540px,
+    max(
+      96px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+    )
+  );
+  width: min(
+    540px,
+    max(
+      96px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+    )
+  );
+  min-width: min(
+    540px,
+    max(
+      96px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+    )
+  );
+  max-width: min(
+    540px,
+    max(
+      96px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+    )
+  );
+}
+.glc-feat-acc--panels-wide .glc-feat-acc__panel-img {
+  object-position: center center;
 }
 
 /* Stack panels above copy; full-width columns */
@@ -20763,6 +20807,49 @@ body.gl-mega-open .gl-mega-backdrop {
 .sandbox-feat-acc-scope--default {
   background: var(--off-white);
 }
+
+/* Sandbox: asymmetric white plate behind mirrored accordion rail + optional wide strips */
+.sandbox-feat-acc-scope--with-canvas {
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid rgba(242, 183, 5, 0.35);
+}
+.sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-canvas {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: 9%;
+  bottom: 7%;
+  left: min(-3%, -18px);
+  width: min(74%, 840px);
+  background: var(--white);
+  opacity: 0.96;
+  clip-path: polygon(14% 0%, 100% 5%, 96% 100%, 0% 90%);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.14),
+    inset 0 0 0 1px rgba(30, 28, 26, 0.05);
+}
+.sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-scope__inner {
+  position: relative;
+  z-index: 1;
+}
+.sandbox-feat-acc-scope--with-canvas .glc-feat-acc--tone-dark {
+  background: transparent;
+  border-top: none;
+}
+.sandbox-feat-acc-scope--with-canvas .glc-feat-acc--tone-dark::before {
+  display: none;
+}
+@media (max-width: 767px) {
+  .sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-canvas {
+    left: 3%;
+    width: 94%;
+    top: 12%;
+    bottom: 8%;
+    clip-path: polygon(6% 0%, 100% 4%, 97% 100%, 0% 96%);
+  }
+}
+
 .sandbox-feat-acc-seam {
   display: block;
   width: 100%;
