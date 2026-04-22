@@ -207,17 +207,55 @@
   line-height: 0;
 }
 
-/* Same 55/45 split as glc-base .ab3__layout — balanced with homepage About */
-.testpage__svc-ab3.ab3__layout {
-  min-height: 0;
-  align-items: stretch;
+/* Full-width ribbon — field photo (first mega card), hero-style scrim */
+.testpage__svc-ribbon {
+  margin: 0 0 clamp(20px, 3vw, 32px);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Slightly tighter vertical rhythm than full-bleed #about when inside container */
+.testpage__svc-ribbon__inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  max-height: min(220px, 30vw);
+  overflow: hidden;
+  background: var(--charcoal-deep);
+}
+
+.testpage__svc-ribbon__img {
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.testpage__svc-ribbon__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 18, 16, 0.55) 0%,
+    rgba(20, 18, 16, 0.12) 55%,
+    rgba(20, 18, 16, 0.2) 100%
+  );
+}
+
+/* ~44 / 56 split: wider rail for image+copy tiles; copy capped so it doesn’t float in empty space */
+.testpage__svc-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(24px, 3.5vw, 40px);
+  align-items: start;
+}
+
+.testpage__svc-copy-col {
+  min-width: 0;
+}
+
 .testpage__svc-copy.ab3__copy {
-  padding-top: clamp(24px, 4vw, var(--section-v-sm));
-  padding-bottom: clamp(24px, 4vw, var(--section-v-sm));
-  justify-content: center;
+  max-width: 32rem;
+  padding: clamp(20px, 3vw, 36px) clamp(12px, 2vw, 20px) clamp(24px, 4vw, 48px) 0;
+  justify-content: flex-start;
 }
 
 .testpage__svc-copy-actions {
@@ -231,83 +269,161 @@
   padding-left: 2px;
 }
 
-/*
- * Right column: #about .ab3__media — six tiles = NEW markup using Why-band .ab3__cred DNA (not hero photos).
- */
-.testpage__svc-media.ab3__media {
-  min-height: 0;
+/* Light rail — not .ab3__media (avoids jammed dark column) */
+.testpage__svc-tiles-col {
+  min-width: 0;
+  background: var(--off-white);
+  border: 1px solid var(--gray-200);
+  padding: clamp(16px, 2.2vw, 24px);
+  box-shadow: var(--shadow-card);
 }
 
-.testpage__svc-board {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  padding: clamp(20px, 3vw, 32px);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* 2×3 grid — same as .ab3__creds on #testpage-why; list reset + hairline tuned for dark column */
-.testpage__svc-cred-board.ab3__creds {
+.testpage__svc-tile-grid {
   list-style: none;
   margin: 0;
-  padding: clamp(16px, 2vw, 24px) 0 0;
-  border-top: 1px solid color-mix(in srgb, var(--white) 14%, transparent);
-  flex: 1;
-  align-content: center;
-}
-
-.testpage__svc-cred-item {
-  min-width: 0;
+  padding: 0;
   display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 16px);
 }
 
-/* SmartLink carries .ab3__cred — match #about / #testpage-why credential cell behavior */
-.testpage__svc-cred-link.ab3__cred {
-  flex: 1;
+.testpage__svc-tile-item {
   min-width: 0;
+}
+
+/* Horizontal tile: photo | ab3-type title/sub/chips; CTA always charcoal (no yellow-on-yellow hover) */
+.testpage__svc-tile {
+  display: grid;
+  grid-template-columns: minmax(100px, 36%) minmax(0, 1fr);
   text-decoration: none;
   color: inherit;
-  -webkit-tap-highlight-color: transparent;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-bottom: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
   transition:
     border-color 0.22s var(--ease-expo),
-    background 0.22s var(--ease-expo);
+    box-shadow 0.22s var(--ease-expo),
+    border-bottom-color 0.22s var(--ease-expo);
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 
-.testpage__svc-cred-link:focus-visible {
+.testpage__svc-tile:hover,
+.testpage__svc-tile:focus-visible {
+  border-bottom-color: var(--yellow-core);
+  box-shadow: var(--shadow-card);
+}
+
+.testpage__svc-tile:focus-visible {
   outline: 2px solid var(--yellow-core);
   outline-offset: 2px;
 }
 
-/* Optional tag row — same chips as ab3__who-serve inside each cred */
-.testpage__svc-cred-chips {
+.testpage__svc-tile__media {
+  position: relative;
+  min-height: 112px;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--charcoal-deep);
+}
+
+.testpage__svc-tile__img {
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.35s var(--ease-expo);
+}
+
+.testpage__svc-tile:hover .testpage__svc-tile__img,
+.testpage__svc-tile:focus-visible .testpage__svc-tile__img {
+  transform: scale(1.06);
+}
+
+.testpage__svc-tile__idx {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--yellow-core);
+  text-shadow: 0 1px 8px color-mix(in srgb, var(--charcoal-deep) 70%, transparent);
+  pointer-events: none;
+}
+
+.testpage__svc-tile__body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  background: var(--gray-100);
+}
+
+.testpage__svc-tile__title {
+  margin-bottom: 4px;
+}
+
+.testpage__svc-tile__sub {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.testpage__svc-tile-chips {
   margin: 10px 0 0;
 }
 
-.testpage__svc-cred-cta {
+.testpage__svc-tile__cta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+  margin-bottom: 0;
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--yellow-core);
-  transition: color 0.22s var(--ease-expo), gap 0.22s var(--ease-expo);
+  color: var(--charcoal-deep);
+  border-top: 1px solid var(--gray-200);
+  transition: gap 0.22s var(--ease-expo);
 }
 
-.testpage__svc-cred-link:hover .testpage__svc-cred-cta,
-.testpage__svc-cred-link:focus-visible .testpage__svc-cred-cta {
+.testpage__svc-tile:hover .testpage__svc-tile__cta,
+.testpage__svc-tile:focus-visible .testpage__svc-tile__cta {
   color: var(--charcoal-deep);
-  gap: 10px;
+}
+
+.testpage__svc-tile__cta svg {
+  flex-shrink: 0;
+  color: var(--yellow-core);
+  transition: transform 0.22s var(--ease-expo);
+}
+
+.testpage__svc-tile:hover .testpage__svc-tile__cta svg,
+.testpage__svc-tile:focus-visible .testpage__svc-tile__cta svg {
+  transform: translateX(3px);
+  color: var(--yellow-core);
 }
 
 .testpage__service-head-accent {
   color: var(--yellow-core);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testpage__svc-tile__img {
+    transition: none;
+  }
+
+  .testpage__svc-tile:hover .testpage__svc-tile__img,
+  .testpage__svc-tile:focus-visible .testpage__svc-tile__img {
+    transform: scale(1.02);
+  }
 }
 
 .testpage__detail-grid {
@@ -953,8 +1069,14 @@
 }
 
 @media (max-width: 1024px) {
-  .testpage__svc-media.ab3__media {
-    min-height: 400px;
+  .testpage__svc-split {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 28px);
+  }
+
+  .testpage__svc-copy.ab3__copy {
+    max-width: none;
+    padding-left: 0;
   }
 
   .testpage__detail-grid,
@@ -994,7 +1116,15 @@
     width: min(100% - 32px, var(--container-max));
   }
 
-  .testpage__svc-cred-board.ab3__creds,
+  .testpage__svc-tile {
+    grid-template-columns: 1fr;
+  }
+
+  .testpage__svc-tile__media {
+    aspect-ratio: 16/9;
+    max-height: 200px;
+  }
+
   .testpage__proof-stats,
   .testpage__process-rail {
     grid-template-columns: 1fr;
