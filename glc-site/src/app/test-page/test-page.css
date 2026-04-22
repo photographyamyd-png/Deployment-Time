@@ -10,6 +10,7 @@
   color: var(--white);
 }
 
+.testpage__services,
 .testpage__process,
 .testpage__proof {
   background: var(--off-white);
@@ -188,20 +189,21 @@
   position: relative;
 }
 
-/* Charcoal band: logo watermark + parallelogram outro; light cards lift off the field */
+/* Light field: off-white + faint logo watermark; charcoal is accent only (cards, motif), not full-bleed fill */
 .testpage__services.testpage__svc-band {
   position: relative;
-  background-color: var(--charcoal-deep);
+  background-color: var(--off-white);
   background-image: radial-gradient(
-    ellipse 90% 55% at 50% 0%,
-    rgba(242, 183, 5, 0.045),
-    transparent 58%
+    ellipse 88% 58% at 50% 0%,
+    var(--yellow-tint-md),
+    transparent 56%
   );
-  color: var(--white);
+  color: var(--text-900);
   overflow: hidden;
+  border-bottom: 1px solid var(--gray-200);
 }
 
-/* Large Ground Level mark — single ghost watermark (replaces text .ab3__wm) */
+/* Large Ground Level mark — low-contrast watermark on light ground */
 .testpage__services.testpage__svc-band::before {
   content: "";
   position: absolute;
@@ -212,8 +214,8 @@
   background-repeat: no-repeat;
   background-position: 50% 42%;
   background-size: min(92vw, 780px);
-  opacity: 0.055;
-  filter: brightness(0) invert(1);
+  opacity: 0.05;
+  filter: grayscale(1) brightness(0.42);
 }
 
 .testpage__svc-band .testpage__container {
@@ -279,13 +281,11 @@
 
 .testpage__svc-copy .ab3__heading {
   text-align: center;
-  color: var(--white);
 }
 
 .testpage__svc-copy .ab3__heading-rule {
   margin-left: auto;
   margin-right: auto;
-  background: var(--yellow-core);
 }
 
 .testpage__svc-copy .ab3__body {
@@ -293,24 +293,6 @@
   margin-right: auto;
   max-width: 62ch;
   text-align: center;
-  color: rgba(255, 255, 255, 0.62);
-}
-
-.testpage__svc-band .testpage__svc-copy .ab3__since {
-  color: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.22);
-}
-
-.testpage__svc-band .testpage__svc-copy .ab3__since span {
-  color: rgba(255, 255, 255, 0.38);
-}
-
-.testpage__svc-band .testpage__svc-copy .eyebrow {
-  color: var(--yellow-core);
-}
-
-.testpage__svc-band .testpage__svc-copy .eyebrow::before {
-  background: var(--yellow-core);
 }
 
 .testpage__svc-copy-actions {
@@ -351,9 +333,9 @@
   text-decoration: none;
   color: inherit;
   background: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--gray-200);
   border-bottom: 2px solid transparent;
-  box-shadow: var(--shadow-elevate);
+  box-shadow: var(--shadow-card);
   transition:
     border-color 0.22s var(--ease-expo),
     box-shadow 0.22s var(--ease-expo),
@@ -365,8 +347,8 @@
 .testpage__svc-tile:hover,
 .testpage__svc-tile:focus-visible {
   border-bottom-color: var(--yellow-core);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: var(--shadow-heavy);
+  border-color: var(--charcoal-mid);
+  box-shadow: var(--shadow-elevate);
 }
 
 .testpage__svc-tile:focus-visible {

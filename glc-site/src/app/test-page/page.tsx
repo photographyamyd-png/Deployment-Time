@@ -141,7 +141,7 @@ export default function TestPage() {
       <section id="testpage-services" className="testpage__services testpage__svc-band" aria-labelledby="testpage-services-heading">
         <div className="testpage__container">
           <div className="testpage__svc-band-bridge" aria-hidden>
-            <div className="glc-motif-divider-a3--to-dark" />
+            <div className="glc-motif-divider-a3--to-light" />
           </div>
 
           <div className="testpage__svc-hub">
