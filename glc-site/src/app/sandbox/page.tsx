@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FeaturedAccordion } from "@/components/sections/featured-accordion";
+import { SandboxApprovedSectionDna } from "@/components/sandbox/sandbox-approved-section-dna";
 import { SandboxComplianceBackup } from "@/components/sandbox/sandbox-compliance-backup";
 import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
 import { SmartLink } from "@/components/ui/smart-link";
@@ -50,6 +51,8 @@ export default function SandboxPage() {
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
       <SandboxComplianceBackup />
+
+      <SandboxApprovedSectionDna site={siteData} />
 
       {/* 1 — Hero */}
       <section className="sandbox__s1 dse" aria-labelledby="sandbox-hero-heading">

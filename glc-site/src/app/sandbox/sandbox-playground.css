@@ -73,3 +73,66 @@
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/* Approved section DNA catalog (section-dna/approved-sections.json) */
+.sandbox-approved-dna-root {
+  scroll-margin-top: var(--header-total-h, 104px);
+}
+
+.sandbox-dna-marker {
+  background: var(--yellow-core);
+  color: var(--charcoal-deep);
+  padding: var(--section-v-sm) 40px;
+  border-top: 3px solid var(--charcoal-deep);
+  border-bottom: 3px solid var(--charcoal-deep);
+  font-family: var(--font-body);
+}
+
+.sandbox-dna-marker__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.sandbox-dna-marker__kicker {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--charcoal-mid);
+}
+
+.sandbox-dna-marker__title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.sandbox-dna-marker__id {
+  margin: 0;
+  font-size: 13px;
+}
+
+.sandbox-dna-marker__id code {
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 2px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.sandbox-dna-marker__note {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 72ch;
+  color: var(--charcoal-mid);
+}
+
+.sandbox-dna-marker__note code {
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+}
