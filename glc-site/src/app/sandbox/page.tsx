@@ -3,17 +3,25 @@ import { FeaturedAccordion } from "@/components/sections/featured-accordion";
 import { SandboxApprovedSectionDna } from "@/components/sandbox/sandbox-approved-section-dna";
 import { SandboxComplianceBackup } from "@/components/sandbox/sandbox-compliance-backup";
 import { SandboxDesignSystemV2Sections } from "@/components/sandbox/sandbox-design-system-v2-sections";
-import { SandboxServicesAccordionGrid } from "@/components/sandbox/sandbox-services-accordion-grid";
+import { HomeServicesAccordionGrid } from "@/components/sections/home-services-accordion-grid";
 import { SmartLink } from "@/components/ui/smart-link";
 import { glcDevPreviewUrl } from "@/lib/glc-dev-preview";
 import home from "@/content/pages/home.json";
 import site from "@/content/site.json";
-import type { AccordionSectionProps, HomePageContent, SiteConfig } from "@/content/types";
+import type {
+  AboutProps,
+  AccordionSectionProps,
+  HomePageContent,
+  SiteConfig,
+} from "@/content/types";
+import { SandboxAboutArchive } from "@/components/sandbox/sandbox-about-archive";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 
 const siteData = site as SiteConfig;
 const homeContent = home as HomePageContent;
+const aboutProps = homeContent.sections.find((s) => s.type === "about")
+  ?.props as AboutProps;
 
 const accordionBlock = homeContent.sections.find((s) => s.type === "accordion");
 const fallbackAccordionProps: AccordionSectionProps = {
@@ -95,6 +103,8 @@ export default function SandboxPage() {
       {/* Inner wrapper: scoped rules are `.sandbox .sandbox-ds-*` / `.sandbox .sandbox__*`; keep a guaranteed ancestor. */}
       <div className="sandbox">
       <SandboxComplianceBackup />
+
+      {aboutProps ? <SandboxAboutArchive about={aboutProps} /> : null}
 
       <SandboxApprovedSectionDna site={siteData} />
 
@@ -282,7 +292,9 @@ export default function SandboxPage() {
 
       <div className="glc-motif-divider-a3--to-dark" aria-hidden />
 
-      <SandboxServicesAccordionGrid
+      <HomeServicesAccordionGrid
+        className="gl-react-embed-section"
+        headingId="sandbox-svc-accgrid-heading"
         eyebrow="Sandbox · Accordion grid"
         headingLine1="Six core"
         headingLine2="service lines"

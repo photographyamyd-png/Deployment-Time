@@ -38,6 +38,13 @@ const about: AboutProps = aboutFromHome ?? {
   cta: { label: "Discuss Your Project", href: `${ROUTES.contact}` },
   mediaStat: { value: "15+", label: "Yrs. Field Experience" },
   badgeText: "Licensed & Insured",
+  equipmentFleet: {
+    eyebrow: "Equipment & mobilization",
+    title: "Fleet reference",
+    body: "Placeholder fleet copy for wireframe tests.",
+    imageSrc: "/images/excavation-and-foundations-orillia-barrie.png",
+    imageAlt: "Excavation equipment on a commercial site",
+  },
 };
 
 const TESTPAGE_ABOUT_PHOTO = "/images/excavation-and-foundations-orillia-barrie.png";

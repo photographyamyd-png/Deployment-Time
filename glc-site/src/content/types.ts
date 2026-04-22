@@ -83,6 +83,14 @@ export type AccordionSectionProps = {
   sectionBadge?: string;
 };
 
+export type AboutEquipmentFleetProps = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  imageSrc: string;
+  imageAlt: string;
+};
+
 export type AboutProps = {
   eyebrow: string;
   headingBefore: string;
@@ -93,6 +101,8 @@ export type AboutProps = {
   cta: { label: string; href: string };
   mediaStat: { value: string; label: string };
   badgeText: string;
+  /** Light band: fleet / mobilization (About page §4). */
+  equipmentFleet: AboutEquipmentFleetProps;
   /** Optional compact audience chips — avoids a separate “who we serve” section. */
   whoWeServe?: { title: string; intro: string; chips: string[] };
 };
@@ -108,6 +118,17 @@ export type ServicesTechnicalSpec = {
   value: string;
 };
 
+/** Six-up photo accordion band (homepage `#services` — sits below slim “What we do” hero). */
+export type ServicesTileGridProps = {
+  eyebrow: string;
+  headingLine1: string;
+  headingLine2: string;
+  headingLine3: string;
+  intro: string;
+  /** One paragraph per service tile, same order as mega menu cards (first six). */
+  panelCopy: string[];
+};
+
 export type ServicesSectionProps = {
   eyebrow: string;
   headingLine1: string;
@@ -120,6 +141,8 @@ export type ServicesSectionProps = {
   featureImageAlt?: string;
   /** Optional “technical data point” rows under the headline; inherits homepage + hub when set in `home.json`. */
   technicalSpecs?: ServicesTechnicalSpec[];
+  /** Homepage: dark blueprint band with six expandable photo tiles (uses first six mega menu cards). */
+  servicesTileGrid?: ServicesTileGridProps;
 };
 
 export type StatCellProps = {

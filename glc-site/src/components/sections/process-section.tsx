@@ -2,29 +2,41 @@ import { IconArrow } from "@/components/ui/icon-arrow";
 import { chunkSentences } from "@/lib/chunk-sentences";
 import type { ProcessProps } from "@/content/types";
 
+export type ProcessSectionProps = ProcessProps & {
+  /** `dark` — charcoal shell (About page). Default `light` matches homepage/process landing history. */
+  surface?: "light" | "dark";
+};
+
 /**
- * Process — light editorial shell, sticky jump rail, step cards with chunked copy (max 2 sentences per block).
+ * Process — editorial shell, sticky jump rail, step cards with chunked copy (max 2 sentences per block).
  */
-export function ProcessSection(props: ProcessProps) {
+export function ProcessSection({
+  surface = "light",
+  eyebrow,
+  heading,
+  headingAccent,
+  steps,
+}: ProcessSectionProps) {
+  const shell = surface === "dark" ? "proc4 proc4--dark" : "proc4";
   return (
-    <section id="process" className="proc4" aria-labelledby="process-heading">
+    <section id="process" className={shell} aria-labelledby="process-heading">
       <div className="proc4__rail" aria-hidden />
 
       <div className="proc4__inner">
         <header className="proc4__head">
           <p className="proc4__eyebrow">
             <span className="proc4__eyebrow-dash" aria-hidden />
-            <span>{props.eyebrow}</span>
+            <span>{eyebrow}</span>
           </p>
           <h2 id="process-heading" className="proc4__title">
-            {props.heading}
-            <em>{props.headingAccent}</em>
+            {heading}
+            <em>{headingAccent}</em>
           </h2>
         </header>
 
         <nav className="proc4__jump" aria-label="Jump to process step">
           <ul className="proc4__jump-list">
-            {props.steps.map((step) => (
+            {steps.map((step) => (
               <li key={step.num}>
                 <a className="proc4__jump-link" href={`#process-step-${step.num}`}>
                   <span className="proc4__jump-num">{step.num}</span>
@@ -36,7 +48,7 @@ export function ProcessSection(props: ProcessProps) {
         </nav>
 
         <div className="proc4__cards">
-          {props.steps.map((step) => (
+          {steps.map((step) => (
             <article
               key={step.num}
               id={`process-step-${step.num}`}

@@ -1,5 +1,5 @@
 import home from "@/content/pages/home.json";
-import type { AboutProps, HomePageContent } from "@/content/types";
+import type { AboutProps, HomePageContent, ProcessProps } from "@/content/types";
 import { AboutPageView } from "@/components/pages/about-page-view";
 import { pageMetadata } from "@/lib/seo";
 import site from "@/content/site.json";
@@ -7,8 +7,14 @@ import type { SiteConfig } from "@/content/types";
 import { ROUTES } from "@/lib/routes";
 
 const homeContent = home as HomePageContent;
-const about = homeContent.sections.find((s) => s.type === "about")?.props as AboutProps;
 const siteData = site as SiteConfig;
+const aboutBlock = homeContent.sections.find((s) => s.type === "about");
+const processBlock = homeContent.sections.find((s) => s.type === "process");
+if (!aboutBlock || !processBlock) {
+  throw new Error("About page requires `about` and `process` blocks in src/content/pages/home.json.");
+}
+const about = aboutBlock.props as AboutProps;
+const process = processBlock.props as ProcessProps;
 
 export const metadata = pageMetadata({
   title: `About | ${siteData.name}`,
@@ -18,5 +24,5 @@ export const metadata = pageMetadata({
 });
 
 export default function AboutPage() {
-  return <AboutPageView about={about} />;
+  return <AboutPageView about={about} process={process} />;
 }

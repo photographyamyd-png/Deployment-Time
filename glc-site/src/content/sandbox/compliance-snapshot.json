@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "label": "GLC compliance audit — frozen reference (update when home order or closing CTAs change)",
-  "updated": "2026-04-21",
+  "updated": "2026-04-22",
   "devPreview": {
     "origin": "http://127.0.0.1:3040",
     "homeUrl": "http://127.0.0.1:3040/",
@@ -16,11 +16,10 @@
     "homeSectionOrderLive": [
       "hero",
       "marquee",
+      "services",
       "about",
       "stats",
-      "services",
       "why",
-      "process",
       "parallaxBand",
       "testimonials",
       "coverage",

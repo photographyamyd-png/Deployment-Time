@@ -9,6 +9,8 @@ import type { HomePageContent, HomeSectionBlock } from "@/content/types";
  *
  * `services` immediately after light `marquee`: surfaces six service lines within ~1–2
  * scrolls and breaks **D→D** adjacency that existed when `#stats` sat directly above `#services`.
+ *
+ * `process` is omitted here — it renders on `/about/` only (`ProcessSection` + `#process`).
  */
 export const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
   "hero",
@@ -17,7 +19,6 @@ export const HOME_SECTION_ORDER: HomeSectionBlock["type"][] = [
   "about",
   "stats",
   "why",
-  "process",
   "parallaxBand",
   "testimonials",
   "coverage",
