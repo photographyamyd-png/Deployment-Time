@@ -181,9 +181,17 @@ export function HeroSection(
       className={`hero-v2${isSandbox ? " hero-v2--sandbox hero-v2--no-service-rail" : ""}`}
     >
       {/* ════ LAYER 0 — Deep background photo ════════════════════════════════ */}
-      <motion.div className="hero-v2__bg-plane" style={{ y: bgY }} aria-hidden>
+      {/* Sandbox: skip bg-plane parallax — stacking `y` + `.hero-v2__bg-roll` scale can slit-scan CSS backgrounds on some GPUs. */}
+      <motion.div
+        className="hero-v2__bg-plane"
+        style={isSandbox ? undefined : { y: bgY }}
+        aria-hidden
+      >
         {deepBgPhoto ? (
-          <div className="hero-v2__bg-roll" aria-hidden>
+          <div
+            className={`hero-v2__bg-roll${isSandbox ? " hero-v2__bg-roll--static" : ""}`}
+            aria-hidden
+          >
             <div
               className="hero-v2__bg-photo hero-v2__bg-photo--image"
               style={{
