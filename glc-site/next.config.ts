@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  /**
+   * Dev: HTML is often opened as `http://localhost:3040` while tooling/tests use `127.0.0.1`.
+   * Those are different origins; without this, Next can warn and (in future) block `/_next/*`
+   * fetches — leading to blank page + “Application error: a client-side exception…”.
+   */
+  allowedDevOrigins: ["127.0.0.1"],
   experimental: {
     // Workaround for Next 15 dev-runtime crashes on some Windows setups:
     // "segment-explorer-node.js#SegmentViewNode" missing in React Client Manifest.
