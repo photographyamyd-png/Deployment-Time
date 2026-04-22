@@ -4,7 +4,6 @@
 }
 
 .testpage__hero,
-.testpage__why,
 .testpage__detail,
 .testpage__cta {
   background: var(--charcoal-deep);
@@ -20,7 +19,6 @@
 
 .testpage__hero,
 .testpage__services,
-.testpage__why,
 .testpage__process,
 .testpage__detail,
 .testpage__proof,
@@ -340,7 +338,6 @@
   }
 }
 
-.testpage__why-grid,
 .testpage__detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -348,7 +345,6 @@
   align-items: stretch;
 }
 
-.testpage__why-media,
 .testpage__detail-media {
   min-height: 280px;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -357,66 +353,107 @@
   overflow: hidden;
 }
 
-.testpage__why-media-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.02);
-}
-
-.testpage__why-media-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(30, 28, 26, 0.2), rgba(30, 28, 26, 0.66)),
-    linear-gradient(145deg, transparent 40%, rgba(242, 183, 5, 0.18) 100%);
-}
-
-.testpage__why-media-badge {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  z-index: 2;
-  min-height: 22px;
-  padding: 4px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--white);
-  font: 700 10px/1 var(--font-body);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.testpage__why-copy .gl-h2,
 .testpage__detail-copy .gl-h2 {
   color: var(--white);
   margin-top: 8px;
 }
 
-.testpage__why-copy .gl-prose,
 .testpage__detail-copy .gl-prose {
   margin-top: 10px;
 }
 
-.testpage__why-points {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+/* ── Why band: homepage #about.ab3 editorial shell + stats st3 top-rail sweep ── */
+.testpage__why--ab3 {
+  background: var(--white);
+  color: var(--text-900);
+  padding: 0 0 calc(var(--section-v) + 16px);
+  overflow: hidden;
+  position: relative;
 }
 
-.testpage__why-points h3 {
-  margin: 0;
-  color: var(--white);
-  font: 700 19px/1.2 var(--font-display);
-  text-transform: uppercase;
+.testpage__why--ab3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 63px,
+    color-mix(in srgb, var(--charcoal-deep) 2.2%, transparent) 63px,
+    color-mix(in srgb, var(--charcoal-deep) 2.2%, transparent) 64px
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
-.testpage__why-points p {
-  margin: 8px 0 0;
-  color: rgba(255, 255, 255, 0.72);
-  font: 500 13px/1.5 var(--font-body);
+.testpage__why-st3-rail {
+  height: 3px;
+  background: var(--gray-200);
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+}
+
+.testpage__why-st3-rail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--charcoal-deep) 0%,
+    color-mix(in srgb, var(--charcoal-deep) 6%, transparent) 8%,
+    var(--yellow-core) 22%,
+    color-mix(in srgb, var(--yellow-core) 45%, transparent) 55%,
+    transparent 100%
+  );
+  transform: scaleX(0.03);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+  animation: testpage-st3-rail-sweep 1.2s var(--ease-expo) forwards;
+  animation-delay: 0.12s;
+}
+
+@keyframes testpage-st3-rail-sweep {
+  0% {
+    transform: scaleX(0.03);
+    opacity: 0;
+  }
+  14% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testpage__why-st3-rail::after {
+    animation: none;
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.testpage__why--ab3 .ab3__layout {
+  position: relative;
+  z-index: 1;
+}
+
+.testpage__why--ab3 .ab3__photo-img {
+  object-fit: cover;
+}
+
+.testpage__ab3-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+}
+
+.testpage__ab3-cta-row .btn-ghost--dark {
+  cursor: pointer;
 }
 
 .testpage__process-rail {
@@ -972,7 +1009,6 @@
 }
 
 @media (max-width: 1024px) {
-  .testpage__why-grid,
   .testpage__detail-grid,
   .testpage__proof-grid {
     grid-template-columns: 1fr;
@@ -980,10 +1016,6 @@
 
   .testpage__detail-bg {
     background-size: 360px auto, 300px auto;
-  }
-
-  .testpage__why-points {
-    grid-template-columns: 1fr;
   }
 
   .testpage__proof-stats {
@@ -999,12 +1031,15 @@
 @media (max-width: 768px) {
   .testpage__hero,
   .testpage__services,
-  .testpage__why,
   .testpage__process,
   .testpage__detail,
   .testpage__proof,
   .testpage__cta {
     padding-block: var(--section-v-sm);
+  }
+
+  .testpage__why--ab3 {
+    padding-bottom: calc(var(--section-v-sm) + 16px);
   }
 
   .testpage__container {

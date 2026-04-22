@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import "./test-page.css";
 import navigation from "@/content/navigation.json";
-import type { MegaMenuCard, NavigationConfig } from "@/content/types";
+import type { AboutProps, HomePageContent, MegaMenuCard, NavigationConfig } from "@/content/types";
+import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
 import { StatCellAnimated } from "@/components/ui/stat-cell-animated";
 import { IconArrow, IconArrowSmall } from "@/components/ui/icon-arrow";
 import { ROUTES } from "@/lib/routes";
 import { pageMetadata } from "@/lib/seo";
 import svcStyles from "@/components/sections/services-grid-section.module.css";
+import home from "@/content/pages/home.json";
 
 const seo = pageMetadata({
   title: "Landing Page Test | Ground Level Contracting",
@@ -19,6 +21,27 @@ const seo = pageMetadata({
 
 const navData = navigation as NavigationConfig;
 const navCards = navData.megaMenu.cards.slice(0, 6);
+
+const homeContent = home as HomePageContent;
+const aboutFromHome = homeContent.sections.find((s) => s.type === "about")?.props as AboutProps | undefined;
+const about: AboutProps = aboutFromHome ?? {
+  eyebrow: "Who We Are",
+  headingBefore: "Built On ",
+  headingAccent: "Ground Level",
+  headingAfter: " — Trusted From Below Up",
+  body: "Ground Level Contracting is a commercial excavation and civil infrastructure company based in Barrie, Ontario.",
+  credentials: [
+    { title: "Geotechnical Solutions", sub: "Rock, clay, high water table — handled" },
+    { title: "On-Schedule Delivery", sub: "Built around your critical-path timeline" },
+    { title: "Safety-First Operations", sub: "Licensed, insured & WSIB compliant" },
+    { title: "B2B Specialists", sub: "Trusted by PMs, GCs & site supervisors" },
+  ],
+  cta: { label: "Discuss Your Project", href: `${ROUTES.contact}` },
+  mediaStat: { value: "15+", label: "Yrs. Field Experience" },
+  badgeText: "Licensed & Insured",
+};
+
+const TESTPAGE_ABOUT_PHOTO = "/images/excavation-and-foundations-orillia-barrie.png";
 
 /** Title accent treatment aligned to service-card wireframe (yellow word / full line). */
 const SERVICE_CARD_TITLE_ACCENT: Record<
@@ -198,43 +221,103 @@ export default function TestPage() {
         </div>
       </section>
 
-      <section className="testpage__why" aria-labelledby="testpage-why-heading">
-        <div className="testpage__section-rail testpage__section-rail--dark" aria-hidden />
-        <div className="testpage__container testpage__why-grid">
-          <div className="testpage__why-media gl-reveal" aria-hidden>
-            <div
-              className="testpage__why-media-bg"
-              style={{
-                backgroundImage:
-                  "url('/images/services/drainage-hardscaping/work-cap-foundation-trench.jpg')",
-              }}
-            />
-            <div className="testpage__why-media-overlay" />
-            <div className="testpage__why-media-badge">Licensed & insured</div>
+      <section id="testpage-why" className="testpage__why--ab3" aria-labelledby="testpage-why-heading">
+        <div className="testpage__why-st3-rail" aria-hidden />
+        <span className="ab3__wm" aria-hidden>
+          GLC
+        </span>
+
+        <div className="ab3__layout">
+          <div className="ab3__copy">
+            <Reveal className="ab3__top-row">
+              <span className="eyebrow">{about.eyebrow}</span>
+              <span className="ab3__since" aria-label={`${about.mediaStat.value} ${about.mediaStat.label}`}>
+                {about.mediaStat.value}&thinsp;
+                <span>{about.mediaStat.label}</span>
+              </span>
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-1" className="ab3__heading-wrap">
+              <h2 id="testpage-why-heading" className="ab3__heading">
+                {about.headingBefore}
+                <em className="ab3__heading-em">{about.headingAccent}</em>
+                {about.headingAfter}
+              </h2>
+              <span className="ab3__heading-rule" aria-hidden />
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-2">
+              <p className="ab3__body">{about.body}</p>
+            </Reveal>
+
+            {about.whoWeServe ? (
+              <Reveal delayClass="reveal--delay-2" className="ab3__who-serve">
+                <p className="ab3__who-serve-title">{about.whoWeServe.title}</p>
+                <p className="ab3__who-serve-intro">{about.whoWeServe.intro}</p>
+                <ul className="ab3__who-serve-chips" aria-label="Who we work with">
+                  {about.whoWeServe.chips.map((c) => (
+                    <li key={c} className="ab3__who-serve-chip">
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ) : null}
+
+            <Reveal delayClass="reveal--delay-3" className="ab3__creds">
+              {about.credentials.map((c, i) => (
+                <div key={c.title} className="ab3__cred">
+                  <div className="ab3__cred-idx" aria-hidden>
+                    0{i + 1}
+                  </div>
+                  <div className="ab3__cred-body">
+                    <div className="ab3__cred-title">{c.title}</div>
+                    <div className="ab3__cred-sub">{c.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </Reveal>
+
+            <Reveal delayClass="reveal--delay-4">
+              <div className="testpage__ab3-cta-row">
+                <SmartLink href={about.cta.href} className="btn-primary">
+                  {about.cta.label}
+                  <IconArrow />
+                </SmartLink>
+                <SmartLink href={ROUTES.projects} className="btn-ghost btn-ghost--dark">
+                  View our work
+                  <IconArrow />
+                </SmartLink>
+              </div>
+            </Reveal>
           </div>
-          <div className="testpage__why-copy gl-reveal">
-            <p className="eyebrow">Why we do it</p>
-            <span className="testpage__head-rule testpage__head-rule--light" aria-hidden />
-            <h2 id="testpage-why-heading" className="gl-h2">
-              Building Better. <em>Building Trust.</em>
-            </h2>
-            <p className="gl-prose gl-prose--light">
-              We believe every project is more than construction - it is about creating lasting value and strong relationships.
-            </p>
-            <div className="testpage__why-points">
-              <article>
-                <h3>Quality First</h3>
-                <p>We never compromise on quality.</p>
-              </article>
-              <article>
-                <h3>Built on Integrity</h3>
-                <p>Honest communication and transparent process.</p>
-              </article>
-              <article>
-                <h3>Commitment</h3>
-                <p>Dedicated to delivering on our promises.</p>
-              </article>
+
+          <div className="ab3__media">
+            <div className="ab3__badge" aria-hidden>
+              <span>{about.badgeText}</span>
             </div>
+
+            <div
+              className="ab3__photo ab3__photo--has-img"
+              role="img"
+              aria-label="Ground Level Contracting crew on an excavation site"
+            >
+              <Image
+                src={TESTPAGE_ABOUT_PHOTO}
+                alt=""
+                fill
+                className="ab3__photo-img"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                priority={false}
+              />
+            </div>
+
+            <div className="ab3__chip" aria-hidden>
+              <div className="ab3__chip-num">{about.mediaStat.value}</div>
+              <div className="ab3__chip-lbl">{about.mediaStat.label}</div>
+            </div>
+
+            <div className="ab3__corner-mark" aria-hidden />
           </div>
         </div>
       </section>
