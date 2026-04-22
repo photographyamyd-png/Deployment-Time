@@ -23326,11 +23326,20 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--charcoal-deep);
 }
 
+/* Homepage OSTECH-style reference band (charcoal + yellow accents) */
+#services.home-services-photo[data-glc-services-surface="ostech"] {
+  background: var(--charcoal-deep);
+}
+
 #services.home-services-photo.ls {
   background: var(--off-white);
 }
 
 #services.home-services-photo[data-glc-services-surface="editorial"].ls {
+  background: var(--charcoal-deep);
+}
+
+#services.home-services-photo[data-glc-services-surface="ostech"].ls {
   background: var(--charcoal-deep);
 }
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { SmartLink } from "@/components/ui/smart-link";
-import { IconArrow, IconArrowSmall } from "@/components/ui/icon-arrow";
+import { IconArrow } from "@/components/ui/icon-arrow";
 import { HomeServicesExpandableList } from "@/components/sections/home-services-expandable-list";
 import { ServicesFeatureParallax } from "@/components/sections/services-feature-parallax";
 import { ServicesSectionDepthShell } from "@/components/sections/services-section-depth-shell";
@@ -18,8 +18,9 @@ type Props = ServicesSectionProps & {
   /** Homepage-only: stats/coverage-style dark editorial surface + contrast. */
   editorialSurface?: boolean;
   /**
-   * Homepage-only: reference “Materials” split — left narrative + specs + CTAs,
-   * right 3-up preview strip; remaining service lines in accordion below.
+   * Homepage-only: dark services showcase (OSTECH-style layout reference) —
+   * centered headline + specs, 3 image cards with yellow icon badge + title bar,
+   * remaining lines in accordion. Uses GLC tokens only (not reference orange hex).
    */
   referenceSplitLayout?: boolean;
 };
@@ -50,7 +51,11 @@ export function ServicesGridSection({
   const specs = props.technicalSpecs;
 
   const effectiveEditorial = Boolean(editorialSurface && !referenceSplitLayout);
-  const sectionSurface = effectiveEditorial ? "editorial" : undefined;
+  const sectionSurface = referenceSplitLayout
+    ? "ostech"
+    : effectiveEditorial
+      ? "editorial"
+      : undefined;
 
   const previewCount = Math.min(3, cards.length);
   const previewCards = cards.slice(0, previewCount);
@@ -111,11 +116,11 @@ export function ServicesGridSection({
   return (
     <section
       id="services"
-      className={`home-services-photo ${styles.showcase}${effectiveEditorial ? ` ${styles.surfaceEditorial}` : ""}${referenceSplitLayout ? ` ${styles.referenceLayout}` : ""}`}
+      className={`home-services-photo ${styles.showcase}${effectiveEditorial ? ` ${styles.surfaceEditorial}` : ""}${referenceSplitLayout ? ` ${styles.referenceOstech}` : ""}`}
       data-glc-services-surface={sectionSurface}
       aria-labelledby="services-heading"
     >
-      {effectiveEditorial ? <div className="st3__top-rail" aria-hidden /> : null}
+      {effectiveEditorial || referenceSplitLayout ? <div className="st3__top-rail" aria-hidden /> : null}
       <ServicesSectionDepthShell>
         <div className={styles.layerGround} aria-hidden />
 
@@ -132,50 +137,62 @@ export function ServicesGridSection({
         <div className={styles.body}>
           {referenceSplitLayout ? (
             <>
-              <div className={styles.referenceSplit}>
-                <div className={styles.referenceNarrative}>
-                  {introBlock}
-                  {specsBlock}
-                </div>
-                <div className={styles.referenceShowcase} aria-label="Featured service lines">
-                  <ul className={styles.previewStrip}>
-                    {previewCards.map((card) => {
-                      const src = card.photoSrc?.trim() || FALLBACK_FEATURE;
-                      const alt = [card.title, card.description].filter(Boolean).join(" — ");
-                      return (
-                        <li key={card.slug} className={styles.previewStripItem}>
-                          <SmartLink href={ROUTES.service(card.slug)} className={styles.previewCard}>
-                            <div className={styles.previewCardMedia}>
-                              <Image
-                                src={src}
-                                alt={alt}
-                                fill
-                                className={styles.previewCardImg}
-                                sizes="(max-width: 700px) 100vw, (max-width: 1024px) 33vw, 280px"
-                              />
-                              <span className={styles.previewCardNum} aria-hidden>
-                                {card.num}
-                              </span>
-                            </div>
-                            <div className={styles.previewCardBody}>
-                              <span className={styles.previewCardTitle}>{cardHeadline(card)}</span>
-                              <span className={styles.previewCardCta}>
-                                View service
-                                <IconArrowSmall />
-                              </span>
-                            </div>
-                          </SmartLink>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
+              <header className={styles.referenceOstechHeader}>
+                {introBlock}
+                {specsBlock}
+                <div className={styles.referenceOstechDiag} aria-hidden />
+              </header>
 
-              <div className="home-services-photo__seam" aria-hidden />
+              <ul className={styles.previewStrip} aria-label="Featured service lines">
+                {previewCards.map((card) => {
+                  const src = card.photoSrc?.trim() || FALLBACK_FEATURE;
+                  const alt = [card.title, card.description].filter(Boolean).join(" — ");
+                  return (
+                    <li key={card.slug} className={styles.previewStripItem}>
+                      <SmartLink href={ROUTES.service(card.slug)} className={styles.previewCardOstech}>
+                        <div className={styles.previewCardMedia}>
+                          <Image
+                            src={src}
+                            alt={alt}
+                            fill
+                            className={styles.previewCardImg}
+                            sizes="(max-width: 700px) 100vw, (max-width: 1024px) 33vw, 320px"
+                          />
+                          <div className={styles.previewCardIconBadge} aria-hidden>
+                            <svg
+                              className={styles.previewCardIconSvg}
+                              viewBox="0 0 24 24"
+                              width={20}
+                              height={20}
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"
+                                stroke="currentColor"
+                                strokeWidth="1.75"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className={styles.previewCardFooterBar}>
+                          <span className={styles.previewCardFooterTitle}>{cardHeadline(card)}</span>
+                          <span className={styles.previewCardFooterPlus} aria-hidden>
+                            +
+                          </span>
+                        </div>
+                      </SmartLink>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className={styles.referenceOstechSeam} aria-hidden />
 
               {accordionCards.length > 0 ? (
-                <div className={styles.accordionRegion}>
+                <div className={`${styles.accordionRegion} ${styles.accordionRegionOstech}`}>
                   <HomeServicesExpandableList cards={accordionCards} />
                 </div>
               ) : null}
@@ -186,7 +203,7 @@ export function ServicesGridSection({
                     <SmartLink href={servicesBandCta.quoteCta.href} className="gl-btn gl-btn--primary">
                       {servicesBandCta.quoteCta.label}
                     </SmartLink>
-                    <SmartLink href={servicesBandCta.servicesViewAll.href} className="gl-btn gl-btn--ghost-dark">
+                    <SmartLink href={servicesBandCta.servicesViewAll.href} className="gl-btn gl-btn--ghost">
                       {servicesBandCta.servicesViewAll.label}
                     </SmartLink>
                   </div>
