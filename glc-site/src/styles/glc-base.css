@@ -3488,8 +3488,9 @@ a.hero__service-item {
     --glc-feat-acc-gaps: 32px;
   }
   .glc-feat-acc--panels-wide .glc-feat-acc__panel {
-    --glc-feat-acc-collapsed: 56px;
-    height: 360px;
+    --glc-feat-acc-collapsed: 68px;
+    --glc-feat-acc-gaps: 40px;
+    height: 400px;
   }
 }
 
@@ -3569,44 +3570,135 @@ a.hero__service-item {
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
 }
 
-/* Wider collapsed strips + broader active column (more photograph visible; slightly squarer stage) */
+/* Wider collapsed strips + broader active column (more photograph visible) */
 .glc-feat-acc--panels-wide .glc-feat-acc__panel {
-  --glc-feat-acc-collapsed: 76px;
-  --glc-feat-acc-gaps: 32px;
-  height: 400px;
+  --glc-feat-acc-collapsed: 96px;
+  --glc-feat-acc-gaps: 48px; /* 4 × 12px gutters when row gap is 12px */
+  height: 480px;
 }
 .glc-feat-acc--panels-wide .glc-feat-acc__panel.is-active {
   flex: 0 0 min(
-    540px,
+    720px,
     max(
-      96px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+      120px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   width: min(
-    540px,
+    720px,
     max(
-      96px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+      120px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   min-width: min(
-    540px,
+    720px,
     max(
-      96px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+      120px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
   max-width: min(
-    540px,
+    720px,
     max(
-      96px,
-      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 20px)
+      120px,
+      calc(100% - (4 * var(--glc-feat-acc-collapsed)) - var(--glc-feat-acc-gaps) - 16px)
     )
   );
 }
 .glc-feat-acc--panels-wide .glc-feat-acc__panel-img {
   object-position: center center;
+}
+.glc-feat-acc--panels-wide:not(.glc-feat-acc--panel-chassis) .glc-feat-acc__panels-row {
+  gap: 12px;
+}
+
+/* Framed rail module: containment, contrast vs section, watermark grid (public motifs) */
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(20px, 3vw, 30px) clamp(16px, 2.5vw, 24px) clamp(22px, 3.2vw, 32px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.42),
+    inset 0 0 0 1px rgba(242, 183, 5, 0.14);
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.22);
+  background-image: url("/images/motifs/watermarks/g1-wm-06-tiled-light-grid.svg");
+  background-size: 112px;
+  background-position: center top;
+  mix-blend-mode: soft-light;
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-dark .glc-feat-acc__panels-dse::before {
+  background-color: rgba(0, 0, 0, 0.38);
+  opacity: 0.95;
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-dse::after {
+  content: "";
+  position: absolute;
+  inset: clamp(12px, 2vw, 18px);
+  pointer-events: none;
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(
+    180deg,
+    rgba(242, 183, 5, 0.07) 0%,
+    transparent 28%,
+    transparent 100%
+  );
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-meta {
+  position: relative;
+  z-index: 1;
+  margin-bottom: clamp(16px, 2.2vw, 22px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-stage {
+  position: relative;
+  z-index: 1;
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panels-row {
+  gap: 12px;
+  padding: 6px 4px 8px;
+  background: rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Row gap 12px → four gutters = 48px; keep flex-basis math aligned when not using --panels-wide */
+.glc-feat-acc--panel-chassis:not(.glc-feat-acc--panels-wide) .glc-feat-acc__panel {
+  --glc-feat-acc-gaps: 48px;
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-dark .glc-feat-acc__panels-row {
+  background: rgba(0, 0, 0, 0.28);
+}
+.glc-feat-acc--panel-chassis .glc-feat-acc__panel {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-dark .glc-feat-acc__panel {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-light .glc-feat-acc__panels-dse::before,
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-medium .glc-feat-acc__panels-dse::before {
+  background-color: rgba(255, 255, 255, 0.55);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-light .glc-feat-acc__panels-row,
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-medium .glc-feat-acc__panels-row {
+  background: rgba(255, 255, 255, 0.45);
+}
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-light .glc-feat-acc__panel,
+.glc-feat-acc--panel-chassis.glc-feat-acc--tone-medium .glc-feat-acc__panel {
+  border-color: rgba(30, 28, 26, 0.12);
 }
 
 /* Stack panels above copy; full-width columns */
@@ -20808,46 +20900,33 @@ body.gl-mega-open .gl-mega-backdrop {
   background: var(--off-white);
 }
 
-/* Sandbox: asymmetric white plate behind mirrored accordion rail + optional wide strips */
-.sandbox-feat-acc-scope--with-canvas {
+/* Sandbox: soft vignette behind section—lifts rail from flat charcoal without a white slab */
+.sandbox-feat-acc-scope--rail-stage {
   position: relative;
   overflow: hidden;
   border-top: 3px solid rgba(242, 183, 5, 0.35);
 }
-.sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-canvas {
+.sandbox-feat-acc-scope--rail-stage::before {
+  content: "";
   position: absolute;
-  z-index: 0;
+  inset: 0;
   pointer-events: none;
-  top: 9%;
-  bottom: 7%;
-  left: min(-3%, -18px);
-  width: min(74%, 840px);
-  background: var(--white);
-  opacity: 0.96;
-  clip-path: polygon(14% 0%, 100% 5%, 96% 100%, 0% 90%);
-  box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.14),
-    inset 0 0 0 1px rgba(30, 28, 26, 0.05);
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 90% 75% at 22% 48%,
+      rgba(242, 183, 5, 0.085) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 92% 72%,
+      rgba(255, 255, 255, 0.04) 0%,
+      transparent 52%
+    );
 }
-.sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-scope__inner {
+.sandbox-feat-acc-scope--rail-stage > .glc-feat-acc {
   position: relative;
   z-index: 1;
-}
-.sandbox-feat-acc-scope--with-canvas .glc-feat-acc--tone-dark {
-  background: transparent;
-  border-top: none;
-}
-.sandbox-feat-acc-scope--with-canvas .glc-feat-acc--tone-dark::before {
-  display: none;
-}
-@media (max-width: 767px) {
-  .sandbox-feat-acc-scope--with-canvas .sandbox-feat-acc-canvas {
-    left: 3%;
-    width: 94%;
-    top: 12%;
-    bottom: 8%;
-    clip-path: polygon(6% 0%, 100% 4%, 97% 100%, 0% 96%);
-  }
 }
 
 .sandbox-feat-acc-seam {

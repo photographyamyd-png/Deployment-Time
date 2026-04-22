@@ -71,6 +71,8 @@ export type FeaturedAccordionProps = {
   showCta?: boolean;
   /** Wider collapsed strips + larger active panel (more of the photo visible); sandbox / editorial use. */
   widePanels?: boolean;
+  /** Inset “chassis” around the photo rail: border, watermark grid, clearer separation from section ground. */
+  panelFrame?: boolean;
 };
 
 export function FeaturedAccordion({
@@ -88,6 +90,7 @@ export function FeaturedAccordion({
   sectionBadge = "06",
   showCta = true,
   widePanels = false,
+  panelFrame = false,
 }: FeaturedAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [motifOffset, setMotifOffset] = useState({ x: 0, y: 0 });
@@ -102,6 +105,7 @@ export function FeaturedAccordion({
     tone !== "default" ? `glc-feat-acc--tone-${tone}` : "",
     layoutMode !== "default" ? `glc-feat-acc--layout-${layoutMode}` : "",
     widePanels ? "glc-feat-acc--panels-wide" : "",
+    panelFrame ? "glc-feat-acc--panel-chassis" : "",
   ]
     .filter(Boolean)
     .join(" ");
