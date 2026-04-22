@@ -189,37 +189,119 @@
   position: relative;
 }
 
-/* Homepage #services reference surface — technical ground + GLC watermark (structure/read planes). */
+/*
+ * Services band — GLC-SVG-MOTIF-PREVIEW.html patterns: DSE rail, ls hairline grid, blueprint plane,
+ * grain, diagonal watermark, motif asset; cards get depth + corner motifs (full-color media, no grayscale).
+ */
 .testpage__services--dna {
   background: var(--off-white);
   overflow-x: hidden;
+  position: relative;
+  isolation: isolate;
 }
 
+/* Light-surface hairline grid (preview .ls::before) */
 .testpage__services--dna::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.5;
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 1px,
-    transparent 1px
+  background-image: repeating-linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--charcoal-deep) 2.2%, transparent) 0,
+    color-mix(in srgb, var(--charcoal-deep) 2.2%, transparent) 1px,
+    transparent 1px,
+    transparent 64px
   );
-  background-size: 28px 28px;
 }
 
-.testpage__services-ground {
+/* DSE top rail — yellow thread (preview .dse-rail) */
+.testpage__services-dse-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--yellow-core) 0%,
+    color-mix(in srgb, var(--yellow-core) 12%, transparent) 65%,
+    transparent 100%
+  );
+}
+
+/* Blueprint crosshair — structure plane (preview .dse::before) */
+.testpage__services-blueprint {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--charcoal-deep) 14%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 28px 28px;
-  opacity: 0.22;
+  opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 0,
+      color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 1px,
+      transparent 1px,
+      transparent 80px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 0,
+      color-mix(in srgb, var(--charcoal-deep) 8%, transparent) 1px,
+      transparent 1px,
+      transparent 80px
+    );
+}
+
+/* Film grain — preview .dse-grain */
+.testpage__services-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* Diagonal charcoal + yellow wash (A6-style, tuned for light ground) */
+.testpage__services-diagonal {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      118deg,
+      transparent 38%,
+      color-mix(in srgb, var(--charcoal-deep) 5%, transparent) 48%,
+      transparent 58%
+    ),
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--yellow-core) 8%, transparent) 0%,
+      transparent 36%
+    );
+  opacity: 0.9;
+}
+
+/* SVG watermark from /public (preview A6 / B-series) */
+.testpage__services-motif-svg {
+  position: absolute;
+  right: -4%;
+  bottom: -6%;
+  width: min(420px, 48vw);
+  height: min(420px, 48vw);
+  max-height: 55vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background: url("/images/motifs/preview-v2/motif-a6-diagonal-watermark.svg") no-repeat 80% 80% / contain;
 }
 
 .testpage__services-wm {
@@ -231,7 +313,7 @@
   font-size: clamp(72px, 11vw, 150px);
   font-weight: 700;
   color: var(--charcoal-deep);
-  opacity: 0.028;
+  opacity: 0.032;
   letter-spacing: -0.05em;
   text-transform: uppercase;
   pointer-events: none;
@@ -286,6 +368,95 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--white) 70%, transparent) inset,
+    0 16px 36px color-mix(in srgb, var(--charcoal-deep) 14%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--charcoal-deep) 10%, transparent);
+  transition: box-shadow 0.35s var(--ease-expo), border-color 0.35s var(--ease-expo);
+}
+
+/* Corner motif variants — B-series language from motif preview (yellow + charcoal triangle) */
+.testpage__service-card-link::after {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.72;
+  transition: opacity 0.35s var(--ease-expo), transform 0.35s var(--ease-expo);
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    color-mix(in srgb, var(--yellow-core) 88%, var(--charcoal-deep)) 48%,
+    color-mix(in srgb, var(--yellow-core) 88%, var(--charcoal-deep)) 100%
+  );
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.testpage__service-card-link--motif-1::after {
+  top: 0;
+  right: 0;
+  transform: translate(18px, -18px);
+}
+
+.testpage__service-card-link--motif-2::after {
+  top: 0;
+  left: 0;
+  transform: translate(-18px, -18px) scale(-1, 1);
+}
+
+.testpage__service-card-link--motif-3::after {
+  bottom: 0;
+  right: 0;
+  transform: translate(18px, 18px) scale(1, -1);
+}
+
+.testpage__service-card-link--motif-4::after {
+  bottom: 0;
+  left: 0;
+  transform: translate(-18px, 18px) scale(-1, -1);
+}
+
+.testpage__service-card-link:hover::after,
+.testpage__service-card-link:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.testpage__service-card-link--motif-1:hover::after,
+.testpage__service-card-link--motif-1:focus-visible::after {
+  transform: translate(0, 0);
+}
+
+.testpage__service-card-link--motif-2:hover::after,
+.testpage__service-card-link--motif-2:focus-visible::after {
+  transform: translate(0, 0) scale(-1, 1);
+}
+
+.testpage__service-card-link--motif-3:hover::after,
+.testpage__service-card-link--motif-3:focus-visible::after {
+  transform: translate(0, 0) scale(1, -1);
+}
+
+.testpage__service-card-link--motif-4:hover::after,
+.testpage__service-card-link--motif-4:focus-visible::after {
+  transform: translate(0, 0) scale(-1, -1);
+}
+
+.testpage__service-card-link:hover,
+.testpage__service-card-link:focus-visible {
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--white) 80%, transparent) inset,
+    0 22px 48px color-mix(in srgb, var(--charcoal-deep) 20%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--yellow-core) 35%, transparent);
+}
+
+/* Photo band — yellow structural bar (split-media language) */
+.testpage__service-expand-hero {
+  border-bottom: 3px solid var(--yellow-core);
 }
 
 /* Static title band (homepage expand uses a button; here the whole card is the link). */
@@ -317,11 +488,15 @@
   max-height: clamp(112px, 12vw, 190px);
 }
 
-/* Match homepage expand row: grayscale clears on card hover (not only media hover). */
+/* Full-color imagery only — overrides expandHeroImg grayscale from services-grid-section.module.css */
+.testpage__services--dna .testpage__service-card-link .testpage__service-hero-img {
+  filter: none !important;
+}
+
 .testpage__service-card-link:hover .testpage__service-hero-img,
 .testpage__service-card-link:focus-visible .testpage__service-hero-img {
-  filter: grayscale(0);
-  transform: scale(1.05);
+  filter: none !important;
+  transform: scale(1.04);
 }
 
 .testpage__service-card-link:hover .testpage__expand-cta-span,
@@ -333,7 +508,6 @@
 @media (prefers-reduced-motion: reduce) {
   .testpage__service-card-link:hover .testpage__service-hero-img,
   .testpage__service-card-link:focus-visible .testpage__service-hero-img {
-    filter: none;
     transform: none;
   }
 }

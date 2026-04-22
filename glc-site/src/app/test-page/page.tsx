@@ -140,12 +140,14 @@ export default function TestPage() {
       </section>
 
       <section id="testpage-services" className="testpage__services testpage__services--dna" aria-labelledby="testpage-services-heading">
-        <div className="testpage__services-ground" aria-hidden />
+        <div className="testpage__services-dse-rail" aria-hidden />
+        <div className="testpage__services-blueprint" aria-hidden />
+        <div className="testpage__services-grain" aria-hidden />
+        <div className="testpage__services-diagonal" aria-hidden />
+        <div className="testpage__services-motif-svg" aria-hidden />
         <span className="testpage__services-wm" aria-hidden>
           GLC
         </span>
-        <div className="testpage__section-rail" aria-hidden />
-        <div className="testpage__section-noise" aria-hidden />
         <div className="testpage__container">
           <header className="testpage__head testpage__head--services-ref gl-reveal">
             <div className={svcStyles.svcRefEyebrow}>
@@ -174,11 +176,11 @@ export default function TestPage() {
                 >
                   <SmartLink
                     href={ROUTES.service(card.slug)}
-                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link`}
+                    className={`${svcStyles.expandItem} ${idx === 0 ? svcStyles.expandItemAlt : ""} testpage__service-card-link testpage__service-card-link--motif-${(idx % 4) + 1}`}
                   >
                   <div className={svcStyles.expandRow}>
                     <div
-                      className={`${svcStyles.expandHero} ${idx >= 4 ? "testpage__service-expand-hero--row2" : ""}`}
+                      className={`${svcStyles.expandHero} testpage__service-expand-hero ${idx >= 4 ? "testpage__service-expand-hero--row2" : ""}`}
                     >
                       <Image
                         src={src}
