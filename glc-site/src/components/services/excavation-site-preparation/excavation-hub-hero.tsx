@@ -55,8 +55,6 @@ export type ExcavationHubHeroProps = {
   serviceBarSlugTitles: Array<{ slug: string; title: string }>;
   parallaxBackgroundImage?: string;
   ctaMicrocopy?: string;
-  trustBadges?: string[];
-  trustItems?: string[];
   panelImage?: string;
   ghostWatermarkWord?: string;
 };
@@ -170,14 +168,7 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
     panelImage,
     ghostWatermarkWord,
     ctaMicrocopy,
-    trustItems,
-    trustBadges,
   } = props;
-
-  const topCredentialChips =
-    trustBadges && trustBadges.length > 0
-      ? trustBadges
-      : (trustItems?.slice(0, 3) ?? []);
 
   const secondaryCta = secondaryCtaProp;
 
@@ -348,23 +339,6 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
         </motion.div>
 
         <div className="exc-hub__content">
-          {topCredentialChips.length > 0 ? (
-            <motion.div
-              className="exc-hub__trust-badges"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.05, ease: EASE_OUT }}
-              role="list"
-              aria-label="Credentials"
-            >
-              {topCredentialChips.map((label) => (
-                <span key={label} className="exc-hub__trust-badge" role="listitem">
-                  {label}
-                </span>
-              ))}
-            </motion.div>
-          ) : null}
-
           <motion.div
             className="exc-hub__vert-label"
             initial={{ opacity: 0, x: -12 }}
@@ -519,20 +493,10 @@ export function ExcavationHubHero(props: ExcavationHubHeroProps) {
       </div>
 
       <div className="exc-hub__service-bar">
-        {trustItems && trustItems.length > 0 ? (
-          <div className="exc-hub__trust-row" aria-label="Credentials">
-            <div className="exc-hub__trust-inner">
-              {trustItems.map((t) => (
-                <span key={t} className="exc-hub__trust-item exc-hub__trust-item--vcc">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        ) : null}
-        {trustItems && trustItems.length > 0 ? (
-          <div className="exc-hub__trust-seam" aria-hidden />
-        ) : null}
+        {/*
+         * Credentials live in the hub page marquee immediately below this section
+         * (`.marquee-band` — approved-sections / homepage trust ticker DNA).
+         */}
         <div className="exc-hub__service-inner exc-hub__service-inner--asymmetric">
           {serviceBarSlugTitles.map((s, i) => (
             <motion.div

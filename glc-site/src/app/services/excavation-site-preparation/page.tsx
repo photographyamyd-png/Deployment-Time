@@ -93,7 +93,11 @@ const excavationHeroProps: ExcavationHubHeroProps | null = hero
 
 const marquee = getHomeSection("marquee");
 if (marquee) {
+  /* Dark ticker under charcoal hero; credentials first (approved-sections trust-marquee DNA). */
+  marquee.props.bandTone = "default";
+  const trustLines = hero?.props.trustItems ?? [];
   marquee.props.items = [
+    ...trustLines,
     "Excavation & bulk earthworks",
     "Barrie · Orillia · Wasaga Beach · Innisfil",
     "Pool digs · Trenching · Hydrovac · Clearing",
@@ -138,8 +142,8 @@ function pickSections(types: readonly HomeSectionBlock["type"][]): HomePageConte
     .filter(Boolean) as HomePageContent["sections"];
 }
 
-/** ExcavationHubHero (non-shared) → about (light) → marquee; stats rendered after canon. */
-const excavationTopSections = pickSections(["about", "marquee"] as const);
+/** ExcavationHubHero → marquee (trust ticker + hub lines, approved-sections DNA) → about; stats after canon. */
+const excavationTopSections = pickSections(["marquee", "about"] as const);
 const excavationStatsSections = pickSections(["stats"] as const);
 
 const schemaSite: SiteConfig = { ...siteData, url: getSiteUrl() };
